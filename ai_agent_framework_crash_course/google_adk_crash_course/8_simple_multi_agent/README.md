@@ -1,128 +1,128 @@
-# 🎯 Tutorial 8: Simple Multi‑Agent Researcher (Runs with ADK)
+# 🎯 教程 8：简单多 Agent 研究助手（使用 ADK 运行）
 
-## 🎯 What You'll Learn
-- **Multi‑agent orchestration** using a coordinator agent with specialized sub‑agents
-- **Sequential workflow** where agents build upon each other's outputs
-- **Web search integration** for real-time research capabilities
-- **Running with ADK Web** to interactively test the multi‑agent system
+## 🎯 你将学到什么
+- 使用协调 Agent 与多个专业子 Agent 进行**多 Agent 编排**
+- 构建多个 Agent 基于前序结果继续处理的**顺序工作流**
+- 集成**Web 搜索**，获得实时研究能力
+- 使用 **ADK Web** 交互式测试多 Agent 系统
 
-## 🧠 Core Concept: Multi-Agent Research Pipeline
-A coordinator `LlmAgent` orchestrates three specialized agents in a sequential workflow: Research → Summarize → Critique. Each agent contributes to building a comprehensive research report.
+## 🧠 核心概念：多 Agent 研究流水线
+一个协调器 `LlmAgent` 按顺序编排三个专业 Agent：研究 → 总结 → 批判。每个 Agent 都会基于前一步结果继续加工，最终形成完整研究报告。
 
-```
-User Query → Coordinator Agent
+```text
+用户问题 → 协调 Agent
                 │
-                ├──▶ Research Agent (web search + analysis)
+                ├──▶ 研究 Agent（Web 搜索 + 分析）
                 │           │
-                │           └──▶ Research Findings
+                │           └──▶ 研究发现
                 │
-                ├──▶ Summarizer Agent (synthesis)
+                ├──▶ 总结 Agent（综合整理）
                 │           │
-                │           └──▶ Key Insights
+                │           └──▶ 关键洞察
                 │
-                └──▶ Critic Agent (quality analysis)
+                └──▶ 批判 Agent（质量分析）
                             │
-                            └──▶ Final Report with Recommendations
+                            └──▶ 带建议的最终报告
 ```
 
-## 📁 Project Structure
-```
+## 📁 项目结构
+```text
 8_simple_multi_agent/
-├── README.md                    # This file
-├── requirements.txt             # Dependencies
-├── multi_agent_researcher/      # Main implementation
-│   ├── agent.py                # Multi-agent system (exports root_agent)
-└── .env                        # Environment variables (create this)
+├── README.md                    # 本文件
+├── requirements.txt             # 依赖
+├── multi_agent_researcher/      # 主实现
+│   ├── agent.py                 # 多 Agent 系统（导出 root_agent）
+└── .env                         # 环境变量文件（需自行创建）
 ```
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-### 1. Install Dependencies
-Navigate to the `8_simple_multi_agent` folder and install the required libraries:
+### 1. 安装依赖
+进入 `8_simple_multi_agent` 目录并安装所需库：
 ```bash
 cd 8_simple_multi_agent
 pip install -r requirements.txt
 ```
 
-### 2. Set Up Environment
-Create a `.env` file in the `8_simple_multi_agent` folder:
+### 2. 配置环境
+在 `8_simple_multi_agent` 目录中创建 `.env`：
 ```bash
-# Create .env file
+# 创建 .env 文件
 echo "GOOGLE_API_KEY=your_ai_studio_key_here" > .env
 ```
 
-**Important**: Replace `your_ai_studio_key_here` with your actual Google AI Studio API key from [https://aistudio.google.com/](https://aistudio.google.com/)
+**重要**：请将 `your_ai_studio_key_here` 替换为你从 [Google AI Studio](https://aistudio.google.com/) 获取的实际 API Key。
 
-### 3. Run with ADK Web (Recommended)
-From the `8_simple_multi_agent` folder:
+### 3. 使用 ADK Web 运行（推荐）
+在 `8_simple_multi_agent` 目录中执行：
 ```bash
 adk web
 ```
 
-**ADK Web Setup:**
-- Open the local URL printed in the terminal
-- In the import section, use this path:
-  ```
+**ADK Web 配置：**
+- 打开终端输出的本地 URL
+- 在导入区域使用以下路径：
+  ```text
   ai_agent_framework_crash_course.google_adk_crash_course.8_simple_multi_agent.multi_agent_researcher
   ```
-- Select the `root_agent` object
-- Start chatting with your multi-agent researcher!
+- 选择 `root_agent` 对象
+- 开始与多 Agent 研究助手交互
 
-## 🧪 Sample Prompts to Try
+## 🧪 可尝试的示例 Prompt
 
-### **Comprehensive Research Query:**
-```
-Research the future of renewable energy integration in smart cities, including current technologies, implementation challenges, economic feasibility, and policy requirements. Provide a critique and suggestions.
-```
-
-### **Other Test Queries:**
-```
-"Research the current state of AI regulation in the European Union and its impact on business innovation"
+### **综合研究问题：**
+```text
+研究可再生能源在智慧城市中的未来整合方式，包括当前技术、实施挑战、经济可行性和政策要求，并给出批判性分析与建议。
 ```
 
-```
-"Investigate the latest developments in CRISPR gene editing technology and its potential applications in medicine"
-```
-
-```
-"Research the effectiveness of personalized learning platforms in K-12 education, including current implementations and learning outcomes"
+### **其他测试问题：**
+```text
+研究欧盟当前 AI 监管现状及其对企业创新的影响。
 ```
 
-## 🔍 How It Works
+```text
+调查 CRISPR 基因编辑技术的最新进展，以及其在医学领域中的潜在应用。
+```
 
-### **Research Agent:**
-- Conducts comprehensive web research using Google Search
-- Gathers current information, trends, and developments
-- Provides structured findings with sources and outlines
+```text
+研究 K-12 教育中个性化学习平台的有效性，包括当前实施情况和学习成果。
+```
 
-### **Summarizer Agent:**
-- Synthesizes research into clear, actionable insights
-- Creates executive summaries and key bullet points
-- Identifies critical patterns and takeaways
+## 🔍 工作原理
 
-### **Critic Agent:**
-- Performs quality analysis and gap identification
-- Provides risk assessment and opportunity analysis
-- Gives actionable recommendations and next steps
+### **研究 Agent：**
+- 使用 Google Search 进行全面 Web 研究
+- 收集当前信息、趋势与最新进展
+- 输出带来源和结构化提纲的研究结果
 
-### **Coordinator:**
-- Orchestrates the entire research workflow
-- Ensures proper sequence: Research → Summarize → Critique
-- Integrates all outputs into a cohesive final report
+### **总结 Agent：**
+- 将研究结果提炼为清晰、可执行的洞察
+- 生成执行摘要和关键要点
+- 识别重要模式和结论
 
-## 📝 Tips for Best Results
-- **Be specific** in your research queries for better agent coordination
-- **Allow completion** of the full workflow for comprehensive results
-- The system automatically follows the research pipeline for thorough analysis
-- Each agent builds upon the previous agent's work for better insights
+### **批判 Agent：**
+- 执行质量分析和缺口识别
+- 提供风险与机会分析
+- 给出可执行建议和后续步骤
 
-## 🔗 Next Steps
-After mastering this tutorial, explore:
-- **Tutorial 9**: Workflow Agents (Sequential, Parallel, Branching)
-- **Advanced Patterns**: Custom tools and agent communication
-- **Integration**: Connect with external data sources and APIs
+### **协调器：**
+- 编排整个研究工作流
+- 确保严格按照“研究 → 总结 → 批判”的顺序执行
+- 将所有结果整合成连贯的最终报告
 
-## 🚨 Troubleshooting
-- **API Key Issues**: Ensure your `.env` file is in the correct location and contains a valid `GOOGLE_API_KEY`
-- **Import Errors**: Make sure you're using the exact import path shown above
-- **Agent Not Found**: Verify that `root_agent` is properly exported from the module
+## 📝 获得更好结果的建议
+- 研究问题越**具体**，Agent 之间的协作效果越好
+- 尽量让完整流程执行结束，以获得更全面的结果
+- 系统会自动遵循研究流水线完成深入分析
+- 每个 Agent 都会基于前一个 Agent 的输出继续加工
+
+## 🔗 后续步骤
+掌握本教程后，可以继续探索：
+- **教程 9**：工作流 Agent（顺序、并行、分支）
+- **高级模式**：自定义工具和 Agent 间通信
+- **集成**：连接外部数据源和 API
+
+## 🚨 故障排查
+- **API Key 问题**：确认 `.env` 位于正确目录，且包含有效的 `GOOGLE_API_KEY`
+- **导入错误**：确认使用上文所示的完整导入路径
+- **找不到 Agent**：确认模块已正确导出 `root_agent`
