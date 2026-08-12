@@ -1,26 +1,26 @@
-# 🎮 AI Negotiation Battle Simulator
+# 🎮 AI 谈判对战模拟器
 
-### A Real-Time Agent vs Agent Showdown with AG-UI!
+### 基于 AG-UI 的实时 Agent 对 Agent 谈判对决
 
-Watch two AI agents battle it out in an epic used car negotiation! Built with **Google ADK** for the backend agents and **AG-UI + CopilotKit** for a jaw-dropping reactive frontend.
+观看两个 AI Agent 在二手车谈判中正面交锋。本项目使用 **Google ADK** 构建后端 Agent，并结合 **AG-UI + CopilotKit** 实现实时响应式前端。
 
-## ✨ Features
+## ✨ 功能特性
 
-- **🤖 Dual AI Agents**: Buyer vs Seller with distinct personalities and negotiation strategies
-- **🔄 AG-UI Protocol**: Real-time streaming of agent actions, tool calls, and state changes
-- **💅 Jaw-Dropping UI**: Animated battle arena with live negotiation timeline
-- **🎭 8 Unique Personalities**: 4 buyers + 4 sellers with different negotiation styles
-- **📊 Generative UI**: Custom React components render tool calls in real-time
-- **🔗 Shared State**: Agent state syncs bidirectionally with the frontend
+- **🤖 双 AI Agent 对战**：买方与卖方拥有不同性格和谈判策略
+- **🔄 AG-UI 协议**：实时流式展示 Agent 行为、工具调用和状态变化
+- **💅 动态对战界面**：包含动画效果和实时谈判时间线
+- **🎭 8 种独特人格**：4 个买方角色 + 4 个卖方角色，各自具备不同谈判风格
+- **📊 Generative UI**：自定义 React 组件实时渲染工具调用结果
+- **🔗 共享状态**：Agent 状态与前端进行双向同步
 
-## 🏗️ Architecture
+## 🏗️ 架构
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
-│                    Next.js + CopilotKit Frontend                │
+│                    Next.js + CopilotKit 前端                    │
 │   ┌─────────────┐    ┌──────────────┐    ┌─────────────┐        │
-│   │ Battle Arena│    │  VS Display  │    │Chat Sidebar │        │
-│   │   Timeline  │    │ Buyer/Seller │    │ (AG-UI)     │        │
+│   │  对战时间线  │    │   VS 展示区   │    │ 聊天侧边栏  │        │
+│   │ Battle Arena│    │ 买方 / 卖方   │    │  (AG-UI)    │        │
 │   └──────┬──────┘    └──────────────┘    └──────┬──────┘        │
 └──────────┼────────────────────────────────────────┼─────────────┘
            │              AG-UI Events              │
@@ -38,9 +38,9 @@ Watch two AI agents battle it out in an epic used car negotiation! Built with **
                                 │
                     ┌───────────▼─────────────┐
                     │  ADK Negotiation Agent  │
-                    │  (Battle Master)        │
+                    │    （Battle Master）    │
                     │                         │
-                    │  Tools:                 │
+                    │  工具：                 │
                     │  • configure_negotiation│
                     │  • start_negotiation    │
                     │  • buyer_make_offer     │
@@ -48,86 +48,89 @@ Watch two AI agents battle it out in an epic used car negotiation! Built with **
                     └─────────────────────────┘
 ```
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### Prerequisites
+### 前置条件
 
 - Python 3.11+
 - Node.js 18+
-- Google AI API Key ([Get one here](https://aistudio.google.com/))
+- Google AI API Key（可从 [Google AI Studio](https://aistudio.google.com/) 获取）
 
-### 1. Clone and Navigate
+### 1. 克隆并进入项目目录
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/multi_agent_apps/ai_negotiation_battle_simulator
 ```
 
-### 2. Set Up Backend
+### 2. 配置后端
 
 ```bash
 cd backend
 pip install -r requirements.txt
 
-# Create .env file
+# 创建 .env 文件
 echo "GOOGLE_API_KEY=your_api_key_here" > .env
 
-# Start the backend
+# 启动后端
 python agent.py
 ```
 
-The backend will start on `http://localhost:8000`
+后端默认运行在：`http://localhost:8000`
 
-### 3. Set Up Frontend
+### 3. 配置前端
 
 ```bash
 cd frontend
 npm install
 
-# Start the frontend
+# 启动前端
 npm run dev
 ```
 
-The frontend will start on `http://localhost:3000`
+前端默认运行在：`http://localhost:3000`
 
-### 4. Start Negotiating! 🎮
+### 4. 开始谈判
 
-Open `http://localhost:3000` and tell the Battle Master:
-- "Start a negotiation for a used car"
-- "Show me available scenarios"
-- "Use Desperate Dan as buyer and Shark Steve as seller"
+打开 `http://localhost:3000`，可以向 Battle Master 输入例如：
 
-## 🎭 Personalities
+- `Start a negotiation for a used car`
+- `Show me available scenarios`
+- `Use Desperate Dan as buyer and Shark Steve as seller`
 
-### Buyers
-| Personality | Emoji | Style |
-|-------------|-------|-------|
-| Desperate Dan | 😰 | Needs car TODAY, weak poker face |
-| Analytical Alex | 🧮 | Cites every data point, very logical |
-| Cool-Hand Casey | 😎 | Master of the walkaway bluff |
-| Fair-Deal Fran | 🤝 | Just wants a win-win |
+## 🎭 角色人格
 
-### Sellers
-| Personality | Emoji | Style |
-|-------------|-------|-------|
-| Shark Steve | 🦈 | Never drops more than 5% |
-| By-The-Book Beth | 📊 | Goes strictly by KBB |
-| Motivated Mike | 😅 | Really needs to sell |
-| Drama Queen Diana | 🎭 | Everything is "final offer" |
+### 买方
 
-## 📁 Project Structure
+| 角色 | 表情 | 风格 |
+|---|---|---|
+| Desperate Dan | 😰 | 今天就必须买到车，心理活动容易暴露 |
+| Analytical Alex | 🧮 | 重视所有数据点，极度理性 |
+| Cool-Hand Casey | 😎 | 擅长用“离场”作为谈判筹码 |
+| Fair-Deal Fran | 🤝 | 追求双方都能接受的双赢结果 |
 
-```
+### 卖方
+
+| 角色 | 表情 | 风格 |
+|---|---|---|
+| Shark Steve | 🦈 | 每轮降价绝不超过 5% |
+| By-The-Book Beth | 📊 | 严格按照 KBB 等参考价格谈判 |
+| Motivated Mike | 😅 | 很想尽快卖掉车辆 |
+| Drama Queen Diana | 🎭 | 几乎每次报价都称为“最终报价” |
+
+## 📁 项目结构
+
+```text
 ai_negotiation_battle_simulator/
 ├── README.md
 ├── .env.example
 │
 ├── backend/                    # Python ADK + AG-UI
-│   ├── agent.py               # Main agent with tools
+│   ├── agent.py               # 主 Agent 与工具
 │   ├── requirements.txt
 │   ├── config/
-│   │   ├── personalities.py   # 8 unique personalities
-│   │   └── scenarios.py       # 3 negotiation scenarios
+│   │   ├── personalities.py   # 8 种人格
+│   │   └── scenarios.py       # 3 个谈判场景
 │   └── agents/
 │       ├── buyer_agent.py
 │       ├── seller_agent.py
@@ -137,80 +140,80 @@ ai_negotiation_battle_simulator/
     ├── package.json
     ├── src/
     │   └── app/
-    │       ├── layout.tsx     # CopilotKit provider
+    │       ├── layout.tsx     # CopilotKit Provider
     │       ├── page.tsx       # Battle Arena UI
-    │       ├── globals.css    # Battle animations
+    │       ├── globals.css    # 对战动画
     │       └── api/
     │           └── copilotkit/
-    │               └── route.ts  # CopilotKit runtime
+    │               └── route.ts  # CopilotKit Runtime
     └── tailwind.config.js
 ```
 
-## 🎬 Sample Battle
+## 🎬 示例对战
 
-```
-🔔 NEGOTIATION BEGINS: 2019 Honda Civic EX
+```text
+🔔 谈判开始：2019 Honda Civic EX
 
-📋 ASKING PRICE: $15,500
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-😎 COOL-HAND CASEY (Round 1):
-"I've seen similar Civics go for less. $11,500 seems fair 
-given the market. Cash in hand today."
-
-🦈 SHARK STEVE (Round 1):
-"$15,000. This car is pristine. I've got two other 
-interested buyers coming this weekend."
-
-😎 COOL-HAND CASEY (Round 2):
-"$12,500 is my limit. Take it or I walk."
-
-🦈 SHARK STEVE (Round 2):
-*considers* "$14,000. Final offer."
-
-😎 COOL-HAND CASEY (Round 3):
-"$13,000. Meet me in the middle."
-
-🦈 SHARK STEVE (Round 3):
-"...$13,500 and you've got a deal."
-
-😎 COOL-HAND CASEY (Round 4):
-"$13,250. Final answer."
-
-🦈 SHARK STEVE (Round 4):
-"Deal. 🤝"
+📋 要价：$15,500
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✅ DEAL CLOSED AT $13,250 🎉
-   Buyer saved: $2,250 (14.5% off asking)
+😎 COOL-HAND CASEY（第 1 轮）：
+“我看到类似 Civic 的成交价更低。按照当前市场，$11,500 比较合理。
+我今天可以直接付现金。”
+
+🦈 SHARK STEVE（第 1 轮）：
+“$15,000。这辆车车况非常好，这周末还有另外两个买家要来看。”
+
+😎 COOL-HAND CASEY（第 2 轮）：
+“$12,500 是我的上限。不接受我就走。”
+
+🦈 SHARK STEVE（第 2 轮）：
+*考虑片刻* “$14,000。最终报价。”
+
+😎 COOL-HAND CASEY（第 3 轮）：
+“$13,000，我们各退一步。”
+
+🦈 SHARK STEVE（第 3 轮）：
+“……$13,500，就成交。”
+
+😎 COOL-HAND CASEY（第 4 轮）：
+“$13,250。最终价格。”
+
+🦈 SHARK STEVE（第 4 轮）：
+“成交。🤝”
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ 最终成交价：$13,250 🎉
+   买方节省：$2,250（比原要价低 14.5%）
 ```
 
-## 🧠 How It Works
+## 🧠 工作原理
 
-1. **User Request**: You tell the Battle Master what kind of negotiation to run
-2. **Configuration**: The agent sets up the scenario and personalities
-3. **Tool Calls**: The agent alternates between `buyer_make_offer` and `seller_respond` tools
-4. **AG-UI Streaming**: Each tool call streams to the frontend via AG-UI protocol
-5. **Generative UI**: Custom React components render each offer/response beautifully
-6. **Shared State**: The negotiation timeline updates in real-time
-7. **Outcome**: Deal or no-deal is celebrated with animations!
+1. **用户请求**：用户告诉 Battle Master 希望运行什么类型的谈判
+2. **配置阶段**：Agent 设置谈判场景及双方人格
+3. **工具调用**：Agent 在 `buyer_make_offer` 和 `seller_respond` 工具之间轮流调用
+4. **AG-UI 流式传输**：每次工具调用都会通过 AG-UI 协议实时发送至前端
+5. **Generative UI**：自定义 React 组件将报价和回应实时渲染出来
+6. **共享状态**：谈判时间线持续实时更新
+7. **最终结果**：根据是否达成交易显示对应结果和动画
 
-## 📚 Learn More
+## 📚 相关资料
 
 - [Google ADK Documentation](https://google.github.io/adk-docs/)
 - [AG-UI Protocol Docs](https://docs.ag-ui.com/)
 - [CopilotKit Documentation](https://docs.copilotkit.ai/)
 
-## 🤝 Contributing
+## 🤝 参与贡献
 
-Feel free to add:
-- New negotiation scenarios (salary, apartment, contracts)
-- Additional personality types
-- More dramatic UI effects
-- Cross-framework agents (LangChain, CrewAI via A2A)
+欢迎扩展以下内容：
+
+- 新的谈判场景，例如薪资、租房、合同谈判
+- 更多人格类型
+- 更丰富的 UI 动画和视觉效果
+- 跨框架 Agent，例如通过 A2A 集成 LangChain、CrewAI
 
 ---
 
-*May the best negotiator win!* 🏆
+*愿最优秀的谈判者获胜。* 🏆
