@@ -1,67 +1,72 @@
-# Streaming AI Chatbot
+# 流式 AI 聊天机器人
 
-A minimal example demonstrating **real-time AI streaming** and **conversation state management** using the Motia framework.
+这是一个使用 Motia 框架实现的极简示例，展示如何进行**实时 AI 流式输出**以及**对话状态管理**。
+
 ![streaming-ai-chatbot](docs/images/streaming-ai-chatbot.gif)
 
-## 🚀 Features
+## 🚀 功能
 
-- **Real-time AI Streaming**: Token-by-token response generation using OpenAI's streaming API
-- **Live State Management**: Conversation state updates in real-time with message history
-- **Event-driven Architecture**: Clean API → Event → Streaming Response flow
-- **Minimal Complexity**: Maximum impact with just 3 core files
+- **实时 AI 流式输出**：使用 OpenAI Streaming API 按 Token 逐步生成响应
+- **实时状态管理**：随着消息历史变化，实时更新对话状态
+- **事件驱动架构**：清晰的 API → Event → Streaming Response 流程
+- **极低复杂度**：只用 3 个核心文件即可实现完整功能
 
-## 📁 Architecture
+## 📁 架构
 
 ```
 streaming-ai-chatbot/
 ├── steps/
-│   ├── conversation.stream.ts    # Real-time conversation state
-│   ├── chat-api.step.ts         # Simple chat API endpoint  
-│   └── ai-response.step.ts      # Streaming AI response handler
-├── package.json                 # Dependencies
-├── .env.example                 # Configuration template
-└── README.md                    # This file
+│   ├── conversation.stream.ts    # 实时对话状态
+│   ├── chat-api.step.ts          # 简单聊天 API 端点
+│   └── ai-response.step.ts       # AI 流式响应处理器
+├── package.json                  # 依赖
+├── .env.example                  # 配置模板
+└── README.md                     # 本文件
 ```
 
-## 🛠️ Setup
+## 🛠️ 配置
 
-### Installation & Setup
+### 安装与启动
 
 ```bash
-# Clone the repository
+# 克隆仓库
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_llm_apps/chat_with_X_tutorials/chat_with_llms
 
-# Install dependencies
+# 安装依赖
 npm install
 
-# Start the development server
+# 启动开发服务器
 npm run dev
 ```
 
-### Configure OpenAI API
-   ```bash
-   cp .env.example .env
-   # Edit .env and add your OpenAI API key
-   ```
+### 配置 OpenAI API
 
-**Open Motia Workbench**:
-   Navigate to `http://localhost:3000` to interact with the chatbot
+```bash
+cp .env.example .env
+# 编辑 .env，并添加你的 OpenAI API Key
+```
 
-## 🔧 Usage
+**打开 Motia Workbench**：
+访问 `http://localhost:3000` 与聊天机器人进行交互。
 
-### Send a Chat Message
+## 🔧 使用方法
+
+### 发送聊天消息
 
 **POST** `/chat`
 
 ```json
 {
   "message": "Hello, how are you?",
-  "conversationId": "optional-conversation-id"  // Optional: If not provided, a new conversation will be created
+  "conversationId": "optional-conversation-id"
 }
 ```
 
-**Response:**
+其中 `conversationId` 为可选项。如果未提供，系统会自动创建新的对话。
+
+**响应：**
+
 ```json
 {
   "conversationId": "uuid-v4",
@@ -70,32 +75,34 @@ npm run dev
 }
 ```
 
-The response will update as the AI processes the message, with possible status values:
-- `created`: Initial message state
-- `streaming`: AI is generating the response
-- `completed`: Response is complete with full message
+随着 AI 处理消息，响应状态会持续更新。可能的状态包括：
 
-When completed, the response will contain the actual AI message instead of the processing message.
+- `created`：初始消息状态
+- `streaming`：AI 正在生成响应
+- `completed`：响应已完成并包含完整消息
 
-### Real-time State Updates
+完成后，响应中的处理提示信息会被实际的 AI 回复替换。
 
-The conversation state stream provides live updates as the AI generates responses:
+### 实时状态更新
 
-- **User messages**: Immediately stored with `status: 'completed'`
-- **AI responses**: Start with `status: 'streaming'`, update in real-time, end with `status: 'completed'`
+对话 State Stream 会在 AI 生成回复时持续提供实时更新：
 
-## 🎯 Key Concepts Demonstrated
+- **用户消息**：立即存储，并设置 `status: 'completed'`
+- **AI 响应**：以 `status: 'streaming'` 开始，实时更新内容，最终变为 `status: 'completed'`
 
-### 1. **Streaming API Integration**
+## 🎯 展示的关键概念
+
+### 1. **Streaming API 集成**
+
 ```typescript
 const stream = await openai.chat.completions.create({
   model: 'gpt-4o-mini',
   messages: [...],
-  stream: true, // Enable streaming
+  stream: true, // 启用流式输出
 })
 
 for await (const chunk of stream) {
-  // Update state with each token
+  // 每收到一个 Token 就更新状态
   await streams.conversation.set(conversationId, messageId, {
     message: fullResponse,
     status: 'streaming',
@@ -104,7 +111,8 @@ for await (const chunk of stream) {
 }
 ```
 
-### 2. **Real-time State Management**
+### 2. **实时状态管理**
+
 ```typescript
 export const config: StateStreamConfig = {
   name: 'conversation',
@@ -118,32 +126,33 @@ export const config: StateStreamConfig = {
 }
 ```
 
-### 3. **Event-driven Flow**
+### 3. **事件驱动流程**
+
 ```typescript
-// API emits event
+// API 发出事件
 await emit({
   topic: 'chat-message',
   data: { message, conversationId, assistantMessageId },
 })
 
-// Event handler subscribes and processes
+// 事件处理器订阅并处理事件
 export const config: EventConfig = {
   subscribes: ['chat-message'],
   // ...
 }
 ```
 
-## 🌟 Why This Example Matters
+## 🌟 为什么这个示例值得关注
 
-This example showcases Motia's power in just **3 files**:
+这个示例只使用 **3 个文件**，就展示了 Motia 的核心能力：
 
-- **Effortless streaming**: Real-time AI responses with automatic state updates
-- **Type-safe events**: End-to-end type safety from API to event handlers
-- **Built-in state management**: No external state libraries needed
-- **Scalable architecture**: Event-driven design that grows with your needs
+- **轻松实现流式输出**：实时 AI 响应并自动更新状态
+- **类型安全事件**：从 API 到事件处理器实现端到端类型安全
+- **内置状态管理**：无需额外引入外部状态管理库
+- **可扩展架构**：事件驱动设计可以随着业务需求自然扩展
 
-Perfect for demonstrating how Motia makes complex real-time applications simple and maintainable.
+它非常适合用来展示 Motia 如何将复杂的实时应用开发变得简单且易于维护。
 
-## 🔑 Environment Variables
+## 🔑 环境变量
 
-- `OPENAI_API_KEY`: Your OpenAI API key (required)
+- `OPENAI_API_KEY`：你的 OpenAI API Key（必需）
