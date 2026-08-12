@@ -1,86 +1,86 @@
-# 🚀 AI Product Launch Intelligence Agent
+# 🚀 AI 产品发布情报智能体
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-a-multi-agent-product-launch-intelligence-app) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/build-a-multi-agent-product-launch-intelligence-app)，通过详细的代码讲解、说明和最佳实践，从零开始构建本项目。**
 
-A **streamlined intelligence hub** for Go-To-Market (GTM) & Product-Marketing teams.  
-Built with **Streamlit + Agno (GPT-4o) + Firecrawl**, the app turns scattered public-web data into concise, actionable launch insights.
+这是一个面向 **Go-To-Market（GTM）与产品营销团队** 的**精简型情报中心**。  
+该应用基于 **Streamlit + Agno（GPT-4o）+ Firecrawl** 构建，可以将分散在公开互联网中的数据整理为简洁、可执行的产品发布洞察。
 
-## 3 Specialized Agents in Coordinated Team
+## 由 3 个专业智能体组成的协同团队
 
-| Tab | What You Get |
+| 标签页 | 你将获得的内容 |
 |-----|--------------|
-| **Competitor Analysis Agent** | Evidence-backed breakdown of a rival's latest launches – positioning, differentiators, pricing cues & channel mix |
-| **Market Sentiment Agent** | Consolidated social chatter & review themes split by 🚀 *positive* / ⚠️ *negative* drivers |
-| **Launch Metrics Agent** | Publicly available KPIs – adoption numbers, press coverage, qualitative "buzz" signals |
+| **竞争对手分析智能体** | 基于证据拆解竞争对手最新发布活动，包括定位、差异化、定价线索与渠道组合 |
+| **市场情绪智能体** | 汇总社交讨论与评论主题，并按 🚀 *正面* / ⚠️ *负面* 驱动因素分类 |
+| **发布指标智能体** | 汇总公开可获得的 KPI，包括采用量、媒体报道以及定性的“热度”信号 |
 
-Additional goodies:
+其他功能：
 
-* 🔑 **Sidebar key input** – enter OpenAI & Firecrawl keys securely (type="password")
-* 🧠 **Coordinated multi-agent team** – three expert agents work together for richer insight
-  * 🔍 Product Launch Analyst (GTM strategist)
-  * 💬 Market Sentiment Specialist (consumer-perception guru)
-  * 📈 Launch Metrics Specialist (performance analyst)
-* ⚡ **Quick actions** – press **J/K/L** to trigger the three analyses without touching the UI
-* 📑 **Auto-formatted Markdown reports** – bullet summary first, then expanded deep-dive
-* 🛠️ **Sources section** – every report ends with the URLs that were crawled or searched
+* 🔑 **侧边栏密钥输入** —— 安全输入 OpenAI 与 Firecrawl API Key（`type="password"`）
+* 🧠 **协同式多智能体团队** —— 三个专业智能体共同工作，提供更丰富的洞察
+  * 🔍 产品发布分析师（GTM 战略专家）
+  * 💬 市场情绪专家（消费者认知分析）
+  * 📈 发布指标专家（绩效分析）
+* ⚡ **快捷操作** —— 按 **J/K/L** 即可触发三种分析，无需操作界面
+* 📑 **自动格式化 Markdown 报告** —— 先给出要点摘要，再提供详细深度分析
+* 🛠️ **来源部分** —— 每份报告结尾都会列出抓取或搜索过的 URL
 
-## 🛠️ Tech Stack
+## 🛠️ 技术栈
 
-| Layer | Details |
+| 层级 | 详情 |
 |-------|---------|
-| Data | **Firecrawl** async search + crawl API |
-| Agents | **Agno Team** (GPT-4o) with FirecrawlTools |
-| UI | **Streamlit** wide-layout, tabbed workflow |
+| 数据 | **Firecrawl** 异步搜索 + 抓取 API |
+| 智能体 | 集成 FirecrawlTools 的 **Agno Team**（GPT-4o） |
+| UI | **Streamlit** 宽屏布局、标签页工作流 |
 | LLM | **OpenAI GPT-4o** |
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-1. **Clone** the repository
+1. **克隆**仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/multi_agent_apps/product_launch_intelligence_agent
 ```
 
-2. **Install** dependencies
+2. **安装**依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Provide API keys** (choose either option)
+3. **提供 API 密钥**（任选一种方式）
 
-   • **Environment variables** – create a `.env` file:
+   • **环境变量** —— 创建 `.env` 文件：
    ```ini
    OPENAI_API_KEY=sk-************************
    FIRECRAWL_API_KEY=fc-************************
    ```
-   • **In-app sidebar** – paste the keys into the secure text inputs
+   • **应用侧边栏** —— 将密钥粘贴到安全输入框中
 
-4. **Run the app**
+4. **运行应用**
 
 ```bash
 streamlit run product_launch_intelligence_agent.py
 ```
 
-5. **Browse** to <http://localhost:8501> – you should see three analysis tabs.
+5. 浏览器访问 <http://localhost:8501>，你应该会看到三个分析标签页。
 
-## 🕹️ Using the Application
+## 🕹️ 应用使用方法
 
-1. Enter **API keys** in the sidebar (or ensure they are in your environment).
-2. Type a **company / product / hashtag** in the main input box.
-3. Pick a tab and hit the corresponding **Analyze** button – a spinner will appear while the coordinated team works.
-4. Review the two-part analysis:
-   * Bullet list of key findings
-   * Expanded, richly-formatted report (tables, call-outs, recommendations)
+1. 在侧边栏输入 **API 密钥**，或确认它们已经设置在环境变量中。
+2. 在主输入框中输入一个**公司 / 产品 / Hashtag**。
+3. 选择一个标签页并点击对应的 **Analyze（分析）**按钮；协同团队工作期间会显示加载动画。
+4. 查看两部分分析结果：
+   * 关键发现的要点列表
+   * 扩展后的富格式报告（表格、重点提示、建议）
 
-## 🤖 How the Coordinated Team Works
+## 🤖 协同团队的工作方式
 
-The application uses a **coordinated team approach** where three specialized agents work together:
+该应用采用**协同团队模式**，由三个专业智能体共同工作：
 
-- **Product Launch Analyst**: Evaluates competitive positioning, launch strategies, strengths, and weaknesses
-- **Market Sentiment Specialist**: Analyzes social media sentiment, customer feedback, and brand perception  
-- **Launch Metrics Specialist**: Tracks KPIs, adoption rates, press coverage, and performance indicators
+- **产品发布分析师**：评估竞争定位、发布策略、优势与弱点
+- **市场情绪专家**：分析社交媒体情绪、客户反馈与品牌认知  
+- **发布指标专家**：跟踪 KPI、采用率、媒体报道与绩效指标
 
-The team coordinates based on the analysis type requested, ensuring the most appropriate agent handles each task while maintaining consistency and comprehensive coverage across all analysis types.
+团队会根据用户请求的分析类型进行协同调度，确保由最合适的智能体负责具体任务，同时在不同分析类型之间保持一致性与完整覆盖。
