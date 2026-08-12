@@ -1,34 +1,37 @@
-## 💰 AI Personal Finance Planner
+## 💰 AI 个人财务规划 Agent
 
-This Streamlit app is an AI-powered personal finance planner that generates personalized financial plans using OpenAI GPT-4o. It automates the process of researching, planning, and creating tailored budgets, investment strategies, and savings goals, empowering you to take control of your financial future with ease.
+这是一个基于 Streamlit 的 AI 个人财务规划应用，使用 OpenAI GPT-4o 生成个性化财务方案。它可以自动完成信息研究、财务规划，并根据用户情况制定预算、投资策略和储蓄目标，帮助用户更系统地管理个人财务。
 
-### Features
-- Set your financial goals and provide details about your current financial situation
-- Use GPT-4o to generate intelligent and personalized financial advice
-- Receive customized budgets, investment plans, and savings strategies
+### 功能特性
+- 设置财务目标，并填写当前财务状况
+- 使用 GPT-4o 生成智能、个性化的财务建议
+- 获得定制预算、投资计划和储蓄策略
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/single_agent_apps/ai_personal_finance_agent
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Get your SerpAPI Key
+- 注册 [OpenAI](https://platform.openai.com/) 账号（或选择其他 LLM Provider）并获取 API Key。
 
-- Sign up for an [SerpAPI account](https://serpapi.com/) and obtain your API key.
+4. 获取 SerpAPI Key
 
-5. Run the Streamlit App
+- 注册 [SerpAPI](https://serpapi.com/) 账号并获取 API Key。
+
+5. 运行 Streamlit 应用
+
 ```bash
 streamlit run finance_agent.py
 ```
