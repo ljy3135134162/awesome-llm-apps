@@ -1,70 +1,70 @@
 # Multi-MCP Agent Router
 
-A Streamlit app that demonstrates the **multi-agent + MCP** pattern: specialized AI agents that each connect to different MCP servers to handle domain-specific tasks.
+一个用于演示 **多 Agent + MCP** 模式的 Streamlit 应用：不同的专业 AI Agent 分别连接不同的 MCP 服务器，用于处理各自领域的任务。
 
-Instead of one agent with all tools, The router sends your request to a **specialist** — a code reviewer, security auditor, researcher, or BIM engineer — each with access to only the MCP tools they need.
+它不是让单个 Agent 持有全部工具，而是由 Router 将你的请求发送给对应的**专业 Agent**——例如代码审查员、安全审计员、研究员或 BIM 工程师；每个 Agent 只拥有完成自身任务所需的 MCP 工具。
 
-## Features
+## 功能
 
-- **4 Specialized Agents**: Code Reviewer, Security Auditor, Researcher, and BIM Engineer
-- **MCP Tool Routing**: Each agent connects to different MCP servers (GitHub, filesystem, fetch, etc.)
-- **Agent Selection**: Automatic routing based on query type, or manual agent selection
-- **Streaming Responses**: Real-time output from Claude via the Anthropic API
-- **Conversation Memory**: Per-agent conversation history within a session
+- **4 个专业 Agent**：代码审查员、安全审计员、研究员和 BIM 工程师
+- **MCP 工具路由**：不同 Agent 分别连接不同 MCP 服务器（GitHub、filesystem、fetch 等）
+- **Agent 选择**：可根据查询类型自动路由，也可以手动选择 Agent
+- **流式响应**：通过 Anthropic API 实时输出 Claude 的响应
+- **对话记忆**：在单个会话内为每个 Agent 分别保留对话历史
 
-## Architecture
+## 架构
 
 ```
-User Query
+用户请求
     |
     v
-[Router] --> Classifies intent
+[Router] --> 判断意图
     |
-    +-- Code Review  --> GitHub MCP + Filesystem MCP
-    +-- Security     --> GitHub MCP + Fetch MCP  
-    +-- Research     --> Fetch MCP + Filesystem MCP
-    +-- BIM/Revit    --> Custom MCP (named pipes)
+    +-- 代码审查  --> GitHub MCP + Filesystem MCP
+    +-- 安全审计  --> GitHub MCP + Fetch MCP
+    +-- 研究      --> Fetch MCP + Filesystem MCP
+    +-- BIM/Revit --> 自定义 MCP（命名管道）
 ```
 
-## Setup
+## 配置
 
-### Requirements
+### 环境要求
 
 - Python 3.10+
 - Anthropic API Key
-- MCP servers (optional — the app works with or without them)
+- MCP 服务器（可选——即使没有 MCP 服务器，应用也可以运行）
 
-### Installation
+### 安装
 
-1. Clone this repository:
+1. 克隆仓库：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd mcp_ai_agents/multi_mcp_agent_forge
    ```
 
-2. Install dependencies:
+2. 安装依赖：
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Run the app:
+3. 运行应用：
    ```bash
    streamlit run agent_forge.py
    ```
 
-4. Enter your Anthropic API key in the sidebar and start asking questions.
+4. 在侧边栏输入 Anthropic API Key，然后即可开始提问。
 
-## How It Works
+## 工作原理
 
-1. **Agent Definitions**: Each agent has a name, system prompt, and list of MCP server configs
-2. **Router**: Classifies the user's query and selects the best agent
-3. **MCP Connection**: The selected agent connects to its assigned MCP servers
-4. **Execution**: Claude processes the query with access to the agent's specific tools
-5. **Response**: Results stream back to the Streamlit UI
+1. **Agent 定义**：每个 Agent 都有名称、系统提示词和 MCP 服务器配置列表
+2. **Router**：判断用户请求类型，并选择最合适的 Agent
+3. **MCP 连接**：被选中的 Agent 连接到分配给它的 MCP 服务器
+4. **执行**：Claude 在可访问该 Agent 专属工具的情况下处理请求
+5. **响应**：结果以流式方式返回 Streamlit UI
 
-## Extending
+## 扩展
 
-Add new agents by defining them in the `AGENTS` dictionary:
+可以通过在 `AGENTS` 字典中定义新的 Agent 来扩展：
 
 ```python
 AGENTS["my_agent"] = Agent(
@@ -75,6 +75,6 @@ AGENTS["my_agent"] = Agent(
 )
 ```
 
-## Credits
+## 致谢
 
-Inspired by [cadre-ai/Agent Forge](https://github.com/WeberG619/cadre-ai) — a production multi-agent framework for Claude Code with 17 specialized agents, persistent memory, and desktop automation.
+灵感来自 [cadre-ai/Agent Forge](https://github.com/WeberG619/cadre-ai)——一个面向 Claude Code 的生产级多 Agent 框架，包含 17 个专业 Agent、持久化记忆和桌面自动化能力。
