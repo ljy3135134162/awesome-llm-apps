@@ -1,75 +1,77 @@
 # 🪦 Project Graveyard Agent Skill
 
-**Every developer has the folder. Twenty-something dead projects, each abandoned for reasons nobody wrote down.**
+**每个开发者都有这样一个文件夹：二十多个已经“死掉”的项目，每个项目都因为某些没人记录下来的原因被放弃。**
 
-This skill reads the git history of every abandoned project on your machine and answers three questions:
+这个 Skill 会读取你机器上所有废弃项目的 Git 历史，并回答三个问题：
 
-**Why did each one die?** Evidence, not vibes. The last commits touch Stripe files: it died at the payments wall. Another repo's first commit lands three days after this one's last: the killer gets named.
+**每个项目为什么死掉了？** 看证据，不靠感觉。最后几次提交都在改 Stripe 相关文件？那它很可能死在支付功能这堵墙前。另一个仓库的第一次提交，正好出现在这个项目最后一次提交后的几天内？那“凶手”就找到了。
 
-**What's your pattern?** Your projects die at day 19. Four of six were abandoned within 48 hours of starting something new.
+**你的放弃模式是什么？** 也许你的项目总是在第 19 天死亡；也许 6 个项目里有 4 个，都是在你开始新项目后的 48 小时内被放弃。
 
-**Which one still has a pulse?** Somewhere in that folder is a project that's 90% done: built, documented, never shipped. This finds it, checks what got easier since it died, and writes the short list of steps between it and a URL.
+**哪个项目其实还活着？** 在那个文件夹里，可能有一个已经完成 90% 的项目：代码写完了、文档也有了，只是从未发布。这个 Skill 会找到它，检查自从项目停止后有哪些事情变得更容易，并整理出从当前状态到真正上线之间还需要完成的少量步骤。
 
-A representative scan (invented projects, real classifier verdicts). Your agent turns it into the funeral: an epitaph per corpse, your patterns named, and an offer to start resurrecting the strongest pulse right now. Yours will hurt more.
+下面是一份典型扫描结果的示意（项目名称是虚构的，但分类器结论来自真实规则）。你的 Agent 会把结果整理成一场“葬礼”：为每个项目写墓志铭，指出你的重复模式，并主动询问是否要立即复活那个生命迹象最强的项目。你自己的扫描结果通常会更扎心。
 
 <img width="1672" height="941" alt="ChatGPT Image Jul 9, 2026, 06_46_05 PM" src="https://github.com/user-attachments/assets/b80456c7-cd6f-49d8-adcf-641230d4c601" />
 
-## What it detects
+## 可以检测什么
 
-Cause of death, read from git history:
+根据 Git 历史判断项目“死因”：
 
-| Cause | How it knows |
+| 死因 | 判断依据 |
 |---|---|
-| **shiny object** | Another repo you own had its first commit within days of this one's last. The killer is named. |
-| **deploy fear** | README done, 20+ commits, real code, zero deploy config. It worked. It never shipped. |
-| **payments / auth wall** | The final commits touch stripe/billing or oauth/login code. |
-| **boilerplate wall** | 60%+ of all file changes were config files. It died configuring. |
-| **rewrite spiral** | Multiple rewrite/migrate commits; rebuilt instead of finished. |
-| **scope explosion** | 100+ files, no deploy config. It grew instead of shipping. |
-| **slow fade** | Commit gaps stretched until they stopped. No wall, no killer; it drifted. |
+| **新鲜事物诱惑（shiny object）** | 你拥有的另一个仓库，在当前项目最后一次提交后的几天内出现首次提交。系统会指出这个“凶手”。 |
+| **部署恐惧（deploy fear）** | README 已完成、有 20+ 次提交、存在真实业务代码，但完全没有部署配置。项目已经能工作，却从未真正发布。 |
+| **支付 / 认证墙（payments / auth wall）** | 最后的提交集中修改 Stripe、Billing、OAuth 或 Login 相关代码。 |
+| **样板配置墙（boilerplate wall）** | 所有文件变更中 60% 以上都是配置文件。项目死在了配置阶段。 |
+| **重写螺旋（rewrite spiral）** | 多次出现 rewrite / migrate 类型提交；不断重构重写，却没有完成产品。 |
+| **范围爆炸（scope explosion）** | 项目超过 100 个文件，却没有部署配置。它一直变大，而不是走向上线。 |
+| **慢性衰亡（slow fade）** | 提交间隔越来越长，最后彻底停止。没有明显障碍，也没有明确“凶手”，只是逐渐失去动力。 |
 
-It also separates the **finished** (deployed, pushed, documented; done, not abandoned) from the **unversioned** (no git, so no autopsy). Then it ranks the dead by **pulse**, how close each is to shipping, and the agent takes over:
+它还会区分：**已完成项目**（已部署、已发布、有文档；它们不是被放弃，而是真正完成了）以及**未使用版本控制的项目**（没有 Git，因此无法进行“尸检”）。随后，系统会根据每个废弃项目距离上线还有多远，计算其 **Pulse（生命迹象）**，并由 Agent 继续处理：
 
-- **Autopsy interview**: ambiguous deaths get a question; git evidence is marked *(forensic)*, your answers *(confirmed)*.
-- **World-check**: before prescribing a dig, it checks what changed since the death: the API that now has an SDK, the model that's 20x cheaper.
-- **Resurrection**: a ≤7-step plan ending at *shipped*, and an offer to start on step 1 right now.
-- **Relapse watch**: resurrections are recorded (`--state` + `--mark-resurrected`); every later scan reports whether the patient is holding.
-- **Necromancer mode**: ask your agent to build something new and it checks the graveyard first; you may have built 60% of it in 2024.
+- **尸检访谈（Autopsy interview）**：对于死因不明确的项目，Agent 会主动提问；来自 Git 的证据会标注为 *(forensic / 取证结果)*，你的回答会标注为 *(confirmed / 已确认)*。
+- **环境变化检查（World-check）**：在建议复活方案之前，会先检查项目停止后外部环境发生了什么变化，例如以前难用的 API 现在有了 SDK，或者某个模型成本已经降低 20 倍。
+- **项目复活（Resurrection）**：生成最多 7 步的复活计划，最后一步必须是 *shipped（真正上线）*，并主动询问是否立即执行第 1 步。
+- **复发监控（Relapse watch）**：通过 `--state` 和 `--mark-resurrected` 记录已复活项目；后续扫描会报告该项目是否仍在持续推进。
+- **死灵法师模式（Necromancer mode）**：当你让 Agent 开始构建一个新项目时，它会先检查“墓地”；你可能早在 2024 年就已经做完了其中 60%。
 
-## Install (10 seconds)
+## 安装（10 秒）
 
 ```bash
 npx skills add https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/project-graveyard
 ```
 
-The [skills CLI](https://skills.sh) installs it into whatever agents you have (Claude Code, Codex, Cursor, Copilot, Antigravity, and others); or copy this folder into your agent's skills dir. Then: *"run the graveyard on ~/dev and ~/projects"*.
+[skills CLI](https://skills.sh) 会将它安装到你当前使用的 Agent 中，例如 Claude Code、Codex、Cursor、Copilot、Antigravity 等；也可以直接把这个目录复制到你的 Agent Skill 目录中。然后输入：*“run the graveyard on ~/dev and ~/projects”*。
 
-Standalone, no agent required:
+也可以完全脱离 Agent 独立运行：
 
 ```bash
 python3 project-graveyard/scripts/graveyard.py ~/dev ~/projects
 ```
 
-## Scope and privacy
+## 扫描范围与隐私
 
-Everything runs locally: one plain-Python file, stdlib only, zero network calls, read-only. It reads git metadata (commit dates, messages, filenames), never your code's contents. Name folders and it scans only those; given none, it checks a fixed list of usual project spots (`DEFAULT_ROOTS`, line 30 of the script), never "everything on your machine." Want to post your report? `--redact` swaps project names for `project-1..n`.
+所有操作都在本地执行：只有一个纯 Python 文件，仅使用标准库，不发起任何网络请求，并且整个扫描过程只读。它只读取 Git 元数据（提交日期、提交信息、文件名），**不会读取你的代码内容**。
 
-Prove it works before installing, from a clone of this repo:
+你指定哪些目录，它就只扫描哪些目录；如果不传目录，则只会检查脚本中预设的一组常见项目路径（`DEFAULT_ROOTS`，脚本第 30 行附近），不会扫描“你整台电脑上的所有内容”。如果你希望公开分享扫描报告，可以使用 `--redact`，将项目名称替换为 `project-1..n`。
+
+安装之前也可以先从本仓库的 Clone 中验证它是否工作：
 
 ```bash
-python3 agent_skills/evals/project-graveyard/test_graveyard.py   # 16 checks, ~10 seconds
+python3 agent_skills/evals/project-graveyard/test_graveyard.py   # 16 项检查，约 10 秒
 ```
 
-Limits: no git means no autopsy (counted, not diagnosed). "Dead" is 45+ days silent, tunable with `--days`. Tested on macOS and Linux.
+限制：没有 Git 的项目无法进行尸检（会计数，但不会诊断死因）。默认将 **45 天以上没有任何提交** 的项目视为“死亡”，可通过 `--days` 调整。已在 macOS 和 Linux 上测试。
 
-## Files
+## 文件结构
 
+```text
+project-graveyard/                  # ← 安装时实际只会复制这个目录
+├── SKILL.md                        # Agent 指令：报告格式、墓志铭规则、复活流程
+├── README.md                       # 当前说明文件
+├── scripts/graveyard.py            # 扫描 + 尸检 + Pulse 排名（Python 3.8+、仅标准库、离线）
+└── references/causes-of-death.md   # 死因分类体系：信号、置信度及每种死因的复活策略
 ```
-project-graveyard/                  # ← this is all that gets copied
-├── SKILL.md                        # agent instructions: report format, epitaph rules, resurrection protocol
-├── README.md                       # this file
-├── scripts/graveyard.py            # scanner + autopsy + pulse ranking (Python 3.8+, stdlib, offline)
-└── references/causes-of-death.md   # the taxonomy: signals, confidence, resurrection strategy per cause
-```
 
-Part of [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) · Apache-2.0 · Last verified: July 2026
+属于 [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 项目的一部分 · Apache-2.0 · 最后验证：2026 年 7 月
