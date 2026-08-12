@@ -1,4 +1,4 @@
-# 🚀 Multi-MCP 智能助手
+# 🚀 多 MCP 智能助手
 
 Multi-MCP 智能助手是一款强大的生产力工具，通过集成多个 Model Context Protocol（MCP）服务器，让用户可以使用自然语言无缝访问 GitHub、Perplexity、Calendar 和 Gmail 等服务。该高级 AI 助手基于 Agno 的 AI Agent 框架构建，旨在成为数字工作空间中的生产力倍增器。
 
