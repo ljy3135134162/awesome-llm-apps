@@ -1,58 +1,59 @@
-# 📊 AI Data Analysis Agent
+# 📊 AI 数据分析 Agent
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-data-analysis-agent) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-ai-data-analysis-agent)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-An AI data analysis Agent built using the Agno Agent framework and Openai's gpt-4o model. This agent helps users analyze their data - csv, excel files through natural language queries, powered by OpenAI's language models and DuckDB for efficient data processing - making data analysis accessible to users regardless of their SQL expertise.
+这是一个使用 Agno Agent 框架和 OpenAI `gpt-4o` 模型构建的 AI 数据分析 Agent。它可以通过自然语言查询分析 CSV、Excel 等数据文件，并结合 OpenAI 语言模型与 DuckDB 高效处理数据，让没有 SQL 经验的用户也能完成数据分析。
 
-## Features
+## 功能特性
 
-- 📤 **File Upload Support**: 
-  - Upload CSV and Excel files
-  - Automatic data type detection and schema inference
-  - Support for multiple file formats
+- 📤 **文件上传支持：**
+  - 上传 CSV 和 Excel 文件
+  - 自动检测数据类型并推断 Schema
+  - 支持多种文件格式
 
-- 💬 **Natural Language Queries**: 
-  - Convert natural language questions into SQL queries
-  - Get instant answers about your data
-  - No SQL knowledge required
+- 💬 **自然语言查询：**
+  - 将自然语言问题转换为 SQL 查询
+  - 快速获得数据相关答案
+  - 无需掌握 SQL
 
-- 🔍 **Advanced Analysis**:
-  - Perform complex data aggregations
-  - Filter and sort data
-  - Generate statistical summaries
-  - Create data visualizations
+- 🔍 **高级分析：**
+  - 执行复杂的数据聚合
+  - 数据筛选和排序
+  - 生成统计摘要
+  - 创建数据可视化
 
-- 🎯 **Interactive UI**:
-  - User-friendly Streamlit interface
-  - Real-time query processing
-  - Clear result presentation
+- 🎯 **交互式 UI：**
+  - 易于使用的 Streamlit 界面
+  - 实时处理查询
+  - 清晰展示分析结果
 
-## How to Run
+## 运行方式
 
-1. **Setup Environment**
-   ```bash
-   # Clone the repository
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd awesome-llm-apps/starter_ai_agents/ai_data_analysis_agent
+1. **配置环境**
 
-   # Install dependencies
-   pip install -r requirements.txt
-   ```
+```bash
+# 克隆仓库
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd awesome-llm-apps/starter_ai_agents/ai_data_analysis_agent
 
-2. **Configure API Keys**
-   - Get OpenAI API key from [OpenAI Platform](https://platform.openai.com)
+# 安装依赖
+pip install -r requirements.txt
+```
 
-3. **Run the Application**
-   ```bash
-   streamlit run ai_data_analyst.py
-   ```
+2. **配置 API Key**
+   - 从 [OpenAI Platform](https://platform.openai.com) 获取 OpenAI API Key。
 
-## Usage
+3. **运行应用**
 
-1. Launch the application using the command above
-2. Provide your OpenAI API key in the sidebar of Streamlit
-3. Upload your CSV or Excel file through the Streamlit interface
-4. Ask questions about your data in natural language
-5. View the results and generated visualizations
+```bash
+streamlit run ai_data_analyst.py
+```
 
+## 使用方式
+
+1. 使用上述命令启动应用。
+2. 在 Streamlit 侧边栏中提供 OpenAI API Key。
+3. 通过 Streamlit 界面上传 CSV 或 Excel 文件。
+4. 使用自然语言针对数据提出问题。
+5. 查看分析结果以及自动生成的数据可视化。
