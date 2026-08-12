@@ -1,104 +1,104 @@
-# 🎯 Tutorial 2: Model-Agnostic Agent
+# 🎯 教程 2：模型无关 Agent
 
-Learn how to create agents that work with **different AI models** using OpenRouter. This example shows how ADK can use OpenAI and Anthropic models through separate agent implementations.
+学习如何通过 OpenRouter 创建可使用**不同 AI 模型**的 Agent。本示例展示 ADK 如何通过独立的 Agent 实现使用 OpenAI 和 Anthropic 模型。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **OpenRouter Integration**: Use one API key for multiple model providers
-- **Separate Agent Implementations**: Compare different models side-by-side
-- **Tool Integration**: Add simple tools to your agents
-- **Root Agent Pattern**: Proper ADK agent naming convention
+- **OpenRouter 集成**：使用一个 API Key 访问多个模型提供商
+- **独立 Agent 实现**：并排比较不同模型
+- **工具集成**：为 Agent 添加简单工具
+- **Root Agent 模式**：正确使用 ADK Agent 命名约定
 
-## 🧠 Core Concept: One API, Many Models
+## 🧠 核心概念：一个 API，多种模型
 
-[OpenRouter](https://openrouter.ai/) provides a unified API to access multiple AI models:
-- ✅ **Single API Key**: Access OpenAI and Anthropic with one key
-- ✅ **Easy Comparison**: Run different agents to compare responses
-- ✅ **Cost Effective**: Pay-per-use pricing
-- ✅ **No Vendor Lock-in**: Switch providers anytime
+[OpenRouter](https://openrouter.ai/) 提供统一 API 来访问多个 AI 模型：
+- ✅ **单一 API Key**：使用一个 Key 访问 OpenAI 和 Anthropic
+- ✅ **便于比较**：运行不同 Agent 比较响应
+- ✅ **成本灵活**：按使用量付费
+- ✅ **避免供应商锁定**：可随时切换模型提供商
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 2_model_agnostic_agent/
-├── README.md                       # This overview
-├── requirements.txt                # Shared dependencies
-├── 2_1_openai_adk_agent/           # OpenAI GPT-4 agent
-│   └── agent.py                    # Agent implementation
-└── 2_2_anthropic_adk_agent/        # Anthropic Claude agent
-    └── agent.py                    # Agent implementation
+├── README.md                       # 本概览
+├── requirements.txt                # 共享依赖
+├── 2_1_openai_adk_agent/           # OpenAI GPT-4 Agent
+│   └── agent.py                    # Agent 实现
+└── 2_2_anthropic_adk_agent/        # Anthropic Claude Agent
+    └── agent.py                    # Agent 实现
 ```
 
-## 🔧 Available Agents
+## 🔧 可用 Agent
 
-### **OpenAI Agent** (`2_1_openai_adk_agent/`)
-- **Model**: GPT-4 via OpenRouter
-- **Agent Name**: `root_agent` (required by ADK)
-- **Features**: Fun fact tool with OpenAI personality
+### **OpenAI Agent**（`2_1_openai_adk_agent/`）
+- **模型**：通过 OpenRouter 使用 GPT-4
+- **Agent 名称**：`root_agent`（ADK 要求）
+- **功能**：提供趣味事实工具，并采用 OpenAI 风格的响应方式
 
-### **Anthropic Agent** (`2_2_anthropic_adk_agent/`)
-- **Model**: Claude 4 Sonnet via OpenRouter
-- **Agent Name**: `root_agent` (required by ADK)
-- **Features**: Fun fact tool with Claude personality
+### **Anthropic Agent**（`2_2_anthropic_adk_agent/`）
+- **模型**：通过 OpenRouter 使用 Claude 4 Sonnet
+- **Agent 名称**：`root_agent`（ADK 要求）
+- **功能**：提供趣味事实工具，并采用 Claude 风格的响应方式
 
-## 🛠️ Setup & Usage
+## 🛠️ 配置与使用
 
-### 1. **Get OpenRouter API Key**
-- Visit: [https://openrouter.ai/keys](https://openrouter.ai/keys)
-- Sign up and get your API key
+### 1. **获取 OpenRouter API Key**
+- 访问：[https://openrouter.ai/keys](https://openrouter.ai/keys)
+- 注册并获取 API Key
 
-### 2. **Set Environment Variable**
-Create a `.env` file in each agent folder:
+### 2. **设置环境变量**
+在每个 Agent 文件夹中创建 `.env` 文件：
 
-**In `2_1_openai_adk_agent/.env`:**
+**`2_1_openai_adk_agent/.env`：**
 ```bash
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-**In `2_2_anthropic_adk_agent/.env`:**
+**`2_2_anthropic_adk_agent/.env`：**
 ```bash
 OPENROUTER_API_KEY=your_openrouter_api_key_here
 ```
 
-### 3. **Install Dependencies**
+### 3. **安装依赖**
 ```bash
-# From the 2_model_agnostic_agent directory
+# 在 2_model_agnostic_agent 目录中执行
 pip install -r requirements.txt
 ```
 
-### 4. **Test OpenAI Agent**
+### 4. **测试 OpenAI Agent**
 ```bash
 adk web
 ```
-Then select the 2_1_openai_adk_agent in the ADK web UI
-- Try asking: "Tell me a fun fact!"
-- Notice the OpenAI GPT-4 response style
+然后在 ADK Web UI 中选择 `2_1_openai_adk_agent`。
+- 尝试提问：`Tell me a fun fact!`
+- 观察 OpenAI GPT-4 的响应风格
 
-### 5. **Test Anthropic Agent**
+### 5. **测试 Anthropic Agent**
 ```bash
 adk web
 ```
-Then select the 2_2_anthropic_adk_agent in the ADK web UI
-- Try asking: "Tell me a fun fact!"
-- Compare with the GPT-4 response style
+然后在 ADK Web UI 中选择 `2_2_anthropic_adk_agent`。
+- 尝试提问：`Tell me a fun fact!`
+- 与 GPT-4 的响应风格进行比较
 
-## 💡 Key Code Pattern
+## 💡 关键代码模式
 
-Each agent follows the same pattern:
+每个 Agent 都遵循相同模式：
 
 ```python
 from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 import os
 
-# Create model via OpenRouter
+# 通过 OpenRouter 创建模型
 model = LiteLlm(
-    model="openrouter/openai/gpt-4",  # or claude model
+    model="openrouter/openai/gpt-4",  # 或 Claude 模型
     api_key=os.getenv("OPENROUTER_API_KEY"),
     base_url="https://openrouter.ai/api/v1"
 )
 
-# Create root_agent (required name for ADK)
+# 创建 root_agent（ADK 要求的名称）
 root_agent = Agent(
     name="agent_name",
     model=model,
@@ -107,32 +107,32 @@ root_agent = Agent(
 )
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to use OpenRouter with ADK
-- ✅ How to create separate agents for different models
-- ✅ How to compare responses from different AI providers
-- ✅ How to properly structure ADK agents with `root_agent`
+完成本教程后，你将理解：
+- ✅ 如何将 OpenRouter 与 ADK 配合使用
+- ✅ 如何为不同模型创建独立 Agent
+- ✅ 如何比较不同 AI 提供商的响应
+- ✅ 如何使用 `root_agent` 正确组织 ADK Agent
 
-## 🔄 Comparing Models
+## 🔄 比较模型
 
-1. **Run the OpenAI agent** and ask questions
-2. **Run the Anthropic agent** with the same questions
-3. **Notice differences** in response style and approach
-4. **Experiment** with different types of prompts
+1. **运行 OpenAI Agent**并提出问题
+2. 使用相同问题**运行 Anthropic Agent**
+3. **观察两者差异**，包括响应风格和处理方式
+4. 使用不同类型的 Prompt **进行实验**
 
-## 💰 Cost Information
+## 💰 成本信息
 
-- OpenRouter charges per token usage
-- GPT-4o: More expensive but very capable
-- Claude 4 Sonnet: Balanced cost and performance
-- You can set spending limits in your OpenRouter dashboard
-- Free tier available for testing
+- OpenRouter 按 Token 使用量收费
+- GPT-4o：成本较高，但能力较强
+- Claude 4 Sonnet：成本与性能较均衡
+- 可以在 OpenRouter Dashboard 中设置消费上限
+- 提供可用于测试的免费层级
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **Root Agent**: Each agent must be named `root_agent` for ADK to recognize it
-- **Environment Variables**: Each folder needs its own `.env` file
-- **API Key**: The same OpenRouter key works for both agents
-- **Comparison**: Run agents separately to compare model behaviors
+- **Root Agent**：每个 Agent 都必须以 `root_agent` 变量暴露，ADK 才能识别
+- **环境变量**：每个文件夹都需要自己的 `.env` 文件
+- **API Key**：两个 Agent 可以使用同一个 OpenRouter Key
+- **模型比较**：分别运行 Agent，以比较不同模型的行为
