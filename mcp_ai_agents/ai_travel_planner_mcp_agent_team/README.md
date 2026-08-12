@@ -1,133 +1,136 @@
 ## 🌍 MCP Travel Planner Agent Team
 
-A sophisticated Streamlit-based AI travel planning application that creates extremely detailed, personalized travel itineraries using multiple MCP servers and Google Maps integration. The app uses Airbnb MCP for real accommodation data and a custom Google Maps MCP for precise distance calculations and location services.
+这是一个基于 Streamlit 构建的高级 AI 旅行规划应用，通过多个 MCP Server 与 Google Maps 集成，生成极其详细且高度个性化的旅行行程。应用使用 Airbnb MCP 获取真实住宿数据，并通过自定义 Google Maps MCP 完成精确距离计算和位置服务。
 
-## ✨ Features
+## ✨ 功能特性
 
-### 🤖 AI-Powered Travel Planning
-- **Extremely Detailed Itineraries**: Creates comprehensive day-by-day schedules with specific timing, addresses, and costs
-- **Distance Calculations**: Uses Google Maps MCP to calculate precise distances and travel times between all locations
-- **Real-Time Accommodation Data**: Integrates with Airbnb MCP for current pricing and availability
-- **Personalized Recommendations**: Customizes itineraries based on user preferences and budget constraints
+### 🤖 AI 驱动的旅行规划
+- **超详细行程**：生成完整的逐日旅行计划，包括具体时间、地址和费用
+- **距离计算**：使用 Google Maps MCP 计算行程中各地点之间的精确距离和通行时间
+- **实时住宿数据**：集成 Airbnb MCP 获取当前价格与可订状态
+- **个性化推荐**：根据用户偏好和预算限制定制行程
 
-### 🏨 Airbnb MCP Integration
-- **Real accommodation listings** with current pricing and availability
-- **Property details** including amenities, guest reviews, and booking availability
-- **Budget-conscious recommendations** filtered by location and preferences
-- **Direct booking information** with real-time rates
+### 🏨 Airbnb MCP 集成
+- 提供包含当前价格和可订状态的**真实住宿房源**
+- 提供包括设施、住客评价和预订状态在内的**房源详情**
+- 根据地点和偏好筛选**符合预算的住宿推荐**
+- 提供包含实时价格的**直接预订信息**
 
-### 🗺️ Google Maps MCP Integration
-- **Precise distance calculations** between all locations in the itinerary
-- **Travel time estimates** for transportation planning
-- **Location services** for points of interest and navigation
-- **Address verification** for all recommended places
-- **Transportation optimization** with turn-by-turn guidance
+### 🗺️ Google Maps MCP 集成
+- 计算行程中所有地点之间的**精确距离**
+- 提供用于交通规划的**通行时间估算**
+- 为兴趣点和导航提供**位置服务**
+- 对所有推荐地点进行**地址验证**
+- 通过逐向导航信息进行**交通方案优化**
 
-### 🔍 Google Search Integration
-- **Current weather forecasts** with detailed clothing recommendations
-- **Restaurant research** with specific addresses, price ranges, and reviews
-- **Attraction details** including opening hours, ticket prices, and best visiting times
-- **Local insights** and cultural information
-- **Practical travel tips** including currency exchange and safety information
+### 🔍 Google 搜索集成
+- 提供**当前天气预报**和详细穿衣建议
+- 提供餐厅调研，包括具体地址、价格区间和评价
+- 提供景点详情，包括开放时间、票价和最佳游览时间
+- 提供当地信息和文化背景
+- 提供实用旅行建议，包括货币兑换和安全信息
 
-### 📅 Additional Features
-- **Calendar Export**: Download your itinerary as a .ics file for Google Calendar, Apple Calendar, or Outlook
-- **Comprehensive Cost Breakdown**: Detailed budget analysis for all trip components
-- **Buffer Time Planning**: Includes travel time and unexpected delays in scheduling
-- **Multiple Accommodation Options**: Provides 3 accommodation choices with distances from city center
+### 📅 其他功能
+- **日历导出**：可将行程下载为 `.ics` 文件，并导入 Google Calendar、Apple Calendar 或 Outlook
+- **完整费用明细**：对旅行各项组成部分进行详细预算分析
+- **缓冲时间规划**：在行程安排中纳入通勤时间与意外延误
+- **多住宿方案**：提供 3 个住宿选项，并标注与市中心的距离
 
+## 配置
 
-## Setup
+### 环境要求
 
-### Requirements
+1. **API Key**（两者都必需）：
+   - **OpenAI API Key**：从 [OpenAI Platform](https://platform.openai.com/api-keys) 获取
+   - **Google Maps API Key**：从 [Google Cloud Console](https://console.cloud.google.com/apis/credentials) 获取
 
-1. **API Keys** (Both Required):
-    - **OpenAI API Key**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-    - **Google Maps API Key**: Get your API key from [Google Cloud Console](https://console.cloud.google.com/apis/credentials)
+2. **Python 3.8+**：确保已安装 Python 3.8 或更高版本。
 
-2. **Python 3.8+**: Ensure you have Python 3.8 or higher installed.
+3. **MCP Server**：应用会自动连接：
+   - **Airbnb MCP Server**：提供真实 Airbnb 房源和价格数据
+   - **自定义 Google Maps MCP**：提供精确距离计算和位置服务
 
-3. **MCP Servers**: The app automatically connects to:
-    - **Airbnb MCP Server**: Provides real Airbnb listings and pricing data
-    - **Custom Google Maps MCP**: Enables precise distance calculations and location services
+### 安装
 
-### Installation
+1. 克隆仓库：
 
-1. Clone this repository:
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd awesome-llm-apps/mcp_ai_agents/ai_travel_planner_mcp_agent_team
    ```
 
-2. Install the required Python packages:
+2. 安装所需 Python 依赖：
+
    ```bash
    pip install -r requirements.txt
    ```
 
-### Running the App
+### 运行应用
 
-1. Start the Streamlit app:
+1. 启动 Streamlit 应用：
+
    ```bash
    streamlit run app.py
    ```
 
-2. In the app interface:
-   - Enter your **OpenAI API key** in the sidebar
-   - Enter your **Google Maps API key** in the sidebar
-   - Specify your destination, trip duration, budget, and preferences
-   - Click "🎯 Generate Itinerary" to create your detailed travel plan
+2. 在应用界面中：
+   - 在侧边栏输入 **OpenAI API Key**
+   - 在侧边栏输入 **Google Maps API Key**
+   - 设置目的地、旅行天数、预算和偏好
+   - 点击“🎯 Generate Itinerary”生成详细旅行计划
 
-3. **Optional**: Download your itinerary as a calendar file (.ics) for import into Google Calendar, Apple Calendar, or Outlook
+3. **可选**：将行程下载为日历文件（`.ics`），并导入 Google Calendar、Apple Calendar 或 Outlook。
 
-## Troubleshooting
+## 故障排查
 
-### Common Issues & Solutions
+### 常见问题与解决方案
 
-- **"Error: [error message]"**: Check your internet connection and API keys
-  - Verify both OpenAI and Google Maps API keys are entered correctly
-  - Try again in a few minutes - the MCP servers may be temporarily unavailable
+- **“Error: [error message]”**：检查网络连接和 API Key
+  - 确认 OpenAI 与 Google Maps API Key 均输入正确
+  - 几分钟后重试，MCP Server 可能暂时不可用
 
-- **Missing distance information**: Google Maps MCP connection issue
-  - Check your Google Maps API key validity
-  - Ensure your API key has the necessary permissions for Maps API
-  - Try refreshing the page and entering the keys again
+- **缺少距离信息**：通常是 Google Maps MCP 连接问题
+  - 检查 Google Maps API Key 是否有效
+  - 确保 API Key 已获得 Maps API 所需权限
+  - 尝试刷新页面并重新输入 Key
 
-- **Slow response times**: MCP servers can take time to respond
-  - The app has a 60-second timeout configured
-  - Wait for the process to complete - detailed itineraries take time to generate
+- **响应较慢**：MCP Server 可能需要较长时间响应
+  - 应用已配置 60 秒超时
+  - 详细行程生成本身需要一定处理时间
 
-- **Network/Firewall issues**: Some corporate networks may block MCP connections
-  - Try from a different network
-  - Use a VPN if necessary
-  - The app will show connection errors if MCP servers are unreachable
+- **网络/防火墙问题**：部分企业网络可能阻止 MCP 连接
+  - 尝试切换到其他网络
+  - 必要时使用 VPN
+  - 如果 MCP Server 无法访问，应用会显示连接错误
 
-### API Key Issues
+### API Key 问题
 
-- **OpenAI API Key**: Make sure you have credits in your OpenAI account and the key is valid
-- **Google Maps API Key**: Ensure the key has Maps API enabled and proper billing setup
+- **OpenAI API Key**：确保 OpenAI 账户中有可用额度，并且 Key 有效
+- **Google Maps API Key**：确保已启用 Maps API，并正确配置计费
 
-### Tool Status
+### 工具状态
 
-The app will show you which data sources were successfully used:
-- 🏨 **"Your travel itinerary is ready with Airbnb data!"** = Airbnb MCP connected successfully
-- 📝 **"Used general knowledge for accommodation suggestions"** = Airbnb MCP failed, using general knowledge as fallback
+应用会显示实际成功使用了哪些数据源：
 
-**The app is designed to work reliably!** Even if MCP connections fail, it will generate comprehensive itineraries using available tools and information.
+- 🏨 **“Your travel itinerary is ready with Airbnb data!”** = Airbnb MCP 连接成功
+- 📝 **“Used general knowledge for accommodation suggestions”** = Airbnb MCP 连接失败，已回退到通用知识进行住宿推荐
 
-## Project Structure
+**应用被设计为即使部分 MCP 连接失败也可以继续工作。** 在这种情况下，它仍会使用可用工具和信息生成完整行程。
 
+## 项目结构
+
+```text
+├── app.py              # 集成 MCP 的主 Streamlit 应用
+├── requirements.txt    # Python 依赖
+└── README.md           # 本文档
 ```
-├── app.py              # Main Streamlit application with MCP integration
-├── requirements.txt    # Python dependencies
-└── README.md          # This documentation
-```
 
-## How It Works
+## 工作原理
 
-The AI Travel Planner Agent Team uses a sophisticated multi-step process to create extremely detailed travel itineraries:
+AI Travel Planner Agent Team 通过一个多步骤流程生成极其详细的旅行行程：
 
-### 🤖 AI Agent Architecture
-- **GPT-4o Model**: Powers the intelligent travel planning with advanced reasoning capabilities
-- **Multi-MCP Integration**: Combines Airbnb and Google Maps MCP servers for real-time data
-- **Google Search Tools**: Provides current weather, reviews, and local insights
-- **Direct Response Generation**: Creates complete itineraries without asking clarifying questions
+### 🤖 AI Agent 架构
+- **GPT-4o 模型**：利用高级推理能力完成智能旅行规划
+- **多 MCP 集成**：组合 Airbnb 和 Google Maps MCP Server 获取实时数据
+- **Google 搜索工具**：提供当前天气、评价和当地信息
+- **直接生成响应**：无需反复追问澄清问题，直接生成完整行程
