@@ -1,53 +1,53 @@
-# 📡 Earnings Call Analyst Agent
+# 📡 财报电话会议分析 Agent
 
-An investor-grade earnings call companion that turns any YouTube earnings call into a playback-synced analyst workspace. Paste a call URL, watch the video, and let ADK agents surface the numbers, tone shifts, filing context, and market-moving surprises that are easy to miss in a live call.
+这是一个面向投资者的财报电话会议分析工具，可将任意 YouTube 财报电话会议转换成与视频播放进度同步的分析工作区。只需粘贴会议视频 URL，一边观看视频，一边由 ADK Agent 提取关键数字、语气变化、财报文件背景以及可能影响市场的重要信息。
 
-This is built for the real earnings workflow: instead of reading a transcript after the fact, you can follow management commentary with an agentic research layer that keeps every insight tied to the quote that triggered it.
+该项目围绕真实的财报分析工作流设计：不必等电话会议结束后再单独阅读文字稿，而是可以在管理层发言过程中，通过 Agent 研究层同步查看分析，并且每条洞察都与触发它的原始引文保持关联。
 
-![📡 Earnings Call Analyst Agent architecture](assets/earnings-call-analyst-agent-architecture.png)
+![📡 财报电话会议分析 Agent 架构](assets/earnings-call-analyst-agent-architecture.png)
 
-## Features
+## 功能特性
 
-### Agentic Call Research
+### Agent 驱动的电话会议研究
 
-- Identifies the company, ticker, fiscal period, and peer set from the YouTube metadata and transcript opening
-- Builds a research pack with SEC filings and current market context
-- Uses an ADK news agent with Google Search grounding for current market context
-- Hides unresolved context instead of showing empty research panels
+- 根据 YouTube 元数据和文字稿开头识别公司、股票代码、财报周期及同行公司
+- 结合 SEC 文件和当前市场背景构建研究资料包
+- 使用带 Google Search Grounding 的 ADK 新闻 Agent 获取当前市场信息
+- 对尚未获取到的背景信息直接隐藏对应区域，而不是展示空白研究面板
 
-### Quote-Anchored Signal Detection
+### 基于原始引文的信号检测
 
-- Creates analyst cards only when the transcript contains a real investor signal
-- Anchors every card to the exact quote and timestamp that triggered it
-- Filters out greetings, safe-harbor boilerplate, and generic upbeat commentary
-- Reveals cards as playback reaches the relevant moment in the call
+- 仅当文字稿中出现真实的投资者信号时才创建分析卡片
+- 每张卡片都关联触发该分析的准确引文和时间戳
+- 自动过滤问候语、安全港声明以及泛化的积极表述
+- 当视频播放到相关位置时，再显示对应分析卡片
 
-### Earnings Intelligence Cards
+### 财报情报卡片
 
-- Flags financial metrics, margin pressure, guidance language, demand commentary, pricing, cash flow, and capex signals
-- Separates company-specific statements from peer or sector context when evidence is available
-- Calls out CFO hedging, confidence shifts, defensiveness, and unusually specific language
-- Adds compact tables or chart summaries only when they clarify the finding
+- 标记财务指标、利润率压力、业绩指引、需求评论、定价、现金流和资本支出等信号
+- 在有足够证据时，将公司自身信息与同行或行业背景分开呈现
+- 识别 CFO 的保守措辞、信心变化、防御性表达以及异常具体的语言
+- 仅在有助于说明结论时添加简洁表格或图表摘要
 
-### Caption + Audio Resilience
+### 字幕与音频容错能力
 
-- Uses YouTube captions when available for precise timestamps
-- Falls back to ADK-powered audio transcription for captionless videos
-- Realigns generated cards to the closest caption segment so the video and quote stay in sync
-- Keeps the transcript, research pack, and analyst cards tied to the same source timeline
+- 有 YouTube 字幕时优先使用字幕，以获得准确时间戳
+- 对没有字幕的视频，使用 ADK 驱动的音频转录作为后备方案
+- 将自动生成的分析卡片重新对齐到最近的字幕片段，确保视频与引文保持同步
+- 保证文字稿、研究资料包和分析卡片都基于同一条时间线
 
-## How to get Started?
+## 如何开始
 
-This agent lives in `advanced_ai_agents/single_agent_apps/earnings_call_analyst_agent`.
+该 Agent 位于：`advanced_ai_agents/single_agent_apps/earnings_call_analyst_agent`
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库：
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/single_agent_apps/earnings_call_analyst_agent
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
 
 ```bash
 python3 -m venv .venv
@@ -55,13 +55,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-3. Configure Vertex AI or Gemini API key:
+3. 配置 Vertex AI 或 Gemini API Key：
 
 ```bash
 cp .env.example .env
 ```
 
-For Vertex AI / Google Cloud auth:
+如果使用 Vertex AI / Google Cloud 认证：
 
 ```bash
 GOOGLE_GENAI_USE_VERTEXAI=True
@@ -69,23 +69,23 @@ GOOGLE_CLOUD_PROJECT=your-google-cloud-project-id
 GOOGLE_CLOUD_LOCATION=global
 ```
 
-For Gemini API key auth:
+如果使用 Gemini API Key 认证：
 
 ```bash
 GOOGLE_GENAI_USE_VERTEXAI=False
 GOOGLE_API_KEY=your-google-api-key
 ```
 
-4. Run the FastAPI app:
+4. 启动 FastAPI 应用：
 
 ```bash
 PYTHONPATH=.. python -m uvicorn earnings_call_analyst_agent.live_demo.server:app --host 127.0.0.1 --port 4188
 ```
 
-5. Open the app:
+5. 打开应用：
 
 ```text
 http://127.0.0.1:4188
 ```
 
-Paste a YouTube earnings call URL. The app builds the research pack first, then reveals analyst cards as the video reaches each quote.
+粘贴 YouTube 财报电话会议 URL。应用会先构建研究资料包，然后随着视频播放到对应引文位置，逐步显示分析卡片。
