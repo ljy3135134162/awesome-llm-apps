@@ -1,4 +1,4 @@
-# AI Shadcn Component Generator
+# AI Shadcn 组件生成器
 
 > 本项目移植自上游仓库 [CopilotKit/shadify](https://github.com/CopilotKit/shadify)。
 
