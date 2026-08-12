@@ -1,21 +1,21 @@
-# 🛡️ Trust-Gated Multi-Agent Research Team
+# 🛡️ 信任门控多 Agent 研究团队
 
-Build a multi-agent research pipeline where every AI agent must pass a **trust verification** before participating, and every action is recorded in a **hash-chained audit trail** that is independently verifiable.
+构建一条多 Agent 研究流水线：每个 AI Agent 在参与任务前都必须通过**信任验证**，并且每一次操作都会记录到一个可独立验证的**哈希链审计轨迹**中。
 
-## Features
+## 功能特性
 
-- **Trust Gating** — Agents are scored (0-100) and tiered (gold/silver/bronze). Only agents meeting the threshold can participate
-- **Cryptographic Audit Trail** — Every agent action is recorded with SHA-256 hashes chaining to the previous entry. If any record is tampered with, all subsequent hashes break
-- **Multi-Agent Pipeline** — Researcher → Analyst → Writer, each building on the previous output
-- **Visual Dashboard** — See which agents pass, which get blocked, and verify the entire audit chain
-- **Zero External Dependencies** — Fully self-contained. Only requires `openai` and `streamlit`
+- **信任门控** —— Agent 会获得 0–100 的信任评分，并划分为 Gold / Silver / Bronze 等级。只有达到最低阈值的 Agent 才能参与任务
+- **密码学审计轨迹** —— 每个 Agent 操作都会使用 SHA-256 哈希记录，并与上一条记录串联。任何一条记录被篡改，后续哈希都会失效
+- **多 Agent 流水线** —— Researcher → Analyst → Writer，后一个 Agent 基于前一个 Agent 的输出继续工作
+- **可视化 Dashboard** —— 可以直观看到哪些 Agent 通过验证、哪些被阻止，并验证完整审计链
+- **极少外部依赖** —— 整体完全自包含，只需要 `openai` 和 `streamlit`
 
-## How It Works
+## 工作原理
 
 ```
                 ┌─────────────────────┐
                 │   Trust Registry    │
-                │  (verify agents)    │
+                │   （验证 Agent）     │
                 └──┬───────┬───────┬──┘
                    │       │       │
              ┌─────▼──┐ ┌──▼────┐ ┌▼────────┐
@@ -26,57 +26,57 @@ Build a multi-agent research pipeline where every AI agent must pass a **trust v
                   ▼        ▼
           ┌──────────────────────┐
           │  Research Pipeline   │
-          │  (trusted only)      │
+          │   （仅可信 Agent）    │
           └──────────┬───────────┘
                      │
                      ▼
           ┌──────────────────────┐
           │  Hash-Chained Audit  │
-          │  (tamper-evident)    │
+          │   （防篡改审计链）     │
           └──────────────────────┘
 ```
 
-1. **Trust Check** — Each agent's score is verified against the minimum threshold
-2. **Gate** — Agents below the threshold are blocked from the pipeline
-3. **Execute** — Verified agents run in sequence, each building on the previous output
-4. **Audit** — Every action (including trust checks) is recorded in a hash chain
+1. **Trust Check** —— 检查每个 Agent 的信任评分是否达到最低阈值
+2. **Gate** —— 低于阈值的 Agent 会被阻止进入流水线
+3. **Execute** —— 通过验证的 Agent 按顺序执行，并逐步基于前序结果继续工作
+4. **Audit** —— 所有操作，包括信任检查本身，都会写入哈希链
 
-## Getting Started
+## 开始使用
 
-### Prerequisites
+### 环境要求
 
 - Python 3.9+
-- OpenAI API key
+- OpenAI API Key
 
-### Installation
+### 安装
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Set your API key (optional — can also paste in the sidebar)
+### 设置 API Key（可选，也可以直接在侧边栏粘贴）
 
 ```bash
 export OPENAI_API_KEY=your-api-key
 ```
 
-### Run
+### 运行
 
 ```bash
 streamlit run trust_gated_agents.py
 ```
 
-### Quick Start (3 steps)
+### 快速体验（3 步）
 
-1. Paste your OpenAI API key in the sidebar
-2. Click **Run Trust-Gated Pipeline** — agents are pre-selected with an untrusted bot as Writer
-3. Watch: Researcher (75) and Analyst (60) pass, Untrusted Bot (5) gets blocked
+1. 在侧边栏粘贴 OpenAI API Key
+2. 点击 **Run Trust-Gated Pipeline** —— 默认会预先选择多个 Agent，其中 Writer 是一个不可信 Bot
+3. 观察结果：Researcher（75 分）和 Analyst（60 分）通过，Untrusted Bot（5 分）被阻止
 
-Swap the Writer dropdown to "Report Writer (score 45)" to see all 3 pass.
+将 Writer 下拉框切换为 `Report Writer (score 45)`，即可看到三个 Agent 全部通过验证。
 
-## Audit Trail
+## 审计轨迹
 
-The audit trail uses the same hash-chaining pattern as blockchain transaction logs:
+审计轨迹采用与区块链交易日志类似的哈希链模式：
 
 ```json
 [
@@ -97,21 +97,25 @@ The audit trail uses the same hash-chaining pattern as blockchain transaction lo
 ]
 ```
 
-Each entry's `hash` is computed from: `sequence + timestamp + agent + action + input_hash + output_hash + trust_score + prev_hash`. Changing any field in any entry invalidates every subsequent hash.
+每条记录的 `hash` 都由以下字段共同计算得到：`sequence + timestamp + agent + action + input_hash + output_hash + trust_score + prev_hash`。
 
-The exported JSON is independently verifiable — no special tools needed, just SHA-256.
+只要修改任意一条记录中的任意字段，后续所有哈希都会失效。
 
-## Why This Matters
+导出的 JSON 可以被独立验证，不需要特殊工具，只需要 SHA-256。
 
-In multi-agent systems, two problems compound:
+## 为什么这很重要
 
-1. **Trust** — How do you know which agents are reliable before giving them work?
-2. **Accountability** — After something goes wrong, how do you reconstruct what happened?
+在多 Agent 系统中，两个问题会互相放大：
 
-Trust gating solves #1 by checking credentials before execution. The audit trail solves #2 by creating a tamper-evident record that survives the agents' own execution — stored externally, not in the agent's own memory.
+1. **信任** —— 在把任务交给 Agent 之前，如何判断它是否可靠？
+2. **问责与追踪** —— 如果出了问题，如何重建整个执行过程？
 
-## Tech Stack
+Trust Gating 通过在执行前验证 Agent 凭据和评分解决第一个问题；审计轨迹通过创建防篡改记录解决第二个问题。
 
-- **Streamlit** — Interactive UI with visual trust dashboard
-- **OpenAI** — GPT-4o-mini for agent reasoning
-- **SHA-256** — Hash-chained audit trail (no external crypto dependencies)
+这些审计记录保存在 Agent 自身执行上下文之外，而不是仅存在于 Agent 的记忆中，因此即使 Agent 本身出现错误，也仍然可以追踪整个过程。
+
+## 技术栈
+
+- **Streamlit** —— 提供交互式 UI 和可视化信任 Dashboard
+- **OpenAI** —— 使用 GPT-4o-mini 进行 Agent 推理
+- **SHA-256** —— 构建哈希链审计轨迹，不依赖额外密码学库
