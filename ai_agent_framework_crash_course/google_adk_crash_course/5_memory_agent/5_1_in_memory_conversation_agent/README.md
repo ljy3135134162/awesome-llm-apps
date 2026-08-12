@@ -1,49 +1,49 @@
-# 🧠 Tutorial 5.1: In-Memory Conversation Agent
+# 🧠 教程 5.1：内存会话 Agent
 
-Welcome to your first step into session management! This tutorial teaches you how to create an AI agent that can remember conversations within a single session using `InMemorySessionService`.
+这是进入 Session 管理的第一步。本教程介绍如何使用 `InMemorySessionService` 创建一个能够在单次会话中记住对话内容的 AI Agent。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **InMemorySessionService**: Basic session management for temporary conversations
-- **Session Creation**: How to create and manage conversation sessions
-- **State Management**: Storing and retrieving conversation context
-- **Event Tracking**: Recording conversation history
-- **Multi-turn Conversations**: Building agents that remember context
+- **InMemorySessionService**：用于临时对话的基础 Session 管理
+- **Session 创建**：如何创建和管理对话 Session
+- **状态管理**：保存并读取对话上下文
+- **事件追踪**：记录对话历史
+- **多轮对话**：构建能够记住上下文的 Agent
 
-## 🧠 Core Concept: In-Memory Sessions
+## 🧠 核心概念：内存 Session
 
-**InMemorySessionService** stores session data in your computer's RAM (memory). This means:
-- ✅ **Fast access** - No database queries needed
-- ✅ **Simple setup** - No external dependencies
-- ❌ **Temporary storage** - Data is lost when the program stops
-- ❌ **No persistence** - Can't remember across program restarts
+**InMemorySessionService** 会把 Session 数据保存在计算机 RAM 中。这意味着：
+- ✅ **访问速度快**：不需要查询数据库
+- ✅ **配置简单**：无需外部依赖
+- ❌ **临时存储**：程序停止后数据会丢失
+- ❌ **无法持久化**：程序重启后不能继续记忆
 
-Perfect for:
-- Development and testing
-- Temporary conversations
-- Prototyping memory features
-- Single-session applications
+非常适合：
+- 开发和测试
+- 临时对话
+- 原型验证记忆功能
+- 单 Session 应用
 
-## 🔧 Key Components
+## 🔧 关键组件
 
 ### 1. **InMemorySessionService**
 ```python
 from google.adk.sessions import InMemorySessionService
 ```
 
-### 2. **Session Lifecycle**
-```
+### 2. **Session 生命周期**
+```text
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   CREATE    │───▶│   USE       │───▶│   CLOSE     │
-│  SESSION    │    │  SESSION    │    │  SESSION    │
+│    创建     │───▶│    使用     │───▶│    关闭     │
+│   SESSION   │    │   SESSION   │    │   SESSION   │
 └─────────────┘    └─────────────┘    └─────────────┘
 ```
 
-### 3. **Session Data Structure**
+### 3. **Session 数据结构**
 ```python
 {
     "session_id": "unique_session_id",
-    "user_id": "user_identifier", 
+    "user_id": "user_identifier",
     "state": {
         "conversation_history": [...],
         "user_preferences": {...},
@@ -56,78 +56,78 @@ from google.adk.sessions import InMemorySessionService
 }
 ```
 
-## 🚀 Tutorial Overview
+## 🚀 教程概览
 
-In this tutorial, we'll create a **Personal Assistant Agent** that:
-- Remembers your name and preferences
-- Tracks conversation history
-- Provides personalized responses
-- Demonstrates basic session management
+本教程将创建一个**个人助理 Agent**，它能够：
+- 记住你的姓名和偏好
+- 追踪对话历史
+- 提供个性化响应
+- 演示基础 Session 管理
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 5_1_in_memory_conversation/
-├── README.md              # This file - concept explanation
-├── requirements.txt       # Dependencies
-├── agent.py              # Main agent with session management
-└── app.py                # Streamlit web interface
+├── README.md              # 本文件：概念说明
+├── requirements.txt       # 依赖
+├── agent.py               # 带 Session 管理的主 Agent
+└── app.py                 # Streamlit Web 界面
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to create and manage sessions
-- ✅ How to store and retrieve conversation state
-- ✅ How to track conversation events
-- ✅ How to build multi-turn conversations
-- ✅ Basic session lifecycle management
+完成本教程后，你将理解：
+- ✅ 如何创建和管理 Session
+- ✅ 如何保存和读取对话状态
+- ✅ 如何追踪对话事件
+- ✅ 如何构建多轮对话
+- ✅ Session 生命周期的基本管理方式
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Install dependencies**:
+1. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Set up your environment**:
+2. **配置环境**：
    ```bash
-   # Create a .env file with your Google AI API key
+   # 创建包含 Google AI API Key 的 .env 文件
    echo "GOOGLE_API_KEY=your_api_key_here" > .env
    ```
 
-3. **Run the agent**:
+3. **运行 Agent**：
    ```bash
-   # Start the Streamlit app
+   # 启动 Streamlit 应用
    streamlit run app.py
    ```
 
-4. **Test the memory**:
-   - Tell the agent your name: "My name is John"
-   - Ask about your preferences: "What do you know about me?"
-   - Have a conversation and see how it remembers context
+4. **测试记忆能力**：
+   - 告诉 Agent 你的名字：`My name is John`
+   - 询问它记住了什么：`What do you know about me?`
+   - 进行多轮对话，观察它如何保持上下文
 
-## 🔍 Code Walkthrough
+## 🔍 代码解析
 
-### Key Session Management Code:
+### 关键 Session 管理代码
 
 ```python
-# 1. Create session service
+# 1. 创建 Session Service
 session_service = InMemorySessionService()
 
-# 2. Create a new session
+# 2. 创建新 Session
 session = await session_service.create_session(
     app_name="personal_assistant",
     user_id="user123"
 )
 
-# 3. Update session state
+# 3. 更新 Session State
 await session_service.update_session_state(
     session_id=session.session_id,
     state={"user_name": "John", "preferences": ["travel", "music"]}
 )
 
-# 4. Add events to track conversation
+# 4. 添加事件以追踪对话
 await session_service.add_event(
     session_id=session.session_id,
     event_type="user_input",
@@ -135,53 +135,53 @@ await session_service.add_event(
 )
 ```
 
-## 🎯 Testing Your Agent
+## 🎯 测试 Agent
 
-Try these conversation flows to test memory:
+可以使用以下对话流程测试记忆能力：
 
-### Flow 1: Personal Information
-```
-User: "My name is Alice"
-Agent: "Nice to meet you, Alice! How can I help you today?"
+### 流程 1：个人信息
+```text
+用户："My name is Alice"
+Agent："Nice to meet you, Alice! How can I help you today?"
 
-User: "What's my name?"
-Agent: "Your name is Alice! I remember you told me that."
-```
-
-### Flow 2: Preferences
-```
-User: "I love pizza and hiking"
-Agent: "Great! I'll remember that you love pizza and hiking."
-
-User: "What are my interests?"
-Agent: "Based on our conversation, you love pizza and hiking!"
+用户："What's my name?"
+Agent："Your name is Alice! I remember you told me that."
 ```
 
-### Flow 3: Context Continuity
+### 流程 2：偏好
+```text
+用户："I love pizza and hiking"
+Agent："Great! I'll remember that you love pizza and hiking."
+
+用户："What are my interests?"
+Agent："Based on our conversation, you love pizza and hiking!"
 ```
-User: "I'm planning a trip"
-Agent: "That sounds exciting! Since you mentioned hiking, would you like recommendations for hiking destinations?"
 
-User: "Yes, where should I go?"
-Agent: "Given your love for hiking, I'd recommend..."
+### 流程 3：上下文连续性
+```text
+用户："I'm planning a trip"
+Agent："That sounds exciting! Since you mentioned hiking, would you like recommendations for hiking destinations?"
+
+用户："Yes, where should I go?"
+Agent："Given your love for hiking, I'd recommend..."
 ```
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
-- **[Tutorial 5.2: Persistent Conversation](../5_2_persistent_conversation_agent/README.md)** - Learn database-based session storage
-- **[Tutorial 5.3: Cloud Memory](../README.md)** - Explore cloud-based memory solutions
+完成本教程后，可以继续：
+- **[教程 5.2：持久化会话](../5_2_persistent_conversation_agent/README.md)**：学习基于数据库的 Session 存储
+- **[教程 5.3：云端记忆](../README.md)**：探索基于云服务的记忆方案
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Test Multi-turn Conversations**: Have extended conversations to see memory in action
-- **Monitor Session State**: Use the web interface to inspect what the agent remembers
-- **Experiment with State**: Try storing different types of data in the session state
-- **Understand Limitations**: Remember that in-memory sessions are temporary
+- **测试多轮对话**：通过较长对话观察记忆是否持续生效
+- **监控 Session State**：使用 Web 界面查看 Agent 当前记住了什么
+- **尝试不同 State 数据**：测试在 Session State 中保存不同类型的数据
+- **理解限制**：内存 Session 本质上是临时数据
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **Data Loss**: In-memory sessions are lost when you restart the application
-- **Single Process**: Sessions only work within the same Python process
-- **Memory Usage**: Large conversation histories will consume RAM
-- **Development Only**: Use in-memory sessions for development, not production 
+- **数据丢失**：应用重启后，内存 Session 会全部丢失
+- **单进程限制**：Session 只在同一个 Python 进程中有效
+- **内存占用**：较长的对话历史会持续占用 RAM
+- **适合开发环境**：内存 Session 更适合开发和测试，不建议直接用于生产环境
