@@ -1,29 +1,34 @@
-## 📝 Chat with Substack Newsletter
-Streamlit app that allows you to chat with a Substack newsletter using OpenAI's API and the Embedchain library. This app leverages GPT-4 to provide accurate answers to questions based on the content of the specified Substack newsletter.
+## 📝 与 Substack Newsletter 对话
 
-## Features
-- Input a Substack blog URL
-- Ask questions about the content of the Substack newsletter
-- Get accurate answers using OpenAI's API and Embedchain
+这是一个 Streamlit 应用，可以使用 OpenAI API 和 Embedchain 库与 Substack Newsletter 进行对话。应用利用 GPT-4，根据指定 Substack Newsletter 的内容为用户问题提供准确回答。
 
-### How to get Started?
+## 功能
 
-1. Clone the GitHub repository
+- 输入 Substack 博客 URL
+- 针对 Substack Newsletter 的内容提出问题
+- 使用 OpenAI API 和 Embedchain 获取准确回答
+
+### 如何开始？
+
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/chat_with_X_tutorials/chat_with_substack
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Run the Streamlit App
+- 注册 [OpenAI 账户](https://platform.openai.com/)（也可以使用你选择的其他 LLM 提供商），并获取 API Key。
+
+4. 运行 Streamlit 应用
+
 ```bash
 streamlit run chat_substack.py
 ```
