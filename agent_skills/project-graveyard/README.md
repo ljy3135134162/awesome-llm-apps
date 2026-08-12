@@ -1,4 +1,4 @@
-# 🪦 Project Graveyard Agent Skill
+# 🪦 项目墓地 Agent Skill
 
 **每个开发者都有这样一个文件夹：二十多个已经“死掉”的项目，每个项目都因为某些没人记录下来的原因被放弃。**
 
