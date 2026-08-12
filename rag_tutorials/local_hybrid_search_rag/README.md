@@ -1,134 +1,133 @@
-# 🖥️ Local RAG App with Hybrid Search
+# 🖥️ 使用混合搜索的本地 RAG 应用
 
-A powerful document Q&A application that leverages Hybrid Search (RAG) and local LLMs for comprehensive answers. Built with RAGLite for robust document processing and retrieval, and Streamlit for an intuitive chat interface, this system combines document-specific knowledge with local LLM capabilities to deliver accurate and contextual responses.
+一个强大的文档问答应用，结合混合搜索（Hybrid Search / RAG）与本地 LLM，提供全面的回答。该系统使用 RAGLite 实现可靠的文档处理和检索，并使用 Streamlit 构建直观的聊天界面，将文档专属知识与本地 LLM 能力相结合，从而生成准确且具备上下文的响应。
 
-## Demo:
-
+## 演示
 
 https://github.com/user-attachments/assets/375da089-1ab9-4bf4-b6f3-733f44e47403
 
+## 快速开始
 
-## Quick Start
+如需立即测试，可使用以下已验证的模型配置：
 
-For immediate testing, use these tested model configurations:
 ```bash
-# LLM Model
+# LLM 模型
 bartowski/Llama-3.2-3B-Instruct-GGUF/Llama-3.2-3B-Instruct-Q4_K_M.gguf@4096
 
-# Embedder Model
+# Embedding 模型
 lm-kit/bge-m3-gguf/bge-m3-Q4_K_M.gguf@1024
 ```
-These models offer a good balance of performance and resource usage, and have been verified to work well together even on a MacBook Air M2 with 8GB RAM.
 
-## Features
+这些模型在性能和资源占用之间取得了较好的平衡，并且已经验证，即使在配备 8GB 内存的 MacBook Air M2 上也能很好地配合运行。
 
-- **Local LLM Integration**:
-  - Uses llama-cpp-python models for local inference
-  - Supports various quantization formats (Q4_K_M recommended)
-  - Configurable context window sizes
+## 功能
 
-- **Document Processing**:
-  - PDF document upload and processing
-  - Automatic text chunking and embedding
-  - Hybrid search combining semantic and keyword matching
-  - Reranking for better context selection
+- **本地 LLM 集成**：
+  - 使用 llama-cpp-python 模型进行本地推理
+  - 支持多种量化格式（推荐 Q4_K_M）
+  - 可配置上下文窗口大小
 
-- **Multi-Model Integration**:
-  - Local LLM for text generation (e.g., Llama-3.2-3B-Instruct)
-  - Local embeddings using BGE models
-  - FlashRank for local reranking
+- **文档处理**：
+  - PDF 文档上传和处理
+  - 自动文本分块和 Embedding
+  - 结合语义匹配与关键词匹配的混合搜索
+  - 通过重排序获得更优的上下文选择
 
-## Prerequisites
+- **多模型集成**：
+  - 使用本地 LLM 进行文本生成（例如 Llama-3.2-3B-Instruct）
+  - 使用 BGE 模型进行本地 Embedding
+  - 使用 FlashRank 进行本地重排序
 
-1. **Install spaCy Model**:
+## 环境要求
+
+1. **安装 spaCy 模型**：
    ```bash
    pip install https://github.com/explosion/spacy-models/releases/download/xx_sent_ud_sm-3.7.0/xx_sent_ud_sm-3.7.0-py3-none-any.whl
    ```
 
-2. **Install Accelerated llama-cpp-python** (Optional but recommended):
+2. **安装加速版 llama-cpp-python**（可选但推荐）：
    ```bash
-   # Configure installation variables
+   # 配置安装变量
    LLAMA_CPP_PYTHON_VERSION=0.3.2
-   PYTHON_VERSION=310 # 3.10, 3.11, 3.12
-   ACCELERATOR=metal  # For Mac
-   # ACCELERATOR=cu121  # For NVIDIA GPU
-   PLATFORM=macosx_11_0_arm64  # For Mac
-   # PLATFORM=linux_x86_64  # For Linux
-   # PLATFORM=win_amd64  # For Windows
+   PYTHON_VERSION=310 # 3.10、3.11、3.12
+   ACCELERATOR=metal  # Mac
+   # ACCELERATOR=cu121  # NVIDIA GPU
+   PLATFORM=macosx_11_0_arm64  # Mac
+   # PLATFORM=linux_x86_64  # Linux
+   # PLATFORM=win_amd64  # Windows
 
-   # Install accelerated version
+   # 安装加速版本
    pip install "https://github.com/abetlen/llama-cpp-python/releases/download/v$LLAMA_CPP_PYTHON_VERSION-$ACCELERATOR/llama_cpp_python-$LLAMA_CPP_PYTHON_VERSION-cp$PYTHON_VERSION-cp$PYTHON_VERSION-$PLATFORM.whl"
    ```
 
-3. **Install Dependencies**:
+3. **安装依赖**：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd awesome-llm-apps/rag_tutorials/local_hybrid_search_rag
    pip install -r requirements.txt
    ```
 
-## Model Setup
+## 模型配置
 
-RAGLite extends LiteLLM with support for llama.cpp models using llama-cpp-python. To select a llama.cpp model (e.g., from bartowski's collection), use a model identifier of the form "llama-cpp-python/<hugging_face_repo_id>/<filename>@<n_ctx>", where n_ctx is an optional parameter that specifies the context size of the model.
+RAGLite 在 LiteLLM 的基础上扩展了对 llama.cpp 模型的支持，并通过 llama-cpp-python 运行这些模型。要选择 llama.cpp 模型（例如 bartowski 的模型集合），请使用如下格式的模型标识符：`llama-cpp-python/<hugging_face_repo_id>/<filename>@<n_ctx>`，其中 `n_ctx` 是可选参数，用于指定模型上下文长度。
 
-1. **LLM Model Path Format**:
+1. **LLM 模型路径格式**：
    ```
    llama-cpp-python/<repo>/<model>/<filename>@<context_length>
    ```
-   Example:
+   示例：
    ```
    bartowski/Llama-3.2-3B-Instruct-GGUF/Llama-3.2-3B-Instruct-Q4_K_M.gguf@4096
    ```
 
-2. **Embedder Model Path Format**:
+2. **Embedding 模型路径格式**：
    ```
    llama-cpp-python/<repo>/<model>/<filename>@<dimension>
    ```
-   Example:
+   示例：
    ```
    lm-kit/bge-m3-gguf/bge-m3-Q4_K_M.gguf@1024
    ```
 
-## Database Setup
+## 数据库配置
 
-The application supports multiple database backends:
+应用支持多种数据库后端：
 
-- **PostgreSQL** (Recommended):
-  - Create a free serverless PostgreSQL database at [Neon](https://neon.tech) in a few clicks
-  - Get instant provisioning and scale-to-zero capability
-  - Connection string format: `postgresql://user:pass@ep-xyz.region.aws.neon.tech/dbname`
+- **PostgreSQL**（推荐）：
+  - 可在 [Neon](https://neon.tech) 中快速创建免费的 Serverless PostgreSQL 数据库
+  - 支持即时创建和缩容至零（scale-to-zero）
+  - 连接字符串格式：`postgresql://user:pass@ep-xyz.region.aws.neon.tech/dbname`
 
+## 如何运行
 
-## How to Run
-
-1. **Start the Application**:
+1. **启动应用**：
    ```bash
    streamlit run local_main.py
    ```
 
-2. **Configure the Application**:
-   - Enter LLM model path
-   - Enter embedder model path
-   - Set database URL
-   - Click "Save Configuration"
+2. **配置应用**：
+   - 输入 LLM 模型路径
+   - 输入 Embedding 模型路径
+   - 设置数据库 URL
+   - 点击“Save Configuration”
 
-3. **Upload Documents**:
-   - Upload PDF files through the interface
-   - Wait for processing completion
+3. **上传文档**：
+   - 通过界面上传 PDF 文件
+   - 等待处理完成
 
-4. **Start Chatting**:
-   - Ask questions about your documents
-   - Get responses using local LLM
-   - Fallback to general knowledge when needed
+4. **开始聊天**：
+   - 针对文档内容提出问题
+   - 使用本地 LLM 获取回答
+   - 在需要时回退到通用知识回答
 
-## Notes
+## 说明
 
-- Context window size of 4096 is recommended for most use cases
-- Q4_K_M quantization offers good balance of speed and quality
-- BGE-M3 embedder with 1024 dimensions is optimal
-- Local models require sufficient RAM and CPU/GPU resources
-- Metal acceleration available for Mac, CUDA for NVIDIA GPUs
+- 大多数使用场景推荐使用 4096 的上下文窗口
+- Q4_K_M 量化在速度与质量之间具有较好的平衡
+- 1024 维的 BGE-M3 Embedding 模型表现较优
+- 本地模型需要足够的 RAM 和 CPU/GPU 资源
+- Mac 可使用 Metal 加速，NVIDIA GPU 可使用 CUDA 加速
 
-## Contributing
+## 贡献
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+欢迎贡献！可以随时提交 Pull Request。
