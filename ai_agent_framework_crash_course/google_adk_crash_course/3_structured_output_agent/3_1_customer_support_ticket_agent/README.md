@@ -1,92 +1,92 @@
-# 🎫 Customer Support Ticketing Agent with Structured Output
+# 🎫 使用结构化输出的客户支持工单 Agent
 
-A tutorial demonstrating how to implement a structured customer support ticketing system using Google's ADK (Agent Development Kit) framework. This example shows how to create type-safe, structured support tickets with priority levels, categories, and resolution estimates using Pydantic schemas and Gemini 3 Flash model.
+本教程演示如何使用 Google ADK（Agent Development Kit）框架实现结构化的客户支持工单系统。示例展示如何结合 Pydantic Schema 与 Gemini 3 Flash 模型，创建具备优先级、分类和预计解决时间等字段的类型安全结构化工单。
 
-## Tutorial Features
+## 教程功能
 
-- 🎫 **Structured Support Tickets**: 
-  - Learn how to create comprehensive support ticket schemas
-  - Understand priority levels and categorization
-  - See how to estimate resolution times
+- 🎫 **结构化支持工单**：
+  - 学习如何创建完整的支持工单 Schema
+  - 理解优先级和分类方式
+  - 了解如何估算问题解决时间
 
-- 🔧 **Advanced Schema Design**: 
-  - Complex Pydantic models with enums and optional fields
-  - Proper field validation and descriptions
-  - Type-safe structured responses
+- 🔧 **高级 Schema 设计**：
+  - 使用枚举和可选字段构建复杂 Pydantic 模型
+  - 正确配置字段验证与说明
+  - 获得类型安全的结构化响应
 
-- 🎯 **Real-World Application**: 
-  - Practical customer support use case
-  - Shows how to handle different types of support requests
-  - Demonstrates structured output for business processes
+- 🎯 **真实业务应用**：
+  - 实用的客户支持场景
+  - 展示如何处理不同类型的支持请求
+  - 演示结构化输出如何用于业务流程
 
-- 📊 **Priority Management**: 
-  - Four-tier priority system (Low, Medium, High, Critical)
-  - Automatic priority assignment based on issue description
-  - Category-based routing for different departments
+- 📊 **优先级管理**：
+  - 四级优先级体系（低、中、高、严重）
+  - 根据问题描述自动分配优先级
+  - 根据问题分类路由到不同部门
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Set up your environment**:
+1. **配置环境**：
    ```bash
    cd 3_1_customer_support_ticket_agent
-   
-   # Copy the environment template
+
+   # 复制环境变量模板
    cp env.example .env
-   
-   # Edit .env and add your Google AI API key
-   # Get your API key from: https://aistudio.google.com/
+
+   # 编辑 .env 并添加 Google AI API Key
+   # API Key 获取地址：https://aistudio.google.com/
    ```
 
-2. **Install dependencies**:
+2. **安装依赖**：
    ```bash
-   # Navigate back to the directory
+   # 返回上一级目录
    cd ..
 
-   # Install required packages
+   # 安装所需包
    pip install -r requirements.txt
    ```
 
-3. **Run the Agent**
+3. **运行 Agent**：
    ```bash
-   # Start the ADK web interface
+   # 启动 ADK Web 界面
    adk web
    ```
-   Then:
-   1. Open the web interface in your browser
-   2. Select the "support_ticket_creator" agent
-   3. Enter your support request (e.g., "I can't log into my account and I have an important meeting in 2 hours")
-   4. The response will be a structured JSON with all ticket details
+   然后：
+   1. 在浏览器中打开 Web 界面
+   2. 选择 `support_ticket_creator` Agent
+   3. 输入支持请求，例如：`I can't log into my account and I have an important meeting in 2 hours`
+   4. Agent 将返回包含完整工单信息的结构化 JSON
 
-## Tutorial Overview
+## 教程概览
 
-This tutorial demonstrates advanced structured output implementation in Google ADK:
+本教程演示 Google ADK 中较高级的结构化输出实现：
 
-1. **Complex Schema Design**: Learn how to create sophisticated Pydantic models
-2. **Enum Usage**: Understand how to use enums for constrained values
-3. **Optional Fields**: See how to handle optional data with proper defaults
-4. **Business Logic**: Learn how to implement real-world business processes
+1. **复杂 Schema 设计**：学习如何创建功能完善的 Pydantic 模型
+2. **枚举使用**：理解如何使用 Enum 约束字段值
+3. **可选字段**：了解如何通过合理的默认值处理可选数据
+4. **业务逻辑**：学习如何实现真实业务流程
 
-## Code Structure
+## 代码结构
 
-- `customer_support_agent/agent.py`: Contains the main agent definition and SupportTicket schema
-- `customer_support_agent/__init__.py`: Module initialization for easy imports
+- `customer_support_agent/agent.py`：包含主要 Agent 定义和 `SupportTicket` Schema
+- `customer_support_agent/__init__.py`：模块初始化文件，便于导入
 
-## Support Ticket Schema
+## 支持工单 Schema
 
-The agent creates structured tickets with the following fields:
+Agent 创建的结构化工单包含以下字段：
 
-- **title**: Concise summary of the issue
-- **description**: Detailed problem description
-- **priority**: Priority level (low, medium, high, critical)
-- **category**: Department (Technical, Billing, Account, Product)
-- **steps_to_reproduce**: Optional list of steps for technical issues
-- **estimated_resolution_time**: Estimated time to resolve
+- **title**：问题的简短摘要
+- **description**：详细问题描述
+- **priority**：优先级（low、medium、high、critical）
+- **category**：所属部门（Technical、Billing、Account、Product）
+- **steps_to_reproduce**：技术问题的可选复现步骤列表
+- **estimated_resolution_time**：预计解决时间
 
-## Example Usage
+## 使用示例
 
-**Input**: "My payment failed and I'm getting charged twice for the same service"
+**输入**：`My payment failed and I'm getting charged twice for the same service`
 
-**Output**:
+**输出**：
 ```json
 {
   "title": "Duplicate payment charge issue",
@@ -98,18 +98,18 @@ The agent creates structured tickets with the following fields:
 }
 ```
 
-## Dependencies
+## 依赖
 
-- `google-adk`: Google's Agent Development Kit
-- `pydantic`: Data validation and settings management
+- `google-adk`：Google Agent Development Kit
+- `pydantic`：数据验证与设置管理
 
-## How Structured Output Works
+## 结构化输出的工作原理
 
-This tutorial shows how Google ADK handles complex structured output:
+本教程展示 Google ADK 如何处理复杂结构化输出：
 
-1. **Input Processing**: Takes natural language support requests
-2. **Context Analysis**: Analyzes the issue severity and type
-3. **Structured Generation**: Creates comprehensive tickets with all required fields
-4. **Validation**: Ensures output matches the defined schema and business rules
+1. **输入处理**：接收自然语言形式的支持请求
+2. **上下文分析**：分析问题严重程度和问题类型
+3. **结构化生成**：生成包含全部必要字段的完整工单
+4. **验证**：确保输出符合定义的 Schema 和业务规则
 
-This approach demonstrates how to create reliable, business-ready structured responses in Google ADK applications. 
+这种方式展示了如何在 Google ADK 应用中构建可靠、可直接用于业务系统的结构化响应。
