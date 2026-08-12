@@ -1,188 +1,188 @@
-# 🧠 Tutorial 5: Memory Agents - Sessions, State & Events
+# 🧠 教程 5：记忆 Agent——Session、State 与 Event
 
-Welcome to the memory and session management tutorial! This tutorial teaches you how to create AI agents that can remember conversations, maintain context, and provide personalized experiences across multiple interactions.
+欢迎进入记忆与 Session 管理教程。本教程将介绍如何创建能够记住对话、维持上下文，并在多轮交互中提供个性化体验的 AI Agent。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Session Management**: How agents maintain conversation context
-- **State Persistence**: Storing and retrieving conversation data
-- **Event Tracking**: Understanding conversation flow and history
-- **Memory Types**: In-memory, database, and cloud-based memory solutions
-- **Personalization**: Creating agents that remember user preferences
+- **Session 管理**：Agent 如何维护对话上下文
+- **State 持久化**：如何存储与读取对话数据
+- **Event 跟踪**：理解对话流程与历史记录
+- **记忆类型**：内存、数据库以及云端记忆方案
+- **个性化**：创建能够记住用户偏好的 Agent
 
-## 🧠 Core Concepts
+## 🧠 核心概念
 
-### 1. **Sessions** - The Conversation Container
+### 1. **Session**——对话容器
 
-A **Session** is like a conversation thread that keeps track of all interactions between a user and an agent.
+**Session** 类似一个对话线程，用于记录用户与 Agent 之间的全部交互。
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                    SESSION LIFECYCLE                        │
+│                    SESSION 生命周期                         │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │   CREATE    │───▶│   ACTIVE    │───▶│   CLOSED    │     │
-│  │  SESSION    │    │ CONVERSATION│    │   SESSION   │     │
+│  │   创建      │───▶│    活跃     │───▶│    关闭     │     │
+│  │  Session    │    │    对话     │    │  Session    │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
 │         │                   │                   │           │
 │         ▼                   ▼                   ▼           │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │  User ID    │    │   Events    │    │   Memory    │     │
-│  │  Created    │    │   State     │    │   Stored    │     │
-│  │  Timestamp  │    │   History   │    │   Archived  │     │
+│  │  用户 ID    │    │   Event     │    │   Memory    │     │
+│  │  创建时间   │    │   State     │    │    存储     │     │
+│  │  时间戳     │    │   History   │    │    归档     │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Example**: When you start chatting with a travel agent, a session is created. All your questions about flights, hotels, and preferences are stored in that session.
+**示例**：当你开始与旅行 Agent 聊天时，系统会创建一个 Session。关于航班、酒店和个人偏好的所有问题都会记录在该 Session 中。
 
-### 2. **State** - The Current Context
+### 2. **State**——当前上下文
 
-**State** represents the current context and data that the agent needs to remember during a conversation.
+**State** 表示 Agent 在对话过程中需要持续记住的当前上下文和数据。
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                        SESSION STATE                        │
+│                      SESSION STATE                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────┐ │
-│  │   USER STATE    │  │  AGENT STATE    │  │  APP STATE  │ │
+│  │   用户 State    │  │   Agent State   │  │  应用 State │ │
 │  ├─────────────────┤  ├─────────────────┤  ├─────────────┤ │
-│  │ • User ID       │  │ • Agent Name    │  │ • Session ID│ │
-│  │ • Preferences   │  │ • Current Task  │  │ • Timestamp │ │
-│  │ • History       │  │ • Tools Used    │  │ • Status    │ │
-│  │ • Context       │  │ • Memory        │  │ • Metadata  │ │
+│  │ • 用户 ID       │  │ • Agent 名称    │  │ • Session ID│ │
+│  │ • 偏好          │  │ • 当前任务      │  │ • 时间戳    │ │
+│  │ • 历史记录      │  │ • 已用工具      │  │ • 状态      │ │
+│  │ • 上下文        │  │ • 记忆          │  │ • 元数据    │ │
 │  └─────────────────┘  └─────────────────┘  └─────────────┘ │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Example**: A travel agent's state might include:
-- User's preferred destinations
-- Budget constraints
-- Travel dates
-- Previous recommendations
+**示例**：旅行 Agent 的 State 可能包含：
+- 用户偏好的目的地
+- 预算限制
+- 出行日期
+- 之前给出的推荐
 
-### 3. **Events** - The Conversation History
+### 3. **Event**——对话历史
 
-**Events** are individual interactions that make up the conversation history.
+**Event** 是构成完整对话历史的单次交互记录。
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                      EVENT FLOW                             │
+│                       EVENT 流程                             │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │   USER      │───▶│   AGENT     │───▶│   RESPONSE  │     │
-│  │  MESSAGE    │    │  PROCESSING │    │  GENERATED  │     │
+│  │    用户     │───▶│   Agent     │───▶│   生成      │     │
+│  │    消息     │    │    处理     │    │   响应      │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
 │         │                   │                   │           │
 │         ▼                   ▼                   ▼           │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │ Event Type: │    │ Event Type: │    │ Event Type: │     │
+│  │ Event 类型  │    │ Event 类型  │    │ Event 类型  │     │
 │  │ user_input  │    │ processing  │    │ response    │     │
-│  │ Timestamp   │    │ Timestamp   │    │ Timestamp   │     │
-│  │ Content     │    │ Duration    │    │ Content     │     │
+│  │ 时间戳      │    │ 时间戳      │    │ 时间戳      │     │
+│  │ 内容        │    │ 持续时间    │    │ 内容        │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Example Event Sequence**:
-1. **User Event**: "I want to go to Paris"
-2. **Agent Event**: Processing request, checking preferences
-3. **Response Event**: "Great! I see you prefer luxury hotels. Here are some options..."
+**Event 序列示例**：
+1. **用户 Event**：`I want to go to Paris`
+2. **Agent Event**：处理请求并检查用户偏好
+3. **响应 Event**：`Great! I see you prefer luxury hotels. Here are some options...`
 
-### 4. **Session Runtime Flow**
+### 4. **Session 运行时流程**
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                    SESSION RUNTIME FLOW                     │
+│                    SESSION 运行流程                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  1. SESSION CREATION                                        │
+│  1. 创建 SESSION                                            │
 │  ┌─────────────┐                                            │
-│  │ User starts │───▶ Create Session with User ID            │
-│  │ conversation│    Initialize State & Memory               │
+│  │ 用户开始    │───▶ 使用用户 ID 创建 Session              │
+│  │ 对话        │    初始化 State 与 Memory                  │
 │  └─────────────┘                                            │
 │                                                             │
-│  2. CONVERSATION LOOP                                       │
+│  2. 对话循环                                                │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │   User      │───▶│   Agent     │───▶│   Update    │     │
-│  │  Input      │    │  Processes  │    │   State     │     │
+│  │   用户      │───▶│   Agent     │───▶│   更新      │     │
+│  │   输入      │    │    处理     │    │   State     │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
 │         │                   │                   │           │
 │         ▼                   ▼                   ▼           │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐     │
-│  │ Record      │    │ Use Context │    │ Store       │     │
-│  │ Event       │    │ & Memory    │    │ Response    │     │
+│  │ 记录 Event  │    │ 使用上下文  │    │ 存储响应    │     │
+│  │             │    │ 与 Memory   │    │             │     │
 │  └─────────────┘    └─────────────┘    └─────────────┘     │
 │                                                             │
-│  3. SESSION CLOSURE                                         │
+│  3. 关闭 SESSION                                            │
 │  ┌─────────────┐                                            │
-│  │ User ends   │───▶ Save Final State                       │
-│  │ conversation│    Archive Session                         │
-│  └─────────────┘    Store in Memory Bank                    │
+│  │ 用户结束    │───▶ 保存最终 State                         │
+│  │ 对话        │    归档 Session                            │
+│  └─────────────┘    写入 Memory Bank                        │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## 📚 Tutorial Structure
+## 📚 教程结构
 
-This tutorial is divided into three progressive levels:
+本教程分为两个逐步深入的部分：
 
-1. **[5_1_in_memory_conversation](./5_1_in_memory_conversation_agent/README.md)** - Basic session management
-   - InMemorySessionService for temporary conversations
-   - Simple state management
-   - Event tracking basics
+1. **[5_1_in_memory_conversation](./5_1_in_memory_conversation_agent/README.md)** —— 基础 Session 管理
+   - 使用 `InMemorySessionService` 管理临时对话
+   - 简单 State 管理
+   - Event 跟踪基础
 
-2. **[5_2_persistent_conversation](./5_2_persistent_conversation_agent/README.md)** - Database persistence
-   - DatabaseSessionService with SQLite
-   - Persistent state storage
-   - Conversation history across sessions
+2. **[5_2_persistent_conversation](./5_2_persistent_conversation_agent/README.md)** —— 数据库持久化
+   - 使用 SQLite 的 `DatabaseSessionService`
+   - 持久化 State 存储
+   - 跨 Session 保留对话历史
 
-## 🛠️ Prerequisites
+## 🛠️ 前置条件
 
-Before starting this tutorial, ensure you have:
+开始本教程前，请确保具备：
 
-- **Python 3.11+** installed
-- **Google AI API Key** from [Google AI Studio](https://aistudio.google.com/)
-- **SQLite** (usually comes with Python)
-- Basic understanding of databases (for tutorial 5_2)
+- 已安装 **Python 3.11+**
+- 从 [Google AI Studio](https://aistudio.google.com/) 获取的 **Google AI API Key**
+- **SQLite**（通常随 Python 提供）
+- 对数据库有基础了解（教程 5_2 会用到）
 
-## 📖 How to Use This Course
+## 📖 如何使用本课程
 
-Each tutorial follows a consistent structure:
+每个教程都采用一致结构：
 
-- **README.md**: Concept explanation and learning objectives
-- **agent.py**: Contains the agent implementation
-- **requirements.txt**: Dependencies for the tutorial
-- **app.py**: Streamlit web interface (where applicable)
+- **README.md**：概念说明和学习目标
+- **agent.py**：Agent 实现
+- **requirements.txt**：教程依赖
+- **app.py**：Streamlit Web 界面（如适用）
 
-### Learning Approach:
-1. **Read the README** to understand the memory concept
-2. **Examine the code** to see session management implementation
-3. **Run the example** to see memory in action
-4. **Experiment** by having multi-turn conversations
-5. **Move to the next tutorial** when ready
+### 学习方式
+1. **阅读 README**，理解记忆相关概念
+2. **查看代码**，了解 Session 管理的具体实现
+3. **运行示例**，观察记忆功能的实际效果
+4. **进行多轮对话实验**
+5. 准备好后**进入下一个教程**
 
-## 🎯 Tutorial Features
+## 🎯 教程特色
 
-Each tutorial includes:
-- ✅ **Clear concept explanation**
-- ✅ **Minimal, working code examples**
-- ✅ **Real-world use cases**
-- ✅ **Step-by-step instructions**
-- ✅ **Memory persistence demonstration**
+每个教程都包含：
+- ✅ **清晰的概念说明**
+- ✅ **最小化、可运行的代码示例**
+- ✅ **真实使用场景**
+- ✅ **分步骤说明**
+- ✅ **记忆持久化演示**
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
-- **Advanced Agent Patterns** - Multi-agent systems
-- **Custom Memory Implementations** - Building your own memory services
-- **Production Deployment** - Scaling memory agents
+完成本教程后，可以继续探索：
+- **高级 Agent 模式**：多 Agent 系统
+- **自定义记忆实现**：构建自己的 Memory Service
+- **生产环境部署**：扩展记忆型 Agent
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Start Simple**: Begin with in-memory sessions before moving to persistence
-- **Test Conversations**: Have multi-turn conversations to see memory in action
-- **Monitor State**: Use the ADK web interface to inspect session state
-- **Plan Memory Strategy**: Choose the right memory service for your use case 
+- **从简单方案开始**：先使用内存 Session，再进入持久化方案
+- **进行多轮对话测试**：观察记忆如何在连续交互中发挥作用
+- **检查 State**：通过 ADK Web 界面查看 Session State
+- **提前规划记忆策略**：根据实际场景选择合适的 Memory Service
