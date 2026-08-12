@@ -1,37 +1,36 @@
-# 🧲 AI Competitor Intelligence Agent Team
+# 🧲 AI 竞品情报智能体团队
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-competitor-intelligence-agent-team) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/build-an-ai-competitor-intelligence-agent-team)，通过详细的代码讲解、说明和最佳实践，从零开始构建本项目。**
 
+AI 竞品情报智能体团队是一款由 Firecrawl 和 Agno AI Agent 框架驱动的强大竞品分析工具。该应用可以从竞争对手网站中提取结构化数据，并利用 AI 生成可执行的洞察，帮助企业分析竞争对手。
 
-The AI Competitor Intelligence Agent Team is a powerful competitor analysis tool powered by Firecrawl and Agno's AI Agent framework. This app helps businesses analyze their competitors by extracting structured data from competitor websites and generating actionable insights using AI.
+## 功能特性
 
-## Features
+- **多智能体系统**
+    - **Firecrawl 智能体**：专门负责抓取并总结竞争对手网站
+    - **分析智能体**：生成详细的竞争分析报告
+    - **对比智能体**：创建竞争对手之间的结构化对比
 
-- **Multi-Agent System**
-    - **Firecrawl Agent**: Specializes in crawling and summarizing competitor websites
-    - **Analysis Agent**: Generates detailed competitive analysis reports
-    - **Comparison Agent**: Creates structured comparisons between competitors
+- **竞争对手发现**：
+  - 使用 Exa AI 通过 URL 匹配寻找相似公司
+  - 根据业务描述发现竞争对手
+  - 自动提取相关竞争对手 URL
 
-- **Competitor Discovery**:
-  - Finds similar companies using URL matching with Exa AI 
-  - Discovers competitors based on business descriptions
-  - Automatically extracts relevant competitor URLs
+- **综合分析**：
+  - 提供结构化分析报告，包括：
+    - 市场空白与机会
+    - 竞争对手弱点
+    - 推荐功能
+    - 定价策略
+    - 增长机会
+    - 可执行建议
 
-- **Comprehensive Analysis**:
-  - Provides structured analysis reports with:
-    - Market gaps and opportunities
-    - Competitor weaknesses
-    - Recommended features
-    - Pricing strategies
-    - Growth opportunities
-    - Actionable recommendations
+- **交互式分析**：用户可以输入公司 URL 或公司描述进行分析
 
-- **Interactive Analysis**: Users can input either their company URL or description for analysis
+## 环境要求
 
-## Requirements
-
-The application requires the following Python libraries:
+应用需要以下 Python 库：
 
 - `agno`
 - `exa-py`
@@ -39,43 +38,43 @@ The application requires the following Python libraries:
 - `pandas`
 - `firecrawl-py`
 
-You'll also need API keys for:
+同时还需要以下 API 密钥：
 - OpenAI
 - Firecrawl
 - Exa
 
-## How to Run
+## 运行方法
 
-Follow these steps to set up and run the application:
+按照以下步骤配置并运行应用：
 
-1. **Clone the Repository**:
+1. **克隆仓库**：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd advanced_ai_agents/multi_agent_apps/agent_teams/ai_competitor_intelligence_agent_team
    ```
 
-2. **Install the dependencies**:
+2. **安装依赖**：
     ```bash
     pip install -r requirements.txt
     ```
 
-3. **Set up your API keys**:
-    - Get an OpenAI API key from: https://platform.openai.com/api-keys
-    - Get a Firecrawl API key from: [Firecrawl website](https://www.firecrawl.dev/app/api-keys)
-    - Get an Exa API key from: [Exa website](https://dashboard.exa.ai/api-keys)
+3. **配置 API 密钥**：
+    - 获取 OpenAI API 密钥：https://platform.openai.com/api-keys
+    - 获取 Firecrawl API 密钥：[Firecrawl 网站](https://www.firecrawl.dev/app/api-keys)
+    - 获取 Exa API 密钥：[Exa 网站](https://dashboard.exa.ai/api-keys)
 
-4. **Run the Streamlit app**:
+4. **运行 Streamlit 应用**：
     ```bash
     streamlit run competitor_agent_team.py
     ```
 
-## Usage
+## 使用方法
 
-1. Enter your API keys in the sidebar
-2. Input either:
-   - Your company's website URL
-   - A description of your company
-3. Click "Analyze Competitors" to generate:
-   - Competitor comparison table
-   - Detailed analysis report
-   - Strategic recommendations
+1. 在侧边栏中输入 API 密钥
+2. 输入以下任意一种信息：
+   - 你公司的网站 URL
+   - 你公司的业务描述
+3. 点击“Analyze Competitors（分析竞争对手）”生成：
+   - 竞争对手对比表
+   - 详细分析报告
+   - 战略建议
