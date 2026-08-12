@@ -1,4 +1,4 @@
-# 🐙 GitHub MCP Agent
+# 🐙 GitHub MCP 智能体
 
 ### 🎓 免费分步教程
 **👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/build-an-mcp-github-agent-in-less-than-50-lines-of-code)，通过详细的代码讲解、说明和最佳实践，从零开始学习如何构建这个项目。**
