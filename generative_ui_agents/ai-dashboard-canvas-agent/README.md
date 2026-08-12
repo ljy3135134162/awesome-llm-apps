@@ -1,4 +1,4 @@
-# AI Dashboard Canvas Agent
+# AI 仪表板 Canvas Agent
 
 https://github.com/user-attachments/assets/9201d528-573f-43cc-9d31-571c362318a7
 
