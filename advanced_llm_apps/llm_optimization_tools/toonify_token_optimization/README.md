@@ -1,62 +1,63 @@
-# 🎯 Toonify Token Optimization
+# 🎯 Toonify Token 优化
 
-Reduce LLM API costs by 30-60% using TOON (Token-Oriented Object Notation) format for structured data serialization.
+使用 TOON（Token-Oriented Object Notation，面向 Token 的对象表示法）格式序列化结构化数据，可将 LLM API 成本降低约 30–60%。
 
-## 📋 Overview
+## 📋 概述
 
-This app demonstrates how to use [Toonify](https://github.com/ScrapeGraphAI/toonify) to dramatically reduce token usage when passing structured data to Large Language Models. TOON format achieves CSV-like compactness while maintaining explicit structure and human readability.
+这个应用演示如何使用 [Toonify](https://github.com/ScrapeGraphAI/toonify)，在向大型语言模型传递结构化数据时显著降低 Token 使用量。TOON 格式在保持明确数据结构和人类可读性的同时，可达到接近 CSV 的紧凑程度。
 
-### Key Benefits
+### 主要优势
 
-- **💰 63.9% average token reduction** compared to JSON
-- **🎯 Up to 73.4% savings** for optimal use cases (tabular data)
-- **💵 Saves $2,147 per million API requests** at GPT-4 pricing
-- **📖 Human-readable** format
-- **⚡ Minimal overhead** (<1ms for typical payloads)
+- **💰 相比 JSON，平均减少 63.9% 的 Token**
+- **🎯 在最适合的场景（表格数据）中最高可节省 73.4%**
+- **💵 按 GPT-4 定价估算，每 100 万次 API 请求可节省 2,147 美元**
+- **📖 人类可读**
+- **⚡ 额外开销极低**（典型负载下小于 1ms）
 
-## 🚀 Features
+## 🚀 功能
 
-- **JSON vs TOON Comparison**: See the size difference in action
-- **Token Cost Calculator**: Calculate savings for your use cases
-- **LLM Integration Example**: Pass optimized data to GPT/Claude
-- **Real-world Examples**: Product catalogs, surveys, analytics data
-- **Benchmarking**: Measure compression ratios for your data
+- **JSON 与 TOON 对比**：直观看到两种格式的体积差异
+- **Token 成本计算器**：计算你的实际使用场景可以节省多少成本
+- **LLM 集成示例**：将优化后的数据传递给 GPT / Claude
+- **真实场景示例**：商品目录、调查问卷、分析数据
+- **基准测试**：测量你自己的数据压缩率
 
-## 📦 Installation
+## 📦 安装
 
-1. Install required dependencies:
+1. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Set up your API key (optional, for LLM integration demo):
+2. 配置 API Key（可选，仅 LLM 集成演示需要）：
 
 ```bash
 export OPENAI_API_KEY='your-api-key-here'
 ```
 
-## 💻 Usage
+## 💻 使用方法
 
-### Basic Example
+### 基础示例
 
-Run the basic comparison demo:
+运行基础格式对比演示：
 
 ```bash
 python toonify_demo.py
 ```
 
-### Interactive Demo
+### 交互式演示
 
-Run the interactive Streamlit app:
+运行 Streamlit 交互应用：
 
 ```bash
 streamlit run toonify_app.py
 ```
 
-## 📊 Format Comparison
+## 📊 格式对比
 
-### JSON (247 bytes)
+### JSON（247 字节）
+
 ```json
 {
   "products": [
@@ -67,7 +68,8 @@ streamlit run toonify_app.py
 }
 ```
 
-### TOON (98 bytes, 60% reduction)
+### TOON（98 字节，减少 60%）
+
 ```
 products[3]{id,name,price}:
   101,Laptop Pro,1299
@@ -75,36 +77,36 @@ products[3]{id,name,price}:
   103,USB-C Cable,19
 ```
 
-## 🎯 Best Use Cases
+## 🎯 最适合的使用场景
 
-**Use TOON when:**
-- ✅ Passing data to LLM APIs (reduce token costs)
-- ✅ Working with uniform tabular data
-- ✅ Context window is limited
-- ✅ Human readability matters
+**适合使用 TOON 的情况：**
+- ✅ 向 LLM API 传递数据，需要降低 Token 成本
+- ✅ 处理结构统一的表格数据
+- ✅ 上下文窗口有限
+- ✅ 同时重视人类可读性
 
-**Use JSON when:**
-- ❌ Maximum compatibility is required
-- ❌ Data is highly irregular/nested
-- ❌ Working with existing JSON-only tools
+**更适合使用 JSON 的情况：**
+- ❌ 需要最大化兼容性
+- ❌ 数据结构高度不规则或嵌套复杂
+- ❌ 必须配合现有的 JSON-only 工具使用
 
-## 💡 Example: E-commerce Product Analysis
+## 💡 示例：电商商品分析
 
 ```python
 from toonify import encode
 import openai
 
-# Your product data (could be hundreds of products)
+# 商品数据（实际可以有数百个商品）
 products = [
     {"id": 1, "name": "Laptop", "price": 1299, "stock": 45},
     {"id": 2, "name": "Mouse", "price": 79, "stock": 120},
-    # ... many more products
+    # ... 更多商品
 ]
 
-# Convert to TOON format (saves 60% tokens)
+# 转换为 TOON 格式（可节省约 60% Token）
 toon_data = encode(products)
 
-# Send to LLM with reduced token cost
+# 以更低 Token 成本发送给 LLM
 response = openai.chat.completions.create(
     model="gpt-4",
     messages=[{
@@ -114,35 +116,34 @@ response = openai.chat.completions.create(
 )
 ```
 
-## 📈 Performance
+## 📈 性能
 
-**Benchmarked across 50 real-world datasets:**
-- 63.9% average size reduction vs JSON
-- 54.1% average token reduction
-- 98% of datasets achieve 40%+ savings
-- Minimal overhead (<1ms encoding/decoding)
+**基于 50 个真实数据集的基准测试：**
+- 相比 JSON，平均体积减少 63.9%
+- 平均 Token 减少 54.1%
+- 98% 的数据集可实现 40% 以上的节省
+- 编码 / 解码额外开销极低（小于 1ms）
 
-## 🔗 Resources
+## 🔗 资源
 
-- **Toonify GitHub**: https://github.com/ScrapeGraphAI/toonify
-- **PyPI**: https://pypi.org/project/toonify/
-- **Documentation**: https://docs.scrapegraphai.com/services/toonify
-- **Format Spec**: https://github.com/toon-format/toon
+- **Toonify GitHub**：https://github.com/ScrapeGraphAI/toonify
+- **PyPI**：https://pypi.org/project/toonify/
+- **文档**：https://docs.scrapegraphai.com/services/toonify
+- **格式规范**：https://github.com/toon-format/toon
 
-## 🤝 Contributing
+## 🤝 贡献
 
-Contributions are welcome! Feel free to:
-- Report bugs
-- Suggest new examples
-- Add benchmarks
-- Improve documentation
+欢迎贡献，你可以：
+- 报告 Bug
+- 建议新的示例
+- 添加基准测试
+- 改进文档
 
-## 📄 License
+## 📄 许可证
 
-This example is provided as-is for educational purposes.
-Toonify library is licensed under MIT License.
+本示例按现状提供，仅用于学习和演示。
+Toonify 库使用 MIT License。
 
-## 🙏 Credits
+## 🙏 致谢
 
-Built with [Toonify](https://github.com/ScrapeGraphAI/toonify) by the ScrapeGraphAI team.
-
+本项目基于 ScrapeGraphAI 团队开发的 [Toonify](https://github.com/ScrapeGraphAI/toonify) 构建。
