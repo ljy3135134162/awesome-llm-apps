@@ -1,4 +1,4 @@
-# 🎙️ Thinking Out Loud（边想边说）
+# 🎙️ 边想边说（Thinking Out Loud）
 
 直接通过语音把想法一股脑说给 Agent，但在它真正开始行动之前，先检查它到底理解了什么。
 
