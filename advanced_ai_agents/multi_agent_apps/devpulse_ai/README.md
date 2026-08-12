@@ -1,112 +1,112 @@
-# 🧠 DevPulseAI — Multi-Agent Signal Intelligence
+# 🧠 DevPulseAI — 多 Agent 技术信号情报系统
 
-A reference implementation demonstrating how to build a **multi-agent pipeline** that aggregates technical signals from multiple sources, scores them for relevance, assesses risks, and synthesizes an actionable intelligence digest.
+这是一个参考实现，用于展示如何构建一条**多 Agent 流水线**：从多个技术来源聚合信号，对其相关性进行评分、评估潜在风险，并最终生成一份可执行的技术情报摘要。
 
-> **Design Philosophy:** Agents are used **only where reasoning is required.** Deterministic operations (collection, normalization, deduplication) are implemented as plain utilities — not agents.
+> **设计理念：** 只有真正需要推理的环节才使用 Agent。数据采集、标准化、去重等确定性操作由普通工具函数完成，而不是为了“Agent 化”而强行包装成 Agent。
 
 ---
 
-## Architecture
+## 架构
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
-│                    DATA SOURCES                         │
+│                     数据来源                            │
 │  GitHub · ArXiv · HackerNews · Medium · HuggingFace     │
 └──────────────────────┬──────────────────────────────────┘
-                       │ raw signals
+                       │ 原始信号
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│  SignalCollector (UTILITY — no LLM)                      │
-│  • Normalizes to unified schema                          │
-│  • Deduplicates via source:id composite key              │
-│  • Filters incomplete signals                            │
+│  SignalCollector（工具 — 不使用 LLM）                   │
+│  • 标准化为统一 Schema                                   │
+│  • 使用 source:id 复合键去重                            │
+│  • 过滤不完整信号                                        │
 └──────────────────────┬───────────────────────────────────┘
-                       │ normalized signals
+                       │ 标准化后的信号
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│  RelevanceAgent (AGENT — gpt-4.1-mini)                   │
-│  • Scores each signal 0–100 for developer relevance      │
-│  • Considers: novelty, impact, actionability, timeliness  │
-│  • Falls back to heuristics if no API key                 │
+│  RelevanceAgent（Agent — gpt-4.1-mini）                 │
+│  • 为每条信号计算 0–100 的开发者相关度                   │
+│  • 综合考虑新颖性、影响、可执行性、时效性                │
+│  • 未提供 API Key 时自动退回启发式规则                  │
 └──────────────────────┬───────────────────────────────────┘
-                       │ scored signals
+                       │ 已评分信号
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│  RiskAgent (AGENT — gpt-4.1-mini)                        │
-│  • Assesses security vulnerabilities                      │
-│  • Flags breaking changes and deprecations                │
-│  • Rates risk: LOW / MEDIUM / HIGH / CRITICAL             │
+│  RiskAgent（Agent — gpt-4.1-mini）                      │
+│  • 分析安全漏洞                                          │
+│  • 标记破坏性变更和弃用项                                │
+│  • 风险等级：LOW / MEDIUM / HIGH / CRITICAL             │
 └──────────────────────┬───────────────────────────────────┘
-                       │ risk-assessed signals
+                       │ 已评估风险的信号
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│  SynthesisAgent (AGENT — gpt-4.1)                        │
-│  • Cross-references relevance + risk data                 │
-│  • Produces executive summary                             │
-│  • Generates actionable recommendations                   │
+│  SynthesisAgent（Agent — gpt-4.1）                      │
+│  • 交叉分析相关度和风险数据                              │
+│  • 生成管理层摘要                                        │
+│  • 输出可执行建议                                        │
 └──────────────────────┬───────────────────────────────────┘
                        │
                        ▼
-              📄 Intelligence Digest
+                 📄 技术情报摘要
 ```
 
 ---
 
-## Why Signal Collection Is Not an Agent
+## 为什么 Signal Collection 不是 Agent
 
-This is an **intentional, opinionated design choice** — not a shortcut.
+这是一个**有意为之的架构选择**，而不是简化实现。
 
-Signal collection involves:
+信号采集主要包括：
 
-- Fetching data from HTTP APIs (deterministic)
-- Normalizing fields to a unified schema (mechanical transformation)
-- Deduplicating by composite key (hash comparison)
+- 从 HTTP API 获取数据（确定性操作）
+- 将字段标准化为统一 Schema（机械转换）
+- 使用复合键去重（哈希比较）
 
-**None of these tasks require reasoning, judgment, or language understanding.**
+**这些任务都不需要推理、判断或自然语言理解。**
 
-Wrapping collection in an `Agent` class would be _decorative_ — it would have an LLM import that never gets called. This misleads readers into thinking an LLM is necessary, when the actual logic is a `for` loop with a `set()`.
+如果把采集模块包装成 `Agent` 类，只会变成一种“装饰性 Agent”：虽然导入了 LLM，但实际上根本不会调用。这样反而会误导读者，以为这里必须使用大模型，而真实逻辑不过是 `for` 循环配合 `set()`。
 
-> **Rule of thumb:** If you can write the logic as a pure function with no ambiguity, it's a utility. If the output depends on understanding context, making judgment calls, or generating natural language, it's an agent.
+> **经验法则：** 如果某段逻辑可以无歧义地写成纯函数，那么它应该是工具；如果输出依赖上下文理解、判断或自然语言生成，那么它才适合做成 Agent。
 
 ---
 
-## Agent Roles & Model Selection
+## Agent 职责与模型选择
 
-| Component | Type | Model | Why This Model |
+| 组件 | 类型 | 模型 | 选择原因 |
 |---|---|---|---|
-| `SignalCollector` | **Utility** | _none_ | Deterministic — no reasoning required |
-| `RelevanceAgent` | **Agent** | `gpt-4.1-mini` | Classification task — fast, cheap, high-volume |
-| `RiskAgent` | **Agent** | `gpt-4.1-mini` | Structured analysis — careful but not expensive |
-| `SynthesisAgent` | **Agent** | `gpt-4.1` | Cross-referencing & summarization — needs strongest reasoning |
+| `SignalCollector` | **工具** | 无 | 确定性流程，不需要推理 |
+| `RelevanceAgent` | **Agent** | `gpt-4.1-mini` | 分类任务，速度快、成本低，适合高吞吐 |
+| `RiskAgent` | **Agent** | `gpt-4.1-mini` | 适合结构化分析，同时控制成本 |
+| `SynthesisAgent` | **Agent** | `gpt-4.1` | 需要交叉分析和综合总结，使用更强推理模型 |
 
-**Single provider by default (OpenAI)** to reduce onboarding friction. Override per-agent via environment variables:
+默认只使用**单一模型提供商 OpenAI**，以减少初始配置复杂度。也可以通过环境变量为各 Agent 单独覆盖模型：
 
 ```bash
-export MODEL_RELEVANCE=gpt-4.1-nano    # cheaper, faster
-export MODEL_RISK=o4-mini               # deeper reasoning for risk
-export MODEL_SYNTHESIS=gpt-4.1          # default, strongest
+export MODEL_RELEVANCE=gpt-4.1-nano    # 更便宜、更快
+export MODEL_RISK=o4-mini               # 更适合深度风险推理
+export MODEL_SYNTHESIS=gpt-4.1          # 默认，综合能力最强
 ```
 
 ---
 
-## How to Run
+## 如何运行
 
-### Quick Verification (No API Key Required)
+### 快速验证（无需 API Key）
 
 ```bash
 cd advanced_ai_agents/multi_agent_apps/devpulse_ai
 python verify.py
 ```
 
-This runs the full pipeline with mock data in **<1 second**. No network calls, no API keys.
+该命令使用 Mock 数据执行完整流水线，通常可在 **1 秒内**完成，不会发起网络请求，也不需要 API Key。
 
-Expected output:
+预期输出：
 
-```
+```text
 [OK] DevPulseAI reference pipeline executed successfully
 ```
 
-### Full Pipeline (With API Key)
+### 完整流水线（需要 API Key）
 
 ```bash
 pip install -r requirements.txt
@@ -114,7 +114,7 @@ export OPENAI_API_KEY=sk-...
 python main.py
 ```
 
-Without an API key, agents automatically fall back to heuristic scoring.
+如果没有配置 API Key，Agent 会自动退回启发式评分逻辑。
 
 ### Streamlit Dashboard
 
@@ -124,72 +124,72 @@ streamlit run streamlit_app.py
 
 ---
 
-## Project Structure
+## 项目结构
 
-```
+```text
 devpulse_ai/
 ├── agents/
-│   ├── __init__.py              # Package exports + design docs
-│   ├── signal_collector.py      # UTILITY — normalize & dedup
-│   ├── relevance_agent.py       # AGENT  — score relevance (gpt-4.1-mini)
-│   ├── risk_agent.py            # AGENT  — assess risks (gpt-4.1-mini)
-│   └── synthesis_agent.py       # AGENT  — produce digest (gpt-4.1)
+│   ├── __init__.py              # 包导出与设计说明
+│   ├── signal_collector.py      # 工具：标准化与去重
+│   ├── relevance_agent.py       # Agent：相关性评分（gpt-4.1-mini）
+│   ├── risk_agent.py            # Agent：风险评估（gpt-4.1-mini）
+│   └── synthesis_agent.py       # Agent：生成情报摘要（gpt-4.1）
 ├── adapters/
-│   ├── github.py                # GitHub trending repos
-│   ├── arxiv.py                 # ArXiv recent papers
-│   ├── hackernews.py            # HackerNews top stories
-│   ├── medium.py                # Medium AI/ML blogs
-│   └── huggingface.py           # HuggingFace trending models
+│   ├── github.py                # GitHub 热门仓库
+│   ├── arxiv.py                 # ArXiv 最新论文
+│   ├── hackernews.py            # Hacker News 热门内容
+│   ├── medium.py                # Medium AI/ML 博客
+│   └── huggingface.py           # Hugging Face 热门模型
 ├── workflows/
 │   └── signal-intelligence-pipeline.json
-├── main.py                      # Full pipeline runner
-├── verify.py                    # Mock-data verification (<1s)
-├── streamlit_app.py             # Interactive dashboard
-└── requirements.txt             # Minimal deps (single provider)
+├── main.py                      # 完整流水线入口
+├── verify.py                    # Mock 数据验证（<1 秒）
+├── streamlit_app.py             # 交互式 Dashboard
+└── requirements.txt             # 最小依赖，仅默认单一模型提供商
 ```
 
 ---
 
-## Optional Extensions (Advanced Users)
+## 可选扩展（高级用户）
 
-These are **not required** for the reference implementation, but show how the architecture extends:
+以下功能**不是参考实现的必要部分**，但可以用于进一步扩展架构：
 
-1. **Multi-provider models** — Swap `RelevanceAgent` to use Anthropic Claude or Google Gemini by updating the model config. The `agno` framework supports multiple providers.
+1. **多模型提供商** — 将 `RelevanceAgent` 改为 Anthropic Claude 或 Google Gemini。`agno` 框架支持多个模型提供商。
 
-2. **Vector search** — Add a Pinecone or Qdrant adapter to store and retrieve signals semantically for long-term pattern detection.
+2. **向量搜索** — 增加 Pinecone 或 Qdrant Adapter，长期保存技术信号并执行语义检索，用于趋势与模式识别。
 
-3. **Streaming digests** — Use WebSocket streaming from `SynthesisAgent` for real-time intelligence feeds.
+3. **流式情报摘要** — 使用 `SynthesisAgent` 的 WebSocket Streaming 输出实时技术情报流。
 
-4. **Custom adapters** — Add new signal sources by implementing a `fetch_*` function that returns `List[Dict]` with the standard schema (`id`, `source`, `title`, `description`, `url`, `metadata`).
+4. **自定义 Adapter** — 实现新的 `fetch_*` 函数即可加入新的信号来源。函数应返回符合统一 Schema 的 `List[Dict]`，字段包括 `id`、`source`、`title`、`description`、`url`、`metadata`。
 
-5. **Feedback loop** — Store user feedback (👍/👎) in Supabase and use it to fine-tune relevance scoring over time.
-
----
-
-## Dependencies
-
-```
-agno              # Agent framework
-openai            # LLM provider (single default)
-httpx             # HTTP client for adapters
-feedparser        # RSS/Atom parsing for Medium
-streamlit>=1.30   # Interactive dashboard
-```
-
-No `google-generativeai` required. Gemini is an optional extension if users want multi-provider support — install `google-genai` (not the deprecated `google-generativeai`) separately.
+5. **反馈闭环** — 将用户反馈（👍/👎）存入 Supabase，并逐步用于优化相关性评分。
 
 ---
 
-## Design Tradeoffs
+## 依赖
 
-| Decision | Tradeoff | Why |
+```text
+agno              # Agent 框架
+openai            # 默认 LLM Provider
+httpx             # Adapter 使用的 HTTP 客户端
+feedparser        # Medium RSS/Atom 解析
+streamlit>=1.30   # 交互式 Dashboard
+```
+
+默认不需要安装 `google-generativeai`。如果希望扩展 Gemini 多模型支持，可单独安装新版 `google-genai`，不要使用已弃用的 `google-generativeai`。
+
+---
+
+## 架构取舍
+
+| 决策 | 代价 | 原因 |
 |---|---|---|
-| Single provider default | Less flexibility | Reduces onboarding from 2+ keys to 1 |
-| Signal collection as utility | Less "agentic" demo | Honest architecture — agents where reasoning exists |
-| Heuristic fallbacks | Lower quality without API key | Pipeline always works, even for evaluation |
-| 5 signals per source default | Less data | Keeps demo fast (<10s with API, <1s mock) |
-| No async in agents | Less throughput | Simpler code, clearer educational value |
+| 默认单一模型提供商 | 灵活性较低 | 初次配置只需要 1 个 API Key |
+| 信号采集作为普通工具 | 看起来没那么“Agentic” | 架构更真实，只在需要推理时使用 Agent |
+| 启发式回退机制 | 无 API Key 时质量较低 | 保证流水线即使在评估环境中也可以运行 |
+| 每个来源默认 5 条信号 | 数据量较少 | 保持 Demo 足够快（API 模式 <10 秒，Mock <1 秒） |
+| Agent 内不使用 Async | 吞吐量较低 | 代码更简单，更适合作为教学参考 |
 
 ---
 
-_Built as a reference implementation for [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps)._
+_本项目作为 [awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) 的参考实现构建。_
