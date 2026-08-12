@@ -1,50 +1,53 @@
-## 📊 AI Finance Agent with xAI Grok
+## 📊 基于 xAI Grok 的 AI 金融 Agent
 
-This application creates a financial analysis agent powered by xAI's Grok model, combining real-time stock data with web search capabilities. It provides structured financial insights through an interactive playground interface.
+这个应用构建了一个由 xAI Grok 模型驱动的金融分析 Agent，并结合实时股票数据与 Web 搜索能力，通过交互式 Playground 提供结构化金融分析结果。
 
-### Features
+### 功能特性
 
-- Powered by xAI's Grok-4 Fast model
-- Real-time stock data analysis via YFinance
-- Web search capabilities through DuckDuckGo
-- Formatted output with tables for financial data
-- Interactive playground interface
+- 使用 xAI 的 Grok-4 Fast 模型
+- 通过 YFinance 分析实时股票数据
+- 通过 DuckDuckGo 执行 Web 搜索
+- 使用表格格式展示金融数据
+- 提供交互式 Playground 界面
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
+
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/starter_ai_agents/xai_finance_agent
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
 
 ```bash
 cd awesome-llm-apps/starter_ai_agents/xai_finance_agent
 pip install -r requirements.txt
 ```
 
-3. Get your OpenAI API Key
+3. 获取 xAI API Key
 
-- Sign up for an [xAI API account](https://console.x.ai/)
-- Set your XAI_API_KEY environment variable.
+- 注册 [xAI API](https://console.x.ai/) 账号并获取 API Key。
+- 设置 `XAI_API_KEY` 环境变量。
+
 ```bash
 export XAI_API_KEY='your-api-key-here'
 ```
 
-4. Run the team of AI Agents
+4. 运行 AI Agent
+
 ```bash
 python xai_finance_agent.py
 ```
 
-5. Open your web browser and navigate to the URL provided in the console output to interact with the AI financial agent through the playground interface.
+5. 打开浏览器，并访问控制台输出中提供的 URL，即可通过 Playground 界面与 AI 金融 Agent 交互。
 
-6. Connecting Your AgentOS
+6. 连接 AgentOS
 
-To manage, monitor, and interact with your financial agent through the AgentOS Control Plane (from your browser), you need to connect your running AgentOS instance:
+如果希望通过浏览器中的 AgentOS Control Plane 管理、监控并与金融 Agent 交互，需要将正在运行的 AgentOS 实例连接到控制平面。
 
-**Step-by-step guide:**
+**分步说明：**
 
-- Visit the official documentation: [Connecting Your OS](https://docs.agno.com/agent-os/connecting-your-os)
-- Follow the steps in the guide to register your local AgentOS and establish the connection.
+- 查看官方文档：[Connecting Your OS](https://docs.agno.com/agent-os/connecting-your-os)
+- 按照文档中的步骤注册本地 AgentOS 并建立连接。
