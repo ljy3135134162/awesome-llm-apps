@@ -1,62 +1,68 @@
-## 🛫 AI Travel Agent
+## 🛫 AI 旅行 Agent
 
-This Streamlit app is an AI-powered travel Agent that generates personalized travel itineraries using OpenAI GPT-4o. It automates the process of researching, planning, and organizing your dream vacation, allowing you to explore exciting destinations with ease.
+这是一个基于 Streamlit 的 AI 旅行 Agent，使用 OpenAI GPT-4o 生成个性化旅行行程。它可以自动完成目的地研究、行程规划和整理，让用户更轻松地安排旅行。
 
-### Features
-- Research and discover exciting travel destinations, activities, and accommodations
-- Customize your itinerary based on the number of days you want to travel
-- Utilize the power of GPT-4o to generate intelligent and personalized travel plans
-- Download your itinerary as a calendar (.ics) file to import into Google Calendar, Apple Calendar, or other calendar apps
+### 功能特性
+- 调研和发现值得前往的旅行目的地、活动与住宿
+- 根据旅行天数定制行程
+- 使用 GPT-4o 生成智能、个性化的旅行计划
+- 将行程下载为日历（`.ics`）文件，并导入 Google Calendar、Apple Calendar 或其他日历应用
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/starter_ai_agents/ai_travel_agent
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Get your SerpAPI Key
+- 注册 [OpenAI](https://platform.openai.com/) 账号（或你选择的其他 LLM Provider）并获取 API Key。
 
-- Sign up for an [SerpAPI account](https://serpapi.com/) and obtain your API key.
+4. 获取 SerpAPI Key
 
-5. Run the Streamlit App
+- 注册 [SerpAPI](https://serpapi.com/) 账号并获取 API Key。
+
+5. 运行 Streamlit 应用
+
 ```bash
 streamlit run travel_agent.py
 ```
 
-For local LLM usage (with Ollama):
+如需使用本地 LLM（Ollama）：
+
 ```bash
 streamlit run local_travel_agent.py
 ```
 
-### How it Works?
+### 工作原理
 
-The AI Travel Agent has two main components:
-- **Researcher:** Responsible for generating search terms based on the user's destination and travel duration, and searching the web for relevant activities and accommodations using SerpAPI.
-- **Planner:** Takes the research results and user preferences to generate a personalized draft itinerary that includes suggested activities, dining options, and accommodations.
+AI Travel Agent 主要包含两个组件：
 
-### Using the Calendar Download Feature
+- **Researcher（研究 Agent）**：根据用户的目的地和旅行时长生成搜索关键词，并通过 SerpAPI 搜索相关活动和住宿信息。
+- **Planner（规划 Agent）**：结合研究结果与用户偏好，生成个性化行程草案，其中包括推荐活动、餐饮和住宿安排。
 
-After generating your travel itinerary:
-1. Click the "Download Itinerary as Calendar (.ics)" button that appears next to the "Generate Itinerary" button
-2. Save the .ics file to your computer
-3. Import the file into your preferred calendar application (Google Calendar, Apple Calendar, Outlook, etc.)
-4. Each day of your itinerary will appear as an all-day event in your calendar
-5. The complete details for each day's activities are included in the event description
+### 使用日历下载功能
 
-This feature makes it easy to keep track of your travel plans and have your itinerary available on all your devices, even offline.
+生成旅行行程后：
 
-### Local vs Cloud Version
+1. 点击 `Generate Itinerary` 按钮旁的 `Download Itinerary as Calendar (.ics)`。
+2. 将 `.ics` 文件保存到电脑。
+3. 将文件导入常用日历应用，例如 Google Calendar、Apple Calendar 或 Outlook。
+4. 行程中的每一天都会作为全天事件显示在日历中。
+5. 每天的完整活动详情会写入对应事件的描述中。
 
-- **travel_agent.py**: Uses OpenAI's GPT-4o for high-quality itineraries (requires OpenAI API key)
-- **local_travel_agent.py**: Uses Ollama for local LLM inference without sending data to external APIs (requires Ollama to be installed and running)
+借助该功能，可以更方便地在多个设备上查看旅行计划，即使离线也能访问行程。
+
+### 本地版与云端版
+
+- **`travel_agent.py`**：使用 OpenAI GPT-4o 生成高质量行程，需要 OpenAI API Key。
+- **`local_travel_agent.py`**：使用 Ollama 在本地运行 LLM，不需要将数据发送到外部模型 API；需要提前安装并启动 Ollama。
