@@ -1,43 +1,46 @@
-## 📝 AI Meeting Preparation Agent
+## 📝 AI 会议准备 Agent
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-multi-agent-ai-meeting-preparation-assistant) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-multi-agent-ai-meeting-preparation-assistant)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-This Streamlit application leverages multiple AI agents to create comprehensive meeting preparation materials. It uses OpenAI's GPT-4, Anthropic's Claude, and the Serper API for web searches to generate context analysis, industry insights, meeting strategies, and executive briefings.
+这是一个基于 Streamlit 的多 Agent 会议准备应用。它结合 OpenAI GPT-4、Anthropic Claude 以及 Serper API 的 Web 搜索能力，自动生成会议背景分析、行业洞察、会议策略和高管简报。
 
-### Features
+### 功能特性
 
-- Multi-agent AI system for thorough meeting preparation
-- Utilizes OpenAI's GPT-4 and Anthropic's Claude models
-- Web search capability using Serper API
-- Generates detailed context analysis, industry insights, meeting strategies, and executive briefings
+- 使用多 Agent AI 系统进行全面的会议准备
+- 同时利用 OpenAI GPT-4 和 Anthropic Claude 模型
+- 通过 Serper API 获取 Web 搜索能力
+- 自动生成详细的背景分析、行业洞察、会议策略和高管简报
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/single_agent_apps/ai_meeting_agent
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your Anthropic API Key
 
-- Sign up for an [Anthropic account](https://console.anthropic.com) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 Anthropic API Key
 
-4. Get your SerpAPI Key
+- 注册 [Anthropic](https://console.anthropic.com) 账号（或选择其他 LLM Provider）并获取 API Key。
 
-- Sign up for an [Serper API account](https://serper.dev/) and obtain your API key.
+4. 获取 Serper API Key
 
-5. Get your OpenAI API Key
+- 注册 [Serper API](https://serper.dev/) 账号并获取 API Key。
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+5. 获取 OpenAI API Key
 
-6. Run the Streamlit App
+- 注册 [OpenAI](https://platform.openai.com/) 账号（或选择其他 LLM Provider）并获取 API Key。
+
+6. 运行 Streamlit 应用
+
 ```bash
 streamlit run meeting_agent.py
 ```
