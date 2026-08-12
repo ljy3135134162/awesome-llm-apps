@@ -1,4 +1,4 @@
-# OpenAI Remote MCP Tool Bridge
+# OpenAI 远程 MCP 工具桥接器
 
 学习如何在**不使用 Agent 框架**的情况下，将一个普通的 OpenAI Function Calling 循环连接到托管的 Streamable HTTP MCP Server。
 
