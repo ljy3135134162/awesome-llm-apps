@@ -1,56 +1,56 @@
-# ⚡ Function Tools
+# ⚡ 函数工具
 
-Function tools are **custom Python functions** that you create and integrate into your agents. This is the most flexible and commonly used approach for adding specific capabilities to your agents.
+函数工具是由你自行创建并集成到 Agent 中的**自定义 Python 函数**。这是为 Agent 添加特定能力时最灵活、也最常用的方式之一。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Function Tool Creation**: Build custom Python functions as tools
-- **Tool Registration**: How to register functions with your agent
-- **Parameter Handling**: Managing tool inputs and outputs
-- **Error Handling**: Robust error management in tools
-- **Best Practices**: Design patterns for effective function tools
+- **创建函数工具**：将自定义 Python 函数构建为工具
+- **工具注册**：了解如何将函数注册到 Agent
+- **参数处理**：管理工具的输入和输出
+- **错误处理**：为工具实现稳健的异常管理
+- **最佳实践**：掌握高效函数工具的设计模式
 
-## 🧠 Core Concept: Function Tools
+## 🧠 核心概念：函数工具
 
-Function tools are **Python functions with special characteristics**:
-- **Descriptive docstrings**: Help the agent understand when to use them
-- **Type annotations**: Clear input/output specifications
-- **Return dictionaries**: Structured, informative responses
-- **Error handling**: Graceful failure management
+函数工具是具有一些特殊特征的 **Python 函数**：
+- **清晰的 Docstring**：帮助 Agent 判断何时调用工具
+- **类型注解**：明确输入和输出规范
+- **返回字典**：提供结构化、信息充分的结果
+- **错误处理**：能够优雅地处理失败情况
 
-### Key Advantages
-- ✅ **Maximum Flexibility**: Create any functionality you need
-- ✅ **Easy Integration**: Simple Python functions
-- ✅ **Full Control**: Complete control over behavior
-- ✅ **Debugging**: Easy to test and debug
+### 主要优势
+- ✅ **高度灵活**：可以实现几乎任何所需功能
+- ✅ **易于集成**：本质上就是普通 Python 函数
+- ✅ **完全可控**：可以精确控制工具行为
+- ✅ **易于调试**：方便独立测试和排查问题
 
-## 🔧 Function Tool Requirements
+## 🔧 函数工具要求
 
-### 1. **Descriptive Docstrings**
+### 1. **描述清晰的 Docstring**
 ```python
 def calculate_compound_interest(principal: float, rate: float, years: int) -> dict:
     """
     Calculate compound interest for an investment.
-    
+
     Use this function when users ask about investment growth,
     compound interest calculations, or future value of investments.
-    
+
     Args:
         principal: Initial investment amount
         rate: Annual interest rate (as decimal, e.g., 0.05 for 5%)
         years: Number of years to compound
-    
+
     Returns:
         Dictionary with calculation results and breakdown
     """
 ```
 
-### 2. **Type Annotations**
-- Always specify parameter types
-- Include return type annotations
-- Use appropriate Python types (str, int, float, dict, list)
+### 2. **类型注解**
+- 始终指定参数类型
+- 包含返回值类型注解
+- 使用合适的 Python 类型，如 `str`、`int`、`float`、`dict`、`list`
 
-### 3. **Structured Returns**
+### 3. **结构化返回值**
 ```python
 return {
     "result": final_amount,
@@ -64,7 +64,7 @@ return {
 }
 ```
 
-### 4. **Error Handling**
+### 4. **错误处理**
 ```python
 try:
     # Tool logic here
@@ -73,105 +73,104 @@ except ValueError as e:
     return {"error": str(e), "status": "error"}
 ```
 
-## 🚀 Tutorial Examples
+## 🚀 教程示例
 
-This sub-example includes two practical implementations:
+本节包含两个实际实现：
 
-### 📍 **Calculator Agent**
-**Location**: `./calculator_agent/`
-- **Mathematical Operations**: Basic arithmetic, compound interest, percentage calculations
-- **Unit Conversions**: Temperature conversions (Celsius, Fahrenheit, Kelvin)
-- **Statistical Analysis**: Mean, median, mode, standard deviation for data sets
-- **Financial Calculations**: Investment growth, compound interest projections
-- **Number Utilities**: Rounding, formatting, and mathematical expressions
+### 📍 **计算器 Agent**
+**位置**：`./calculator_agent/`
+- **数学运算**：基础算术、复利、百分比计算
+- **单位转换**：摄氏度、华氏度、开尔文温度转换
+- **统计分析**：数据集的平均数、中位数、众数、标准差
+- **金融计算**：投资增长和复利预测
+- **数字工具**：舍入、格式化以及数学表达式处理
 
-### 📍 **Utility Agent**
-**Location**: `./utility_agent/`
-- **Text Processing**: Word counting, case conversions, text transformations
-- **Data Extraction**: Email and URL extraction, word frequency analysis
-- **Date/Time Operations**: Format conversions, date differences, age calculations
-- **Data Utilities**: UUID generation, text hashing, Base64 encoding/decoding
-- **Validation Tools**: URL validation, JSON formatting and validation
+### 📍 **实用工具 Agent**
+**位置**：`./utility_agent/`
+- **文本处理**：字数统计、大小写转换、文本变换
+- **数据提取**：提取电子邮件、URL，以及词频分析
+- **日期/时间操作**：格式转换、日期差、年龄计算
+- **数据工具**：UUID 生成、文本哈希、Base64 编解码
+- **验证工具**：URL 验证、JSON 格式化和验证
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 4_2_function_tools/
-├── README.md                    # This file - function tools guide
-├── requirements.txt             # Dependencies for function tools
-├── .env.example                # Environment variables template (shared)
-├── calculator_agent/           # Mathematical tools implementation
+├── README.md                    # 本文件：函数工具指南
+├── requirements.txt             # 函数工具依赖
+├── .env.example                 # 共享环境变量模板
+├── calculator_agent/            # 数学工具实现
 │   ├── __init__.py
-│   ├── agent.py               # Calculator agent with custom tools
-│   └── tools.py               # Mathematical function tools
-└── utility_agent/              # Utility tools implementation
+│   ├── agent.py                 # 使用自定义工具的计算器 Agent
+│   └── tools.py                 # 数学函数工具
+└── utility_agent/               # 实用工具实现
     ├── __init__.py
-    ├── agent.py               # Utility agent with various tools
-    └── tools.py               # Text processing, date/time, and data utilities
+    ├── agent.py                 # 使用多种工具的实用 Agent
+    └── tools.py                 # 文本、日期/时间和数据工具
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this sub-example, you'll understand:
-- ✅ How to create custom Python functions as tools
-- ✅ Best practices for tool design and documentation
-- ✅ How to handle parameters and return values effectively
-- ✅ Error handling and validation strategies
-- ✅ When to use function tools vs other approaches
+完成本节后，你将理解：
+- ✅ 如何将自定义 Python 函数创建为工具
+- ✅ 工具设计与文档编写的最佳实践
+- ✅ 如何有效处理参数和返回值
+- ✅ 错误处理与输入验证策略
+- ✅ 何时使用函数工具以及何时选择其他方案
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Set up your environment**:
+1. **配置环境**：
    ```bash
    cd 4_2_function_tools
-   
-   # Copy the environment template
+
+   # 复制环境变量模板
    cp env.example .env
-   
-   # Edit .env and add your Google AI API key
-   # Get your API key from: https://aistudio.google.com/
+
+   # 编辑 .env 并添加 Google AI API Key
+   # API Key 获取地址：https://aistudio.google.com/
    ```
 
-2. **Install dependencies**:
+2. **安装依赖**：
    ```bash
-   # Install required packages
    pip install -r requirements.txt
    ```
 
-3. **Run the agents**:
+3. **运行 Agent**：
    ```bash
-   # Start the ADK web interface
+   # 启动 ADK Web 界面
    adk web
-   
-   # In the web interface, select:
-   # - calculator_agent: For mathematical calculations and conversions
-   # - utility_agent: For text processing, date/time, and data utilities
+
+   # 在 Web 界面中选择：
+   # - calculator_agent：数学计算和转换
+   # - utility_agent：文本、日期/时间和数据工具
    ```
 
-4. **Try the agents**:
-   - **Calculator Agent**: "Calculate 15% of 200", "Convert 100°F to Celsius", "Find statistics for [1,2,3,4,5]"
-   - **Utility Agent**: "Count words in this text", "Format date 2023-12-25", "Generate a UUID"
+4. **尝试 Agent**：
+   - **Calculator Agent**：`Calculate 15% of 200`、`Convert 100°F to Celsius`、`Find statistics for [1,2,3,4,5]`
+   - **Utility Agent**：`Count words in this text`、`Format date 2023-12-25`、`Generate a UUID`
 
-5. **Create Your Own**: Build custom tools for your use case
+5. **创建自己的工具**：根据你的实际场景构建自定义函数工具。
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **One Purpose Per Tool**: Each function should do one thing well
-- **Rich Docstrings**: The docstring is crucial for agent understanding
-- **Validate Inputs**: Always validate function parameters
-- **Return Dictionaries**: Structured returns are easier to work with
-- **Test Independently**: Test tools outside the agent first
+- **一个工具只做一件事**：每个函数应专注于单一职责
+- **完善 Docstring**：工具说明对 Agent 正确理解和调用至关重要
+- **验证输入**：始终检查函数参数是否合法
+- **返回字典**：结构化结果更容易被 Agent 和应用处理
+- **独立测试**：先单独测试工具，再集成进 Agent
 
-## 🔧 Common Function Tool Patterns
+## 🔧 常见函数工具模式
 
-### 1. **Simple Calculator Pattern**
+### 1. **简单计算器模式**
 ```python
 def add_numbers(a: float, b: float) -> dict:
     """Add two numbers together."""
     return {"result": a + b, "operation": "addition"}
 ```
 
-### 2. **Data Processing Pattern**
+### 2. **数据处理模式**
 ```python
 def analyze_text(text: str) -> dict:
     """Analyze text for word count, sentiment, etc."""
@@ -182,7 +181,7 @@ def analyze_text(text: str) -> dict:
     }
 ```
 
-### 3. **API Integration Pattern**
+### 3. **API 集成模式**
 ```python
 def get_weather(city: str) -> dict:
     """Get weather information for a city."""
@@ -193,7 +192,7 @@ def get_weather(city: str) -> dict:
         return {"error": str(e), "status": "failed"}
 ```
 
-### 4. **Conversion Pattern**
+### 4. **转换工具模式**
 ```python
 def convert_temperature(temp: float, from_unit: str, to_unit: str) -> dict:
     """Convert temperature between units."""
@@ -204,46 +203,46 @@ def convert_temperature(temp: float, from_unit: str, to_unit: str) -> dict:
     }
 ```
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **No Default Parameters**: ADK doesn't support default parameters
-- **Return Dictionaries**: Always return structured data
-- **Error Handling**: Implement proper error handling
-- **Documentation**: Write clear, helpful docstrings
-- **Testing**: Test functions independently before adding to agent
+- **不要使用默认参数**：ADK 不支持默认参数
+- **返回字典**：应始终返回结构化数据
+- **错误处理**：需要实现适当的异常处理
+- **文档说明**：编写清晰且有帮助的 Docstring
+- **测试**：添加到 Agent 前先独立测试函数
 
-## 🔧 Common Use Cases
+## 🔧 常见应用场景
 
-### Mathematical Tools (Calculator Agent)
-- Basic arithmetic operations and expressions
-- Statistical calculations (mean, median, mode, standard deviation)
-- Financial calculations (compound interest, percentages)
-- Unit conversions (temperature, measurements)
-- Number formatting and rounding
+### 数学工具（Calculator Agent）
+- 基础算术运算和表达式
+- 统计计算（平均数、中位数、众数、标准差）
+- 金融计算（复利、百分比）
+- 单位转换（温度、测量单位）
+- 数字格式化和舍入
 
-### Text Processing Tools (Utility Agent)
-- Word and character counting
-- Case conversions and text transformations
-- Email and URL extraction from text
-- Word frequency analysis
-- String manipulation and formatting
+### 文本处理工具（Utility Agent）
+- 单词数和字符数统计
+- 大小写转换和文本变换
+- 从文本中提取电子邮件和 URL
+- 词频分析
+- 字符串处理和格式化
 
-### Date/Time Tools (Utility Agent)
-- Date format conversions
-- Age calculations and date differences
-- Time zone handling
-- Duration calculations
-- Date parsing and validation
+### 日期/时间工具（Utility Agent）
+- 日期格式转换
+- 年龄计算和日期差
+- 时区处理
+- 持续时间计算
+- 日期解析和验证
 
-### Data Utilities (Utility Agent)
-- UUID generation for unique identifiers
-- Text hashing with various algorithms
-- Base64 encoding and decoding
-- URL validation and parsing
-- JSON formatting and validation
+### 数据工具（Utility Agent）
+- 生成 UUID 唯一标识符
+- 使用多种算法进行文本哈希
+- Base64 编码和解码
+- URL 验证和解析
+- JSON 格式化和验证
 
-### Integration Tools
-- API calls and external service integration
-- Database queries and data retrieval
-- File operations and data processing
-- Custom business logic implementation
+### 集成工具
+- API 调用和外部服务集成
+- 数据库查询和数据检索
+- 文件操作和数据处理
+- 自定义业务逻辑实现
