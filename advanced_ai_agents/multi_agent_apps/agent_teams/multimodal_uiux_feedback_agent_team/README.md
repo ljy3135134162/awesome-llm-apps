@@ -1,144 +1,143 @@
-# 🎨 🍌 Multimodal UI/UX Feedback Agent Team with Nano Banana
+# 🎨 🍌 基于 Nano Banana 的多模态 UI/UX 反馈智能体团队
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-ui-ux-feedback-agent-team-with-nano-banana) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/build-an-ai-ui-ux-feedback-agent-team-with-nano-banana)，通过详细的代码讲解、说明和最佳实践，从零开始构建本项目。**
 
-A sophisticated multi-agent system built with Google ADK that analyzes landing page designs, provides expert UI/UX feedback, and automatically generates improved versions using Gemini 2.5 Flash's multimodal capabilities.
+这是一个基于 Google ADK 构建的高级多智能体系统，可分析落地页设计、提供专业 UI/UX 反馈，并利用 Gemini 2.5 Flash 的多模态能力自动生成改进后的版本。
 
-## Features
+## 功能特性
 
-- **👁️ Visual AI Analysis**: Upload landing page screenshots - agents automatically analyze layout, typography, colors, and UX patterns
-- **🎯 Expert Feedback**: Comprehensive critique covering visual hierarchy, accessibility, conversion optimization, and design best practices
-- **✨ Automatic Improvements**: Generates improved landing page designs incorporating all recommendations
-- **📊 Detailed Reports**: Creates comprehensive reports summarizing issues and improvements made
-- **🤖 Multi-Agent Orchestration**: Demonstrates Coordinator/Dispatcher + Sequential Pipeline patterns
-- **♻️ Iterative Refinement**: Edit and refine generated designs based on additional feedback
-- **♿ Accessibility Focus**: WCAG compliance checks and recommendations
+- **👁️ 视觉 AI 分析**：上传落地页截图后，智能体会自动分析布局、字体、颜色和 UX 模式
+- **🎯 专业反馈**：提供覆盖视觉层级、无障碍、转化优化和设计最佳实践的综合评审
+- **✨ 自动改进**：根据全部建议自动生成改进后的落地页设计
+- **📊 详细报告**：生成完整报告，总结发现的问题以及已实施的改进
+- **🤖 多智能体编排**：演示 Coordinator/Dispatcher + Sequential Pipeline 模式
+- **♻️ 迭代优化**：可根据进一步反馈持续编辑和优化生成的设计
+- **♿ 无障碍支持**：检查 WCAG 合规性并给出建议
 
-## How It Works
+## 工作原理
 
-The system uses a **Coordinator/Dispatcher pattern** with three specialized agents working in sequence:
+系统采用 **Coordinator/Dispatcher 模式**，由三个专业智能体按顺序协同工作：
 
-### The Team
+### 智能体团队
 
-1. **UI Critic Agent** 🎨
-   - Analyzes landing page design using Gemini 2.5 Flash's vision capabilities
-   - Can see and analyze uploaded images directly (no manual tool calls needed)
-   - Evaluates layout, visual hierarchy, typography, color scheme, and CTA effectiveness
-   - Identifies critical issues and improvement opportunities
-   - Provides detailed scores across multiple dimensions
-   - References specific elements and provides actionable feedback
+1. **UI 评审智能体** 🎨
+   - 使用 Gemini 2.5 Flash 的视觉能力分析落地页设计
+   - 可直接查看并分析上传的图片，无需手动调用工具
+   - 评估布局、视觉层级、字体、配色方案以及 CTA 效果
+   - 识别关键问题和改进机会
+   - 在多个维度给出详细评分
+   - 引用具体元素并提供可执行的反馈
 
-2. **Design Strategist Agent** 📐
-   - Creates comprehensive improvement plan based on analysis
-   - Specifies exact colors (with hex codes), typography, and spacing
-   - Prioritizes changes for maximum impact
-   - Ensures accessibility compliance (WCAG AA)
-   - Considers mobile responsiveness
+2. **设计策略智能体** 📐
+   - 根据分析结果制定完整的改进方案
+   - 明确指定颜色（含十六进制色值）、字体和间距
+   - 按影响程度对修改项进行优先级排序
+   - 确保符合无障碍标准（WCAG AA）
+   - 同时考虑移动端响应式设计
 
-3. **Visual Implementer Agent** 🚀
-   - Generates improved landing page design using Gemini 2.5 Flash
-   - Implements all recommendations from the analysis
-   - Creates high-quality, professional designs
-   - Generates comprehensive improvement report
-   - Maintains version history
+3. **视觉实现智能体** 🚀
+   - 使用 Gemini 2.5 Flash 生成改进后的落地页设计
+   - 落实分析中提出的全部建议
+   - 生成高质量、专业化的设计结果
+   - 生成完整的改进报告
+   - 保留版本历史
 
-## Quick Start
+## 快速开始
 
-### 1. Clone the repository
+### 1. 克隆仓库
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_uiux_feedback_agent_team
 ```
 
-### 2. Install dependencies
+### 2. 安装依赖
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Set up your API key
+### 3. 配置 API 密钥
 ```bash
 export GOOGLE_API_KEY="your_gemini_api_key"
 ```
 
-Or create a `.env` file:
+或者创建 `.env` 文件：
 ```
 GOOGLE_API_KEY=your_gemini_api_key
 ```
 
-### 4. Launch ADK Web
+### 4. 启动 ADK Web
 ```bash
 cd advanced_ai_agents/multi_agent_apps/agent_teams
 adk web
 ```
 
-### 5. Open browser
-Navigate to the ADK Web interface and select **multimodal_uiux_feedback_agent_team**
+### 5. 打开浏览器
+进入 ADK Web 界面，并选择 **multimodal_uiux_feedback_agent_team**
 
-## Tools & Capabilities
+## 工具与能力
 
-### Core Tools
-- **Direct Vision Analysis**: Agents can see and analyze uploaded images automatically (no tool needed)
-- **edit_landing_page_image**: Refine existing designs based on feedback
-- **generate_improved_landing_page**: Create new improved designs from scratch
-- **google_search**: Research UI/UX trends and best practices
+### 核心工具
+- **直接视觉分析**：智能体可自动查看并分析上传的图片，无需额外工具
+- **edit_landing_page_image**：根据反馈优化现有设计
+- **generate_improved_landing_page**：从零生成新的改进版设计
+- **google_search**：研究 UI/UX 趋势与最佳实践
 
-### Features
-- **Native Vision Capabilities**: Agents automatically see uploaded images in conversations
-- **Versioned artifacts**: Automatic version tracking for all designs
-- **State management**: Maintains context across the conversation
-- **Detailed prompts**: Generates ultra-specific prompts for high-quality results
-- **Sequential Processing**: Each agent builds on previous agent's analysis
+### 功能能力
+- **原生视觉能力**：智能体可在对话中自动查看上传图片
+- **版本化产物**：自动跟踪所有设计版本
+- **状态管理**：在整个对话过程中保持上下文
+- **详细提示词**：生成高度具体的提示词以提高结果质量
+- **顺序处理**：每个智能体都基于前一个智能体的分析继续工作
 
-## Multi-Agent Architecture
+## 多智能体架构
 
 ```
-Coordinator (Root Agent)
-    ├── Info Agent (general Q&A)
-    ├── Design Editor (iterative refinements)
-    └── Analysis Pipeline (Sequential)
-          ├── UI Critic (visual analysis & feedback)
-          ├── Design Strategist (improvement planning)
-          └── Visual Implementer (generate improved design + report)
+协调器（根智能体）
+    ├── 信息智能体（通用问答）
+    ├── 设计编辑器（迭代优化）
+    └── 分析流水线（Sequential）
+          ├── UI 评审智能体（视觉分析与反馈）
+          ├── 设计策略智能体（改进规划）
+          └── 视觉实现智能体（生成改进设计 + 报告）
 ```
 
+## 用户最佳实践
 
-## Best Practices for Users
+### 如何获得更好的结果
 
-### Getting Better Results
+1. **使用高质量截图**
+   - 优先使用完整页面截图
+   - 建议最低分辨率为 1920x1080
+   - 使用清晰、未经压缩的图片
 
-1. **Use High-Quality Screenshots**
-   - Full-page captures preferred
-   - Minimum 1920x1080 resolution
-   - Clear, uncompressed images
+2. **提供背景信息**
+   - 说明目标受众（B2B、B2C、企业客户、消费者）
+   - 说明目标（转化、品牌认知、互动）
+   - 指定任何限制条件或特殊要求
 
-2. **Provide Context**
-   - Mention target audience (B2B, B2C, enterprise, consumer)
-   - Share goals (conversions, awareness, engagement)
-   - Specify any constraints or requirements
+3. **优化要求尽量具体**
+   - “将 CTA 按钮放大 20%，并改为鲜艳橙色”
+   - 而不是“让按钮更好看”
 
-3. **Be Specific with Refinements**
-   - "Make the CTA button 20% larger with vibrant orange color"
-   - vs "Make the button better"
+4. **逐步迭代**
+   - 每次只修改一类内容
+   - 在提出下一轮修改前先检查当前版本
 
-4. **Iterate Gradually**
-   - Make one category of changes at a time
-   - Review each version before requesting more changes
+### 常见使用场景
 
-### Common Use Cases
+- **落地页审计**：全面分析现有页面
+- **上线前评审**：正式发布前获取反馈
+- **A/B 测试创意**：生成可用于测试的替代设计
+- **竞品分析**：将你的设计与竞争对手进行比较
+- **无障碍审计**：检查 WCAG 合规性
+- **移动端优化**：评估移动端响应式表现
+- **转化优化**：改进 CTA 和用户流程
 
-- **Landing Page Audits**: Comprehensive analysis of existing pages
-- **Pre-Launch Review**: Get feedback before going live
-- **A/B Testing Ideas**: Generate alternative designs to test
-- **Competitive Analysis**: Compare your design to competitors
-- **Accessibility Audit**: Check WCAG compliance
-- **Mobile Optimization**: Review mobile responsiveness
-- **Conversion Optimization**: Improve CTA and user flow
+## 局限性
 
-## Limitations
-
-- Image generation has inherent variability (run multiple times for options)
-- Complex interactions and animations cannot be fully captured
-- Best suited for static landing page screenshots
-- Real code implementation requires manual development
-- Analysis focuses on visual design, not content quality or copy
+- 图像生成本身存在一定随机性，可多运行几次获得不同方案
+- 复杂交互和动画无法被完整呈现
+- 最适合分析静态落地页截图
+- 真正的代码实现仍需人工开发
+- 分析重点是视觉设计，不涉及内容质量或文案质量
