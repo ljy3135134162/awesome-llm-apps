@@ -1,40 +1,40 @@
-# 📡 Release Radar Agent
+# 📡 Release Radar Agent：依赖版本雷达智能体
 
-Release Radar is an always-on dependency briefing agent built with Google ADK. It reads `requirements.txt` or `package.json`, checks mapped dependencies against GitHub releases, and reports only changes that need attention: breaking changes, deprecations, security fixes, yanked releases, and major-version upgrades.
+Release Radar 是一个基于 Google ADK 构建的常驻型依赖更新简报 Agent。它会读取 `requirements.txt` 或 `package.json`，将已识别的依赖映射到对应的 GitHub 仓库，并只报告真正需要关注的变化：破坏性变更、弃用、安全修复、撤回版本以及大版本升级。
 
-The app runs interactively in ADK Web or as a scheduled FastAPI service. Sample mode is deterministic and makes no GitHub requests. Scheduled delivery defaults to dry-run and remains off until Gmail or webhook settings are present.
+该应用既可以在 ADK Web 中交互运行，也可以作为定时 FastAPI 服务运行。示例模式使用确定性数据，不会发起 GitHub 请求。定时投递默认处于 dry-run 模式，只有在配置 Gmail 或 Webhook 后才会真正发送。
 
-## Features
+## 功能特性
 
-- **Manifest parsing**: Reads Python requirements plus npm runtime and development dependencies.
-- **GitHub release scanning**: Uses the GitHub REST API with an optional token.
-- **Impact ranking**: Scores security, breaking, yanked, major-version, and deprecation signals.
-- **Patch-noise filtering**: Drops routine patch and minor releases without an impact signal.
-- **Text and HTML briefs**: Groups changes by dependency with version delta, reason, impact, and release link.
-- **Google ADK agent**: Exposes `root_agent` for interactive dependency questions.
-- **Scheduler hooks**: Accepts direct HTTP and Pub/Sub triggers.
-- **Opt-in delivery**: Supports Gmail and generic webhooks only when explicitly configured.
+- **依赖清单解析**：读取 Python `requirements.txt`，以及 npm 的运行时依赖和开发依赖。
+- **GitHub Release 扫描**：使用 GitHub REST API 获取版本发布信息，可选配置 Token。
+- **影响等级排序**：对安全问题、破坏性变更、撤回版本、大版本升级和弃用信息进行评分。
+- **补丁噪声过滤**：自动过滤没有明显影响信号的普通 Patch 和 Minor 版本更新。
+- **文本与 HTML 简报**：按依赖分组展示版本变化、更新原因、影响程度和 Release 链接。
+- **Google ADK Agent**：暴露 `root_agent`，支持交互式询问依赖更新情况。
+- **定时任务接口**：支持直接 HTTP 和 Pub/Sub 触发。
+- **显式启用投递**：仅在明确配置后，才支持通过 Gmail 或通用 Webhook 发送简报。
 
-## How It Works
+## 工作原理
 
-1. `radar.py` parses a manifest and maps known packages or GitHub dependency URLs to repositories.
-2. Sample mode loads deterministic GitHub-shaped data. Live mode fetches recent GitHub releases.
-3. `ranker.py` classifies release notes and filters routine noise.
-4. `delivery.py` renders the selected releases as text and HTML.
-5. ADK Web returns the brief interactively, while `scheduler_api.py` exposes scheduled HTTP and Pub/Sub paths.
-6. The scheduler sends only when `dry_run=false` and Gmail or webhook configuration is present.
+1. `radar.py` 解析依赖清单，并把已知包或 GitHub 依赖 URL 映射到对应仓库。
+2. 示例模式加载固定的 GitHub 风格数据；实时模式会获取最近的 GitHub Releases。
+3. `ranker.py` 对 Release Notes 进行分类，并过滤常规更新噪声。
+4. `delivery.py` 将筛选后的版本变化渲染为文本和 HTML。
+5. ADK Web 用于交互式返回简报，`scheduler_api.py` 提供定时 HTTP 与 Pub/Sub 接口。
+6. 只有在 `dry_run=false` 且 Gmail 或 Webhook 配置完整时，Scheduler 才会真正发送简报。
 
-The source modules use the Python standard library for manifest parsing, GitHub access, rendering, and delivery. FastAPI provides the scheduler surface, and Google ADK provides the interactive agent.
+源码模块主要使用 Python 标准库完成依赖解析、GitHub 访问、渲染与投递。FastAPI 用于提供 Scheduler API，Google ADK 则负责交互式 Agent 能力。
 
-## Requirements
+## 环境要求
 
 - Python 3.10+
-- Gemini API key for ADK Web
-- A project `requirements.txt` or `package.json` for live scans
-- Optional GitHub token for higher API rate limits
-- Optional Gmail OAuth credentials or a webhook URL for delivery
+- 用于 ADK Web 的 Gemini API Key
+- 实时扫描时需要项目中的 `requirements.txt` 或 `package.json`
+- 可选 GitHub Token，用于提高 API Rate Limit
+- 可选 Gmail OAuth 凭证或 Webhook URL，用于投递简报
 
-## Installation
+## 安装
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
@@ -43,21 +43,21 @@ pip install -r requirements.txt
 export GOOGLE_API_KEY="your_gemini_api_key"
 ```
 
-## Run in ADK Web
+## 在 ADK Web 中运行
 
-Start with deterministic sample data:
+默认先使用确定性示例数据运行：
 
 ```bash
 adk web .
 ```
 
-Open ADK Web, select `release_radar_agent`, and try:
+打开 ADK Web，选择 `release_radar_agent`，然后可以尝试：
 
 ```text
-Give me today's dependency release brief.
+给我今天的依赖版本更新简报。
 ```
 
-To scan a real project, set an absolute manifest path and enable live GitHub requests before starting ADK Web:
+如果希望扫描真实项目，请先设置依赖清单的绝对路径，并启用实时 GitHub 请求：
 
 ```bash
 export RELEASE_RADAR_MANIFEST="/absolute/path/to/requirements.txt"
@@ -66,11 +66,11 @@ export RELEASE_RADAR_GITHUB_TOKEN="optional_github_token"
 adk web .
 ```
 
-Release Radar recognizes direct GitHub dependency URLs and common packages such as Pydantic, FastAPI, Requests, OpenAI, Anthropic, Google ADK, LangChain, React, Vite, and Zod. Unmapped dependencies appear in the scan notes instead of stopping the brief.
+Release Radar 可以识别直接指向 GitHub 的依赖 URL，以及常见包，例如 Pydantic、FastAPI、Requests、OpenAI、Anthropic、Google ADK、LangChain、React、Vite 和 Zod。未映射的依赖不会导致扫描失败，而是会被列在扫描说明中。
 
-## Run the Scheduler API
+## 运行 Scheduler API
 
-Set the project manifest in the service environment, then start the backend from this directory:
+在服务环境中设置项目依赖清单，然后从当前目录启动后端：
 
 ```bash
 export RELEASE_RADAR_MANIFEST="/workspace/requirements.txt"
@@ -78,13 +78,13 @@ export RELEASE_RADAR_LIVE_GITHUB=true
 uvicorn scheduler_api:app --host 0.0.0.0 --port 8000
 ```
 
-Preview the deterministic sample brief without delivery:
+预览确定性示例简报，不执行投递：
 
 ```bash
 curl "http://127.0.0.1:8000/release-radar/dry-run?top_n=5&live=false"
 ```
 
-Scan a manifest through the scheduler path while keeping delivery off:
+通过 Scheduler 路径扫描真实依赖，同时保持关闭投递：
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/release-radar/trigger" \
@@ -92,15 +92,15 @@ curl -X POST "http://127.0.0.1:8000/release-radar/trigger" \
   -d '{"dry_run": true, "live": true, "top_n": 10}'
 ```
 
-The server reads its manifest only from `RELEASE_RADAR_MANIFEST`, so request payloads cannot select arbitrary local files. The path must exist inside the scheduler service. Set `RELEASE_RADAR_GITHUB_TOKEN` in the service environment when scanning many repositories.
+服务端只会从 `RELEASE_RADAR_MANIFEST` 读取依赖清单，因此请求体无法指定任意本地文件。该路径必须真实存在于 Scheduler 服务环境中。如果需要扫描大量仓库，可以在服务环境中设置 `RELEASE_RADAR_GITHUB_TOKEN`。
 
-## Enable Delivery
+## 启用投递
 
-Delivery has two independent guards. The request must set `"dry_run": false`, and one provider must be fully configured. Without both, the API returns a skipped status and sends nothing.
+投递存在两层独立保护。请求必须设置 `"dry_run": false`，并且至少完整配置一个投递提供方。否则 API 会返回 skipped 状态，并且不会发送任何内容。
 
 ### Gmail
 
-Create a Google OAuth client with Gmail API access and a refresh token using the `https://www.googleapis.com/auth/gmail.send` scope, then set:
+创建具有 Gmail API 权限的 Google OAuth Client，并使用 `https://www.googleapis.com/auth/gmail.send` Scope 生成 Refresh Token，然后设置：
 
 ```bash
 export RELEASE_RADAR_DELIVERY="gmail"
@@ -113,7 +113,7 @@ export RELEASE_RADAR_GMAIL_REFRESH_TOKEN="your_gmail_refresh_token"
 
 ### Webhook
 
-Use a webhook to route the brief to Slack, Linear, Jira, or an internal workflow:
+如果希望将依赖简报发送到 Slack、Linear、Jira 或内部工作流，可以使用 Webhook：
 
 ```bash
 export RELEASE_RADAR_DELIVERY="webhook"
@@ -121,7 +121,7 @@ export RELEASE_RADAR_WEBHOOK_URL="https://example.com/dependency-brief"
 export RELEASE_RADAR_WEBHOOK_TOKEN="optional_bearer_token"
 ```
 
-After configuring a provider, trigger a live delivery:
+配置完成后，可以触发实时投递：
 
 ```bash
 curl -X POST "http://127.0.0.1:8000/release-radar/trigger" \
@@ -131,32 +131,32 @@ curl -X POST "http://127.0.0.1:8000/release-radar/trigger" \
 
 ## Cloud Scheduler
 
-Deploy the FastAPI service behind Cloud Run or another HTTP service. Cloud Scheduler can call the direct endpoint:
+将 FastAPI 服务部署到 Cloud Run 或其他 HTTP 服务后，Cloud Scheduler 可以直接调用以下接口：
 
 ```text
 https://YOUR_SERVICE_URL/release-radar/trigger
 ```
 
-It can also publish base64-encoded JSON to the Pub/Sub push endpoint:
+也可以将 Base64 编码后的 JSON 发布到 Pub/Sub Push Endpoint：
 
 ```text
 https://YOUR_SERVICE_URL/release-radar/pubsub
 ```
 
-A weekday morning schedule is:
+推荐的工作日早晨执行计划：
 
 ```text
 0 9 * * 1-5
 ```
 
-Keep `dry_run` set to `true` while validating the deployment.
+在验证部署期间，请保持 `dry_run=true`。
 
-## Test
+## 测试
 
 ```bash
 python3 -m pytest always_on_agents/release_radar_agent/tests/unit -q
 ```
 
-The tests use deterministic sample releases and patch network access when checking delivery safety.
+测试使用确定性的示例 Release 数据，并在验证投递安全性时对网络访问进行 Patch。
 
-This app is licensed under Apache-2.0 through the repository's root license.
+本应用继承仓库根目录中的 Apache-2.0 许可证。
