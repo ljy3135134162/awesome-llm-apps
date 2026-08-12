@@ -1,88 +1,88 @@
-## 🦙 Finetune Llama 3.2 in 30 Lines of Python
+## 🦙 用 30 行 Python 微调 Llama 3.2
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/fine-tune-llama-3-2-for-free-in-30-lines-of-python-code) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/fine-tune-llama-3-2-for-free-in-30-lines-of-python-code)，通过详细的代码讲解、说明和最佳实践，从零开始完成这个项目。**
 
-This script demonstrates how to finetune the Llama 3.2 model using the [Unsloth](https://unsloth.ai/) library, which makes the process easy and fast. You can run this example to finetune Llama 3.1 1B and 3B models for free in Google Colab.
+该脚本演示如何使用 [Unsloth](https://unsloth.ai/) 库微调 Llama 3.2 模型。Unsloth 可以让微调流程更加简单、高效。你可以在 Google Colab 中免费运行该示例，用于微调 1B 和 3B 规模的 Llama 模型。
 
-### Features
+### 功能
 
-- Finetunes Llama 3.2 model using the Unsloth library
-- Implements Low-Rank Adaptation (LoRA) for efficient finetuning
-- Uses the FineTome-100k dataset for training
-- Configurable for different model sizes (1B and 3B)
+- 使用 Unsloth 库微调 Llama 3.2 模型
+- 使用低秩适配（LoRA）实现高效微调
+- 使用 FineTome-100k 数据集进行训练
+- 支持配置不同模型规模（1B 和 3B）
 
-### Installation
+### 安装
 
-1. Clone the repository:
+1. 克隆仓库：
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/llm_finetuning_tutorials/llama3.2_finetuning
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Usage
+## 使用方法
 
-1. Open the script in Google Colab or your preferred Python environment.
+1. 在 Google Colab 或你常用的 Python 环境中打开脚本。
 
-2. Run the script to start the finetuning process:
+2. 运行脚本开始微调：
 
 ```bash
-# Run the entire script
+# 运行完整脚本
 python finetune_llama3.2.py
 ```
 
-3. The finetuned model will be saved in the "finetuned_model" directory.
+3. 微调后的模型会保存在 `finetuned_model` 目录中。
 
-## How it Works
+## 工作原理
 
-1. **Model Loading**: The script loads the Llama 3.2 3B Instruct model using Unsloth's FastLanguageModel.
+1. **模型加载**：脚本使用 Unsloth 的 `FastLanguageModel` 加载 Llama 3.2 3B Instruct 模型。
 
-2. **LoRA Setup**: Low-Rank Adaptation is applied to specific layers of the model for efficient finetuning.
+2. **LoRA 配置**：对模型中的特定层应用低秩适配，以更高效地进行微调。
 
-3. **Data Preparation**: The FineTome-100k dataset is loaded and preprocessed using a chat template.
+3. **数据准备**：加载 FineTome-100k 数据集，并使用聊天模板进行预处理。
 
-4. **Training Configuration**: The script sets up the SFTTrainer with specific training arguments.
+4. **训练配置**：使用指定训练参数配置 `SFTTrainer`。
 
-5. **Finetuning**: The model is finetuned on the prepared dataset.
+5. **微调**：在处理后的数据集上训练模型。
 
-6. **Model Saving**: The finetuned model is saved to disk.
+6. **模型保存**：将微调后的模型保存到磁盘。
 
-## Configuration
+## 配置
 
-You can modify the following parameters in the script:
+你可以在脚本中修改以下参数：
 
-- `model_name`: Change to "unsloth/Llama-3.1-1B-Instruct" for the 1B model
-- `max_seq_length`: Adjust the maximum sequence length
-- `r`: LoRA rank
-- Training hyperparameters in `TrainingArguments`
+- `model_name`：如需使用 1B 模型，可改为 `unsloth/Llama-3.1-1B-Instruct`
+- `max_seq_length`：调整最大序列长度
+- `r`：LoRA Rank
+- `TrainingArguments` 中的训练超参数
 
-## Customization
+## 自定义
 
-- To use a different dataset, replace the `load_dataset` function call with your desired dataset.
-- Adjust the `target_modules` in the LoRA setup to finetune different layers of the model.
-- Modify the chat template in `get_chat_template` if you're using a different conversational format.
+- 如需使用其他数据集，可以将 `load_dataset` 调用替换为目标数据集。
+- 可以调整 LoRA 配置中的 `target_modules`，选择微调模型中的不同层。
+- 如果采用不同的对话格式，可以修改 `get_chat_template` 中的聊天模板。
 
-## Running on Google Colab
+## 在 Google Colab 中运行
 
-1. Open a new Google Colab notebook.
-2. Copy the entire script into a code cell.
-3. Add a cell at the beginning to install the required libraries:
+1. 新建一个 Google Colab Notebook。
+2. 将完整脚本复制到代码单元格中。
+3. 在最前面添加一个单元格安装依赖：
 
 ```
 !pip install torch transformers datasets trl unsloth
 ```
 
-4. Run the cells to start the finetuning process.
+4. 依次运行单元格即可开始微调。
 
-## Notes
+## 注意事项
 
-- This script is optimized for running on Google Colab's free tier, which provides access to GPUs.
-- The finetuning process may take some time, depending on the model size and the available computational resources.
-- Make sure you have enough storage space in your Colab instance to save the finetuned model.
+- 该脚本针对 Google Colab 免费套餐进行了优化，可以利用其提供的 GPU。
+- 微调所需时间取决于模型规模和可用计算资源。
+- 请确保 Colab 实例有足够的存储空间保存微调后的模型。
