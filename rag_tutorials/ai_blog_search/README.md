@@ -1,50 +1,50 @@
-# Agentic RAG with LangGraph: AI Blog Search
+# 使用 LangGraph 构建 Agentic RAG：AI 博客搜索
 
-## Overview
-AI Blog Search is an Agentic RAG application designed to enhance information retrieval from AI-related blog posts. This system leverages LangChain, LangGraph, and Google's Gemini model to fetch, process, and analyze blog content, providing users with accurate and contextually relevant answers.
+## 概述
+AI Blog Search 是一个 Agentic RAG 应用，旨在增强对 AI 相关博客文章的信息检索能力。该系统利用 LangChain、LangGraph 和 Google Gemini 模型获取、处理和分析博客内容，为用户提供准确且符合上下文的答案。
 
-## LangGraph Workflow
+## LangGraph 工作流
 ![LangGraph-Workflow](https://github.com/user-attachments/assets/07d8a6b5-f1ef-4b7e-b47a-4f14a192bd8a)
 
-## Demo
+## 演示
 https://github.com/user-attachments/assets/cee07380-d3dc-45f4-ad26-7d944ba9c32b
 
-## Features
-- **Document Retrieval:** Uses Qdrant as a vector database to store and retrieve blog content based on embeddings.
-- **Agentic Query Processing:** Uses an AI-powered agent to determine whether a query should be rewritten, answered, or require more retrieval.
-- **Relevance Assessment:** Implements an automated relevance grading system using Google's Gemini model.
-- **Query Refinement:** Enhances poorly structured queries for better retrieval results.
-- **Streamlit UI:** Provides a user-friendly interface for entering blog URLs, queries and retrieving insightful responses.
-- **Graph-Based Workflow:** Implements a structured state graph using LangGraph for efficient decision-making.
+## 功能
+- **文档检索：** 使用 Qdrant 作为向量数据库，根据嵌入向量存储和检索博客内容。
+- **Agentic 查询处理：** 使用 AI Agent 判断查询应该被重写、直接回答，还是需要进一步检索。
+- **相关性评估：** 使用 Google Gemini 模型实现自动相关性评分系统。
+- **查询优化：** 优化结构较差的查询，以获得更好的检索结果。
+- **Streamlit UI：** 提供易用界面，用于输入博客 URL、查询问题并获取有价值的响应。
+- **基于图的工作流：** 使用 LangGraph 实现结构化状态图，以提高决策效率。
 
-## Technologies Used
-- **Programming Language**: [Python 3.10+](https://www.python.org/downloads/release/python-31011/)
-- **Framework**: [LangChain](https://www.langchain.com/) and [LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/)
-- **Database**: [Qdrant](https://qdrant.tech/)
-- **Models**:
-  - Embeddings: [Google Gemini API (embedding-001)](https://ai.google.dev/gemini-api/docs/embeddings)
-  - Chat: [Google Gemini API (gemini-2.0-flash)](https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash)
-- **Blogs Loader**: [Langchain WebBaseLoader](https://python.langchain.com/docs/integrations/document_loaders/web_base/)
-- **Document Splitter**: [RecursiveCharacterTextSplitter](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/recursive_text_splitter/)
-- **User Interface (UI)**: [Streamlit](https://docs.streamlit.io/)
+## 使用的技术
+- **编程语言**：[Python 3.10+](https://www.python.org/downloads/release/python-31011/)
+- **框架**：[LangChain](https://www.langchain.com/) 和 [LangGraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/)
+- **数据库**：[Qdrant](https://qdrant.tech/)
+- **模型**：
+  - Embedding：[Google Gemini API（embedding-001）](https://ai.google.dev/gemini-api/docs/embeddings)
+  - Chat：[Google Gemini API（gemini-2.0-flash）](https://ai.google.dev/gemini-api/docs/models/gemini#gemini-2.0-flash)
+- **博客加载器**：[LangChain WebBaseLoader](https://python.langchain.com/docs/integrations/document_loaders/web_base/)
+- **文档切分器**：[RecursiveCharacterTextSplitter](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/recursive_text_splitter/)
+- **用户界面（UI）**：[Streamlit](https://docs.streamlit.io/)
 
-## Requirements
-1. **Install Dependencies**:
+## 使用要求
+1. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Run the Application**:
+2. **运行应用**：
    ```bash
    streamlit run app.py
    ```
 
-3. **Use the Application**:
-   - Paste your Google API Key in the sidebar.
-   - Paste the blog link.
-   - Enter your query about the blog post.
+3. **使用应用**：
+   - 在侧边栏粘贴 Google API Key。
+   - 粘贴博客链接。
+   - 输入你希望针对该博客文章提出的问题。
 
-## :mailbox: Connect With Me
+## :mailbox: 联系我
 <img align="right" src="https://media.giphy.com/media/2HtWpp60NQ9CU/giphy.gif" alt="handshake gif" width="150">
 
 <p align="left">
