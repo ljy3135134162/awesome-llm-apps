@@ -1,128 +1,128 @@
-# 🎯 Tutorial 4: Tool Using Agent
+# 🎯 教程 4：使用工具的 Agent
 
-Welcome to the world of tools! This tutorial teaches you how to create agents that can use **different types of tools** to perform specific tasks. This is where your agents become truly powerful and capable of real-world actions.
+欢迎进入工具的世界。本教程将介绍如何创建能够使用**不同类型工具**执行具体任务的 Agent。工具能力会让 Agent 从单纯的对话系统，进一步变成可以执行真实操作的应用组件。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Built-in Tools**: Using Google ADK's pre-built capabilities
-- **Function Tools**: Creating custom Python functions as tools
-- **Third-party Tools**: Integrating with LangChain, CrewAI, and other frameworks
-- **MCP Tools**: Integration with Model Context Protocol
+- **内置工具**：使用 Google ADK 提供的预构建能力
+- **函数工具**：将自定义 Python 函数作为工具提供给 Agent
+- **第三方工具**：集成 LangChain、CrewAI 等框架
+- **MCP 工具**：集成模型上下文协议（Model Context Protocol）
 
-## 🧠 Core Concept: Tools in ADK
+## 🧠 核心概念：ADK 中的工具
 
-Tools are **functions that your agent can call** to perform specific tasks. Think of them as the agent's "hands" - they allow the agent to:
-- Search the web and access real-time information
-- Execute code and perform calculations
-- Call external APIs and services
-- Access databases and file systems
-- Interact with other AI frameworks
+工具就是**Agent 可以调用的函数或能力**。可以把它们理解为 Agent 的“手”，让 Agent 能够：
+- 搜索 Web 并访问实时信息
+- 执行代码和完成计算
+- 调用外部 API 与服务
+- 访问数据库和文件系统
+- 与其他 AI 框架交互
 
-## 🔧 Types of Tools in ADK
+## 🔧 ADK 中的工具类型
 
-### 1. **Built-in Tools**
-Google ADK provides powerful pre-built tools:
-- **Search Tool**: Web search capabilities
-- **Code Execution Tool**: Run Python code safely
-- **RAG Tools**: Retrieval-augmented generation
-- **Cloud Tools**: Google Cloud integrations
+### 1. **内置工具**
+Google ADK 提供了多种预构建工具：
+- **搜索工具**：提供 Web 搜索能力
+- **代码执行工具**：安全运行 Python 代码
+- **RAG 工具**：支持检索增强生成
+- **Cloud 工具**：集成 Google Cloud 服务
 
-*Note: Built-in tools work only with Gemini models*
+*注意：内置工具仅适用于 Gemini 模型。*
 
-### 2. **Function Tools**
-Custom Python functions you create:
-- Mathematical calculations
-- Data processing
-- API calls
-- File operations
-- Business logic
+### 2. **函数工具**
+由你自行编写的 Python 函数，例如：
+- 数学计算
+- 数据处理
+- API 调用
+- 文件操作
+- 业务逻辑
 
-### 3. **Third-party Tools**
-Integration with other frameworks:
-- **LangChain Tools**: Web scraping, document loaders, etc.
-- **CrewAI Tools**: Specialized agent tools
-- **Custom Integrations**: Any external service
+### 3. **第三方工具**
+与其他框架和工具生态集成：
+- **LangChain Tools**：网页抓取、文档加载器等
+- **CrewAI Tools**：面向特定场景的 Agent 工具
+- **自定义集成**：连接任意外部服务
 
-### 4. **MCP Tools**
-Integration with Model Context Protocol:
-- **External MCP Servers**: Connect to existing MCP servers
-- **Custom MCP Servers**: Create your own MCP server
-- **Protocol Communication**: SSE and Streamable HTTP support
+### 4. **MCP 工具**
+与模型上下文协议（MCP）集成：
+- **外部 MCP Server**：连接现有 MCP Server
+- **自定义 MCP Server**：创建自己的 MCP Server
+- **协议通信**：支持 SSE 和 Streamable HTTP
 
-## 🚀 Tutorial Structure
+## 🚀 教程结构
 
-This tutorial contains **four comprehensive examples**:
+本教程包含 **4 个完整示例**：
 
-### 📍 **Example 1: Built-in Tools**
-**Location**: `./4_1_builtin_tools/`
-- Learn to use Google ADK's pre-built tools
-- Implement web search capabilities
-- Explore code execution tools
+### 📍 **示例 1：内置工具**
+**位置**：`./4_1_builtin_tools/`
+- 学习使用 Google ADK 的预构建工具
+- 实现 Web 搜索能力
+- 了解代码执行工具
 
-### 📍 **Example 2: Function Tools**
-**Location**: `./4_2_function_tools/`
-- Create custom Python functions as tools
-- Build mathematical and utility tools
-- Implement API integration tools
+### 📍 **示例 2：函数工具**
+**位置**：`./4_2_function_tools/`
+- 将自定义 Python 函数创建为工具
+- 构建数学和通用工具
+- 实现 API 集成工具
 
-### 📍 **Example 3: Third-party Tools**
-**Location**: `./4_3_thirdparty_tools/`
-- Integrate LangChain tools
-- Use CrewAI specialized tools
-- Create custom integrations
+### 📍 **示例 3：第三方工具**
+**位置**：`./4_3_thirdparty_tools/`
+- 集成 LangChain 工具
+- 使用 CrewAI 专用工具
+- 创建自定义集成
 
-### 📍 **Example 4: MCP Tools**
-**Location**: `./4_4_mcp_tools/`
-- Connect to Model Context Protocol servers
-- Use filesystem and Wikipedia MCP tools
-- Create custom MCP servers
+### 📍 **示例 4：MCP 工具**
+**位置**：`./4_4_mcp_tools/`
+- 连接模型上下文协议 Server
+- 使用文件系统和 Wikipedia MCP 工具
+- 创建自定义 MCP Server
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 4_tool_using_agent/
-├── README.md                    # This tutorial overview
-├── 4_1_builtin_tools/          # Built-in tools examples
-├── 4_2_function_tools/         # Function tools examples  
-├── 4_3_thirdparty_tools/       # Third-party tools examples
-└── 4_4_mcp_tools/              # MCP tools examples
+├── README.md                    # 本教程概览
+├── 4_1_builtin_tools/           # 内置工具示例
+├── 4_2_function_tools/          # 函数工具示例
+├── 4_3_thirdparty_tools/        # 第三方工具示例
+└── 4_4_mcp_tools/               # MCP 工具示例
 ```
 
-Each example directory follows the standard structure:
-- **Python file**: Contains the agent implementation and Streamlit app
-- **README.md**: Setup and usage documentation
-- **requirements.txt**: Dependencies list
+每个示例目录都遵循统一结构：
+- **Python 文件**：包含 Agent 实现和 Streamlit 应用
+- **README.md**：配置与使用说明
+- **requirements.txt**：依赖列表
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to use Google ADK's built-in tools effectively
-- ✅ How to create and integrate custom function tools
-- ✅ How to leverage third-party tool ecosystems
-- ✅ How to connect to and create MCP servers
-- ✅ When to use each type of tool
-- ✅ Best practices for tool design and integration
+完成本教程后，你将理解：
+- ✅ 如何有效使用 Google ADK 内置工具
+- ✅ 如何创建和集成自定义函数工具
+- ✅ 如何利用第三方工具生态
+- ✅ 如何连接和创建 MCP Server
+- ✅ 不同类型工具分别适合哪些场景
+- ✅ 工具设计与集成的最佳实践
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Start with Built-ins**: Use Google's tools when possible - they're optimized
-- **Clear Descriptions**: Write detailed docstrings for your tools
-- **Error Handling**: Always handle potential errors in your tools
-- **Tool Selection**: Help the AI understand when to use each tool
-- **Testing**: Test each tool independently before combining
+- **优先考虑内置工具**：合适时优先使用 Google 提供的工具，它们通常已做针对性优化
+- **描述要清晰**：为工具编写详细的 Docstring，让模型明确工具用途
+- **处理错误**：工具内部应妥善处理可能出现的异常
+- **帮助模型选工具**：让工具名称和描述足够明确，使模型知道何时调用哪个工具
+- **独立测试**：组合多个工具之前，先单独测试每个工具
 
-## 🎯 Real-World Applications
+## 🎯 真实应用场景
 
-Tool-using agents are essential for:
-- **Information Retrieval**: Search engines, knowledge bases
-- **Data Analysis**: Processing and analyzing data
-- **API Integration**: Connecting to external services
-- **Automation**: Performing repetitive tasks
-- **Decision Making**: Using external data for decisions
+使用工具的 Agent 非常适合：
+- **信息检索**：搜索引擎、知识库
+- **数据分析**：处理和分析数据
+- **API 集成**：连接外部服务
+- **自动化**：执行重复任务
+- **辅助决策**：利用外部数据支持判断
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **Model Compatibility**: Built-in tools only work with Gemini models
-- **Tool Mixing**: Cannot mix built-in and custom tools in same agent
-- **Performance**: Built-in tools are optimized for speed
-- **Security**: Custom tools require proper validation
+- **模型兼容性**：内置工具仅适用于 Gemini 模型
+- **工具混用限制**：同一个 Agent 中不能混合某些内置工具与自定义工具
+- **性能**：内置工具通常针对执行速度进行了优化
+- **安全性**：自定义工具必须做好输入验证和权限控制
