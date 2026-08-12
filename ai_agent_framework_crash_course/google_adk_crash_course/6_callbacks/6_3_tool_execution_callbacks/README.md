@@ -1,112 +1,111 @@
-# 🎯 Tutorial 6.3: Tool Execution Callbacks
+# 🎯 教程 6.3：工具执行回调
 
-## 🎯 What You'll Learn
-- **Before Tool Callbacks**: Monitor when tools begin execution
-- **After Tool Callbacks**: Track tool completion and results
-- **Tool Context**: Understand how tool execution is monitored
+## 🎯 你将学到什么
+- **工具执行前回调**：监控工具何时开始执行
+- **工具执行后回调**：跟踪工具完成状态和结果
+- **工具上下文**：理解如何监控工具执行过程
 
-## 🧠 Core Concept: Tool Execution Monitoring
+## 🧠 核心概念：工具执行监控
 
-Tool execution callbacks allow you to monitor when agents use tools, track their execution lifecycle, and analyze the results. This provides visibility into how agents interact with external systems and APIs.
+工具执行回调允许你监控 Agent 何时调用工具、跟踪完整执行生命周期并分析结果，从而清楚了解 Agent 如何与外部系统和 API 交互。
 
-### **Tool Execution Flow**
-```
+### **工具执行流程**
+```text
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Tool Call     │───▶│  Before Tool    │───▶│  Tool Execution │
-│   (Agent)       │    │   Callback      │    │   (External)    │
+│   Agent 调用工具│───▶│ 工具执行前回调  │───▶│   工具执行      │
+│                 │    │                 │    │   （外部系统）  │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                               │                       │
                               ▼                       ▼
                        ┌─────────────────┐    ┌─────────────────┐
-                       │  After Tool     │    │  Tool Result    │
-                       │   Callback      │    │   (Agent)       │
+                       │ 工具执行后回调  │    │   工具结果      │
+                       │                 │    │   （返回 Agent）│
                        └─────────────────┘    └─────────────────┘
 ```
 
-### **Callback Execution Timeline**
-```
-Time → 0ms    5ms    10ms   15ms   20ms   25ms
+### **回调执行时间线**
+```text
+时间 → 0ms    5ms    10ms   15ms   20ms   25ms
        │      │      │      │      │      │
        ▼      ▼      ▼      ▼      ▼      ▼
-    [Tool] [Before] [Exec] [After] [Result]
-    Call   Callback Start  Callback Return
+    [调用] [Before] [执行] [After] [结果]
+    工具   回调     开始   回调    返回
 ```
 
-### **Use Cases**
-- **Execution Monitoring**: Track when tools start and complete
-- **Parameter Validation**: Check tool inputs before execution
-- **Result Logging**: Record tool outputs and errors
-- **Debugging**: Understand tool execution patterns
-- **Analytics**: Monitor which tools are used most
+### **应用场景**
+- **执行监控**：跟踪工具何时开始和完成
+- **参数验证**：执行前检查工具输入
+- **结果日志**：记录工具输出和错误
+- **调试**：分析工具执行模式
+- **数据分析**：统计哪些工具最常被调用
 
-## 🚀 Tutorial Overview
+## 🚀 教程概览
 
-In this tutorial, we'll create an agent with tool execution callbacks that:
-- Uses a simple calculator tool
-- Monitors tool execution start and end
-- Tracks tool parameters and results
-- Provides detailed tool usage visibility
+本教程将创建一个配置工具执行回调的 Agent，它会：
+- 使用一个简单的计算器工具
+- 监控工具执行的开始与结束
+- 跟踪工具参数和执行结果
+- 提供详细的工具使用可见性
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 6_3_tool_execution_callbacks/
-├── README.md              # This file
-├── requirements.txt       # Dependencies
-├── agent.py              # Agent with tool callbacks
-└── app.py                # Streamlit interface
+├── README.md              # 本文件
+├── requirements.txt       # 依赖
+├── agent.py               # 配置工具回调的 Agent
+└── app.py                 # Streamlit 界面
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
+完成本教程后，你将理解：
+- ✅ **Before Tool Callback**：如何监控工具开始执行
+- ✅ **After Tool Callback**：如何跟踪工具执行完成
+- ✅ **Tool Context**：如何访问工具和 Agent 信息
+- ✅ **FunctionTool**：如何正确注册支持回调的工具
+- ✅ **回调集成**：如何将回调与 Agent 组合使用
 
-- ✅ **Before Tool Callbacks**: How to monitor tool execution start
-- ✅ **After Tool Callbacks**: How to track tool completion
-- ✅ **Tool Context**: How to access tool and agent information
-- ✅ **FunctionTool**: How to properly register tools with callbacks
-- ✅ **Callback Integration**: How to integrate callbacks with agents
+## 🚀 快速开始
 
-## 🚀 Getting Started
+### **配置**
+1. **安装依赖**：`pip install -r requirements.txt`
+2. **配置环境**：创建 `.env` 并写入 `GOOGLE_API_KEY=your_key`
+3. **运行应用**：`streamlit run app.py`
 
-### **Setup**
-1. **Install dependencies**: `pip install -r requirements.txt`
-2. **Set up environment**: Create `.env` with `GOOGLE_API_KEY=your_key`
-3. **Run the app**: `streamlit run app.py`
-
-### **Test the Agent**
+### **测试 Agent**
 ```bash
-# Run the Streamlit app
+# 启动 Streamlit 应用
 streamlit run app.py
 
-# Try these test messages:
+# 可尝试以下测试消息：
 - "Calculate 15 + 27"
 - "What is 100 divided by 4?"
 - "Multiply 8 by 12"
 ```
 
-## 🔧 Key Concepts
+## 🔧 关键概念
 
-### **1. Before Tool Callback**
-- **Trigger**: When tool execution begins
-- **Parameters**: `tool`, `args`, `tool_context`
-- **Use Cases**: Log tool usage, validate parameters, record start
+### **1. 工具执行前回调**
+- **触发时机**：工具开始执行时
+- **参数**：`tool`、`args`、`tool_context`
+- **用途**：记录工具使用、验证参数、记录开始时间
 
-### **2. After Tool Callback**
-- **Trigger**: When tool execution completes
-- **Parameters**: `tool`, `args`, `tool_context`, `tool_response`
-- **Use Cases**: Log results, handle errors, provide feedback
+### **2. 工具执行后回调**
+- **触发时机**：工具执行完成时
+- **参数**：`tool`、`args`、`tool_context`、`tool_response`
+- **用途**：记录结果、处理错误、提供反馈
 
 ### **3. Tool Context**
-- **Agent Information**: Access `tool_context.agent_name`
-- **State Management**: Use `tool_context.state` for data sharing
-- **Tool Details**: Access tool information via `tool.name`
+- **Agent 信息**：通过 `tool_context.agent_name` 获取
+- **状态管理**：通过 `tool_context.state` 共享数据
+- **工具信息**：通过 `tool.name` 获取工具名称
 
-## 🔍 Testing Examples
+## 🔍 测试示例
 
-### **Basic Tool Usage**
-```
-User: "Calculate 15 + 27"
+### **基础工具调用**
+```text
+用户："Calculate 15 + 27"
 
 🔧 Tool calculator_tool started
 📝 Parameters: {'operation': 'add', 'a': 15.0, 'b': 27.0}
@@ -117,9 +116,9 @@ User: "Calculate 15 + 27"
 📄 Result: 15 + 27 = 42
 ```
 
-### **Error Handling**
-```
-User: "What is 10 divided by 0?"
+### **错误处理**
+```text
+用户："What is 10 divided by 0?"
 
 🔧 Tool calculator_tool started
 📝 Parameters: {'operation': 'divide', 'a': 10.0, 'b': 0.0}
@@ -130,37 +129,37 @@ User: "What is 10 divided by 0?"
 📄 Result: Error: Division by zero
 ```
 
-## 🎯 What Each Metric Tells You
+## 🎯 各项指标代表什么
 
-### **Before Tool Callback Output**
-- **🔧 Tool Name**: Which tool is being executed
-- **📝 Parameters**: Input parameters passed to the tool
-- **📋 Agent**: Which agent is using the tool
+### **工具执行前回调输出**
+- **🔧 工具名称**：当前正在执行哪个工具
+- **📝 参数**：传给工具的输入参数
+- **📋 Agent**：哪个 Agent 正在调用工具
 
-### **After Tool Callback Output**
-- **✅ Completion Status**: Tool execution completed successfully
-- **⏱️ Duration**: How long the tool took to execute
-- **📄 Result**: The output or result from the tool
+### **工具执行后回调输出**
+- **✅ 完成状态**：工具执行是否完成
+- **⏱️ 持续时间**：工具执行耗时
+- **📄 结果**：工具输出或执行结果
 
-## 🎯 Critical Implementation Notes
+## 🎯 关键实现说明
 
-### **FunctionTool Requirement**
-Tools must be wrapped with `FunctionTool` for callbacks to work:
+### **必须使用 FunctionTool**
+工具必须封装为 `FunctionTool`，回调才能正常工作：
 
 ```python
-# ✅ Correct - Use FunctionTool
+# ✅ 正确：使用 FunctionTool
 calculator_function_tool = FunctionTool(func=calculator_tool)
 agent = LlmAgent(tools=[calculator_function_tool], ...)
 
-# ❌ Incorrect - Raw function won't trigger callbacks
+# ❌ 错误：直接传入原始函数不会触发回调
 agent = LlmAgent(tools=[calculator_tool], ...)
 ```
 
-### **Callback Signatures**
-Use the correct parameter order for tool callbacks:
+### **回调函数签名**
+工具回调必须使用正确的参数顺序：
 
 ```python
-# ✅ Correct signatures
+# ✅ 正确签名
 def before_tool_callback(tool: BaseTool, args: dict, tool_context: ToolContext):
     pass
 
@@ -168,20 +167,20 @@ def after_tool_callback(tool: BaseTool, args: dict, tool_context: ToolContext, t
     pass
 ```
 
-### **Event Loop Completion**
-Don't break the event loop immediately after `is_final_response()`:
+### **事件循环必须执行完成**
+不要在收到 `is_final_response()` 后立即中断事件循环：
 
 ```python
-# ✅ Do this - allows callbacks to complete
+# ✅ 正确：允许回调完整执行
 if event.is_final_response() and event.content:
     response_text = event.content.parts[0].text.strip()
-    # Don't break - let the loop complete naturally
+    # 不要 break，让循环自然完成
 ```
 
-## 🎯 Advanced Patterns
+## 🎯 高级模式
 
-### **Multiple Tools**
-Register multiple tools with the same callbacks:
+### **多个工具**
+多个工具可以共用同一组回调：
 
 ```python
 def weather_tool(city: str) -> str:
@@ -190,7 +189,7 @@ def weather_tool(city: str) -> str:
 def calculator_tool(operation: str, a: float, b: float) -> str:
     # ... implementation
 
-# Register multiple tools
+# 注册多个工具
 weather_function_tool = FunctionTool(func=weather_tool)
 calculator_function_tool = FunctionTool(func=calculator_tool)
 
@@ -203,52 +202,51 @@ agent = LlmAgent(
 )
 ```
 
-### **Parameter Validation**
-Implement validation in before_tool_callback:
+### **参数验证**
+可以在 `before_tool_callback` 中实现验证逻辑：
 
 ```python
 def before_tool_callback(tool: BaseTool, args: dict, tool_context: ToolContext):
     tool_name = tool.name
-    
-    # Validate calculator tool parameters
+
+    # 验证计算器工具参数
     if tool_name == "calculator_tool":
         if "operation" not in args:
             print("⚠️ Warning: Missing operation parameter")
         if "a" not in args or "b" not in args:
             print("⚠️ Warning: Missing numeric parameters")
-    
+
     print(f"🔧 Tool {tool_name} started")
     print(f"📝 Parameters: {args}")
     return None
 ```
 
-### **Result Modification**
-Modify tool results in after_tool_callback:
+### **修改工具结果**
+可以在 `after_tool_callback` 中修改返回值：
 
 ```python
 def after_tool_callback(tool: BaseTool, args: dict, tool_context: ToolContext, tool_response: any):
     tool_name = tool.name
-    
-    # Add context to calculator results
+
+    # 为计算器结果增加上下文信息
     if tool_name == "calculator_tool" and "result" in tool_response:
         operation = args.get("operation", "unknown")
         tool_response["context"] = f"Performed {operation} operation"
-    
+
     print(f"✅ Tool {tool_name} completed")
     print(f"📄 Result: {tool_response}")
-    return tool_response  # Return modified response
+    return tool_response  # 返回修改后的结果
 ```
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
+完成本教程后，可以继续学习：
+- **[高级工具模式](../../4_tool_using_agent/README.md)**：复杂工具架构
+- **[自定义工具开发](../../4_tool_using_agent/README.md)**：构建自定义工具
+- **[工具集成](../../4_tool_using_agent/README.md)**：集成外部 API
 
-- **[Advanced Tool Patterns](../../4_tool_using_agent/README.md)** - Complex tool architectures
-- **[Custom Tool Development](../../4_tool_using_agent/README.md)** - Building custom tools
-- **[Tool Integration](../../4_tool_using_agent/README.md)** - Integrating external APIs
+## 📚 相关资源
 
-## 📚 Additional Resources
-
-- [Google ADK Tool Callbacks](https://google.github.io/adk-docs/callbacks/types-of-callbacks/#tool-execution-callbacks)
-- [Tool Development Guide](https://google.github.io/adk-docs/tools/)
-- [FunctionTool Documentation](https://google.github.io/adk-docs/tools/function-tools/) 
+- [Google ADK 工具回调](https://google.github.io/adk-docs/callbacks/types-of-callbacks/#tool-execution-callbacks)
+- [工具开发指南](https://google.github.io/adk-docs/tools/)
+- [FunctionTool 文档](https://google.github.io/adk-docs/tools/function-tools/)
