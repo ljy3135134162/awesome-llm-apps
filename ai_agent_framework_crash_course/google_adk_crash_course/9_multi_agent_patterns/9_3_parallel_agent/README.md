@@ -1,75 +1,77 @@
-# ⚡ Tutorial 9.3: Parallel Agents - Market Snapshot Team
+# ⚡ 教程 9.3：Parallel Agent——市场快照团队
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Parallel Agent Composition**: How to orchestrate multiple specialized agents concurrently
-- **Shared State**: How parallel children write to a common `session.state` safely
-- **Branching Context**: Invocation branches for clean, isolated tool/memory context
-- **Streamlit Interface**: A simple UI to run and visualize parallel results
+- **Parallel Agent 组合**：如何并发编排多个专业化 Agent
+- **共享状态**：并行子 Agent 如何安全写入同一个 `session.state`
+- **分支上下文**：通过 Invocation Branch 隔离工具与记忆上下文
+- **Streamlit 界面**：使用简单 UI 运行并展示并行结果
 
-## 🧠 Core Concept: ParallelAgent with Shared State
+## 🧠 核心概念：使用共享状态的 ParallelAgent
 
-According to the ADK docs, **Parallel Agents** execute their sub-agents concurrently. Each child runs on its own invocation branch but shares the same `session.state`.
+根据 ADK 文档，**Parallel Agent** 会并发执行其子 Agent。每个子 Agent 都运行在独立的 Invocation Branch 上，但共享同一个 `session.state`。
 
-```
-Topic → ParallelAgent → 3 Sub-agents (Concurrent Execution)
+```text
+主题 → ParallelAgent → 3 个子 Agent（并发执行）
              ↓
-   [Market Trends] + [Competitors] + [Funding News]
+   [市场趋势] + [竞争对手] + [融资新闻]
              ↓
-            Snapshot in state
+        将快照写入 State
 ```
 
-Each child agent writes results to a distinct key in shared state to avoid overwrites: `market_trends`, `competitors`, `funding_news`.
+每个子 Agent 都将结果写入共享状态中的独立字段，以避免相互覆盖：`market_trends`、`competitors`、`funding_news`。
 
-## 📁 Project Structure
+## 📁 项目结构
 
+```text
+9_3_parallel_agent/
+├── agent.py              # 并行工作流（3 个研究 Agent + ParallelAgent）
+├── app.py                # 用于运行和查看市场快照的 Streamlit UI
+├── requirements.txt      # Python 依赖
+├── README.md             # 本文档
+└── .env.example          # 环境变量示例
 ```
-9_3_parallel agent/
-├── agent.py              # Parallel workflow (3 research agents + ParallelAgent)
-├── app.py                # Streamlit UI to run and view snapshot
-├── requirements.txt      # Python dependencies
-├── README.md             # This documentation
-└── .env.example          # Example environment variables
-```
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-### 1. Install Dependencies
+### 1. 安装依赖
+
 ```bash
-cd "9_3_parallel agent"
+cd 9_3_parallel_agent
 pip install -r requirements.txt
 ```
 
-### 2. Set Up Environment
-Create a `.env` file with your Google API key:
+### 2. 配置环境
+
+创建包含 Google API Key 的 `.env` 文件：
+
 ```bash
 echo "GOOGLE_API_KEY=your_ai_studio_key_here" > .env
 ```
 
-> Get your key from Google AI Studio.
+> API Key 可从 Google AI Studio 获取。
 
-### 3. Run the Streamlit App
+### 3. 运行 Streamlit 应用
+
 ```bash
 streamlit run app.py
 ```
 
-## 🧪 How It Works
+## 🧪 工作原理
 
-- `ParallelAgent` executes `market_trends_agent`, `competitor_intel_agent`, and `funding_news_agent` concurrently.
-- Each child uses web search and writes to a unique `output_key` in `session.state`.
-- The UI reads `session.state` and displays a 3-column snapshot.
+- `ParallelAgent` 会并发执行 `market_trends_agent`、`competitor_intel_agent` 和 `funding_news_agent`。
+- 每个子 Agent 都使用 Web 搜索，并通过独立的 `output_key` 将结果写入 `session.state`。
+- UI 从 `session.state` 读取结果，并以三栏形式展示市场快照。
 
-## 🔧 ADK Concepts Demonstrated
+## 🔧 本教程涉及的 ADK 概念
 
-- ParallelAgent pattern and event interleaving
-- Shared `session.state` with distinct keys per child
-- Invocation branches for contextual separation
-- Runner + Session services for execution
+- `ParallelAgent` 模式与事件交错
+- 为每个子 Agent 使用独立字段的共享 `session.state`
+- 通过 Invocation Branch 实现上下文隔离
+- 使用 Runner 与 Session Service 执行工作流
 
-## 📚 Key Takeaways
+## 📚 关键要点
 
-- Parallel fan-out is ideal for independent data gathering
-- Keep output keys distinct to avoid overwrites in shared state
-- Combine with a downstream synthesizer agent if you need a single report
-
-
+- 并行扇出非常适合彼此独立的数据采集任务。
+- 为每个子 Agent 设置不同的输出字段，可以避免共享状态中的数据相互覆盖。
+- 如果最终需要单一综合报告，可以在并行阶段之后再接一个负责整合结果的下游 Agent。
