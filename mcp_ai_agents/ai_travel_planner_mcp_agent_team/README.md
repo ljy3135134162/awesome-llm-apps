@@ -1,4 +1,4 @@
-## 🌍 MCP Travel Planner Agent Team
+## 🌍 MCP 旅行规划 Agent 团队
 
 这是一个基于 Streamlit 构建的高级 AI 旅行规划应用，通过多个 MCP Server 与 Google Maps 集成，生成极其详细且高度个性化的旅行行程。应用使用 Airbnb MCP 获取真实住宿数据，并通过自定义 Google Maps MCP 完成精确距离计算和位置服务。
 
