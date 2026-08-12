@@ -1,146 +1,145 @@
-# 🎯 Tutorial 1: Your First OpenAI Agent
+# 🎯 教程 1：你的第一个 OpenAI Agent
 
-Welcome to your first step in the OpenAI Agents SDK journey! This tutorial introduces you to the fundamental concept of creating a simple AI agent using OpenAI's Agents SDK.
+欢迎进入 OpenAI Agents SDK 学习之旅的第一步。本教程将介绍最基础的概念：如何使用 OpenAI Agents SDK 创建一个简单的 AI Agent。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Basic Agent Creation**: How to create your first OpenAI agent
-- **OpenAI SDK Workflow**: Understanding the agent lifecycle
-- **Simple Text Processing**: Basic input/output handling
-- **Agent Configuration**: Essential parameters and settings
+- **基础 Agent 创建**：如何创建你的第一个 OpenAI Agent
+- **OpenAI SDK 工作流**：理解 Agent 的执行生命周期
+- **简单文本处理**：基础输入与输出处理
+- **Agent 配置**：核心参数和设置
 
-## 🧠 Core Concept: What is an OpenAI Agent?
+## 🧠 核心概念：什么是 OpenAI Agent？
 
-An OpenAI agent is a **programmable AI assistant** that can:
-- Process user inputs (text, voice, etc.)
-- Use AI models (like GPT-4o) to understand and respond
-- Perform specific tasks based on your instructions
-- Return structured or unstructured responses
+OpenAI Agent 可以理解为一个**可编程的 AI 助手**，它能够：
+- 处理用户输入，例如文本、语音等
+- 使用 GPT 等 AI 模型理解请求并生成响应
+- 根据你提供的 Instructions 执行特定任务
+- 返回结构化或非结构化结果
 
-Think of it as creating a **smart function** that uses AI to handle complex tasks.
+可以把它理解成一个利用 AI 处理复杂任务的**智能函数**。
 
-## 🔧 Key Components
+## 🔧 关键组件
 
-### 1. **Agent Class**
-The main building block for creating AI agents in OpenAI SDK:
+### 1. **Agent 类**
+OpenAI Agents SDK 中创建 AI Agent 的核心组件：
 ```python
 from agents import Agent
 ```
 
-### 2. **Essential Parameters**
-- `name`: Unique identifier for your agent
-- `instructions`: How your agent should behave
-- `model`: The AI model to use (defaults to "gpt-4o")
+### 2. **核心参数**
+- `name`：Agent 的唯一名称
+- `instructions`：定义 Agent 应如何行动
+- `model`：指定使用的 AI 模型
 
-### 3. **Basic Workflow**
-1. **Input**: User sends a message
-2. **Processing**: Agent uses AI model to understand and respond
-3. **Output**: Agent returns a response
+### 3. **基础工作流**
+1. **输入**：用户发送消息
+2. **处理**：Agent 使用 AI 模型理解请求并生成响应
+3. **输出**：Agent 返回结果
 
-## 🚀 Tutorial Overview
+## 🚀 教程概览
 
-This tutorial includes **two focused agent examples**:
+本教程包含两个重点示例：
 
-### **1. Personal Assistant Agent** (`personal_assistant_agent/`)
-- Basic agent creation and configuration
-- Simple instructions and role definition
-- Core Agent class usage
+### **1. Personal Assistant Agent**（`personal_assistant_agent/`）
+- 基础 Agent 创建和配置
+- 简单 Instructions 与角色定义
+- Agent 类的核心用法
 
-### **2. Execution Demo Agent** (`execution_demo_agent/`)  
-- Demonstrates different execution methods
-- Sync, async, and streaming patterns
-- Runner class usage examples
+### **2. Execution Demo Agent**（`execution_demo_agent/`）
+- 演示不同的 Agent 执行方式
+- 同步、异步和流式执行模式
+- Runner 类使用示例
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 1_starter_agent/
-├── README.md                    # This file - concept explanation
-├── requirements.txt             # Dependencies
-├── personal_assistant_agent/    # Basic agent creation
+├── README.md                    # 本文件：概念说明
+├── requirements.txt             # 依赖
+├── personal_assistant_agent/    # 基础 Agent 创建
 │   ├── __init__.py
-│   └── agent.py                # Simple agent definition (20 lines)
-├── execution_demo_agent/        # Execution methods demonstration
+│   └── agent.py                 # 简单 Agent 定义
+├── execution_demo_agent/        # 执行方式演示
 │   ├── __init__.py
-│   └── agent.py                # Sync, async, streaming examples
-├── app.py                      # Streamlit web interface (optional)
-└── env.example                 # Environment variables template
+│   └── agent.py                 # 同步、异步、流式示例
+├── app.py                       # Streamlit Web 界面（可选）
+└── env.example                  # 环境变量模板
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to create a basic OpenAI agent
-- ✅ Essential agent parameters and their purpose
-- ✅ How to run agents synchronously and asynchronously
-- ✅ Basic OpenAI SDK workflow and lifecycle
-- ✅ How to use streaming responses
+完成本教程后，你将理解：
+- ✅ 如何创建基础 OpenAI Agent
+- ✅ Agent 核心参数及其用途
+- ✅ 如何同步和异步运行 Agent
+- ✅ OpenAI Agents SDK 的基础工作流与生命周期
+- ✅ 如何使用流式响应
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Set up your environment**:
+1. **准备环境**：
    ```bash
-   # Make sure you have your OpenAI API key
-   # Get your API key from: https://platform.openai.com/api-keys
+   # 准备 OpenAI API Key
+   # 获取地址：https://platform.openai.com/api-keys
    ```
 
-2. **Install OpenAI Agents SDK**:
+2. **安装 OpenAI Agents SDK**：
    ```bash
    pip install openai-agents
    ```
 
-3. **Install dependencies**:
+3. **安装依赖**：
    ```bash
-   # Install required packages
    pip install -r requirements.txt
    ```
 
-4. **Set up environment variables**:
+4. **配置环境变量**：
    ```bash
-   # Copy the example environment file
-   cp .env.example .env
-   
-   # Edit .env and add your OpenAI API key
+   # 复制环境变量模板
+   cp env.example .env
+
+   # 编辑 .env 并添加 OpenAI API Key
    # OPENAI_API_KEY=sk-your_openai_key_here
    ```
 
-4. **Test the agent**:
+5. **测试 Agent**：
    ```bash
-   # Run the agent directly
+   # 直接运行 Agent
    python agent.py
-   
-   # Or run the Streamlit web interface
+
+   # 或运行 Streamlit Web 界面
    streamlit run app.py
    ```
 
-6. **Try different execution methods**:
-   - Test synchronous execution: "What's the weather like today?"
-   - Test asynchronous execution: "Tell me a story about AI"
-   - Test streaming responses: "Explain machine learning in detail"
+6. **尝试不同执行方式**：
+   - 同步执行：`What's the weather like today?`
+   - 异步执行：`Tell me a story about AI`
+   - 流式响应：`Explain machine learning in detail`
 
-## 🧪 Sample Prompts to Try
+## 🧪 推荐测试提示词
 
-- **General Questions**: "What's the capital of France?"
-- **Creative Tasks**: "Write a short poem about technology"
-- **Problem Solving**: "How can I improve my productivity?"
-- **Explanations**: "Explain quantum computing in simple terms"
+- **常识问题**：`What's the capital of France?`
+- **创作任务**：`Write a short poem about technology`
+- **问题解决**：`How can I improve my productivity?`
+- **概念解释**：`Explain quantum computing in simple terms`
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
-- **[Tutorial 2: Structured Output Agent](../2_structured_output_agent/README.md)** - Learn to create type-safe, structured responses
-- **[Tutorial 3: Tool Using Agent](../3_tool_using_agent/README.md)** - Add custom tools and functions to your agent
-- **[Tutorial 4: Runner Execution Methods](../4_running_agents/README.md)** - Master different execution patterns
+完成本教程后，可以继续：
+- **[教程 2：结构化输出 Agent](../2_structured_output_agent/README.md)** —— 学习创建类型安全的结构化响应
+- **[教程 3：工具调用 Agent](../3_tool_using_agent/README.md)** —— 为 Agent 添加自定义工具和函数
+- **[教程 4：Agent 运行方式](../4_running_agents/README.md)** —— 掌握不同执行模式
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Start Simple**: Begin with basic functionality and add complexity gradually
-- **Test Often**: Try different prompts to understand agent behavior
-- **Read Instructions**: Clear instructions lead to better agent behavior
-- **Experiment**: Try different execution methods to see the differences
+- **从简单开始**：先实现基础功能，再逐步增加复杂度
+- **频繁测试**：通过不同 Prompt 观察 Agent 行为
+- **重视 Instructions**：清晰的指令通常能带来更稳定的 Agent 行为
+- **主动实验**：比较同步、异步和流式执行方式的区别
 
-## 🚨 Troubleshooting
+## 🚨 故障排查
 
-- **API Key Issues**: Make sure your `.env` file contains a valid `OPENAI_API_KEY`
-- **Import Errors**: Ensure all dependencies are installed with `pip install -r requirements.txt`
-- **Rate Limits**: If you hit rate limits, wait a moment before trying again
+- **API Key 问题**：确认 `.env` 中包含有效的 `OPENAI_API_KEY`
+- **Import 错误**：确认已经执行 `pip install -r requirements.txt`
+- **Rate Limit**：如果触发速率限制，请稍后重新尝试
