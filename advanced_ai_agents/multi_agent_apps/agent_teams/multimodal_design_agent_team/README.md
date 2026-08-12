@@ -1,72 +1,71 @@
-# Multimodal AI Design Agent Team
+# 多模态 AI 设计智能体团队
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-a-multimodal-ai-agent-design-team) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-a-multimodal-ai-agent-design-team)，通过详细的代码讲解、说明和最佳实践，从零开始构建本项目。**
 
-A Streamlit application that provides comprehensive design analysis using a team of specialized AI agents powered by Google's Gemini model. 
+这是一个基于 Streamlit 的应用，通过由 Google Gemini 模型驱动的专业 AI 智能体团队，提供全面的设计分析能力。
 
-This application leverages multiple specialized AI agents to provide comprehensive analysis of UI/UX designs of your product and your competitors, combining visual understanding, user experience evaluation, and market research insights.
+该应用利用多个专业 AI 智能体，对你的产品以及竞争对手的 UI/UX 设计进行综合分析，将视觉理解、用户体验评估与市场研究洞察结合起来。
 
-## Features
+## 功能特性
 
-- **Specialized Design AI Agent Team**
+- **专业设计 AI 智能体团队**
 
-   - 🎨 **Visual Design Agent**: Evaluates design elements, patterns, color schemes, typography, and visual hierarchy
-   - 🔄 **UX Analysis Agent**: Assesses user flows, interaction patterns, usability, and accessibility
-   - 📊 **Market Analysis Agent**: Provides market insights, competitor analysis, and positioning recommendations
-   
-- **Multiple Analysis Types**: Choose from Visual Design, UX, and Market Analysis
-- **Comparative Analysis**: Upload competitor designs for comparative insights
-- **Customizable Focus Areas**: Select specific aspects for detailed analysis
-- **Context-Aware**: Provide additional context for more relevant insights
-- **Real-time Processing**: Get instant analysis with progress indicators
-- **Structured Output**: Receive well-organized, actionable insights
+   - 🎨 **视觉设计智能体**：评估设计元素、设计模式、配色方案、字体排版和视觉层级
+   - 🔄 **UX 分析智能体**：评估用户流程、交互模式、易用性和无障碍性
+   - 📊 **市场分析智能体**：提供市场洞察、竞争对手分析和产品定位建议
 
-## How to Run
+- **多种分析类型**：可选择视觉设计、UX 和市场分析
+- **对比分析**：上传竞争对手设计，获得对比洞察
+- **可自定义关注领域**：选择具体方面进行深入分析
+- **上下文感知**：可补充额外背景信息，让分析结果更具针对性
+- **实时处理**：通过进度指示快速获得分析结果
+- **结构化输出**：获得组织清晰、可执行的分析洞察
 
-1. **Setup Environment**
+## 运行方法
+
+1. **配置环境**
    ```bash
-   # Clone the repository
+   # 克隆仓库
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd advanced_ai_agents/multi_agent_apps/agent_teams/multimodal_design_agent_team
 
-   # Create and activate virtual environment (optional)
+   # 创建并激活虚拟环境（可选）
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate  # Windows：venv\Scripts\activate
 
-   # Install dependencies
+   # 安装依赖
    pip install -r requirements.txt
    ```
 
-2. **Get API Key**
-   - Visit [Google AI Studio](https://aistudio.google.com/apikey)
-   - Generate an API key
+2. **获取 API Key**
+   - 访问 [Google AI Studio](https://aistudio.google.com/apikey)
+   - 创建 API 密钥
 
-3. **Run the Application**
+3. **运行应用**
    ```bash
    streamlit run design_agent_team.py
    ```
 
-4. **Use the Application**
-   - Enter your Gemini API key in the sidebar
-   - Upload design files (supported formats: JPG, JPEG, PNG)
-   - Select analysis types and focus areas
-   - Add context if needed
-   - Click "Run Analysis" to get insights
+4. **使用应用**
+   - 在侧边栏中输入 Gemini API 密钥
+   - 上传设计文件（支持 JPG、JPEG、PNG）
+   - 选择分析类型和关注领域
+   - 如有需要，可添加额外上下文
+   - 点击“Run Analysis（运行分析）”获取结果
 
+## 技术栈
 
-## Technical Stack
+- **前端**：Streamlit
+- **AI 模型**：Google Gemini 2.0
+- **图像处理**：Pillow
+- **市场研究**：DuckDuckGo Search API
+- **框架**：Phidata，用于智能体编排
 
-- **Frontend**: Streamlit
-- **AI Model**: Google Gemini 2.0
-- **Image Processing**: Pillow
-- **Market Research**: DuckDuckGo Search API
-- **Framework**: Phidata for agent orchestration
+## 获得最佳效果的建议
 
-## Tips for Best Results
-
-- Upload clear, high-resolution images
-- Include multiple views/screens for better context
-- Add competitor designs for comparative analysis
-- Provide specific context about your target audience
+- 上传清晰的高分辨率图片
+- 尽量提供多个页面或界面截图，以补充上下文
+- 加入竞争对手设计以进行对比分析
+- 提供明确的目标用户背景信息
 
