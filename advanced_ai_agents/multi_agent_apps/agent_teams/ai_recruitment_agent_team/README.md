@@ -1,101 +1,99 @@
-# 💼 AI Recruitment Agent Team
+# 💼 AI 招聘智能体团队
 
-A Streamlit application that simulates a full-service recruitment team using multiple AI agents to automate and streamline the hiring process. Each agent represents a different recruitment specialist role - from resume analysis and candidate evaluation to interview scheduling and communication - working together to provide comprehensive hiring solutions. The system combines the expertise of technical recruiters, HR coordinators, and scheduling specialists into a cohesive automated workflow.
+这是一个基于 Streamlit 的应用，通过多个 AI 智能体模拟完整的招聘团队，以自动化并简化招聘流程。每个智能体对应不同的招聘专业角色——从简历分析、候选人评估，到面试安排和沟通——协同工作以提供完整的招聘解决方案。系统将技术招聘、HR 协调和日程安排等能力整合为统一的自动化工作流。
 
-## Features
+## 功能特性
 
-#### Specialized AI Agents
+#### 专业化 AI 智能体
 
-- Technical Recruiter Agent: Analyzes resumes and evaluates technical skills
-- Communication Agent: Handles professional email correspondence
-- Scheduling Coordinator Agent: Manages interview scheduling and coordination
-- Each agent has specific expertise and collaborates for comprehensive recruitment
+- 技术招聘智能体：分析简历并评估技术能力
+- 沟通智能体：负责专业邮件往来
+- 面试协调智能体：负责面试安排与协调
+- 每个智能体都有明确的专业职责，并通过协作完成完整招聘流程
 
+#### 端到端招聘流程
+- 自动化简历筛选与分析
+- 针对具体岗位的技术评估
+- 专业候选人沟通
+- 自动安排面试
+- 集成式反馈系统
 
-#### End-to-End Recruitment Process
-- Automated resume screening and analysis
-- Role-specific technical evaluation
-- Professional candidate communication
-- Automated interview scheduling
-- Integrated feedback system
+## 运行应用前的重要准备
 
-## Important Things to do before running the application
-
-- Create/Use a new Gmail account for the recruiter
-- Enable 2-Step Verification and generate an App Password for the Gmail account
-- The App Password is a 16 digit code (use without spaces) that should be generated here - [Google App Password](https://support.google.com/accounts/answer/185833?hl=en) Please go through the steps to generate the password - it will of the format - 'afec wejf awoj fwrv' (remove the spaces and enter it in the streamlit app) 
-- Create/ Use a Zoom account and go to the Zoom App Marketplace to get the API credentials :
+- 为招聘人员创建或使用一个新的 Gmail 账号
+- 为该 Gmail 账号启用两步验证，并生成应用专用密码（App Password）
+- App Password 是一个 16 位代码（使用时不要包含空格），可通过 [Google App Password](https://support.google.com/accounts/answer/185833?hl=en) 生成。请按照页面步骤完成设置。密码形式类似 `afec wejf awoj fwrv`，在 Streamlit 应用中输入时请去掉空格
+- 创建或使用一个 Zoom 账号，并前往 Zoom App Marketplace 获取 API 凭据：
 [Zoom Marketplace](https://marketplace.zoom.us)
-- Go to Developer Dashboard and create a new app - Select Server to Server OAuth and get the credentials, You see 3 credentials - Client ID, Client Secret and Account ID
-- After that, you need to add a few scopes to the app - so that the zoom link of the candidate is sent and created through the mail. 
-- The Scopes are meeting:write:invite_links:admin, meeting:write:meeting:admin, meeting:write:meeting:master, meeting:write:invite_links:master, meeting:write:open_app:admin, user:read:email:admin, user:read:list_users:admin, billing:read:user_entitlement:admin, dashboard:read:list_meeting_participants:admin [last 3 are optional]
+- 进入 Developer Dashboard，新建应用，选择 Server-to-Server OAuth，并获取 3 个凭据：Client ID、Client Secret 和 Account ID
+- 随后需要为应用添加若干 Scope，以便创建候选人的 Zoom 面试链接并通过邮件发送
+- 所需 Scope 包括：`meeting:write:invite_links:admin`、`meeting:write:meeting:admin`、`meeting:write:meeting:master`、`meeting:write:invite_links:master`、`meeting:write:open_app:admin`、`user:read:email:admin`、`user:read:list_users:admin`、`billing:read:user_entitlement:admin`、`dashboard:read:list_meeting_participants:admin`，其中最后 3 项为可选
 
-## How to Run
+## 运行方法
 
-1. **Setup Environment**
+1. **配置环境**
    ```bash
-   # Clone the repository
-    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-    cd advanced_ai_agents/multi_agent_apps/agent_teams/ai_recruitment_agent_team
-    
-   # Install dependencies
+   # 克隆仓库
+   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+   cd advanced_ai_agents/multi_agent_apps/agent_teams/ai_recruitment_agent_team
+
+   # 安装依赖
    pip install -r requirements.txt
    ```
 
-2. **Configure API Keys**
-   - OpenAI API key for GPT-4o access
-   - Zoom API credentials (Account ID, Client ID, Client Secret)
-   - Email App Password of Recruiter's Email
+2. **配置 API 凭据**
+   - 用于访问 GPT-4o 的 OpenAI API Key
+   - Zoom API 凭据（Account ID、Client ID、Client Secret）
+   - 招聘人员邮箱的 Email App Password
 
-3. **Run the Application**
+3. **运行应用**
    ```bash
    streamlit run ai_recruitment_agent_team.py
    ```
 
-## System Components
+## 系统组件
 
-- **Resume Analyzer Agent**
-  - Skills matching algorithm
-  - Experience verification
-  - Technical assessment
-  - Selection decision making
+- **简历分析智能体**
+  - 技能匹配算法
+  - 工作经验核验
+  - 技术能力评估
+  - 候选人筛选决策
 
-- **Email Communication Agent**
-  - Professional email drafting
-  - Automated notifications
-  - Feedback communication
-  - Follow-up management
+- **邮件沟通智能体**
+  - 专业邮件撰写
+  - 自动通知
+  - 反馈沟通
+  - 后续跟进管理
 
-- **Interview Scheduler Agent**
-  - Zoom meeting coordination
-  - Calendar management
-  - Timezone handling
-  - Reminder system
+- **面试安排智能体**
+  - Zoom 会议协调
+  - 日历管理
+  - 时区处理
+  - 提醒系统
 
-- **Candidate Experience**
-  - Simple upload interface
-  - Real-time feedback
-  - Clear communication
-  - Streamlined process
+- **候选人体验**
+  - 简单直观的上传界面
+  - 实时反馈
+  - 清晰沟通
+  - 简化的招聘流程
 
-## Technical Stack
+## 技术栈
 
-- **Framework**: Phidata
-- **Model**: OpenAI GPT-4o
-- **Integration**: Zoom API, EmailTools Tool from Phidata
-- **PDF Processing**: PyPDF2
-- **Time Management**: pytz
-- **State Management**: Streamlit Session State
+- **框架**：Phidata
+- **模型**：OpenAI GPT-4o
+- **集成**：Zoom API、Phidata 的 EmailTools 工具
+- **PDF 处理**：PyPDF2
+- **时间管理**：pytz
+- **状态管理**：Streamlit Session State
 
+## 免责声明
 
-## Disclaimer
+本工具旨在辅助招聘流程，但不应完全替代人类在招聘决策中的判断。所有自动化决策都应由人工招聘人员审核后再做最终确认。
 
-This tool is designed to assist in the recruitment process but should not completely replace human judgment in hiring decisions. All automated decisions should be reviewed by human recruiters for final approval.
+## 未来增强方向
 
-## Future Enhancements
-
-- Integration with ATS systems
-- Advanced candidate scoring
-- Video interview capabilities
-- Skills assessment integration
-- Multi-language support
+- 与 ATS 招聘管理系统集成
+- 更高级的候选人评分机制
+- 视频面试能力
+- 技能测评集成
+- 多语言支持
