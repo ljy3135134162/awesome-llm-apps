@@ -1,56 +1,61 @@
-# Built-in Tools Agent
+# 内置工具 Agent
 
-Demonstrates using OpenAI Agents SDK built-in tools like WebSearchTool and CodeInterpreterTool.
+本示例演示如何使用 OpenAI Agents SDK 提供的内置工具，例如 `WebSearchTool` 和 `CodeInterpreterTool`。
 
-## 🎯 What This Demonstrates
+## 🎯 本示例展示的内容
 
-- **WebSearchTool**: Real-time web search capabilities
-- **CodeInterpreterTool**: Code execution and mathematical computation
-- **Built-in Tool Integration**: Using pre-configured SDK tools
-- **Tool Combination**: Leveraging multiple tools in one agent
+- **WebSearchTool**：为 Agent 提供实时 Web 搜索能力
+- **CodeInterpreterTool**：执行代码、数学计算和数据处理
+- **内置工具集成**：直接使用 SDK 已提供的工具能力
+- **多工具组合**：在同一个 Agent 中同时使用多个不同类型的工具
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-1. **Install OpenAI Agents SDK**:
+1. **安装 OpenAI Agents SDK**：
    ```bash
    pip install openai-agents
    ```
 
-2. **Set up environment**:
+2. **配置环境变量**：
    ```bash
    cp ../env.example .env
-   # Edit .env and add your OpenAI API key
+   # 编辑 .env 并添加 OpenAI API Key
    ```
 
-3. **Run the agent**:
+3. **运行 Agent**：
    ```python
    from agents import Runner
    from agent import root_agent
-   
-   result = Runner.run_sync(root_agent, "What's the latest news about AI and calculate 15% of 200?")
+
+   result = Runner.run_sync(
+       root_agent,
+       "What's the latest news about AI and calculate 15% of 200?"
+   )
    print(result.final_output)
    ```
 
-## 💡 Key Concepts
+## 💡 关键概念
 
-- **WebSearchTool()**: Search the web for current information
-- **CodeInterpreterTool()**: Execute Python code and calculations
-- **Tool Instantiation**: Creating tool instances with default configurations
-- **Multi-tool Agents**: Combining different tool types
+- **WebSearchTool()**：搜索 Web，获取需要实时信息的问题答案
+- **CodeInterpreterTool()**：执行 Python 代码、计算和数据分析
+- **工具实例化**：使用默认配置直接创建 SDK 内置工具实例
+- **多工具 Agent**：将不同工具组合到同一个 Agent 中，由模型根据任务自行选择
 
-## 🧪 Available Tools
+## 🧪 可用工具
 
 ### WebSearchTool
-- Search for current information on the internet
-- Useful for factual questions requiring recent data
-- Automatically formats search results for agent use
+
+- 搜索互联网中的最新信息
+- 适合回答依赖当前数据或近期事件的问题
+- 搜索结果会自动整理为 Agent 可使用的上下文
 
 ### CodeInterpreterTool
-- Execute Python code in a secure environment
-- Perfect for mathematical calculations
-- Can handle data analysis and complex computations
 
-## 🔗 Next Steps
+- 在受控环境中执行 Python 代码
+- 适合数学计算和程序化处理
+- 可用于数据分析以及更复杂的计算任务
 
-- [Function Tools](../3_1_function_tools/README.md) - Custom function tools
-- [Agents as Tools](../3_3_agents_as_tools/README.md) - Advanced orchestration patterns
+## 🔗 后续步骤
+
+- [Function Tools](../3_1_function_tools/README.md) —— 学习创建自定义函数工具
+- [Agents as Tools](../3_3_agents_as_tools/README.md) —— 学习更高级的 Agent 编排模式
