@@ -1,95 +1,95 @@
-# Vision RAG with Cohere Embed-4 🖼️
+# 使用 Cohere Embed-4 的 Vision RAG 🖼️
 
-A powerful visual Retrieval-Augmented Generation (RAG) system that utilizes Cohere's state-of-the-art Embed-4 model for multimodal embedding and Google's efficient Gemini 2.5 Flash model for answering questions about images and PDF pages.
+一个强大的视觉检索增强生成（RAG）系统，使用 Cohere 先进的 Embed-4 模型进行多模态 Embedding，并使用 Google 高效的 Gemini 2.5 Flash 模型回答有关图片和 PDF 页面的提问。
 
-## Features
+## 功能
 
-- **Multimodal Search**: Leverages Cohere Embed-4 to find the most semantically relevant image (or PDF page image) for a given text question.
-- **Visual Question Answering**: Employs Google Gemini 2.5 Flash to analyze the content of the retrieved image/page and generate accurate, context-aware answers.
-- **Flexible Content Sources**: 
-    - Use pre-loaded sample financial charts and infographics.
-    - Upload your own custom images (PNG, JPG, JPEG).
-    - **Upload PDF documents**: Automatically extracts pages as images for analysis.
-- **No OCR Required**: Directly processes complex images and visual elements within PDF pages without needing separate text extraction steps.
-- **Interactive UI**: Built with Streamlit for easy interaction, including content loading, question input, and result display.
-- **Session Management**: Remembers loaded/uploaded content (images and processed PDF pages) within a session.
+- **多模态搜索**：利用 Cohere Embed-4，根据文本问题查找语义上最相关的图片（或 PDF 页面图片）。
+- **视觉问答**：使用 Google Gemini 2.5 Flash 分析检索到的图片/页面内容，并生成准确、具备上下文感知能力的答案。
+- **灵活的内容来源**：
+    - 使用预加载的示例财务图表和信息图。
+    - 上传自己的图片（PNG、JPG、JPEG）。
+    - **上传 PDF 文档**：自动将页面提取为图片进行分析。
+- **无需 OCR**：直接处理 PDF 页面中的复杂图片和视觉元素，无需单独执行文本提取步骤。
+- **交互式 UI**：使用 Streamlit 构建，可方便地加载内容、输入问题并查看结果。
+- **会话管理**：在当前会话中保留已加载/上传的内容，包括图片和处理后的 PDF 页面。
 
-## Requirements
+## 环境要求
 
 - Python 3.8+
-- Cohere API key
-- Google Gemini API key
+- Cohere API Key
+- Google Gemini API Key
 
-## How to Run
+## 如何运行
 
-Follow these steps to set up and run the application:
+按照以下步骤配置并运行应用：
 
-1.  **Clone and Navigate to Directory** :
+1. **克隆仓库并进入目录**：
     ```bash
     git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
     cd awesome-llm-apps/rag_tutorials/vision_rag
     ```
 
-2.  **Install Dependencies**:
+2. **安装依赖**：
     ```bash
     pip install -r requirements.txt
     ```
-    *(Ensure you have the latest `PyMuPDF` installed along with other requirements)*
+    *（请确保已安装最新版 `PyMuPDF` 以及其他依赖。）*
 
-3.  **Set up your API keys**:
-    - Get a Cohere API key from: [https://dashboard.cohere.com/api-keys](https://dashboard.cohere.com/api-keys)
-    - Get a Google API key from: [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+3. **配置 API Key**：
+    - 从 [Cohere Platform](https://dashboard.cohere.com/api-keys) 获取 Cohere API Key。
+    - 从 [Google AI Studio](https://aistudio.google.com/app/apikey) 获取 Google API Key。
 
-4.  **Run the Streamlit app**:
+4. **运行 Streamlit 应用**：
     ```bash
     streamlit run vision_rag.py
     ```
 
-5.  **Access the Web Interface**:
-    - Streamlit will provide a local URL (usually `http://localhost:8501`) in your terminal.
-    - Open this URL in your web browser.
+5. **访问 Web 界面**：
+    - Streamlit 会在终端中提供一个本地 URL，通常为 `http://localhost:8501`。
+    - 在浏览器中打开该地址。
 
-## How It Works
+## 工作原理
 
-The application follows a two-stage RAG process:
+应用采用两阶段 RAG 流程：
 
-1.  **Retrieval**: 
-    - When you load sample images or upload your own images/PDFs:
-        - Regular images are converted to base64 strings.
-        - **PDFs are processed page by page**: Each page is rendered as an image, saved temporarily, and converted to a base64 string.
-    - Cohere's `embed-v4.0` model (with `input_type="search_document"`) is used to generate a dense vector embedding for each image or PDF page image.
-    - When you ask a question, the text query is embedded using the same `embed-v4.0` model (with `input_type="search_query"`).
-    - Cosine similarity is calculated between the question embedding and all image embeddings.
-    - The image with the highest similarity score (which could be a regular image or a specific PDF page image) is retrieved as the most relevant context.
+1. **检索（Retrieval）**：
+    - 加载示例图片或上传自己的图片/PDF 时：
+        - 普通图片会被转换为 Base64 字符串。
+        - **PDF 会逐页处理**：每一页都会渲染成图片、临时保存，然后转换为 Base64 字符串。
+    - 使用 Cohere `embed-v4.0` 模型（`input_type="search_document"`）为每张图片或 PDF 页面图片生成稠密向量 Embedding。
+    - 用户提出问题后，文本查询使用同一个 `embed-v4.0` 模型（`input_type="search_query"`）生成 Embedding。
+    - 计算问题 Embedding 与所有图片 Embedding 之间的余弦相似度。
+    - 检索相似度最高的图片作为最相关上下文；它可能是普通图片，也可能是 PDF 中的某一页。
 
-2.  **Generation**:
-    - The original text question and the retrieved image/page image are passed as input to the Google `gemini-2.5-flash-preview-04-17` model.
-    - Gemini analyzes the image content in the context of the question and generates a textual answer.
+2. **生成（Generation）**：
+    - 将原始文本问题以及检索得到的图片/页面图片一并传给 Google `gemini-2.5-flash-preview-04-17` 模型。
+    - Gemini 根据问题上下文分析图片内容，并生成文本答案。
 
-## Usage
+## 使用方法
 
-1.  Enter your Cohere and Google API keys in the sidebar.
-2.  Load content:
-    - Click **"Load Sample Images"** to download and process the built-in examples.
-    - *OR/AND* Use the **"Upload Your Images or PDFs"** section to upload your own image or PDF files.
-3.  Once content is loaded and processed (embeddings generated), the **"Ask a Question"** section will be enabled.
-4.  Optionally, expand **"View Loaded Images"** to see thumbnails of all images and processed PDF pages currently in the session.
-5.  Type your question about the loaded content into the text input field.
-6.  Click **"Run Vision RAG"**.
-7.  View the results:
-    - The **Retrieved Image/Page** deemed most relevant to your question (caption indicates source PDF and page number if applicable).
-    - The **Generated Answer** from Gemini based on the image and question.
+1. 在侧边栏输入 Cohere 和 Google API Key。
+2. 加载内容：
+    - 点击 **“Load Sample Images”** 下载并处理内置示例图片。
+    - 或者/同时使用 **“Upload Your Images or PDFs”** 上传自己的图片或 PDF 文件。
+3. 内容加载并处理完成（Embedding 已生成）后，**“Ask a Question”** 区域将被启用。
+4. 可以展开 **“View Loaded Images”**，查看当前会话中全部图片以及已处理 PDF 页面的缩略图。
+5. 在文本输入框中输入关于已加载内容的问题。
+6. 点击 **“Run Vision RAG”**。
+7. 查看结果：
+    - **Retrieved Image/Page**：系统判断与问题最相关的图片/页面；如果来自 PDF，标题会标明源 PDF 和页码。
+    - **Generated Answer**：Gemini 根据图片和问题生成的答案。
 
-## Use Cases
+## 使用场景
 
-- Analyze financial charts and extract key figures or trends.
-- Answer specific questions about diagrams, flowcharts, or infographics within images or PDFs.
-- Extract information from tables or text within screenshots or PDF pages without explicit OCR.
-- Build and query visual knowledge bases (from images and PDFs) using natural language.
-- Understand the content of various complex visual documents, including multi-page reports.
+- 分析财务图表并提取关键数字或趋势。
+- 针对图片或 PDF 中的示意图、流程图和信息图进行问答。
+- 无需显式 OCR，即可从截图或 PDF 页面中的表格和文本提取信息。
+- 使用自然语言构建和查询由图片、PDF 组成的视觉知识库。
+- 理解包括多页报告在内的复杂视觉文档。
 
-## Note
+## 注意事项
 
-- Image and PDF processing (page rendering + embedding) can take time, especially for many items or large files. Sample images are cached after the first load; PDF processing currently happens on each upload within a session.
-- Ensure your API keys have the necessary permissions and quotas for the Cohere and Gemini models used.
-- The quality of the answer depends on both the relevance of the retrieved image and the capability of the Gemini model to interpret the image based on the question.
+- 图片和 PDF 处理（页面渲染 + Embedding）可能需要一定时间，尤其是在文件数量较多或文件较大时。示例图片首次加载后会被缓存；当前 PDF 会在每次会话上传时重新处理。
+- 请确保 API Key 拥有调用 Cohere 和 Gemini 对应模型所需的权限与配额。
+- 最终回答质量同时取决于检索图片的相关性，以及 Gemini 根据问题理解图片内容的能力。
