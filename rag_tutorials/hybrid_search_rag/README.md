@@ -1,93 +1,94 @@
-# 👀 RAG App with Hybrid Search 
+# 👀 使用混合搜索的 RAG 应用
 
-A powerful document Q&A application that leverages Hybrid Search (RAG) and Claude's advanced language capabilities to provide comprehensive answers. Built with RAGLite for robust document processing and retrieval, and Streamlit for an intuitive chat interface, this system seamlessly combines document-specific knowledge with Claude's general intelligence to deliver accurate and contextual responses.
+一个强大的文档问答应用，利用混合搜索（Hybrid Search / RAG）和 Claude 的高级语言能力提供全面回答。该系统使用 RAGLite 实现可靠的文档处理和检索，并使用 Streamlit 构建直观的聊天界面，将文档专属知识与 Claude 的通用智能无缝结合，从而生成准确且具备上下文的响应。
 
-## Features
+## 功能
 
-- **Hybrid Search Question Answering**
-    - RAG-based answers for document-specific queries
-    - Fallback to Claude for general knowledge questions
+- **混合搜索问答**
+  - 针对文档相关查询使用 RAG 生成答案
+  - 针对通用知识问题回退至 Claude
 
-- **Document Processing**:
-  - PDF document upload and processing
-  - Automatic text chunking and embedding
-  - Hybrid search combining semantic and keyword matching
-  - Reranking for better context selection
+- **文档处理**：
+  - PDF 文档上传和处理
+  - 自动文本分块和 Embedding
+  - 结合语义匹配和关键词匹配的混合搜索
+  - 通过重排序选择更优上下文
 
-- **Multi-Model Integration**:
-  - Claude for text generation - tested with Claude 3 Opus 
-  - OpenAI for embeddings - tested with text-embedding-3-large
-  - Cohere for reranking - tested with Cohere 3.5 reranker
+- **多模型集成**：
+  - Claude 用于文本生成——已使用 Claude 3 Opus 测试
+  - OpenAI 用于 Embedding——已使用 text-embedding-3-large 测试
+  - Cohere 用于重排序——已使用 Cohere 3.5 Reranker 测试
 
-## Prerequisites
+## 环境要求
 
-You'll need the following API keys and database setup:
+你需要准备以下 API Key 和数据库：
 
-1. **Database**: Create a free PostgreSQL database at [Neon](https://neon.tech):
-   - Sign up/Login at Neon
-   - Create a new project
-   - Copy the connection string (looks like: `postgresql://user:pass@ep-xyz.region.aws.neon.tech/dbname`)
+1. **数据库**：在 [Neon](https://neon.tech) 创建免费的 PostgreSQL 数据库：
+   - 注册或登录 Neon
+   - 创建一个新项目
+   - 复制连接字符串（格式类似：`postgresql://user:pass@ep-xyz.region.aws.neon.tech/dbname`）
 
-2. **API Keys**:
-   - [OpenAI API key](https://platform.openai.com/api-keys) for embeddings
-   - [Anthropic API key](https://console.anthropic.com/settings/keys) for Claude
-   - [Cohere API key](https://dashboard.cohere.com/api-keys) for reranking
+2. **API Key**：
+   - [OpenAI API Key](https://platform.openai.com/api-keys)，用于 Embedding
+   - [Anthropic API Key](https://console.anthropic.com/settings/keys)，用于 Claude
+   - [Cohere API Key](https://dashboard.cohere.com/api-keys)，用于重排序
 
-## How to get Started?
+## 如何开始？
 
-1. **Clone the Repository**:
+1. **克隆仓库**：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd awesome-llm-apps/rag_tutorials/hybrid_search_rag
    ```
 
-2. **Install Dependencies**:
+2. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Install spaCy Model**:
+3. **安装 spaCy 模型**：
    ```bash
    pip install https://github.com/explosion/spacy-models/releases/download/xx_sent_ud_sm-3.7.0/xx_sent_ud_sm-3.7.0-py3-none-any.whl
    ```
 
-4. **Run the Application**:
+4. **运行应用**：
    ```bash
    streamlit run main.py
    ```
 
-## Usage
+## 使用方法
 
-1. Start the application
-2. Enter your API keys in the sidebar:
-   - OpenAI API key
-   - Anthropic API key
-   - Cohere API key
-   - Database URL (optional, defaults to SQLite)
-3. Click "Save Configuration"
-4. Upload PDF documents
-5. Start asking questions!
-   - Document-specific questions will use RAG
-   - General questions will use Claude directly
+1. 启动应用
+2. 在侧边栏输入 API Key：
+   - OpenAI API Key
+   - Anthropic API Key
+   - Cohere API Key
+   - 数据库 URL（可选，默认使用 SQLite）
+3. 点击“Save Configuration”
+4. 上传 PDF 文档
+5. 开始提问：
+   - 文档相关问题将使用 RAG
+   - 通用问题将直接使用 Claude
 
-## Database Options
+## 数据库选项
 
-The application supports multiple database backends:
+应用支持多种数据库后端：
 
-- **PostgreSQL** (Recommended):
-  - Create a free serverless PostgreSQL database at [Neon](https://neon.tech)
-  - Get instant provisioning and scale-to-zero capability
-  - Connection string format: `postgresql://user:pass@ep-xyz.region.aws.neon.tech/dbname`
+- **PostgreSQL**（推荐）：
+  - 在 [Neon](https://neon.tech) 创建免费的 Serverless PostgreSQL 数据库
+  - 支持即时创建和缩容至零（scale-to-zero）
+  - 连接字符串格式：`postgresql://user:pass@ep-xyz.region.aws.neon.tech/dbname`
 
-- **MySQL**:
+- **MySQL**：
   ```
   mysql://user:pass@host:port/db
   ```
-- **SQLite** (Local development):
+
+- **SQLite**（本地开发）：
   ```
   sqlite:///path/to/db.sqlite
   ```
 
-## Contributing
+## 贡献
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+欢迎贡献！可以随时提交 Pull Request。
