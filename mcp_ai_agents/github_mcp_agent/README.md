@@ -1,81 +1,81 @@
 # 🐙 GitHub MCP Agent
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-mcp-github-agent-in-less-than-50-lines-of-code) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/build-an-mcp-github-agent-in-less-than-50-lines-of-code)，通过详细的代码讲解、说明和最佳实践，从零开始学习如何构建这个项目。**
 
-A Streamlit application that allows you to explore and analyze GitHub repositories using natural language queries through the Model Context Protocol (MCP).
+这是一个基于 Streamlit 的应用，通过模型上下文协议（MCP），让你能够使用自然语言查询探索和分析 GitHub 仓库。
 
-**✨ Now using the official [GitHub MCP Server](https://github.com/github/github-mcp-server) from GitHub!**
+**✨ 现已使用 GitHub 官方的 [GitHub MCP Server](https://github.com/github/github-mcp-server)！**
 
-## Features
+## 功能
 
-- **Natural Language Interface**: Ask questions about repositories in plain English
-- **Comprehensive Analysis**: Explore issues, pull requests, repository activity, and code statistics
-- **Interactive UI**: User-friendly interface with example queries and custom input
-- **MCP Integration**: Leverages the Model Context Protocol to interact with GitHub's API
-- **Real-time Results**: Get immediate insights on repository activity and health
+- **自然语言界面**：使用普通语言询问仓库相关问题
+- **全面分析**：探索 Issues、Pull Requests、仓库活动以及代码统计信息
+- **交互式 UI**：提供示例查询和自定义输入的友好界面
+- **MCP 集成**：利用模型上下文协议与 GitHub API 交互
+- **实时结果**：即时获取仓库活动和健康状况洞察
 
-## Setup
+## 配置
 
-### Requirements
+### 环境要求
 
 - Python 3.8+
-- Docker (for official GitHub MCP server)
-  - Download and install from [docker.com](https://www.docker.com/get-started)
-  - Make sure Docker is running before starting the app
+- Docker（用于官方 GitHub MCP Server）
+  - 可从 [docker.com](https://www.docker.com/get-started) 下载并安装
+  - 启动应用前请确保 Docker 正在运行
 - OpenAI API Key
 - GitHub Personal Access Token
 
-### Installation
+### 安装
 
-1. Clone this repository:
+1. 克隆仓库：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd mcp-github-agent
    ```
 
-2. Install the required Python packages:
+2. 安装所需 Python 包：
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Verify Docker is installed and running:
+3. 验证 Docker 已安装并正在运行：
    ```bash
    docker --version
    docker ps
    ```
 
-4. Get your API keys:
-   - **OpenAI API Key**: Get from [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-   - **GitHub Token**: Create at [github.com/settings/tokens](https://github.com/settings/tokens) with `repo` scope
+4. 获取 API Key：
+   - **OpenAI API Key**：从 [platform.openai.com/api-keys](https://platform.openai.com/api-keys) 获取
+   - **GitHub Token**：在 [github.com/settings/tokens](https://github.com/settings/tokens) 创建，并授予 `repo` Scope
 
-### Running the App
+### 运行应用
 
-1. Start the Streamlit app:
+1. 启动 Streamlit 应用：
    ```bash
    streamlit run github_agent.py
    ```
 
-2. In the app interface:
-   - Enter your OpenAI API key
-   - Enter your GitHub token
-   - Specify a repository to analyze
-   - Select a query type or write your own
-   - Click "Run Query"
+2. 在应用界面中：
+   - 输入 OpenAI API Key
+   - 输入 GitHub Token
+   - 指定要分析的仓库
+   - 选择查询类型或输入自定义问题
+   - 点击“Run Query”
 
-### Example Queries
+### 示例查询
 
 #### Issues
-- "Show me issues by label"
-- "What issues are being actively discussed?"
-- "Find issues labeled as bugs"
+- “按标签显示 Issues”
+- “哪些 Issues 正在被积极讨论？”
+- “查找标记为 Bug 的 Issues”
 
 #### Pull Requests
-- "What PRs need review?"
-- "Show me recent merged PRs"
-- "Find PRs with conflicts"
+- “哪些 PR 需要 Review？”
+- “显示最近已合并的 PR”
+- “查找存在冲突的 PR”
 
 #### Repository
-- "Show repository health metrics"
-- "Show repository activity patterns"
-- "Analyze code quality trends"
+- “显示仓库健康指标”
+- “显示仓库活动模式”
+- “分析代码质量趋势”
