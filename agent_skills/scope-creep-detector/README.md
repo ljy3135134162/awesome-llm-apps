@@ -1,35 +1,32 @@
-# 🔭 Scope Creep Detector 
+# 🔭 范围蔓延检测器
 
-Checks a working, staged, saved, or branch diff against a one-line intent. It
-flags unrelated paths, new dependencies, public API renames, config or CI
-edits, oversized hunks, formatting-only files, and subsystem spread. The output
-is a local JSON report for keep, split, or justify decisions.
+根据一行简短的开发意图，检查工作区、暂存区、已保存内容或分支之间的 diff，判断修改是否超出了原本计划的范围。
 
-![Scope Creep Detector demo](https://github.com/mvanhorn/awesome-llm-apps/releases/download/demo-assets/scope-creep-detector.gif)
+它会标记无关路径、新增依赖、公共 API 重命名、配置或 CI 修改、过大的代码块、仅格式化的文件，以及修改跨越过多子系统等情况。最终会生成一份本地 JSON 报告，帮助你决定哪些修改应该保留、拆分或给出合理说明。
 
-The demo analyzes a "fix null deref in parser" change that also touched CI
-config, added a dependency, and dropped in an unrelated file. The parser fix is
-kept; the rest is flagged.
+![范围蔓延检测器演示](https://github.com/mvanhorn/awesome-llm-apps/releases/download/demo-assets/scope-creep-detector.gif)
 
-## Install
+演示中分析的是一个“修复解析器中的空指针解引用”修改，但实际提交同时改动了 CI 配置、新增了依赖，并加入了一个无关文件。真正的解析器修复会被保留，其余修改则会被标记出来。
+
+## 安装
 
 ```bash
 npx skills add https://github.com/Shubhamsaboo/awesome-llm-apps/tree/main/agent_skills/scope-creep-detector
 ```
 
-## Run
+## 运行
 
-Ask the agent:
+可以直接询问 Agent：
 
-> Did my change grow beyond the parser fix I intended?
+> 我的修改是否已经超出了原本只修复解析器问题的范围？
 
-Or run the deterministic core directly:
+也可以直接运行确定性的核心脚本：
 
 ```bash
 python3 scripts/scope_creep.py --repo /path/to/repo \
   --intent "fix null dereference in parser" --json
 ```
 
-Use `--staged` for the index, `--base main` for a branch diff, or `--diff -`
-for unified diff input on stdin. The script uses only the Python standard
-library, makes no network calls, and does not modify the repository.
+使用 `--staged` 可检查暂存区，使用 `--base main` 可检查相对于主分支的 diff，或者使用 `--diff -` 从标准输入读取 unified diff。
+
+该脚本仅使用 Python 标准库，不会进行任何网络请求，也不会修改仓库内容。
