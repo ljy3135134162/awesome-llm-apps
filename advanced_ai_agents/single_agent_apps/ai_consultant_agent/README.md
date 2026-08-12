@@ -1,97 +1,100 @@
-# 🤝 AI Consultant Agent with Google ADK 
+# 🤝 基于 Google ADK 的 AI 顾问 Agent
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-consultant-agent-with-gemini-2-5-flash) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-ai-consultant-agent-with-gemini-2-5-flash)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-A powerful business consultant powered by Google's Agent Development Kit that provides comprehensive market analysis, strategic planning, and actionable business recommendations with real-time web research.
+这是一个基于 Google Agent Development Kit 构建的 AI 商业顾问，可结合实时 Web 研究提供全面的市场分析、战略规划以及可执行的商业建议。
 
+## 功能特性
 
-## Features
+- **实时 Web 研究**：使用 Perplexity AI 搜索获取最新市场数据、趋势和竞争情报
+- **市场分析**：结合 Web 搜索与 AI 洞察分析市场环境和潜在机会
+- **战略建议**：生成包含时间表和实施计划的可执行商业策略
+- **风险评估**：识别潜在风险并提供缓解策略
+- **交互式 UI**：使用简洁的 Google ADK Web 界面进行咨询
+- **评测系统**：内置评测、调试和 Session 跟踪能力
 
-- **Real-time Web Research**: Uses Perplexity AI search for current market data, trends, and competitor intelligence
-- **Market Analysis**: Leverages web search and AI insights to analyze market conditions and opportunities
-- **Strategic Recommendations**: Generates actionable business strategies with timelines and implementation plans
-- **Risk Assessment**: Identifies potential risks and provides mitigation strategies
-- **Interactive UI**: Clean Google ADK web interface for easy consultation
-- **Evaluation System**: Built-in evaluation and debugging capabilities with session tracking
+## 工作原理
 
-## How It Works
+1. **输入阶段**：用户通过 ADK Web 界面提交商业问题或咨询请求。
+2. **研究阶段**：Agent 使用 Perplexity AI 开展实时 Web 研究，收集当前市场数据。
+3. **分析阶段**：Agent 使用市场分析工具处理问题并生成洞察。
+4. **策略阶段**：基于分析结果和 Web 研究生成战略建议。
+5. **综合阶段**：将所有发现整合为一份带引用的完整咨询报告。
+6. **输出阶段**：给出包含时间表和实施步骤的可执行建议。
 
-1. **Input Phase**: User provides business questions or consultation requests through the ADK web interface
-2. **Research Phase**: The agent conducts real-time web research using Perplexity AI to gather current market data
-3. **Analysis Phase**: The agent uses market analysis tools to process the query and generate insights
-4. **Strategy Phase**: Strategic recommendations are generated based on the analysis and web research
-5. **Synthesis Phase**: The agent combines findings into a comprehensive consultation report with citations
-6. **Output Phase**: Actionable recommendations with timelines and implementation steps are presented
-
-## Requirements
+## 环境要求
 
 - Python 3.8+
-- Google API key (for Gemini model)
-- Perplexity API key (for real-time web search)
-- Required Python packages (see `requirements.txt`)
+- Google API Key（用于 Gemini 模型）
+- Perplexity API Key（用于实时 Web 搜索）
+- 所需 Python 依赖，详见 `requirements.txt`
 
-## Installation
+## 安装
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd advanced_ai_agents/single_agent_apps
-   ```
+1. 克隆仓库：
 
-2. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd advanced_ai_agents/single_agent_apps
+```
 
-## Usage
+2. 安装依赖：
 
-1. Set your API keys:
-   ```bash
-   export GOOGLE_API_KEY=your-google-api-key
-   export PERPLEXITY_API_KEY=your-perplexity-api-key
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-2. Start the Google ADK web interface:
-   ```bash
-   adk web 
-   ```
+## 使用方式
 
-3. Open your browser and navigate to `http://localhost:8000`
+1. 设置 API Keys：
 
-4. Select "AI Business Consultant" from the available agents
+```bash
+export GOOGLE_API_KEY=your-google-api-key
+export PERPLEXITY_API_KEY=your-perplexity-api-key
+```
 
-5. Enter your business questions or consultation requests
+2. 启动 Google ADK Web 界面：
 
-6. Review the comprehensive analysis and strategic recommendations with real-time web data and citations
+```bash
+adk web
+```
 
-7. Use the Eval tab to save and evaluate consultation sessions
+3. 在浏览器中打开 `http://localhost:8000`。
 
-## Example Consultation Topics
+4. 从可用 Agent 列表中选择 `AI Business Consultant`。
 
-- "I want to launch a SaaS startup for small businesses"
-- "Should I expand my retail business to e-commerce?"
-- "What are the market opportunities in healthcare technology?"
-- "How should I position my new fintech product?"
-- "What are the risks of entering the renewable energy market?"
+5. 输入你的商业问题或咨询请求。
 
-## Technical Details
+6. 查看包含实时 Web 数据和来源引用的完整分析与战略建议。
 
-The application uses specialized analysis tools:
+7. 使用 Eval 标签页保存并评估咨询 Session。
 
-1. **Perplexity Search Tool**: Conducts real-time web research using Perplexity AI's "sonar" model to gather current market data, competitor information, and industry trends with citations.
+## 示例咨询主题
 
-2. **Market Analysis Tool**: Processes business queries and generates market insights, competitive analysis, and opportunity identification.
+- “我想为小型企业推出一个 SaaS 创业项目。”
+- “我是否应该把零售业务扩展到电商？”
+- “医疗科技领域目前有哪些市场机会？”
+- “我的新 FinTech 产品应该如何定位？”
+- “进入可再生能源市场有哪些风险？”
 
-3. **Strategic Recommendations Tool**: Creates actionable business strategies with priority levels, timelines, and implementation roadmaps.
+## 技术细节
 
-The agent is built on Google ADK's LlmAgent framework using the Gemini 2.5 Flash model, providing fast and accurate business consultation capabilities backed by real-time web research.
+应用使用以下专用分析工具：
 
-## Evaluation and Testing
+1. **Perplexity Search Tool**：使用 Perplexity AI 的 `sonar` 模型进行实时 Web 研究，获取最新市场数据、竞争对手信息和行业趋势，并返回来源引用。
 
-The agent includes built-in evaluation features:
+2. **Market Analysis Tool**：处理商业问题，生成市场洞察、竞争分析以及机会识别结果。
 
-- **Session Management**: Track consultation history and progress
-- **Test Case Creation**: Save successful consultations as evaluation cases
-- **Performance Metrics**: Monitor tool usage and response quality
-- **Custom Evaluation**: Configure metrics for specific business requirements 
+3. **Strategic Recommendations Tool**：生成带优先级、时间表和实施路线图的可执行商业策略。
+
+该 Agent 基于 Google ADK 的 `LlmAgent` 框架，使用 Gemini 2.5 Flash 模型，在实时 Web 研究支持下提供快速且高质量的商业咨询能力。
+
+## 评测与测试
+
+Agent 内置以下评测能力：
+
+- **Session 管理**：跟踪咨询历史和执行进度
+- **测试用例创建**：将效果良好的咨询 Session 保存为评测案例
+- **性能指标**：监控工具调用情况和响应质量
+- **自定义评测**：可针对特定业务需求配置评测指标
