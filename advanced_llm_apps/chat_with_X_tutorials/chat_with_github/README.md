@@ -1,49 +1,52 @@
-## 💬 Chat with GitHub Repo
+## 💬 与 GitHub 仓库对话
 
-LLM app with RAG to chat with GitHub Repo in just 30 lines of Python Code. The app uses Retrieval Augmented Generation (RAG) to provide accurate answers to questions based on the content of the specified GitHub repository.
+这是一个仅用约 30 行 Python 代码实现的 GitHub 仓库 RAG 对话应用。应用使用检索增强生成（RAG），根据指定 GitHub 仓库中的内容，为用户问题提供准确回答。
 
-### Features
+### 功能
 
-- Provide the name of GitHub Repository as input
-- Ask questions about the content of the GitHub repository
-- Get accurate answers using OpenAI's API and Embedchain
+- 输入 GitHub 仓库名称
+- 针对 GitHub 仓库内容提出问题
+- 使用 OpenAI API 和 Embedchain 获取基于仓库内容的回答
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_llm_apps/chat_with_X_tutorials/chat_with_github
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Get your GitHub Access Token
+- 注册 [OpenAI 账户](https://platform.openai.com/)（也可以使用你选择的其他 LLM 提供商），并获取 API Key。
 
-- Create a [personal access token](https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token) with the necessary permissions to access the desired GitHub repository.
+4. 获取 GitHub Access Token
 
-4. Run the Streamlit App
+- 创建一个具有访问目标 GitHub 仓库所需权限的 [Personal Access Token](https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token)。
+
+5. 运行 Streamlit 应用
+
 ```bash
 streamlit run chat_github.py
 ```
 
-### How it Works?
+### 工作原理
 
-- The app prompts the user to enter their OpenAI API key, which is used to authenticate requests to the OpenAI API.
+- 应用会提示用户输入 OpenAI API Key，用于对 OpenAI API 请求进行身份验证。
 
-- It initializes an instance of the Embedchain App class and a GithubLoader with the provided GitHub Access Token.
+- 使用提供的 GitHub Access Token 初始化 Embedchain App 实例和 `GithubLoader`。
 
-- The user is prompted to enter a GitHub repository URL, which is then added to the Embedchain app's knowledge base using the GithubLoader.
+- 用户输入 GitHub 仓库 URL，应用随后通过 `GithubLoader` 将该仓库内容加入 Embedchain 的知识库。
 
-- The user can ask questions about the GitHub repository using the text input.
+- 用户可以通过文本输入框针对 GitHub 仓库提出问题。
 
-- When a question is asked, the app uses the chat method of the Embedchain app to generate an answer based on the content of the GitHub repository.
+- 当用户提出问题时，应用调用 Embedchain App 的 `chat` 方法，根据 GitHub 仓库内容生成回答。
 
-- The app displays the generated answer to the user.
+- 最后，应用将生成的回答展示给用户。
