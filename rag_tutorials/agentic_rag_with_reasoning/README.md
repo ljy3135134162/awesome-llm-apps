@@ -1,109 +1,104 @@
-# 🧐 Agentic RAG with Reasoning
+# 🧐 带推理能力的 Agentic RAG
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-agentic-rag-app-with-reasoning) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-agentic-rag-app-with-reasoning)，通过详细的代码讲解、说明和最佳实践，从零开始构建该项目。**
 
-A sophisticated RAG system that demonstrates an AI agent's step-by-step reasoning process using Agno, Gemini and OpenAI. This implementation allows users to add web sources, ask questions, and observe the agent's thought process in real-time with reasoning capabilities.
+这是一个较完整的 RAG 系统示例，使用 Agno、Gemini 和 OpenAI 展示 AI Agent 的分步骤推理过程。用户可以添加 Web 数据源、提出问题，并实时观察 Agent 的推理过程。
 
+## 功能
 
-## Features
+1. 交互式知识库管理
+- 动态添加 URL 作为 Web 内容来源
+- 默认知识源：MCP vs A2A Protocol 文章
+- 使用 LanceDB 进行持久化向量数据库存储
+- 使用 Session State 跟踪已加载 URL，避免重复导入
 
-1. Interactive Knowledge Base Management
-- Add URLs dynamically for web content
-- Default knowledge source: MCP vs A2A Protocol article
-- Persistent vector database storage using LanceDB
-- Session state tracking prevents duplicate URL loading
+2. 透明的推理过程
+- 实时显示 Agent 的思考步骤
+- 并排展示推理过程和最终答案
+- 清晰呈现整个 RAG 流程
 
+3. 高级 RAG 能力
+- 使用 OpenAI Embedding 进行向量搜索和语义匹配
+- 提供来源归因和引用
 
-2. Transparent Reasoning Process
-- Real-time display of the agent's thinking steps
-- Side-by-side view of reasoning and final answer
-- Clear visibility into the RAG process
+## Agent 配置
 
+- 使用 Gemini 2.5 Flash 进行语言处理
+- 使用 OpenAI Embedding 模型执行向量搜索
+- 使用 ReasoningTools 进行分步骤分析
+- 支持自定义 Agent 指令
+- 默认知识源：MCP vs A2A Protocol 文章
 
-3. Advanced RAG Capabilities
-- Vector search using OpenAI embeddings for semantic matching
-- Source attribution with citations
+## 环境要求
 
-
-## Agent Configuration
-
-- Gemini 2.5 Flash for language processing
-- OpenAI embedding model for vector search
-- ReasoningTools for step-by-step analysis
-- Customizable agent instructions
-- Default knowledge source: MCP vs A2A Protocol article
-
-## Prerequisites
-
-You'll need the following API keys:
+你需要以下 API Key：
 
 1. Google API Key
 
-- Sign up at [aistudio.google.com](https://aistudio.google.com/apikey)
-- Navigate to API Keys section
-- Create a new API key
+- 在 [aistudio.google.com](https://aistudio.google.com/apikey) 注册
+- 进入 API Keys 页面
+- 创建新的 API Key
 
 2. OpenAI API Key
 
-- Sign up at [platform.openai.com](https://platform.openai.com/)
-- Navigate to API Keys section
-- Generate a new API key
+- 在 [platform.openai.com](https://platform.openai.com/) 注册
+- 进入 API Keys 页面
+- 创建新的 API Key
 
-## How to Run
+## 运行方法
 
-1. **Clone the Repository**:
+1. **克隆仓库：**
     ```bash
     git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
     cd rag_tutorials/agentic_rag_with_reasoning
     ```
 
-2. **Install the dependencies**:
+2. **安装依赖：**
     ```bash
     pip install -r requirements.txt
     ```
 
-3. **Run the Application:**
+3. **运行应用：**
     ```bash
     streamlit run rag_reasoning_agent.py
     ```
 
-4. **Configure API Keys:**
+4. **配置 API Key：**
 
-- Enter your Google API key in the first field
-- Enter your OpenAI API key in the second field
-- Both keys are required for the app to function
+- 在第一个输入框中填写 Google API Key
+- 在第二个输入框中填写 OpenAI API Key
+- 应用正常运行需要同时配置两个 Key
 
+5. **使用应用：**
 
-5. **Use the Application:**
+- 默认知识源：应用预先加载 MCP vs A2A Protocol 文章
+- 添加知识源：使用侧边栏向知识库添加 URL
+- 推荐提示词：点击提示按钮（What is MCP?、MCP vs A2A、Agent Communication）快速提问
+- 提出问题：在主输入框中输入查询
+- 查看推理：在左侧面板实时查看 Agent 的推理过程
+- 获取答案：在右侧面板查看带来源引用的完整响应
 
-- Default Knowledge Source: The app comes pre-loaded with the MCP vs A2A Protocol article
-- Add Knowledge Sources: Use the sidebar to add URLs to your knowledge base
-- Suggested Prompts: Click the prompt buttons (What is MCP?, MCP vs A2A, Agent Communication) for quick questions
-- Ask Questions: Enter queries in the main input field
-- View Reasoning: Watch the agent's thought process unfold in real-time in the left panel
-- Get Answers: Receive comprehensive responses with source citations in the right panel
+## 工作原理
 
-## How It Works
+应用基于 Agno v2.0 构建了一套 RAG Pipeline：
 
-The application uses a sophisticated RAG pipeline with Agno v2.0:
+### 知识库设置
+- 使用 Agno 的 Knowledge 类从 URL 加载文档
+- 文本会自动切分，并使用 OpenAI Embedding 模型生成向量
+- 向量存储在 LanceDB 中，以便高效检索
+- 通过向量搜索实现相关信息的语义匹配
+- 使用 Session State 跟踪 URL，避免重复加载
 
-### Knowledge Base Setup
-- Documents are loaded from URLs using Agno's Knowledge class
-- Text is automatically chunked and embedded using OpenAI's embedding model 
-- Vectors are stored in LanceDB for efficient retrieval
-- Vector search enables semantic matching for relevant information
-- URLs are tracked in session state to prevent duplicate loading
+### Agent 处理流程
+- 用户查询会触发 Agent 的推理过程
+- ReasoningTools 帮助 Agent 进行分步骤思考
+- Agent 从知识库中搜索相关信息
+- Gemini 2.5 Flash 生成带引用的完整答案
+- 流式事件实时更新推理过程和生成内容
 
-### Agent Processing
-- User queries trigger the agent's reasoning process
-- ReasoningTools help the agent think step-by-step
-- The agent searches the knowledge base for relevant information
-- Gemini 2.5 Flash generates comprehensive answers with citations
-- Streaming events provide real-time updates on reasoning and content
-
-### UI Flow
-- Enter API keys → Knowledge base loads with default MCP vs A2A article → Use suggested prompts or ask custom questions
-- Reasoning process displayed in left panel, answer generation in right panel
-- Sources cited for transparency and verification
-- All events streamed in real-time for better user experience
+### UI 流程
+- 输入 API Key → 加载默认的 MCP vs A2A 文章 → 使用推荐提示词或输入自定义问题
+- 左侧面板显示推理过程，右侧面板显示答案生成结果
+- 通过来源引用提高透明度和可验证性
+- 所有事件实时流式展示，以改善交互体验
