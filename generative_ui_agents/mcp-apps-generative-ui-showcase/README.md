@@ -1,4 +1,4 @@
-# MCP Apps Generative UI Showcase
+# MCP Apps 生成式 UI 展示
 
 https://github.com/user-attachments/assets/48eeab8d-7845-4d06-83ef-d518a807da03
 
