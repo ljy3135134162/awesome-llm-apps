@@ -1,49 +1,50 @@
-# ♜ Agent White vs Agent Black: Chess Game
+# ♜ Agent White vs Agent Black：AI 国际象棋对战
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-a-multi-agent-chess-game) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-a-multi-agent-chess-game)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-An advanced Chess game system where two AI agents play chess against each other using Autogen in a streamlit app. It is built with robust move validation and game state management.
+这是一个高级 AI 国际象棋系统：两个 AI Agent 在 Streamlit 应用中基于 Autogen 相互对弈。系统包含可靠的走法验证和棋局状态管理机制。
 
-## Features
+## 功能特性
 
-### Multi-Agent Architecture
-- Player White: OpenAI-powered strategic decision maker
-- Player Black: OpenAI-powered tactical opponent
-- Board Proxy: Validation agent for move legality and game state
+### 多 Agent 架构
+- 白方玩家：由 OpenAI 驱动，负责战略决策
+- 黑方玩家：由 OpenAI 驱动，作为战术对手
+- Board Proxy：负责验证走法合法性和维护棋局状态
 
-### Safety & Validation
-- Robust move verification system
-- Illegal move prevention
-- Real-time board state monitoring
-- Secure game progression control
+### 安全与验证
+- 可靠的走法验证系统
+- 防止非法走子
+- 实时监控棋盘状态
+- 安全控制棋局推进流程
 
-### Strategic Gameplay
-- AI-powered position evaluation
-- Deep tactical analysis
-- Dynamic strategy adaptation
-- Complete chess ruleset implementation
+### 战略对弈
+- AI 驱动的局面评估
+- 深度战术分析
+- 动态调整策略
+- 完整实现国际象棋规则
 
+### 如何开始？
 
-### How to get Started?
-
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/autonomous_game_playing_agent_apps/ai_chess_agent
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Run the Streamlit App
+- 注册 [OpenAI](https://platform.openai.com/) 账号（或选择其他 LLM Provider）并获取 API Key。
+
+4. 运行 Streamlit 应用
+
 ```bash
 streamlit run ai_chess_agent.py
 ```
-
