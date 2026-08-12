@@ -1,4 +1,4 @@
-# 🧩 Agent Skills
+# 🧩 Agent 技能集
 
 **适用于 Claude Code、Codex、Cursor、OpenClaw、Hermes、Antigravity，以及任何兼容 [SKILL.md](https://agentskills.io) 的 Agent，可直接安装使用。**
 
