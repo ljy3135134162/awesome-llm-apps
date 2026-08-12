@@ -1,60 +1,60 @@
-# 🛡️ Tutorial 6: Guardrails & Validation
+# 🛡️ 教程 6：Guardrail 与验证
 
-Master AI safety and validation with the OpenAI Agents SDK! This tutorial teaches you how to implement input and output guardrails to create safe, reliable AI agents that validate requests and responses before and after agent execution.
+本教程介绍如何使用 OpenAI Agents SDK 实现输入和输出 Guardrail，构建更安全、更可靠的 AI Agent。Guardrail 可以在 Agent 执行前后检查请求和响应，并在不满足要求时自动阻断流程。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Input Guardrails**: Validate and filter user inputs before processing
-- **Output Guardrails**: Check and sanitize agent responses before delivery
-- **Guardrail Agents**: Specialized agents for validation and safety checks
-- **Tripwire System**: Automatic blocking when validation fails
-- **Exception Handling**: Proper error handling for guardrail violations
-- **Production Safety**: Real-world patterns for AI safety in production
+- **Input Guardrail**：在 Agent 处理前验证和过滤用户输入
+- **Output Guardrail**：在返回结果前检查和过滤 Agent 输出
+- **Guardrail Agent**：使用专门的 Agent 执行验证和安全检查
+- **Tripwire 机制**：验证失败时自动中止执行
+- **异常处理**：正确处理 Guardrail 触发异常
+- **生产安全模式**：在真实应用中构建安全验证层
 
-## 🧠 Core Concept: What are Guardrails?
+## 🧠 核心概念：什么是 Guardrail？
 
-Guardrails are **automated safety mechanisms** that validate inputs and outputs to ensure AI agents operate within acceptable boundaries. Think of guardrails as **safety checkpoints** that:
+Guardrail 是用于验证输入和输出的**自动化约束机制**。可以把它理解为 Agent 工作流中的安全检查点，用于：
 
-- Prevent processing of inappropriate or harmful content
-- Block responses that violate safety policies
-- Validate inputs against business rules and constraints
-- Ensure compliance with content policies
-- Provide automatic error handling and user feedback
+- 阻止不符合要求或有风险的输入
+- 阻止违反安全策略的输出
+- 根据业务规则验证请求
+- 执行内容、安全和合规检查
+- 在验证失败时自动终止流程
 
-## 🚀 Key Guardrails Concepts
+## 🚀 Guardrail 核心概念
 
-### **Input Guardrails**
-Validate user inputs before agent processing:
+### **Input Guardrail**
+在 Agent 正式处理请求前验证用户输入：
 
 ```python
 @input_guardrail
 async def content_filter(ctx, agent, input) -> GuardrailFunctionOutput:
-    # Check if input violates policies
     if is_inappropriate(input):
         return GuardrailFunctionOutput(
             tripwire_triggered=True,
             output_info="Content blocked for safety"
         )
+
     return GuardrailFunctionOutput(tripwire_triggered=False)
 ```
 
-### **Output Guardrails**
-Validate agent responses before delivery:
+### **Output Guardrail**
+在结果返回给用户之前验证 Agent 输出：
 
 ```python
 @output_guardrail
 async def response_filter(ctx, agent, output) -> GuardrailFunctionOutput:
-    # Check if response contains sensitive data
     if contains_sensitive_info(output):
         return GuardrailFunctionOutput(
             tripwire_triggered=True,
             output_info="Response blocked for safety"
         )
+
     return GuardrailFunctionOutput(tripwire_triggered=False)
 ```
 
-### **Guardrail Agents**
-Specialized agents for validation logic:
+### **Guardrail Agent**
+也可以创建专门用于验证的 Agent：
 
 ```python
 validation_agent = Agent(
@@ -64,154 +64,170 @@ validation_agent = Agent(
 )
 ```
 
-## 🧪 What This Demonstrates
+## 🧪 本教程演示内容
 
-### **1. Math Homework Detection**
-- Input guardrail that detects academic homework requests
-- Confidence-based blocking with threshold validation
-- Structured output validation with Pydantic models
+### **1. 数学作业检测**
+- 使用 Input Guardrail 检测学术作业类请求
+- 根据置信度阈值决定是否阻断
+- 使用 Pydantic 结构化输出进行验证
 
-### **2. Content Safety Validation**
-- Output guardrail for inappropriate content detection
-- Severity-based filtering (low, medium, high)
-- Automated response blocking for policy violations
+### **2. 内容安全验证**
+- 使用 Output Guardrail 检查不适当内容
+- 根据严重等级进行过滤
+- 当输出违反规则时自动阻断
 
-### **3. Exception Handling**
-- `InputGuardrailTripwireTriggered` exception handling
-- `OutputGuardrailTripwireTriggered` exception handling
-- Graceful error recovery and user feedback
+### **3. 异常处理**
+- 处理 `InputGuardrailTripwireTriggered`
+- 处理 `OutputGuardrailTripwireTriggered`
+- 提供更友好的错误恢复逻辑
 
-### **4. Guardrail Integration**
-- Seamless integration with existing agent workflows
-- Multiple guardrails on single agent
-- Custom validation logic with business rules
+### **4. Guardrail 集成**
+- 将 Guardrail 集成到现有 Agent 工作流
+- 为单个 Agent 配置多个 Guardrail
+- 使用自定义业务规则进行验证
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to implement input validation to filter requests
-- ✅ Creating output guardrails for response safety
-- ✅ Building specialized guardrail agents for validation
-- ✅ Handling guardrail exceptions gracefully
-- ✅ Production-ready safety patterns for AI applications
+完成本教程后，你将理解：
+- ✅ 如何实现输入验证和请求过滤
+- ✅ 如何创建 Output Guardrail 检查响应
+- ✅ 如何构建专用 Guardrail Agent
+- ✅ 如何处理 Guardrail 触发异常
+- ✅ 如何构建适用于生产环境的安全验证模式
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Install OpenAI Agents SDK**:
+1. **安装 OpenAI Agents SDK**：
    ```bash
    pip install openai-agents
    ```
 
-2. **Set up environment**:
+2. **配置环境**：
    ```bash
    cp env.example .env
-   # Edit .env and add your OpenAI API key
+   # 编辑 .env 并添加 OpenAI API Key
    ```
 
-3. **Run the guardrails example**:
+3. **运行 Guardrail 示例**：
    ```python
    import asyncio
    from agent import guardrails_example, test_input_guardrail
-   
-   # Test guardrails system
+
    asyncio.run(guardrails_example())
    asyncio.run(test_input_guardrail())
    ```
 
-## 🧪 Sample Use Cases
+## 🧪 示例场景
 
-### Input Guardrail Testing
-- "How do I reset my password?" ✅ (Should pass)
-- "Can you solve this equation: 2x + 5 = 15?" 🚫 (Should trigger homework detection)
-- "What are your product features?" ✅ (Should pass)
+### Input Guardrail 测试
+- `How do I reset my password?` ✅
+- `Can you solve this equation: 2x + 5 = 15?` 🚫
+- `What are your product features?` ✅
 
-### Output Guardrail Testing
-- Normal customer support responses ✅
-- Responses containing sensitive information 🚫
-- Policy-violating content 🚫
+### Output Guardrail 测试
+- 正常客户支持响应 ✅
+- 包含敏感信息的响应 🚫
+- 违反策略的内容 🚫
 
-### Exception Scenarios
-- Graceful handling of blocked requests
-- User-friendly error messages
-- Logging and monitoring of guardrail violations
+### 异常场景
+- 正确处理被阻断的请求
+- 返回用户可理解的错误信息
+- 记录 Guardrail 触发情况
 
-## 🔧 Key Guardrail Patterns
+## 🔧 常见 Guardrail 模式
 
-### 1. **Input Validation Pattern**
+### 1. **输入验证模式**
 ```python
 @input_guardrail
 async def validate_input(ctx, agent, input) -> GuardrailFunctionOutput:
     validation_result = await validate_with_ai(input)
+
     return GuardrailFunctionOutput(
         tripwire_triggered=validation_result.is_violation,
         output_info=validation_result.details
     )
 ```
 
-### 2. **Output Safety Pattern**
+### 2. **输出安全检查模式**
 ```python
 @output_guardrail
 async def safety_check(ctx, agent, output) -> GuardrailFunctionOutput:
     safety_result = await check_safety(output.response)
+
     return GuardrailFunctionOutput(
         tripwire_triggered=safety_result.is_unsafe,
         output_info=safety_result.reason
     )
 ```
 
-### 3. **Exception Handling Pattern**
+### 3. **异常处理模式**
 ```python
 try:
     result = await Runner.run(protected_agent, user_input)
     return result.final_output
-except InputGuardrailTripwireTriggered as e:
+except InputGuardrailTripwireTriggered:
     return "Request blocked by safety filters"
-except OutputGuardrailTripwireTriggered as e:
+except OutputGuardrailTripwireTriggered:
     return "Response blocked for safety reasons"
 ```
 
-### 4. **Confidence-Based Blocking**
+### 4. **基于置信度的阻断**
 ```python
 return GuardrailFunctionOutput(
     tripwire_triggered=violation_detected and confidence > 0.7,
-    output_info={"confidence": confidence, "reason": reason}
+    output_info={
+        "confidence": confidence,
+        "reason": reason
+    }
 )
 ```
 
-## 💡 Guardrails Best Practices
+## 💡 Guardrail 最佳实践
 
-1. **Layered Defense**: Use both input and output guardrails for comprehensive protection
-2. **Confidence Thresholds**: Implement confidence-based blocking to reduce false positives
-3. **Clear Messaging**: Provide helpful error messages that guide users to appropriate requests
-4. **Performance Optimization**: Cache validation results and use efficient validation models
-5. **Monitoring & Logging**: Track guardrail violations for system improvement
+- **分层防护**：同时使用输入和输出 Guardrail
+- **合理设置阈值**：避免过多误拦截或漏拦截
+- **清晰错误信息**：向用户说明请求为何无法继续
+- **性能优化**：避免使用过于昂贵的验证流程
+- **监控与日志**：记录 Guardrail 触发情况用于后续分析
 
-## 🔧 Advanced Patterns
+## 🔧 高级模式
 
-### **Multi-Level Validation**
+### **多级验证**
 ```python
 agent = Agent(
     name="Protected Agent",
-    input_guardrails=[content_filter, spam_detector, policy_checker],
-    output_guardrails=[safety_validator, privacy_filter]
+    input_guardrails=[
+        content_filter,
+        spam_detector,
+        policy_checker
+    ],
+    output_guardrails=[
+        safety_validator,
+        privacy_filter
+    ]
 )
 ```
 
-### **Context-Aware Guardrails**
+### **上下文感知 Guardrail**
 ```python
 @input_guardrail
-async def user_context_validator(ctx: RunContextWrapper[UserInfo], agent, input):
+async def user_context_validator(
+    ctx: RunContextWrapper[UserInfo],
+    agent,
+    input
+):
     user = ctx.context
-    # Validate based on user permissions or context
+
     if user.permission_level < required_level:
-        return GuardrailFunctionOutput(tripwire_triggered=True)
+        return GuardrailFunctionOutput(
+            tripwire_triggered=True
+        )
 ```
 
-### **Business Rule Validation**
+### **业务规则验证**
 ```python
 @input_guardrail
 async def business_rules(ctx, agent, input) -> GuardrailFunctionOutput:
-    # Validate against business constraints
     if violates_business_rules(input):
         return GuardrailFunctionOutput(
             tripwire_triggered=True,
@@ -219,41 +235,41 @@ async def business_rules(ctx, agent, input) -> GuardrailFunctionOutput:
         )
 ```
 
-## 🚨 Common Pitfalls
+## 🚨 常见问题
 
-- **Over-Blocking**: Setting thresholds too low can block legitimate requests
-- **Under-Blocking**: Setting thresholds too high may allow harmful content
-- **Performance Impact**: Heavy validation can slow response times
-- **False Positives**: Poorly trained validation models may block valid requests
+- **过度阻断**：阈值过低可能导致正常请求被拒绝
+- **阻断不足**：阈值过高可能遗漏不符合要求的内容
+- **性能影响**：复杂验证可能显著增加延迟
+- **误判问题**：验证模型或规则设计不佳会导致错误判断
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Test Thoroughly**: Create comprehensive test suites for guardrail validation
-- **Monitor Metrics**: Track false positive and false negative rates
-- **Iterative Improvement**: Continuously refine validation logic based on real usage
-- **User Feedback**: Implement appeals process for blocked requests
-- **Gradual Rollout**: Deploy new guardrails gradually with monitoring
+- 为 Guardrail 建立完整测试集
+- 监控误判率和漏判率
+- 根据真实使用数据持续调整规则
+- 对新增 Guardrail 分阶段上线并观察效果
+- 对重要业务场景保留明确的审计记录
 
-## 🔗 Production Considerations
+## 🔗 生产环境考虑
 
-### **Scalability**
-- Use efficient validation models
-- Implement caching for repeated validations
-- Consider async validation for better performance
+### **可扩展性**
+- 使用高效的验证模型
+- 对重复验证结果进行缓存
+- 使用异步验证降低阻塞影响
 
-### **Monitoring**
-- Log all guardrail decisions for analysis
-- Track violation patterns and trends
-- Monitor system performance impact
+### **监控**
+- 记录所有 Guardrail 决策
+- 分析违规类型和趋势
+- 持续监控验证流程的性能成本
 
-### **Compliance**
-- Align guardrails with regulatory requirements
-- Implement audit trails for compliance reporting
-- Regular review and updates of validation rules
+### **合规**
+- 根据法规和组织要求设置 Guardrail
+- 对关键验证决策建立审计日志
+- 定期复查并更新规则
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After mastering guardrails, you'll be ready for:
-- **[Tutorial 7: Sessions](../7_sessions/README.md)** - Combining safety with conversation memory
-- **[Tutorial 8: Production Patterns](../8_handoffs_delegation/README.md)** - Scaling guardrails in production
-- **[Tutorial 9: Advanced Security](../9_multi_agent_orchestration/README.md)** - Enterprise-grade AI safety patterns
+完成本教程后，可以继续：
+- **[教程 7：Sessions](../7_sessions/README.md)** —— 将安全机制与对话记忆结合
+- **[教程 8：Handoff 与委派](../8_handoffs_delegation/README.md)** —— 在多 Agent 工作流中使用验证机制
+- **[教程 9：多 Agent 编排](../9_multi_agent_orchestration/README.md)** —— 在复杂 Agent 系统中应用安全控制
