@@ -1,4 +1,4 @@
-# Generative UI Starter Project
+# 生成式 UI 入门项目
 
 这是一个由聊天驱动的看板应用，你和 Agent 可以共同操作同一份任务列表。项目基于 [CopilotKit](https://github.com/CopilotKit/CopilotKit)、[AG-UI](https://github.com/ag-ui-protocol/ag-ui) 和 [LangGraph](https://www.langchain.com/langgraph)，并构建在 Next.js 之上。同时，它也可以作为基于 [A2UI](https://a2ui.org/specification/) 的声明式生成式 UI Starter，其中包含一个航班搜索示例。
 
