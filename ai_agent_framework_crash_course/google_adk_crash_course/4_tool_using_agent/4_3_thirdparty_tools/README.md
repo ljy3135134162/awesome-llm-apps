@@ -1,161 +1,161 @@
-# 🔗 Third-party Tools
+# 🔗 第三方工具
 
-Third-party tools allow you to integrate **existing tool ecosystems** from frameworks like LangChain, CrewAI, and others. This dramatically expands your agent's capabilities by leveraging battle-tested tools from the broader AI community.
+第三方工具可以让你集成 LangChain、CrewAI 等框架中已经成熟的**现有工具生态**。通过复用 AI 社区中经过大量实践验证的工具，可以显著扩展 Agent 的能力。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **LangChain Integration**: Using LangChain's extensive tool library
-- **CrewAI Tools**: Leveraging CrewAI's specialized agent tools
-- **Tool Adapters**: How ADK wraps external tools
-- **Ecosystem Benefits**: Advantages of using established tool libraries
-- **Best Practices**: When and how to use third-party tools
+- **LangChain 集成**：使用 LangChain 丰富的工具库
+- **CrewAI 工具**：复用 CrewAI 的专用 Agent 工具
+- **工具适配器**：了解 ADK 如何封装外部工具
+- **生态优势**：理解成熟工具库带来的价值
+- **最佳实践**：了解何时以及如何使用第三方工具
 
-## 🧠 Core Concept: Third-party Tools
+## 🧠 核心概念：第三方工具
 
-Third-party tools are **external libraries wrapped for ADK**:
-- **LangChain Tools**: Web scraping, document loaders, APIs
-- **CrewAI Tools**: Web scraping, file operations, specialized functions
-- **Custom Integrations**: Any external service or library
-- **Wrapper Classes**: ADK provides adapters for seamless integration
+第三方工具本质上是**经过 ADK 适配封装的外部库能力**：
+- **LangChain Tools**：网页抓取、文档加载、API 调用等
+- **CrewAI Tools**：网页抓取、文件操作以及各种专用功能
+- **自定义集成**：任意外部服务或第三方库
+- **Wrapper 类**：ADK 提供适配器，实现较平滑的集成
 
-### Key Advantages
-- ✅ **Rich Ecosystem**: Access to hundreds of pre-built tools
-- ✅ **Battle-tested**: Proven tools used by thousands of developers
-- ✅ **Community Support**: Active communities and documentation
-- ✅ **Rapid Development**: Don't reinvent the wheel
+### 主要优势
+- ✅ **丰富生态**：可直接使用数百种现成工具
+- ✅ **经过实战验证**：许多工具已经被大量开发者使用
+- ✅ **社区支持**：拥有活跃社区和完善文档
+- ✅ **开发速度快**：无需重复造轮子
 
-## 🔧 Available Third-party Integrations
+## 🔧 可用的第三方集成
 
 ### 1. **LangChain Tools**
-- **Purpose**: Comprehensive tool ecosystem
-- **Examples**: Web scraping, file operations, APIs
-- **Benefits**: Mature, well-documented tools
+- **用途**：完整的通用工具生态
+- **示例**：网页抓取、文件操作、API 调用
+- **优势**：成熟且文档完善
 
 ### 2. **CrewAI Tools**
-- **Purpose**: Specialized agent tools
-- **Examples**: Web scraping, file operations, content processing
-- **Benefits**: Optimized for agent workflows
+- **用途**：面向 Agent 工作流的专用工具
+- **示例**：网页抓取、文件操作、内容处理
+- **优势**：针对 Agent 使用方式进行了优化
 
-### 3. **Custom Integrations**
-- **Purpose**: Any external service or library
-- **Examples**: Database connectors, API clients
-- **Benefits**: Unlimited extensibility
+### 3. **自定义集成**
+- **用途**：连接任意外部服务或库
+- **示例**：数据库连接器、API 客户端
+- **优势**：几乎不受扩展能力限制
 
-## 🚀 Tutorial Examples
+## 🚀 教程示例
 
-This sub-example includes two practical implementations:
+本节包含两个实际实现：
 
 ### 📍 **LangChain Agent**
-**Location**: `./langchain_agent/`
-- **Web Search**: DuckDuckGo search integration for real-time information
-- **Wikipedia Integration**: Access to encyclopedic knowledge and articles
-- **Research Capabilities**: Comprehensive research combining multiple sources
-- **Content Analysis**: Information synthesis and source citation
+**位置**：`./langchain_agent/`
+- **Web 搜索**：集成 DuckDuckGo，获取实时信息
+- **Wikipedia 集成**：访问百科知识和文章
+- **研究能力**：组合多个来源完成较完整的研究任务
+- **内容分析**：整合信息并给出来源引用
 
 ### 📍 **CrewAI Agent**
-**Location**: `./crewai_agent/`
-- **Website Operations**: Website content search and scraping capabilities
-- **File System Tools**: Directory search and file reading operations
-- **Content Extraction**: Advanced web scraping and data extraction
-- **Document Processing**: Local file analysis and content processing
+**位置**：`./crewai_agent/`
+- **网站操作**：搜索网页内容并执行抓取
+- **文件系统工具**：目录搜索和文件读取
+- **内容提取**：高级网页抓取与数据提取
+- **文档处理**：分析本地文件并处理内容
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 4_3_thirdparty_tools/
-├── README.md                    # This file - third-party tools guide
-├── requirements.txt             # Dependencies for third-party tools
-├── ../env.example              # Environment variables template (shared)
-├── langchain_agent/            # LangChain integration
+├── README.md                    # 本文件：第三方工具指南
+├── requirements.txt             # 第三方工具依赖
+├── ../env.example               # 共享环境变量模板
+├── langchain_agent/             # LangChain 集成
 │   ├── __init__.py
-│   └── agent.py               # Agent with LangChain tools
-└── crewai_agent/               # CrewAI integration
+│   └── agent.py                 # 使用 LangChain 工具的 Agent
+└── crewai_agent/                # CrewAI 集成
     ├── __init__.py
-    └── agent.py               # Agent with CrewAI tools
+    └── agent.py                 # 使用 CrewAI 工具的 Agent
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this sub-example, you'll understand:
-- ✅ How to integrate LangChain tools with ADK
-- ✅ How to use CrewAI tools in ADK agents
-- ✅ Best practices for third-party tool integration
-- ✅ When to choose third-party vs custom tools
-- ✅ How to handle tool compatibility issues
+完成本节后，你将理解：
+- ✅ 如何在 ADK 中集成 LangChain 工具
+- ✅ 如何在 ADK Agent 中使用 CrewAI 工具
+- ✅ 第三方工具集成的最佳实践
+- ✅ 何时选择第三方工具，何时自己实现
+- ✅ 如何处理工具兼容性问题
 
-## 🔗 Getting Started
+## 🔗 快速开始
 
-1. **Set up environment**:
+1. **配置环境**：
    ```bash
    cd 4_3_thirdparty_tools
-   
-   # Copy the environment template
+
+   # 复制环境变量模板
    cp ../env.example .env
-   
-   # Edit .env and add your Google AI API key
-   # Get your API key from: https://aistudio.google.com/
+
+   # 编辑 .env 并添加 Google AI API Key
+   # API Key 获取地址：https://aistudio.google.com/
    ```
 
-2. **Install Dependencies**: Install required packages
+2. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run the agents**:
+3. **运行 Agent**：
    ```bash
-   # Start the ADK web interface
+   # 启动 ADK Web 界面
    adk web
-   
-   # In the web interface, select:
-   # - langchain_agent: For web search and Wikipedia research
-   # - crewai_agent: For website scraping and file operations
+
+   # 在 Web 界面中选择：
+   # - langchain_agent：Web 搜索与 Wikipedia 研究
+   # - crewai_agent：网页抓取与文件操作
    ```
 
-4. **Try the agents**:
-   - **LangChain Agent**: "Search for latest AI news", "Tell me about machine learning"
-   - **CrewAI Agent**: "Scrape content from example.com", "Search for Python files in current directory"
+4. **尝试 Agent**：
+   - **LangChain Agent**：`Search for latest AI news`、`Tell me about machine learning`
+   - **CrewAI Agent**：`Scrape content from example.com`、`Search for Python files in current directory`
 
-5. **Compare Approaches**: See the differences and benefits of each tool ecosystem
+5. **比较不同方案**：观察两个工具生态在功能和使用方式上的差异。
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Choose Established Tools**: Use well-maintained libraries
-- **Read Documentation**: Understand tool limitations and requirements
-- **Handle Dependencies**: Manage external library versions carefully
-- **Test Integration**: Verify tool compatibility with ADK
-- **Monitor Performance**: Some tools may be slower than custom implementations
+- **优先选择成熟工具**：尽量使用维护良好的库
+- **阅读文档**：了解工具限制和运行要求
+- **管理依赖**：谨慎控制外部库版本
+- **验证兼容性**：确保工具与 ADK 当前版本兼容
+- **关注性能**：部分第三方工具可能比自定义实现更慢
 
-## 🔧 Integration Patterns
+## 🔧 集成模式
 
-### 1. **LangChain Tool Wrapper**
+### 1. **LangChain 工具 Wrapper**
 ```python
 from google.adk.tools.langchain_tool import LangchainTool
 from langchain_community.tools import DuckDuckGoSearchRun
 
-# Wrap LangChain tool for ADK
+# 将 LangChain 工具封装给 ADK 使用
 search_tool = LangchainTool(DuckDuckGoSearchRun())
 ```
 
-### 2. **CrewAI Tool Wrapper**
+### 2. **CrewAI 工具 Wrapper**
 ```python
 from google.adk.tools.crewai_tool import CrewaiTool
 from crewai_tools import ScrapeWebsiteTool, DirectorySearchTool, FileReadTool
 
-# Basic tool - minimal configuration
+# 基础工具：最小配置
 scrape_tool = CrewaiTool(
     name="scrape_website",
     description="Scrape and extract content from websites",
     tool=ScrapeWebsiteTool(
         config=dict(
             llm=dict(
-                provider="google",  # Use Google instead of default OpenAI
+                provider="google",  # 使用 Google，而不是默认 OpenAI
                 config=dict(model="gemini-3-flash-preview"),
             ),
         )
     )
 )
 
-# Search tool - needs embeddings for semantic search
+# 搜索工具：语义检索需要 Embedding
 search_tool = CrewaiTool(
     name="website_search",
     description="Search for content within websites",
@@ -177,7 +177,7 @@ search_tool = CrewaiTool(
 )
 ```
 
-### 3. **Custom Integration Pattern**
+### 3. **自定义集成模式**
 ```python
 from google.adk.tools import FunctionTool
 import external_library
@@ -187,46 +187,46 @@ def custom_integration(query: str) -> dict:
     result = external_library.process(query)
     return {"result": result, "status": "success"}
 
-# Use as function tool
+# 作为函数工具使用
 tool = FunctionTool(custom_integration)
 ```
 
-## 🔧 Common Third-party Tools
+## 🔧 常见第三方工具
 
 ### LangChain Tools
-- **DuckDuckGoSearchRun**: Web search
-- **WebBaseLoader**: Web scraping
-- **WikipediaQueryRun**: Wikipedia search
-- **PythonREPLTool**: Python code execution
-- **ShellTool**: Shell command execution
+- **DuckDuckGoSearchRun**：Web 搜索
+- **WebBaseLoader**：网页抓取
+- **WikipediaQueryRun**：Wikipedia 搜索
+- **PythonREPLTool**：Python 代码执行
+- **ShellTool**：Shell 命令执行
 
 ### CrewAI Tools
-- **ScrapeWebsiteTool**: Web scraping and content extraction
-- **DirectorySearchTool**: File system search and exploration
-- **FileReadTool**: File reading and content analysis
+- **ScrapeWebsiteTool**：网页抓取和内容提取
+- **DirectorySearchTool**：文件系统搜索和浏览
+- **FileReadTool**：文件读取和内容分析
 
-### Custom Integrations
-- **Database connectors**: SQLAlchemy, MongoDB
-- **API clients**: REST, GraphQL
-- **File processors**: PDF, Excel, CSV
-- **Cloud services**: AWS, GCP, Azure
+### 自定义集成
+- **数据库连接器**：SQLAlchemy、MongoDB
+- **API 客户端**：REST、GraphQL
+- **文件处理器**：PDF、Excel、CSV
+- **云服务**：AWS、GCP、Azure
 
-## 🚨 Important Considerations
+## 🚨 重要注意事项
 
-- **Dependencies**: Third-party tools add external dependencies
-- **Compatibility**: Ensure tool versions work with ADK
-- **Performance**: Some tools may be slower than custom implementations
-- **Maintenance**: External tools may change or become deprecated
-- **Security**: Validate external tool safety and permissions
+- **依赖**：第三方工具会引入额外外部依赖
+- **兼容性**：确保工具版本与 ADK 兼容
+- **性能**：某些工具可能比专门的自定义实现更慢
+- **维护风险**：外部工具可能发生重大变更或被弃用
+- **安全性**：需要检查外部工具的权限需求和安全边界
 
-### 🔧 **CrewAI Model Configuration**
-⚠️ **Important**: CrewAI tools use OpenAI models by default. When using Google ADK, configure them to use Google models for consistency:
+### 🔧 **CrewAI 模型配置**
+⚠️ **重要**：CrewAI 工具默认使用 OpenAI 模型。配合 Google ADK 时，建议显式改为 Google 模型，以保证模型栈一致：
 
 ```python
-# ❌ Default - Uses OpenAI models
+# ❌ 默认配置：使用 OpenAI 模型
 tool = WebsiteSearchTool()
 
-# ✅ Correct configuration - All tools need both LLM and embeddings
+# ✅ 正确配置：工具同时配置 LLM 和 Embedding
 tool = ScrapeWebsiteTool(
     config=dict(
         llm=dict(
@@ -243,7 +243,7 @@ tool = ScrapeWebsiteTool(
     )
 )
 
-# ✅ Same configuration pattern for all tools
+# ✅ 其他工具也遵循同样的配置方式
 tool = DirectorySearchTool(
     config=dict(
         llm=dict(
@@ -261,44 +261,44 @@ tool = DirectorySearchTool(
 )
 ```
 
-**Key Points:**
-- **LLM Config**: Always set `provider="google"` to avoid OpenAI defaults
-- **Embeddings**: Required for all CrewAI tools to prevent OpenAI fallback
-- **Available providers**: `google`, `openai`, `anthropic`, `ollama`, `llama2`, etc.
+**关键点：**
+- **LLM 配置**：始终设置 `provider="google"`，避免回退到默认 OpenAI
+- **Embedding**：CrewAI 工具需要显式配置 Embedding，避免使用 OpenAI 默认值
+- **可用 Provider**：`google`、`openai`、`anthropic`、`ollama`、`llama2` 等
 
-## 🔧 Common Use Cases
+## 🔧 常见应用场景
 
-### Web and Research
-- Web scraping and content extraction
-- Website content analysis
-- Document processing
-- Content research and analysis
+### Web 与研究
+- 网页抓取和内容提取
+- 网站内容分析
+- 文档处理
+- 内容研究和综合分析
 
-### File Operations
-- File system search and exploration
-- File reading and content analysis
-- Directory navigation
-- Local file processing
+### 文件操作
+- 文件系统搜索和浏览
+- 文件读取和内容分析
+- 目录导航
+- 本地文件处理
 
-### Development Tools
-- Code execution
-- Documentation search
-- Version control operations
-- Testing utilities
+### 开发工具
+- 代码执行
+- 文档搜索
+- 版本控制操作
+- 测试辅助工具
 
-### Cloud and Services
-- Cloud storage operations
-- Email and messaging
-- Authentication services
-- Monitoring and logging
+### 云与外部服务
+- 云存储操作
+- 邮件和消息服务
+- 身份认证服务
+- 监控与日志
 
-## 📊 Comparison: Third-party vs Custom vs Built-in
+## 📊 对比：第三方工具 vs 自定义工具 vs 内置工具
 
-| Aspect | Third-party | Custom | Built-in |
-|--------|-------------|--------|----------|
-| **Development Time** | Fast | Slow | Instant |
-| **Flexibility** | Medium | High | Low |
-| **Performance** | Variable | High | Highest |
-| **Maintenance** | External | Internal | None |
-| **Features** | Rich | Tailored | Basic |
-| **Dependencies** | Many | Few | None |
+| 维度 | 第三方工具 | 自定义工具 | 内置工具 |
+|---|---|---|---|
+| **开发时间** | 快 | 慢 | 几乎无需开发 |
+| **灵活性** | 中等 | 高 | 低 |
+| **性能** | 不固定 | 高 | 通常最高 |
+| **维护责任** | 外部社区 | 自己维护 | 基本无需维护 |
+| **功能丰富度** | 高 | 按需定制 | 基础 |
+| **额外依赖** | 多 | 少 | 无 |
