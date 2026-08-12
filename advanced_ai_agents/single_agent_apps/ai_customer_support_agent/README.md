@@ -1,33 +1,35 @@
-## 🛒 AI Customer Support Agent with Memory
+## 🛒 带记忆能力的 AI 客户支持 Agent
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-customer-support-agent-with-memory) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-ai-customer-support-agent-with-memory)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-This Streamlit app implements an AI-powered customer support agent for synthetic data generated using GPT-4o. The agent uses OpenAI's GPT-4o model and maintains a memory of past interactions using the Mem0 library with Qdrant as the vector store.
+这是一个基于 Streamlit 的 AI 客户支持应用，使用 GPT-4o 生成的合成数据进行演示。Agent 采用 OpenAI GPT-4o 模型，并通过 Mem0 保存历史交互记忆，同时使用 Qdrant 作为向量数据库。
 
-### Features
+### 功能特性
 
-- Chat interface for interacting with the AI customer support agent
-- Persistent memory of customer interactions and profiles
-- Synthetic data generation for testing and demonstration
-- Utilizes OpenAI's GPT-4o model for intelligent responses
+- 提供用于与 AI 客服 Agent 交互的聊天界面
+- 持久化保存客户历史交互与用户画像
+- 支持生成合成数据，用于测试与演示
+- 使用 OpenAI GPT-4o 生成智能回答
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库：
+
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/single_agent_apps/ai_customer_support_agent
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Ensure Qdrant is running:
-The app expects Qdrant to be running on localhost:6333. Adjust the configuration in the code if your setup is different.
+3. 确保 Qdrant 正在运行：
+
+默认情况下，应用会连接运行在 `localhost:6333` 的 Qdrant。如果你的部署方式不同，请相应修改代码中的配置。
 
 ```bash
 docker pull qdrant/qdrant
@@ -37,7 +39,8 @@ docker run -p 6333:6333 -p 6334:6334 \
     qdrant/qdrant
 ```
 
-4. Run the Streamlit App
+4. 运行 Streamlit 应用：
+
 ```bash
 streamlit run customer_support_agent.py
 ```
