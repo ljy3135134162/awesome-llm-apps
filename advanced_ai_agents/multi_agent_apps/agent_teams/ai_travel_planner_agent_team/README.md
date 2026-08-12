@@ -1,39 +1,39 @@
 # ✈️ TripCraft AI
 
-**Your journey, perfectly crafted with intelligence.**
+**用智能，为你的旅程精心打造每一个细节。**
 
-Travel planning is overwhelming—juggling dozens of tabs, comparing conflicting info, spending hours just to get started. TripCraft AI makes that disappear. It's a multi-agent AI system that turns simple inputs into complete travel itineraries. Describe your ideal trip, and it handles flights, hotels, activities, and budget automatically.
+旅行规划往往让人不知所措——需要同时打开大量网页、比较互相冲突的信息，还可能花上数小时才能开始制定计划。TripCraft AI 可以把这些繁琐过程全部交给 AI。它是一套多智能体 AI 系统，只需输入简单的旅行需求，就能自动生成完整行程。描述你的理想旅程，它会自动处理航班、酒店、活动安排和预算规划。
 
-## 🎯 Goal
+## 🎯 目标
 
-Make travel planning effortless and personal. No stress, no endless research—just a plan that feels crafted specifically for you.
-
----
-
-## ⚙️ How It Works
-
-1. **🎯 Input Your Vision** - Fill out a form with destination, dates, budget, travel style, and preferences
-2. **🤖 AI Agents Collaborate** - Specialized agents handle flights, hotels, activities, and budgeting in parallel
-3. **🗺️ Get Your Itinerary** - Receive a complete day-by-day plan with bookings, costs, and recommendations
-
-### Key Features
-- **Personalized Planning** - Tailored to your travel style and interests
-- **Hidden Gems Discovery** - Beyond typical tourist spots using advanced search
-- **Smart Optimization** - Balances cost, time, and experience
-- **Complete Packages** - Everything from flights to dining recommendations
+让旅行规划变得轻松且个性化。不再焦虑，也无需无休止地搜索资料——直接获得一份像是专门为你量身打造的旅行计划。
 
 ---
 
-## 🛠️ Tech Stack
+## ⚙️ 工作原理
 
-**Frontend:** Next.js, React, TypeScript
-**Backend:** Python, FastAPI, PostgreSQL
-**AI:** Agno (agent coordination), Gemini (LLM), Exa (search), Firecrawl (web scraping)
-**APIs:** Google Flights, Kayak
+1. **🎯 输入你的旅行设想** - 填写目的地、日期、预算、旅行风格和个人偏好
+2. **🤖 AI 智能体协同工作** - 专业智能体并行处理航班、酒店、活动和预算
+3. **🗺️ 获取完整行程** - 获得按天规划的完整旅行方案，其中包括预订信息、费用和推荐内容
+
+### 主要功能
+- **个性化规划** - 根据你的旅行风格和兴趣定制
+- **发现小众宝藏地点** - 借助高级搜索能力，发掘普通热门景点之外的选择
+- **智能优化** - 在成本、时间和旅行体验之间取得平衡
+- **完整旅行方案** - 从航班到餐饮推荐，一站式覆盖整个旅程
 
 ---
 
-## 📸 Visuals
+## 🛠️ 技术栈
+
+**前端：** Next.js、React、TypeScript  
+**后端：** Python、FastAPI、PostgreSQL  
+**AI：** Agno（智能体协调）、Gemini（LLM）、Exa（搜索）、Firecrawl（网页抓取）  
+**API：** Google Flights、Kayak
+
+---
+
+## 📸 界面预览
 
 ![Image](https://github.com/user-attachments/assets/5fae2938-6d2c-4fc7-86be-d22bb84729a6)
 ![Image](https://github.com/user-attachments/assets/1bd6e98f-ae32-47be-90a0-23ee6f06c613)
@@ -44,27 +44,27 @@ Make travel planning effortless and personal. No stress, no endless research—j
 
 ---
 
-## 👥 About
+## 👥 关于项目
 
-**Built by**: Amit Wani [@mtwn105](https://github.com/mtwn105)
+**开发者：** Amit Wani [@mtwn105](https://github.com/mtwn105)
 
-Full-stack developer and software engineer passionate about building intelligent systems that solve real-world problems. TripCraft AI represents the intersection of advanced AI capabilities and practical travel planning needs.
+全栈开发者和软件工程师，热衷于构建能够解决现实问题的智能系统。TripCraft AI 展示了先进 AI 能力与实际旅行规划需求之间的结合。
 
 ---
 
-## 🎬 Demo Video Link
+## 🎬 演示视频
 
 [https://youtu.be/eTll7EdQyY8](https://youtu.be/eTll7EdQyY8)
 
 ---
 
-## 🤖 AI Agents
+## 🤖 AI 智能体
 
-Six specialized agents work together to create comprehensive travel plans:
+六个专业智能体协同工作，共同生成完整的旅行计划：
 
-1. **🏛️ Destination Explorer** - Researches attractions, landmarks, and experiences
-2. **🏨 Hotel Search Agent** - Finds accommodations based on location, budget, and amenities
-3. **🍽️ Dining Agent** - Recommends restaurants and culinary experiences
-4. **💰 Budget Agent** - Handles cost optimization and financial planning
-5. **✈️ Flight Search Agent** - Plans air travel routes and comparisons
-6. **📅 Itinerary Specialist** - Creates detailed day-by-day schedules with optimal timing
+1. **🏛️ 目的地探索智能体** - 调研景点、地标和特色体验
+2. **🏨 酒店搜索智能体** - 根据地点、预算和设施条件寻找住宿
+3. **🍽️ 餐饮智能体** - 推荐餐厅和特色美食体验
+4. **💰 预算智能体** - 负责成本优化和财务规划
+5. **✈️ 航班搜索智能体** - 规划航空路线并进行航班对比
+6. **📅 行程规划专家智能体** - 创建详细的每日行程，并优化各项活动时间安排
