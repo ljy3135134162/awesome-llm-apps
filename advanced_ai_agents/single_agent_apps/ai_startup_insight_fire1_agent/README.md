@@ -1,4 +1,4 @@
-# 🔥 AI Startup Insight with Firecrawl FIRE-1 Agent
+# 🔥 基于 Firecrawl FIRE-1 的 AI 创业公司洞察 Agent
 
 这是一个基于 Firecrawl 的 FIRE-1 Agent、Extract v1 接口和 Agno Agent 框架构建的高级网页提取与分析工具，可快速获取一家新创公司的关键信息。应用能够自动从创业公司网站中提取结构化数据，并通过 AI 完成业务分析，省去大量手动调研工作。
 
