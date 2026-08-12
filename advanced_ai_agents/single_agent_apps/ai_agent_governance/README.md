@@ -1,23 +1,23 @@
-# 🛡️ AI Agent Governance - Policy-Based Sandboxing
+# 🛡️ AI Agent 治理 - 基于策略的沙盒控制
 
-Learn how to build a governance layer that enforces deterministic policies on AI agents, preventing dangerous actions before they execute.
+学习如何为 AI Agent 构建治理层，通过确定性的策略约束，在危险操作真正执行之前将其拦截。
 
-## Features
+## 功能特性
 
-- **Policy-Based Sandboxing**: Define what your AI agent can and cannot do using declarative policies
-- **Action Interception**: Catch and validate agent actions before execution
-- **Audit Logging**: Full trail of agent actions for compliance and debugging
-- **File System Guards**: Restrict read/write to specific directories
-- **Network Guards**: Allowlist-only external API access
-- **Rate Limiting**: Prevent runaway agents with configurable limits
+- **基于策略的沙盒控制**：使用声明式策略定义 AI Agent 可以做什么、不能做什么
+- **动作拦截**：在执行前捕获并验证 Agent 的操作
+- **审计日志**：完整记录 Agent 行为，便于合规与调试
+- **文件系统防护**：限制只允许在指定目录中读写
+- **网络防护**：仅允许访问白名单中的外部 API
+- **速率限制**：通过可配置限制防止 Agent 失控执行
 
-## How It Works
+## 工作原理
 
-1. **Policy Definition**: Define your security policies in YAML format
-2. **Action Wrapping**: Wrap your agent's tools with the governance layer
-3. **Interception**: Before any tool executes, the policy engine validates the action
-4. **Decision**: Actions are allowed, denied, or require human approval
-5. **Audit**: All decisions are logged for compliance and debugging
+1. **策略定义**：使用 YAML 格式定义安全策略
+2. **动作封装**：使用治理层包装 Agent 的工具
+3. **操作拦截**：任何工具执行前，由策略引擎验证该动作
+4. **决策**：动作可以被允许、拒绝，或要求人工批准
+5. **审计**：所有决策都会被记录，便于合规和调试
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐
@@ -31,40 +31,44 @@ Learn how to build a governance layer that enforces deterministic policies on AI
                     └─────────────┘
 ```
 
-## Requirements
+## 环境要求
 
 - Python 3.8+
-- OpenAI API key (or any LLM provider)
-- Required Python packages (see `requirements.txt`)
+- OpenAI API Key（或其他 LLM Provider）
+- 所需 Python 依赖（详见 `requirements.txt`）
 
-## Installation
+## 安装
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd advanced_ai_agents/single_agent_apps/ai_agent_governance
-   ```
+1. 克隆仓库：
 
-2. Install the required packages:
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd advanced_ai_agents/single_agent_apps/ai_agent_governance
+```
 
-## Usage
+2. 安装所需依赖：
 
-1. Set your API key:
-   ```bash
-   export OPENAI_API_KEY=your-openai-api-key
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-2. Run the governance demo:
-   ```bash
-   python ai_agent_governance.py
-   ```
+## 使用方式
 
-3. Try different actions and see how the policy engine handles them.
+1. 设置 API Key：
 
-## Example Policy Configuration
+```bash
+export OPENAI_API_KEY=your-openai-api-key
+```
+
+2. 运行治理示例：
+
+```bash
+python ai_agent_governance.py
+```
+
+3. 尝试不同操作，观察策略引擎如何处理这些请求。
+
+## 策略配置示例
 
 ```yaml
 policies:
@@ -85,7 +89,7 @@ policies:
     denied: ["execute_code", "send_email"]
 ```
 
-## Example Output
+## 输出示例
 
 ```
 🛡️ AI Agent Governance Demo
@@ -107,11 +111,11 @@ policies:
    [Y/n]: 
 ```
 
-## Technical Details
+## 技术细节
 
-### Policy Engine
+### 策略引擎
 
-The policy engine evaluates actions against a set of rules:
+策略引擎会根据一组规则评估每个动作：
 
 ```python
 class PolicyEngine:
@@ -124,9 +128,9 @@ class PolicyEngine:
         return Decision.ALLOW
 ```
 
-### Action Interception
+### 动作拦截
 
-Tools are wrapped with governance checks:
+工具会被治理检查逻辑包装：
 
 ```python
 def governed_tool(func):
@@ -147,9 +151,9 @@ def governed_tool(func):
     return wrapper
 ```
 
-### Audit Logging
+### 审计日志
 
-All actions are logged with full context:
+所有动作都会连同完整上下文一起记录：
 
 ```python
 {
@@ -162,21 +166,21 @@ All actions are logged with full context:
 }
 ```
 
-## Key Concepts Learned
+## 核心概念
 
-1. **Deterministic vs Probabilistic Safety**: Why policy enforcement is more reliable than prompt engineering
-2. **Defense in Depth**: Multiple layers of validation for robust security
-3. **Audit Trails**: Importance of logging for compliance and debugging
-4. **Principle of Least Privilege**: Only grant the permissions agents actually need
+1. **确定性安全 vs 概率性安全**：为什么策略强制执行通常比单纯依赖 Prompt Engineering 更可靠
+2. **纵深防御**：通过多层验证机制增强整体安全性
+3. **审计轨迹**：日志记录对于合规与调试的重要性
+4. **最小权限原则**：只授予 Agent 完成任务真正需要的权限
 
-## Extending the Tutorial
+## 扩展方向
 
-- Add custom policy rules for your use case
-- Implement human-in-the-loop approval workflows
-- Connect to external policy management systems
-- Add real-time monitoring and alerting
+- 为实际业务场景添加自定义策略规则
+- 实现 Human-in-the-loop 人工审批工作流
+- 对接外部策略管理系统
+- 增加实时监控与告警机制
 
-## Related Projects
+## 相关项目
 
-- [LangChain](https://github.com/langchain-ai/langchain) - LLM application framework
-- [Guardrails AI](https://github.com/guardrails-ai/guardrails) - Input/output validation for LLMs
+- [LangChain](https://github.com/langchain-ai/langchain) - LLM 应用框架
+- [Guardrails AI](https://github.com/guardrails-ai/guardrails) - 面向 LLM 的输入/输出校验工具
