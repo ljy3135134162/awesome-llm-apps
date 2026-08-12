@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1>🪟 Windows Use Autonomous Agent</h1>
+  <h1>🪟 Windows Use 自主 Agent</h1>
 
   <a href="https://github.com/CursorTouch/windows-use/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
@@ -20,31 +20,31 @@
 
 <br>
 
-**Windows-Use** is a powerful automation agent that interact directly with the Windows at GUI layer. It bridges the gap between AI Agents and the Windows OS to perform tasks such as opening apps, clicking buttons, typing, executing shell commands, and capturing UI state all without relying on traditional computer vision models. Enabling any LLM to perform computer automation instead of relying on specific models for it.
+**Windows-Use** 是一个强大的自动化 Agent，可直接在 Windows GUI 层进行交互。它连接 AI Agent 与 Windows 操作系统，可以执行打开应用、点击按钮、输入文字、运行 Shell 命令、捕获 UI 状态等任务，并且不依赖传统计算机视觉模型。这样可以让任意 LLM 具备电脑自动化能力，而不必依赖专用的计算机操作模型。
 
-## 🛠️Installation Guide
+## 🛠️ 安装指南
 
-### **Prerequisites**
+### 前置条件
 
-- Python 3.12 or higher
-- [UV](https://github.com/astral-sh/uv) (or `pip`)
-- Windows 10 or 11
+- Python 3.12 或更高版本
+- [UV](https://github.com/astral-sh/uv)（也可使用 `pip`）
+- Windows 10 或 Windows 11
 
-### **Installation Steps**
+### 安装步骤
 
-**Install using `uv`:**
+**使用 `uv` 安装：**
 
 ```bash
 uv pip install windows-use
-````
+```
 
-Or with pip:
+或者使用 pip：
 
 ```bash
 pip install windows-use
 ```
 
-## ⚙️Basic Usage
+## ⚙️ 基本用法
 
 ```python
 # main.py
@@ -61,9 +61,9 @@ agent_result=agent.invoke(query=query)
 print(agent_result.content)
 ```
 
-## 🤖 Run Agent
+## 🤖 运行 Agent
 
-You can use the following to run from a script:
+可以通过以下方式从脚本中运行：
 
 ```bash
 python main.py
@@ -72,55 +72,55 @@ Enter your query: <YOUR TASK>
 
 ---
 
-## 🎥 Demos
+## 🎥 演示
 
-**PROMPT:** Write a short note about LLMs and save to the desktop
+**提示词：** 写一段关于 LLM 的简短说明，并保存到桌面。
 
 <https://github.com/user-attachments/assets/0faa5179-73c1-4547-b9e6-2875496b12a0>
 
-**PROMPT:** Change from Dark mode to Light mode
+**提示词：** 将系统从深色模式切换为浅色模式。
 
 <https://github.com/user-attachments/assets/47bdd166-1261-4155-8890-1b2189c0a3fd>
 
-## Vision
+## 愿景
 
-Talk to your computer. Watch it get things done.
+直接和电脑对话，然后看着它完成任务。
 
-## Roadmap
+## 路线图
 
-### 🤖 Agent Intelligence
+### 🤖 Agent 智能能力
 
-* [ ] **Integrate memory** : allow the agent to remember past interactions made by the user.
-* [ ] **Optimize token usage** : implement strategies like Ally Tree compression and prompt engineering to reduce overhead.
-* [ ] **Simulate advanced human-like input** : enable accurate and naturalistic mouse & keyboard interactions across apps.
-* [ ] **Support for local LLMs** : local models with near-parity performance to cloud-based APIs (e.g., Mistral, LLaMA, etc.).
-* [ ] **Improve reasoning and planning** : enhance the agent's ability to break down and sequence complex tasks.
+* [ ] **集成记忆能力**：让 Agent 能够记住用户之前的交互。
+* [ ] **优化 Token 使用量**：使用 Ally Tree 压缩、提示词工程等方式降低上下文开销。
+* [ ] **模拟更高级的人类输入行为**：在不同应用中实现更准确、自然的鼠标和键盘操作。
+* [ ] **支持本地 LLM**：让本地模型在自动化任务中的表现尽可能接近云端 API，例如 Mistral、LLaMA 等。
+* [ ] **改进推理与规划能力**：增强 Agent 对复杂任务进行拆解和排序执行的能力。
 
-### 🌳 Ally Tree Optimization
+### 🌳 Ally Tree 优化
 
-* [ ] **Improve UI element detection** : automatically identify and prioritize essential, interactive components on screen.
-* [ ] **Compress Ally Tree intelligently** : reduce complexity by pruning irrelevant branches.
-* [ ] **Context-aware prioritization** : rank UI elements based on relevance to the task at hand.
+* [ ] **改进 UI 元素检测**：自动识别并优先保留屏幕中关键、可交互的组件。
+* [ ] **智能压缩 Ally Tree**：通过裁剪无关分支降低结构复杂度。
+* [ ] **上下文相关的优先级排序**：根据当前任务的重要程度对 UI 元素进行排序。
 
-### 💡 User Experience
+### 💡 用户体验
 
-* [ ] **Reduce latency** : optimize to improve response time between GUI interaction.
-* [ ] **Polish command interface** : make it easier to write, speak, or type commands through a simplified UX layer.
-* [ ] **Better error handling & recovery** : ensure graceful handling of edge cases and unclear instructions.
+* [ ] **降低延迟**：优化 GUI 交互之间的响应速度。
+* [ ] **优化命令界面**：通过更简单的 UX 层让用户更方便地输入、编写或语音下达命令。
+* [ ] **增强错误处理和恢复能力**：更稳健地处理边缘情况和不明确的指令。
 
-### 🧪 Evaluation
+### 🧪 评估
 
-* [ ] **LLM evaluation benchmarks** — track performance across different models and benchmarks.
+* [ ] **LLM 评测基准**：跟踪不同模型在各类 Benchmark 上的表现。
 
-## ⚠️ Caution
+## ⚠️ 注意事项
 
-Agent interacts directly with your Windows OS at GUI layer to perform actions. While the agent is designed to act intelligently and safely, it can make mistakes that might bring undesired system behaviour or cause unintended changes. Try to run the agent in a sandbox envirnoment.
+该 Agent 会直接在 Windows GUI 层执行操作。虽然其设计目标是尽可能智能且安全地完成任务，但仍有可能出现误操作，导致不期望的系统行为或文件变更。建议优先在沙盒或隔离环境中运行。
 
-Made with ❤️ by [Jeomon George](https://github.com/Jeomon)
+由 [Jeomon George](https://github.com/Jeomon) 制作 ❤️
 
 ---
 
-## Citation
+## 引用
 
 ```bibtex
 @software{
