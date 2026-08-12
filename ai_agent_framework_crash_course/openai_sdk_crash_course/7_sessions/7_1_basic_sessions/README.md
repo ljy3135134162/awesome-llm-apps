@@ -1,64 +1,64 @@
-# Basic Sessions
+# 基础 Session
 
-Demonstrates fundamental session memory management with SQLiteSession for automatic conversation history.
+本示例展示如何使用 `SQLiteSession` 管理基础会话记忆，让 Agent 自动保存和恢复对话历史。
 
-## 🎯 What This Demonstrates
+## 🎯 本示例展示的内容
 
-- **In-Memory Sessions**: Temporary session storage for development
-- **Persistent Sessions**: File-based session storage for production
-- **Multi-Turn Conversations**: Automatic context preservation
-- **Session Memory**: Eliminating manual `.to_input_list()` handling
+- **内存 Session**：适合开发阶段的临时会话存储
+- **持久化 Session**：基于文件的会话存储，适合长期保存
+- **多轮对话**：自动保留上下文，无需手动拼接历史消息
+- **Session Memory**：避免手动处理 `.to_input_list()`
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-1. **Install OpenAI Agents SDK**:
+1. **安装 OpenAI Agents SDK**：
    ```bash
    pip install openai-agents
    ```
 
-2. **Set up environment**:
+2. **配置环境变量**：
    ```bash
    cp ../env.example .env
-   # Edit .env and add your OpenAI API key
+   # 编辑 .env 并添加 OpenAI API Key
    ```
 
-3. **Run the agent**:
+3. **运行示例**：
    ```python
    import asyncio
    from agent import in_memory_session_example, persistent_session_example
-   
-   # Test in-memory sessions
+
+   # 测试内存 Session
    asyncio.run(in_memory_session_example())
-   
-   # Test persistent sessions
+
+   # 测试持久化 Session
    asyncio.run(persistent_session_example())
    ```
 
-## 💡 Key Concepts
+## 💡 核心概念
 
-- **SQLiteSession**: Automatic conversation memory management
-- **In-Memory vs Persistent**: Choose storage based on use case
-- **Session IDs**: Organizing conversations by unique identifiers
-- **Automatic Context**: No manual conversation threading required
+- **SQLiteSession**：自动管理对话记忆
+- **内存与持久化存储**：根据使用场景选择不同存储方式
+- **Session ID**：通过唯一标识区分不同对话
+- **自动上下文管理**：无需手动维护多轮消息链
 
-## 🧪 Available Examples
+## 🧪 可用示例
 
-### In-Memory Sessions
-- Temporary conversation storage
-- Lost when process ends
-- Perfect for development and testing
+### 内存 Session
+- 临时保存对话
+- 进程结束后数据会丢失
+- 适合开发和测试
 
-### Persistent Sessions
-- File-based conversation storage
-- Survives application restarts
-- Essential for production applications
+### 持久化 Session
+- 将对话保存到文件
+- 应用重启后仍可保留历史
+- 适合需要长期保存会话的应用
 
-### Multi-Turn Conversations
-- Extended conversation flows
-- Automatic context preservation
-- Natural conversation progression
+### 多轮对话
+- 支持连续对话流程
+- 自动保留上下文
+- 让对话自然延续
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-- [Memory Operations](../7_2_memory_operations/README.md) - Advanced memory manipulation
-- [Multi Sessions](../7_3_multi_sessions/README.md) - Managing multiple conversations
+- [Memory Operations](../7_2_memory_operations/README.md) —— 学习高级记忆操作
+- [Multi Sessions](../7_3_multi_sessions/README.md) —— 学习同时管理多个会话
