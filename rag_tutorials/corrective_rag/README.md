@@ -1,58 +1,59 @@
 # 🔄 Corrective RAG Agent
-A sophisticated Retrieval-Augmented Generation (RAG) system that implements a corrective multi-stage workflow using LangGraph. This system combines document retrieval, relevance grading, query transformation, and web search to provide comprehensive and accurate responses.
 
-## Features
+一个高级的检索增强生成（RAG）系统，使用 LangGraph 实现纠错式多阶段工作流。该系统结合文档检索、相关性评分、查询转换和 Web 搜索，以提供全面且准确的回答。
 
-- **Smart Document Retrieval**: Uses Qdrant vector store for efficient document retrieval
-- **Document Relevance Grading**: Employs Claude 4.5 sonnet to assess document relevance
-- **Query Transformation**: Improves search results by optimizing queries when needed
-- **Web Search Fallback**: Uses Tavily API for web search when local documents aren't sufficient
-- **Multi-Model Approach**: Combines OpenAI embeddings and Claude 4.5 sonnet for different tasks
-- **Interactive UI**: Built with Streamlit for easy document upload and querying
+## 功能
 
-## How to Run?
+- **智能文档检索**：使用 Qdrant 向量存储高效检索文档
+- **文档相关性评分**：使用 Claude 4.5 Sonnet 评估文档相关性
+- **查询转换**：在需要时优化查询，以改善搜索结果
+- **Web 搜索回退**：当本地文档不足时，使用 Tavily API 进行 Web 搜索
+- **多模型方案**：针对不同任务组合使用 OpenAI Embedding 和 Claude 4.5 Sonnet
+- **交互式 UI**：基于 Streamlit 构建，便于上传文档和执行查询
 
-1. **Clone the Repository**:
+## 如何运行？
+
+1. **克隆仓库**：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd rag_tutorials/corrective_rag
    ```
 
-2. **Install Dependencies**:
+2. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set Up API Keys**:
-   You'll need to obtain the following API keys:
-   - [OpenAI API key](https://platform.openai.com/api-keys) (for embeddings)
-   - [Anthropic API key](https://console.anthropic.com/settings/keys) (for Claude 4.5 sonnet as LLM)
-   - [Tavily API key](https://app.tavily.com/home) (for web search)
-   - Qdrant Cloud Setup
-      1. Visit [Qdrant Cloud](https://cloud.qdrant.io/)
-      2. Create an account or sign in
-      3. Create a new cluster
-      4. Get your credentials:
-         - Qdrant API Key: Found in API Keys section
-         - Qdrant URL: Your cluster URL (format: `https://xxx-xxx.aws.cloud.qdrant.io`)
+3. **配置 API Key**：
+   你需要获取以下 API Key：
+   - [OpenAI API Key](https://platform.openai.com/api-keys)（用于 Embedding）
+   - [Anthropic API Key](https://console.anthropic.com/settings/keys)（用于 Claude 4.5 Sonnet LLM）
+   - [Tavily API Key](https://app.tavily.com/home)（用于 Web 搜索）
+   - Qdrant Cloud 配置
+      1. 访问 [Qdrant Cloud](https://cloud.qdrant.io/)
+      2. 创建账户或登录
+      3. 创建一个新集群
+      4. 获取凭据：
+         - Qdrant API Key：可在 API Keys 部分找到
+         - Qdrant URL：你的集群 URL（格式：`https://xxx-xxx.aws.cloud.qdrant.io`）
 
-4. **Run the Application**:
+4. **运行应用**：
    ```bash
    streamlit run corrective_rag.py
    ```
 
-5. **Use the Application**:
-   - Upload documents or provide URLs
-   - Enter your questions in the query box
-   - View the step-by-step Corrective RAG process
-   - Get comprehensive answers
+5. **使用应用**：
+   - 上传文档或提供 URL
+   - 在查询框中输入问题
+   - 查看 Corrective RAG 的逐步处理过程
+   - 获取完整回答
 
-## Tech Stack
+## 技术栈
 
-- **LangChain**: For RAG orchestration and chains
-- **LangGraph**: For workflow management
-- **Qdrant**: Vector database for document storage
-- **Claude 4.5 sonnet**: Main language model for analysis and generation
-- **OpenAI**: For document embeddings
-- **Tavily**: For web search capabilities
-- **Streamlit**: For the user interface
+- **LangChain**：用于 RAG 编排和 Chain
+- **LangGraph**：用于工作流管理
+- **Qdrant**：用于文档存储的向量数据库
+- **Claude 4.5 Sonnet**：用于分析和生成的主要语言模型
+- **OpenAI**：用于文档 Embedding
+- **Tavily**：提供 Web 搜索能力
+- **Streamlit**：用于用户界面
