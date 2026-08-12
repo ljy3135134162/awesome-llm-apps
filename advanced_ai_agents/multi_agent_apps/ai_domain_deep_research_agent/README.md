@@ -1,90 +1,91 @@
-# 🔍 AI Domain Deep Research Agent
+# 🔍 AI 领域深度研究 Agent
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-domain-deep-research-agent) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-ai-domain-deep-research-agent)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-An advanced AI research agent built using the Agno Agent framework, Together AI's Qwen model, and Composio tools. This agent helps users conduct comprehensive research on any topic by generating research questions, finding answers through multiple search engines, and compiling professional reports with Google Docs integration.
+这是一个高级 AI 研究 Agent，基于 Agno Agent 框架、Together AI 的 Qwen 模型以及 Composio 工具构建。它可以围绕任意主题自动生成研究问题，通过多个搜索渠道寻找答案，并将研究结果整理为专业报告，同时支持集成 Google Docs。
 
-## Features
+## 功能特性
 
-- 🧠 **Intelligent Question Generation**:
+- 🧠 **智能研究问题生成**
+  - 根据你的研究主题自动生成 5 个具体问题
+  - 根据指定领域调整问题方向
+  - 重点生成便于得出明确结论的 Yes/No 类型问题
 
-  - Automatically generates 5 specific research questions about your topic
-  - Tailors questions to your specified domain
-  - Focuses on creating yes/no questions for clear research outcomes
-- 🔎 **Multi-Source Research**:
+- 🔎 **多来源研究**
+  - 使用 Tavily Search 获取广泛 Web 搜索结果
+  - 使用 Perplexity AI 进行更深入分析
+  - 综合多个来源提升研究完整度
 
-  - Uses Tavily Search for comprehensive web results
-  - Leverages Perplexity AI for deeper analysis
-  - Combines multiple sources for thorough research
-- 📊 **Professional Report Generation**:
+- 📊 **专业报告生成**
+  - 将研究结果整理成类似 McKinsey 风格的报告
+  - 包含执行摘要、详细分析和结论等结构
+  - 自动创建包含完整报告的 Google Doc
 
-  - Compiles research findings into a McKinsey-style report
-  - Structures content with executive summary, analysis, and conclusion
-  - Creates a Google Doc with the complete report
-- 🖥️ **User-Friendly Interface**:
+- 🖥️ **易用界面**
+  - 提供清晰的 Streamlit 操作界面
+  - 实时显示研究进度
+  - 可展开查看每个阶段的详细结果
 
-  - Clean Streamlit UI with intuitive workflow
-  - Real-time progress tracking
-  - Expandable sections to view detailed results
+## 运行方式
 
-## How to Run
+1. **配置环境**
 
-1. **Setup Environment**
+```bash
+# 克隆仓库
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd advanced_ai_agents/multi_agent_apps/ai_domain_deep_research_agent
 
-   ```bash
-   # Clone the repository
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd advanced_ai_agents/single_agent_apps/ai_domain_deep_research_agent
+# 安装依赖
+pip install -r requirements.txt
 
-   # Install dependencies
-   pip install -r requirements.txt
+composio add googledocs
+composio add perplexityai
+```
 
-   composio add googledocs
-   composio add perplexityai
-   ```
-2. **Configure API Keys**
+2. **配置 API Keys**
 
-   - Get Together AI API key from [Together AI](https://together.ai)
-   - Get Composio API key from [Composio](https://composio.ai)
-   - Add these to a `.env` file or enter them in the app sidebar
-3. **Run the Application**
+- 从 [Together AI](https://together.ai) 获取 Together AI API Key
+- 从 [Composio](https://composio.ai) 获取 Composio API Key
+- 将这些 Key 写入 `.env` 文件，或者直接在应用侧边栏中输入
 
-   ```bash
-   streamlit run ai_domain_deep_research_agent.py
-   ```
+3. **运行应用**
 
-## Usage
+```bash
+streamlit run ai_domain_deep_research_agent.py
+```
 
-1. Launch the application using the command above
-2. Enter your Together AI and Composio API keys in the sidebar
-3. Input your research topic and domain in the main interface
-4. Click "Generate Research Questions" to create specific questions
-5. Review the questions and click "Start Research" to begin the research process
-6. Once research is complete, click "Compile Final Report" to generate a professional report
-7. View the report in the app and access it in Google Docs
+## 使用方式
 
-## Technical Details
+1. 使用上述命令启动应用。
+2. 在侧边栏输入 Together AI 和 Composio API Key。
+3. 在主界面输入研究主题和所属领域。
+4. 点击 `Generate Research Questions` 自动生成研究问题。
+5. 检查生成的问题，然后点击 `Start Research` 开始研究。
+6. 研究完成后，点击 `Compile Final Report` 生成最终专业报告。
+7. 可直接在应用中查看报告，也可以通过 Google Docs 打开完整文档。
 
-- **Agno Framework**: Used for creating and orchestrating AI agents
-- **Together AI**: Provides the Qwen 3 235B model for advanced language processing
-- **Composio Tools**: Integrates search engines and Google Docs functionality
-- **Streamlit**: Powers the user interface with interactive elements
+## 技术细节
 
-## Example Use Cases
+- **Agno Framework**：用于创建和编排 AI Agent
+- **Together AI**：提供 Qwen 3 235B 模型，用于高级语言处理
+- **Composio Tools**：集成搜索引擎及 Google Docs 功能
+- **Streamlit**：提供交互式 Web 界面
 
-- **Academic Research**: Quickly gather information on academic topics across various disciplines
-- **Market Analysis**: Research market trends, competitors, and industry developments
-- **Policy Research**: Analyze policy implications and historical context
-- **Technology Evaluation**: Research emerging technologies and their potential impact
+## 示例使用场景
 
-## Dependencies
+- **学术研究**：快速收集不同学科主题的研究资料
+- **市场分析**：调查市场趋势、竞争对手和行业发展
+- **政策研究**：分析政策影响及相关历史背景
+- **技术评估**：研究新兴技术及其潜在影响
 
-- agno
-- composio_agno
-- streamlit
-- python-dotenv
+## 依赖
 
-## License
+- `agno`
+- `composio_agno`
+- `streamlit`
+- `python-dotenv`
 
-This project is part of the awesome-llm-apps collection and is available under the MIT License.
+## 许可证
+
+本项目属于 `awesome-llm-apps` 项目集合，并采用 MIT License。
