@@ -1,51 +1,51 @@
-# 🏠 AI Real Estate Agent Team
+# 🏠 AI 房地产智能体团队
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-real-estate-agent-team) and learn how to build this AI SEO Audit Team from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-ai-real-estate-agent-team)，通过详细代码讲解、说明和最佳实践，从零开始构建本项目。**
 
-The **AI Real Estate Agent Team** is a sophisticated property search and analysis platform powered by specialized AI agents with Firecrawl's extract endpoint. This application provides comprehensive real estate insights, market analysis, and property recommendations using advanced web scraping and AI-powered search capabilities.
+**AI 房地产智能体团队**是一个由多个专业 AI 智能体协作驱动的房产搜索与分析平台，并使用 Firecrawl 的 Extract 接口获取结构化数据。该应用结合高级网页抓取和 AI 搜索能力，为用户提供全面的房地产洞察、市场分析和房产推荐。
 
-## Features
+## 功能特性
 
-- **Multi-Agent Analysis System**
-    - **Property Search Agent**: Finds properties using direct Firecrawl integration
-    - **Market Analysis Agent**: Provides concise market trends and neighborhood insights
-    - **Property Valuation Agent**: Gives brief property valuations and investment analysis
+- **多智能体分析系统**
+    - **房产搜索智能体**：通过 Firecrawl 直接集成查找房源
+    - **市场分析智能体**：提供精炼的市场趋势与社区洞察
+    - **房产估值智能体**：提供房产估值与投资分析
 
-- **Multi-Platform Property Search**:
-  - **Zillow**: Largest real estate marketplace with comprehensive listings
-  - **Realtor.com**: Official site of the National Association of Realtors
-  - **Trulia**: Neighborhood-focused real estate search
-  - **Homes.com**: Comprehensive property search platform
+- **多平台房源搜索**：
+  - **Zillow**：大型房地产平台，拥有丰富房源
+  - **Realtor.com**：美国全国房地产经纪人协会官方平台
+  - **Trulia**：侧重社区信息的房地产搜索平台
+  - **Homes.com**：综合房产搜索平台
 
-- **Advanced Property Analysis**:
-  - Detailed property information extraction (address, price, bedrooms, bathrooms, sqft)
-  - Property features and amenities analysis
-  - Listing URLs and agent contact information
-  - Clickable property links for easy navigation
+- **高级房产分析**：
+  - 提取详细房产信息（地址、价格、卧室数、浴室数、面积）
+  - 分析房产特征和配套设施
+  - 提供房源链接和经纪人联系方式
+  - 提供可点击的房源链接，便于直接访问
 
-- **Comprehensive Market Insights**:
-  - Current market conditions (buyer's/seller's market)
-  - Price trends and market direction
-  - Neighborhood analysis with key insights
-  - Investment potential assessment
-  - Strategic recommendations
+- **综合市场洞察**：
+  - 当前市场状态（买方市场 / 卖方市场）
+  - 价格趋势及市场方向
+  - 社区分析与关键洞察
+  - 投资潜力评估
+  - 战略建议
 
-- **Sequential Manual Execution**:
-  - Optimized for speed and reliability
-  - Direct data flow between agents
-  - Manual coordination for better control
-  - Reduced overhead and improved performance
+- **顺序式手动执行**：
+  - 针对速度和稳定性进行优化
+  - 智能体之间直接传递数据
+  - 手动协调以获得更好的控制能力
+  - 降低额外开销并提升性能
 
-- **Interactive UI Features**:
-  - Real-time agent progression tracking
-  - Progress indicators for each search phase
-  - Downloadable analysis reports
-  - Timing information for performance monitoring
+- **交互式界面功能**：
+  - 实时跟踪智能体执行进度
+  - 为每个搜索阶段显示进度指示
+  - 支持下载分析报告
+  - 显示执行耗时，便于性能监控
 
-## Requirements
+## 环境要求
 
-The application requires the following Python libraries:
+应用需要以下 Python 库：
 
 - `agno`
 - `streamlit`
@@ -53,162 +53,160 @@ The application requires the following Python libraries:
 - `python-dotenv`
 - `pydantic`
 
-You'll also need API keys for:
-- **Cloud Version**: Google AI (Gemini) + Firecrawl
-- **Local Version**: Firecrawl only (uses Ollama locally)
+同时需要以下 API 密钥：
+- **云端版本**：Google AI（Gemini）+ Firecrawl
+- **本地版本**：仅需 Firecrawl（AI 模型通过本地 Ollama 运行）
 
-## How to Run
+## 运行方法
 
-Follow these steps to set up and run the application:
+按照以下步骤配置并运行应用：
 
-### **API Version (Gemini 2.5 Flash)**
+### **API 版本（Gemini 2.5 Flash）**
 
-1. **Clone the Repository**:
+1. **克隆仓库**：
    ```bash
    git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
    cd advanced_ai_agents/multi_agent_apps/agent_teams/ai_real_estate_agent_team
    ```
 
-2. **Install the dependencies**:
+2. **安装依赖**：
     ```bash
     pip install -r requirements.txt
     ```
 
-3. **Set up your API keys**:
-    - Get a Google AI API key from: https://aistudio.google.com/app/apikey
-    - Get a Firecrawl API key from: [Firecrawl website](https://firecrawl.dev)
+3. **配置 API 密钥**：
+    - 获取 Google AI API 密钥：https://aistudio.google.com/app/apikey
+    - 获取 Firecrawl API 密钥：[Firecrawl 网站](https://firecrawl.dev)
 
-4. **Run the Streamlit app**:
+4. **运行 Streamlit 应用**：
     ```bash
     streamlit run ai_real_estate_agent_team.py
     ```
 
-### **Local Version (Ollama)**
+### **本地版本（Ollama）**
 
-1. **Install Ollama**:
+1. **安装 Ollama 并拉取模型**：
    ```bash
-   #Pull the model: make sure to have a device that has more than 16GB RAM to run this model locally!
-   ollama pull gpt-oss:20b  
+   # 拉取模型：建议设备拥有超过 16GB 内存，以便在本地运行该模型
+   ollama pull gpt-oss:20b
    ```
 
-2. **Install the dependencies**:
+2. **安装依赖**：
     ```bash
     pip install -r requirements.txt
     ```
 
-3. **Set up your API key**:
-    - Get a Firecrawl API key from: [Firecrawl website](https://firecrawl.dev)
+3. **配置 API 密钥**：
+    - 获取 Firecrawl API 密钥：[Firecrawl 网站](https://firecrawl.dev)
 
-4. **Run the local Streamlit app**:
+4. **运行本地 Streamlit 应用**：
     ```bash
     streamlit run local_ai_real_estate_agent_team.py
     ```
 
-## Usage
+## 使用方法
 
-### **Cloud Version**
+### **云端版本**
 
-1. Enter your API keys in the sidebar:
+1. 在侧边栏中输入 API 密钥：
    - Google AI API Key
    - Firecrawl API Key
 
-2. Select real estate websites to search from:
+2. 选择要搜索的房地产网站：
    - Zillow
    - Realtor.com
    - Trulia
    - Homes.com
 
-3. Configure your property requirements:
-   - Location (city, state)
-   - Budget range
-   - Property details (type, bedrooms, bathrooms, sqft)
-   - Special features and timeline
+3. 配置房产需求：
+   - 地点（城市、州）
+   - 预算范围
+   - 房产详情（类型、卧室数、浴室数、面积）
+   - 特殊需求和时间要求
 
-4. Click "Start Property Analysis" to generate:
-   - Property listings with details
-   - Market analysis and trends
-   - Property valuations and recommendations
+4. 点击 `Start Property Analysis` 开始分析，并生成：
+   - 带详细信息的房源列表
+   - 市场分析与趋势
+   - 房产估值与推荐建议
 
-### **Local Version**
+### **本地版本**
 
-1. Enter your Firecrawl API key in the sidebar
-2. Ensure Ollama is running with `gpt-oss:20b` model
-3. Follow the same property configuration steps as cloud version
-4. Get the same comprehensive analysis with local AI processing
+1. 在侧边栏中输入 Firecrawl API Key
+2. 确保 Ollama 正在运行，并已加载 `gpt-oss:20b` 模型
+3. 按照云端版本相同的步骤配置房产条件
+4. 使用本地 AI 推理获得同样完整的分析结果
 
-## Agent Workflow
+## 智能体工作流
 
-### **Property Search Agent**
-- Uses direct Firecrawl integration to search real estate websites
-- Focuses on properties matching user criteria
-- Extracts structured property data with all details
-- Organizes results with clickable listing URLs
+### **房产搜索智能体**
+- 直接使用 Firecrawl 搜索房地产网站
+- 重点寻找符合用户条件的房产
+- 提取包含完整详情的结构化房产数据
+- 整理结果并提供可点击的房源 URL
 
-### **Market Analysis Agent**
-- **Market Condition**: Buyer's/seller's market, price trends
-- **Key Neighborhoods**: Brief overview of areas where properties are located
-- **Investment Outlook**: 2-3 key points about investment potential
-- **Format**: Concise bullet points under 100 words per section
+### **市场分析智能体**
+- **市场状况**：买方市场 / 卖方市场、价格趋势
+- **重点社区**：简要介绍房产所在区域
+- **投资前景**：提供 2-3 个关键投资判断
+- **格式**：每个部分使用精炼要点，控制在 100 词以内
 
-### **Property Valuation Agent**
-- **Value Assessment**: Fair price, over/under priced analysis
-- **Investment Potential**: High/Medium/Low with brief reasoning
-- **Key Recommendation**: One actionable insight per property
-- **Format**: Brief assessments under 50 words per property
+### **房产估值智能体**
+- **价值评估**：判断合理价格，以及是否高估或低估
+- **投资潜力**：高 / 中 / 低，并提供简要理由
+- **关键建议**：针对每套房产给出一条可执行建议
+- **格式**：每套房产的评估控制在 50 词以内
 
-## Technical Architecture
+## 技术架构
 
-### **Data Sources**:
-- **Firecrawl Extract API**: Structured property data extraction
-- **Pydantic Schemas**: Structured data validation and formatting
+### **数据来源**：
+- **Firecrawl Extract API**：提取结构化房产数据
+- **Pydantic Schema**：用于结构化数据校验和格式化
 
-### **AI Framework**:
-- **Cloud Version**: Agno Framework with Google Gemini 2.5 Flash
-- **Local Version**: Agno Framework with Ollama gpt-oss:20b
-- **Streamlit**: Interactive web application interface
+### **AI 框架**：
+- **云端版本**：Agno Framework + Google Gemini 2.5 Flash
+- **本地版本**：Agno Framework + Ollama gpt-oss:20b
+- **Streamlit**：交互式 Web 应用界面
 
-### **Performance Features**:
-- **Sequential Execution**: Manual coordination for optimal performance
-- **Progress Tracking**: Real-time updates on analysis progress
-- **Error Recovery**: Graceful handling of extraction failures
-- **Direct Integration**: Bypasses tool wrappers for faster execution
+### **性能特性**：
+- **顺序执行**：采用手动协调方式优化性能
+- **进度跟踪**：实时更新分析状态
+- **错误恢复**：对数据提取失败进行平滑处理
+- **直接集成**：绕过额外工具封装，以提升执行速度
 
-## File Structure
+## 文件结构
 
-```
+```text
 ai_real_estate_agent_team/
-├── ai_real_estate_agent_team.py        # API version (Google Gemini)
-├── local_ai_real_estate_agent_team.py  # Local version (Ollama)
-├── requirements.txt                    # Python dependencies
-├── README.md                          # This documentation
-└── .env                               # Environment variables (create this)
+├── ai_real_estate_agent_team.py        # API 版本（Google Gemini）
+├── local_ai_real_estate_agent_team.py  # 本地版本（Ollama）
+├── requirements.txt                    # Python 依赖
+├── README.md                           # 本说明文档
+└── .env                                # 环境变量文件（需要自行创建）
 ```
 
-## API Requirements
+## API 要求
 
-### **Cloud Version**
+### **云端版本**
 
 #### **Google AI API**
-- **Model**: Gemini 2.5 Flash
-- **Usage**: Multi-agent analysis and property insights
-- **Rate Limits**: Standard Google AI rate limits apply
+- **模型**：Gemini 2.5 Flash
+- **用途**：多智能体分析与房产洞察
+- **速率限制**：遵循 Google AI 标准速率限制
 
 #### **Firecrawl API**
-- **Endpoint**: Extract API for structured data
-- **Usage**: Property listing extraction from real estate websites
-- **Rate Limits**: Firecrawl standard rate limits
+- **接口**：Extract API，用于结构化数据提取
+- **用途**：从房地产网站提取房源信息
+- **速率限制**：遵循 Firecrawl 标准速率限制
 
-### **Local Version**
+### **本地版本**
 
 #### **Firecrawl API**
-- **Endpoint**: Extract API for structured data
-- **Usage**: Property listing extraction from real estate websites
-- **Rate Limits**: Firecrawl standard rate limits
+- **接口**：Extract API，用于结构化数据提取
+- **用途**：从房地产网站提取房源信息
+- **速率限制**：遵循 Firecrawl 标准速率限制
 
-#### **Ollama (Local)**
-- **Model**: gpt-oss:20b
-- **Usage**: All AI processing locally
-- **Requirements**: ~16GB RAM recommended
-- **No API costs**: Completely local processing
-
-
+#### **Ollama（本地）**
+- **模型**：gpt-oss:20b
+- **用途**：在本地完成全部 AI 推理处理
+- **硬件要求**：建议约 16GB 或更多内存
+- **无需 API 成本**：AI 推理完全在本地运行
