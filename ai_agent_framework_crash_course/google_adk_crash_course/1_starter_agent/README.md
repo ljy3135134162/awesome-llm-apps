@@ -1,108 +1,108 @@
-# 🎯 Tutorial 1: Your First ADK Agent
+# 🎯 教程 1：你的第一个 ADK Agent
 
-Welcome to your first step in the Google ADK journey! This tutorial introduces you to the fundamental concept of creating a simple AI agent using Google's Agent Development Kit.
+欢迎迈出学习 Google ADK 的第一步。本教程将介绍如何使用 Google Agent Development Kit 创建一个简单 AI Agent 的核心概念。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Basic Agent Creation**: How to create your first ADK agent
-- **ADK Workflow**: Understanding the agent lifecycle
-- **Simple Text Processing**: Basic input/output handling
-- **Agent Configuration**: Essential parameters and settings
+- **基础 Agent 创建**：如何创建第一个 ADK Agent
+- **ADK 工作流**：理解 Agent 生命周期
+- **简单文本处理**：基础输入/输出处理
+- **Agent 配置**：关键参数与设置
 
-## 🧠 Core Concept: What is an ADK Agent?
+## 🧠 核心概念：什么是 ADK Agent？
 
-An ADK agent is a **programmable AI assistant** that can:
-- Process user inputs (text, images, etc.)
-- Use AI models (like Gemini) to understand and respond
-- Perform specific tasks based on your instructions
-- Return structured or unstructured responses
+ADK Agent 是一种**可编程的 AI 助手**，可以：
+- 处理用户输入（文本、图片等）
+- 使用 Gemini 等 AI 模型理解并生成响应
+- 根据指令执行特定任务
+- 返回结构化或非结构化结果
 
-Think of it as creating a **smart function** that uses AI to handle complex tasks.
+可以把它理解成一个使用 AI 来处理复杂任务的**智能函数**。
 
-## 🔧 Key Components
+## 🔧 关键组件
 
-### 1. **LlmAgent Class**
-The main building block for creating AI agents in ADK:
+### 1. **LlmAgent 类**
+这是在 ADK 中创建 AI Agent 的主要基础组件：
 ```python
 from google.adk.agents import LlmAgent
 ```
 
-### 2. **Essential Parameters**
-- `name`: Unique identifier for your agent
-- `model`: The AI model to use (e.g., "gemini-3-flash-preview")
-- `description`: What your agent does
-- `instruction`: How your agent should behave
+### 2. **核心参数**
+- `name`：Agent 的唯一标识
+- `model`：使用的 AI 模型，例如 `gemini-3-flash-preview`
+- `description`：Agent 的用途说明
+- `instruction`：Agent 应该如何行动
 
-### 3. **Basic Workflow**
-1. **Input**: User sends a message
-2. **Processing**: Agent uses AI model to understand and respond
-3. **Output**: Agent returns a response
+### 3. **基础工作流**
+1. **输入**：用户发送消息
+2. **处理**：Agent 使用 AI 模型理解并生成响应
+3. **输出**：Agent 返回结果
 
-## 🚀 Tutorial Overview
+## 🚀 教程概览
 
-In this tutorial, we'll create a **Creative Writing Agent** that:
-- Helps users develop story ideas and characters
-- Provides writing prompts and inspiration
-- Assists with plot structure and pacing
-- Demonstrates basic ADK functionality
+本教程将创建一个**创意写作 Agent**，它可以：
+- 帮助用户构思故事创意和角色
+- 提供写作提示和灵感
+- 协助设计情节结构与节奏
+- 演示 ADK 的基础功能
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 1_starter_agent/
-├── README.md              # This file - concept explanation
-├── requirements.txt       # Dependencies
-└── creative_writing_agent/ # Agent implementation
-    ├── __init__.py       # Makes it a Python package
-    └── agent.py          # Main agent code
+├── README.md               # 当前文件：概念说明
+├── requirements.txt        # 依赖
+└── creative_writing_agent/ # Agent 实现
+    ├── __init__.py         # 将目录声明为 Python 包
+    └── agent.py            # Agent 主代码
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to create a basic ADK agent
-- ✅ Essential agent parameters and their purpose
-- ✅ How to run and test your agent
-- ✅ Basic ADK workflow and lifecycle
+完成本教程后，你将理解：
+- ✅ 如何创建基础 ADK Agent
+- ✅ 关键 Agent 参数及其用途
+- ✅ 如何运行和测试 Agent
+- ✅ ADK 的基础工作流和生命周期
 
-## 🚀 Getting Started
+## 🚀 开始使用
 
-1. **Set up your environment**:
+1. **配置环境**：
    ```bash
-   # Make sure you have your Google AI API key
-   # Get your API key from: https://aistudio.google.com/
+   # 确保你已经拥有 Google AI API Key
+   # 可从这里获取：https://aistudio.google.com/
    ```
 
-2. **Install dependencies**:
+2. **安装依赖**：
    ```bash
-   # Install required packages
+   # 安装所需依赖
    pip install -r requirements.txt
    ```
 
-3. **Run the creative writing agent**:
+3. **运行创意写作 Agent**：
    ```bash
-   # Start the ADK web interface
+   # 启动 ADK Web 界面
    adk web
    
-   # In the web interface, select: creative_writing_agent
+   # 在 Web 界面中选择：creative_writing_agent
    ```
 
-4. **Test your agent**:
-   - Try asking for story ideas: "I want to write a story about a magical forest"
-   - Get character help: "Help me create a protagonist for my sci-fi story"
-   - Request writing prompts: "Give me a creative writing prompt"
-   - Ask for plot advice: "How can I structure my story's climax?"
+4. **测试 Agent**：
+   - 尝试询问故事创意：“我想写一个关于魔法森林的故事”
+   - 请求角色设计帮助：“帮我为科幻故事创建一个主角”
+   - 请求写作提示：“给我一个有创意的写作题目”
+   - 咨询情节结构：“我的故事高潮应该如何安排？”
 
-## 🔗 Next Steps
+## 🔗 下一步
 
-After completing this tutorial, you'll be ready for:
-- **[Tutorial 2: Model agnostic Agent](../2_model_agnostic_agent/README.md)** - create agents that work with different AI models
-- **[Tutorial 3: Structured Output Agent](../3_structured_output_agent/README.md)** - Learn to create type-safe, structured responses
-- **[Tutorial 4: Tool Using Agent](../4_tool_using_agent/README.md)** - Add custom tools and functions to your agent
+完成本教程后，可以继续学习：
+- **[教程 2：模型无关 Agent](../2_model_agnostic_agent/README.md)** —— 创建可使用不同 AI 模型的 Agent
+- **[教程 3：结构化输出 Agent](../3_structured_output_agent/README.md)** —— 学习生成类型安全的结构化响应
+- **[教程 4：工具调用 Agent](../4_tool_using_agent/README.md)** —— 为 Agent 添加自定义工具和函数
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Start Simple**: Begin with basic functionality and add complexity gradually
-- **Test Often**: Use the ADK web interface to test your agents
-- **Read Instructions**: Clear instructions lead to better agent behavior
-- **Experiment**: Try different models and parameters to see the differences
+- **从简单开始**：先实现基础能力，再逐步增加复杂度
+- **频繁测试**：使用 ADK Web 界面反复测试 Agent
+- **认真编写指令**：清晰的 Instruction 会带来更稳定的 Agent 行为
+- **多做实验**：尝试不同模型和参数，观察效果差异
