@@ -1,196 +1,194 @@
-# Multi-Agent Web Research System (YAML-based)
+# 基于 YAML 的多 Agent Web 研究系统
 
-A sophisticated multi-agent system built with Google ADK that uses Firecrawl MCP tools for web scraping and coordinates between specialized research and summary agents.
+这是一个使用 Google ADK 构建的多 Agent 系统，通过 Firecrawl MCP 工具进行网页抓取，并协调专门的研究 Agent 与摘要 Agent 完成完整的研究流程。
 
-## Architecture
+## 系统架构
 
-This system consists of:
+该系统由以下组件组成：
 
-1. **Main Coordinator Agent** (`root_agent.yaml`) - Orchestrates the entire workflow
-2. **Research Agent** (`research_agent.yaml`) - Uses Firecrawl MCP tools for web scraping and content analysis
-3. **Summary Agent** (`summary_agent.yaml`) - Creates comprehensive reports and summaries
-4. **Firecrawl MCP Integration** - Advanced web scraping with proper sub-agent configuration
+1. **主协调 Agent**（`root_agent.yaml`）：负责整体工作流编排
+2. **研究 Agent**（`research_agent.yaml`）：使用 Firecrawl MCP 工具进行网页抓取与内容分析
+3. **摘要 Agent**（`summary_agent.yaml`）：生成完整报告与摘要
+4. **Firecrawl MCP 集成**：为子 Agent 提供高级网页抓取能力
 
-## Features
+## 功能特性
 
-- 🔍 **Advanced Web Scraping**: Uses Firecrawl MCP tools for reliable content extraction
-- 🔬 **Intelligent Content Analysis**: Research agent extracts insights, patterns, and key data
-- 📝 **Comprehensive Report Generation**: Summary agent creates structured reports and recommendations
-- 🤖 **Multi-Agent Coordination**: Main agent orchestrates the entire workflow seamlessly
-- 🔐 **Secure API Management**: Firecrawl API key managed via environment variables
-- ⚡ **Sub-Agent MCP Support**: Properly configured MCP tools in sub-agents
+- 🔍 **高级网页抓取**：使用 Firecrawl MCP 工具可靠提取网页内容
+- 🔬 **智能内容分析**：研究 Agent 提取洞察、模式和关键数据
+- 📝 **完整报告生成**：摘要 Agent 输出结构化报告和建议
+- 🤖 **多 Agent 协同**：主 Agent 负责协调完整工作流
+- 🔐 **安全的 API 管理**：通过环境变量管理 Firecrawl API Key
+- ⚡ **子 Agent MCP 支持**：在子 Agent 中正确配置 MCP 工具
 
-## Setup
+## 配置
 
-### Prerequisites
+### 前置条件
 
-1. Install Google ADK:
+1. 安装 Google ADK：
    ```bash
    pip install google-adk
    ```
 
-2. Get Firecrawl API key from [firecrawl.dev](https://firecrawl.dev)
+2. 从 [firecrawl.dev](https://firecrawl.dev) 获取 Firecrawl API Key。
 
-3. Set environment variables in `.env` file:
+3. 在 `.env` 文件中配置环境变量：
 
-   **Option A: Google AI Studio (Recommended for development)**
+   **方案 A：Google AI Studio（推荐用于开发）**
    ```bash
    GOOGLE_GENAI_USE_VERTEXAI=0
    GOOGLE_API_KEY=<your-google-gemini-api-key>
    FIRECRAWL_API_KEY=<your-firecrawl-api-key>
    ```
-   
-   **Option B: Vertex AI (Recommended for production)**
+
+   **方案 B：Vertex AI（推荐用于生产）**
    ```bash
    GOOGLE_GENAI_USE_VERTEXAI=1
    GOOGLE_CLOUD_PROJECT=<your-gcp-project-id>
    GOOGLE_CLOUD_LOCATION=us-central1
    FIRECRAWL_API_KEY=<your-firecrawl-api-key>
    ```
-   
-   **Getting API Keys:**
-   - **Google AI Studio**: Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
-   - **Vertex AI**: Set up authentication using [Google Cloud Authentication](https://cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys)
-   - **Firecrawl**: Get your API key from [Firecrawl](https://firecrawl.dev/app/api-keys)
 
-### Installation
+   **API Key 获取方式：**
+   - **Google AI Studio**：从 [Google AI Studio](https://aistudio.google.com/app/apikey) 获取 API Key
+   - **Vertex AI**：参考 [Google Cloud Authentication](https://cloud.google.com/vertex-ai/generative-ai/docs/start/api-keys) 配置认证
+   - **Firecrawl**：从 [Firecrawl](https://firecrawl.dev/app/api-keys) 获取 API Key
 
-1. Navigate to the agent directory:
+### 安装与检查
+
+1. 进入 Agent 目录：
    ```bash
    cd ai_agent_framework_crash_course/google_adk_crash_course/adk_yaml_examples/multi_agent_web_research_team/multi_agent_web_researcher
    ```
 
-2. Verify ADK installation:
+2. 验证 ADK 是否安装成功：
    ```bash
    adk --version
    ```
 
-## Usage
+## 使用方式
 
-### Running the Agent
+### 运行 Agent
 
-Choose one of these methods to run your agent:
+可通过以下任一种方式运行：
 
-1. **Web Interface** (Recommended for testing):
+1. **Web 界面**（推荐用于测试）：
    ```bash
    adk web
    ```
 
-2. **Command Line**:
+2. **命令行**：
    ```bash
    adk run
    ```
 
-3. **API Server** (For integration):
+3. **API Server**（用于系统集成）：
    ```bash
    adk api_server
    ```
 
-## Agent Configuration
+## Agent 配置说明
 
-### Main Agent (`root_agent.yaml`)
+### 主 Agent（`root_agent.yaml`）
 
-The coordinator agent that:
-- Delegates tasks to specialized sub-agents
-- Coordinates between research and summary agents
-- Synthesizes final comprehensive reports
-- Provides clear instructions to sub-agents
+协调 Agent 负责：
+- 将任务委派给专用子 Agent
+- 协调研究 Agent 与摘要 Agent
+- 汇总并生成最终综合报告
+- 向子 Agent 提供明确指令
 
-### Research Agent (`research_agent.yaml`)
+### 研究 Agent（`research_agent.yaml`）
 
-Specialized for web scraping and content analysis:
-- **Firecrawl MCP Tools**: Uses `firecrawl_scrape` and `firecrawl_search`
-- **Content Analysis**: Extracts key findings and insights
-- **Pattern Recognition**: Identifies trends and relationships
-- **Data Extraction**: Highlights important quotes and data points
-- **Research Suggestions**: Suggests areas for further investigation
+专门负责网页抓取和内容分析：
+- **Firecrawl MCP 工具**：使用 `firecrawl_scrape` 和 `firecrawl_search`
+- **内容分析**：提取关键发现和洞察
+- **模式识别**：识别趋势和关联关系
+- **数据提取**：突出重要引用和数据点
+- **后续研究建议**：提出进一步调查方向
 
-**Available Firecrawl Tools:**
-- `firecrawl_scrape`: Scrape content from single URLs
-- `firecrawl_search`: Search the web for relevant content
-- `firecrawl_batch_scrape`: Scrape multiple URLs efficiently
-- `firecrawl_map`: Discover URLs on websites
-- `firecrawl_crawl`: Comprehensive website crawling
+**可用 Firecrawl 工具：**
+- `firecrawl_scrape`：抓取单个 URL 的内容
+- `firecrawl_search`：搜索相关网页内容
+- `firecrawl_batch_scrape`：批量抓取多个 URL
+- `firecrawl_map`：发现网站中的 URL
+- `firecrawl_crawl`：执行完整网站爬取
 
-### Summary Agent (`summary_agent.yaml`)
+### 摘要 Agent（`summary_agent.yaml`）
 
-Specialized for report generation:
-- Creates executive summaries
-- Organizes information by topic
-- Generates key takeaways
-- Provides actionable recommendations
+专门负责报告生成：
+- 创建执行摘要
+- 按主题组织信息
+- 生成关键结论
+- 提供可执行建议
 
-## Workflow
+## 工作流
 
-1. **Input**: User provides URL or research topic
-2. **Delegation**: Main agent passes clear instructions to research_agent
-3. **Web Scraping**: Research agent uses Firecrawl MCP tools to extract content
-4. **Analysis**: Research agent analyzes scraped content for insights
-5. **Summarization**: Summary agent creates comprehensive report
-6. **Synthesis**: Main agent combines findings into final report
+1. **输入**：用户提供 URL 或研究主题
+2. **委派**：主 Agent 将明确任务传递给 `research_agent`
+3. **网页抓取**：研究 Agent 使用 Firecrawl MCP 工具提取内容
+4. **分析**：研究 Agent 对抓取内容进行分析并提炼洞察
+5. **摘要**：摘要 Agent 生成完整报告
+6. **综合**：主 Agent 将各阶段结果整合为最终报告
 
-## Environment Variables
+## 环境变量
 
-### Google AI Studio Configuration
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `GOOGLE_GENAI_USE_VERTEXAI` | Set to 0 for Google AI Studio | Yes |
-| `GOOGLE_API_KEY` | Google Gemini API key from AI Studio | Yes |
-| `FIRECRAWL_API_KEY` | Firecrawl API key for web scraping | Yes |
+### Google AI Studio 配置
+| 变量 | 说明 | 必需 |
+|---|---|---|
+| `GOOGLE_GENAI_USE_VERTEXAI` | 使用 Google AI Studio 时设置为 0 | 是 |
+| `GOOGLE_API_KEY` | AI Studio 提供的 Google Gemini API Key | 是 |
+| `FIRECRAWL_API_KEY` | 用于网页抓取的 Firecrawl API Key | 是 |
 
-### Vertex AI Configuration
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `GOOGLE_GENAI_USE_VERTEXAI` | Set to 1 for Vertex AI | Yes |
-| `GOOGLE_CLOUD_PROJECT` | Your Google Cloud Project ID | Yes |
-| `GOOGLE_CLOUD_LOCATION` | GCP region (e.g., us-central1) | Yes |
-| `FIRECRAWL_API_KEY` | Firecrawl API key for web scraping | Yes |
+### Vertex AI 配置
+| 变量 | 说明 | 必需 |
+|---|---|---|
+| `GOOGLE_GENAI_USE_VERTEXAI` | 使用 Vertex AI 时设置为 1 | 是 |
+| `GOOGLE_CLOUD_PROJECT` | Google Cloud Project ID | 是 |
+| `GOOGLE_CLOUD_LOCATION` | GCP 区域，例如 `us-central1` | 是 |
+| `FIRECRAWL_API_KEY` | 用于网页抓取的 Firecrawl API Key | 是 |
 
-### Authentication Methods
+### 认证方式
 
-**Google AI Studio:**
-- Simple API key authentication
-- Best for development and testing
-- No Google Cloud setup required
+**Google AI Studio：**
+- 使用简单的 API Key 认证
+- 适合开发和测试
+- 不需要额外配置 Google Cloud
 
-**Vertex AI:**
-- Enterprise-grade authentication
-- Best for production deployments
-- Requires Google Cloud Project setup
-- Supports advanced features like grounding and safety settings
+**Vertex AI：**
+- 企业级认证方式
+- 更适合生产部署
+- 需要配置 Google Cloud Project
+- 支持 Grounding、安全设置等高级能力
 
+## 使用示例
 
-## Example Usage
+### Web 界面
+1. 运行 `adk web`
+2. 打开终端输出的本地 URL
+3. 输入 URL 或研究主题，例如 `Scrape and analyze https://example.com` 或 `Research AI trends`
+4. 观察多 Agent 系统完成整个处理流程
 
-### Web Interface
-1. Run `adk web`
-2. Open browser to the provided URL
-3. Enter a URL or research topic (e.g., "Scrape and analyze https://example.com" or "Research AI trends")
-4. Watch the multi-agent system process your request
-
-### Command Line
+### 命令行
 ```bash
 adk run
-# Enter your research query when prompted
+# 根据提示输入研究查询
 ```
 
-## Troubleshooting
+## 故障排查
 
-### Common Issues
+### 常见问题
 
-1. **API Key Errors**: Ensure all required API keys are set in `.env`
-2. **ADK Not Found**: Make sure ADK is installed and Python environment is activated
-3. **Firecrawl Errors**: Verify your Firecrawl API key is valid and has sufficient credits
-4. **MCP Connection Issues**: Check that Node.js and npm are properly installed
-5. **Authentication Issues**: 
-   - **Google AI Studio**: Verify your API key is valid and has proper permissions
-   - **Vertex AI**: Ensure Google Cloud authentication is set up correctly (`gcloud auth application-default login`)
-   - **Project ID**: Verify your Google Cloud Project ID is correct for Vertex AI
+1. **API Key 错误**：确认 `.env` 中已配置全部必需的 API Key
+2. **找不到 ADK**：确认已安装 ADK，并激活正确的 Python 环境
+3. **Firecrawl 错误**：确认 Firecrawl API Key 有效且账户额度充足
+4. **MCP 连接问题**：检查 Node.js 和 npm 是否已正确安装
+5. **认证问题**：
+   - **Google AI Studio**：确认 API Key 有效并具备正确权限
+   - **Vertex AI**：确认 Google Cloud 认证已正确配置，例如执行 `gcloud auth application-default login`
+   - **Project ID**：确认 Vertex AI 使用的 Google Cloud Project ID 正确
 
+## 参考资料
 
-## References
-
-- [Google ADK Documentation](https://google.github.io/adk-docs/)
-- [Agent Config Reference](https://google.github.io/adk-docs/agents/config/#build-an-agent)
-- [Firecrawl Documentation](https://docs.firecrawl.dev/)
-- [MCP Tools](https://modelcontextprotocol.io/)
+- [Google ADK 文档](https://google.github.io/adk-docs/)
+- [Agent 配置参考](https://google.github.io/adk-docs/agents/config/#build-an-agent)
+- [Firecrawl 文档](https://docs.firecrawl.dev/)
+- [MCP 工具](https://modelcontextprotocol.io/)
