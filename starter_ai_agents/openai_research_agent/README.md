@@ -1,50 +1,54 @@
-# OpenAI Researcher Agent
-A multi-agent research application built with OpenAI's Agents SDK and Streamlit. This application enables users to conduct comprehensive research on any topic by leveraging multiple specialized AI agents.
+# OpenAI 研究 Agent
 
-### Features
+这是一个使用 OpenAI Agents SDK 和 Streamlit 构建的多 Agent 研究应用。它通过多个专业化 AI Agent 协作，帮助用户针对任意主题进行较为完整的研究。
 
-- Multi-Agent Architecture:
-    - Triage Agent: Plans the research approach and coordinates the workflow
-    - Research Agent: Searches the web and gathers relevant information
-    - Editor Agent: Compiles collected facts into a comprehensive report
+### 功能特性
 
-- Automatic Fact Collection: Captures important facts from research with source attribution
-- Structured Report Generation: Creates well-organized reports with titles, outlines, and source citations
-- Interactive UI: Built with Streamlit for easy research topic input and results viewing
-- Tracing and Monitoring: Integrated tracing for the entire research workflow
+- 多 Agent 架构：
+    - Triage Agent：规划研究方法并协调整体流程
+    - Research Agent：搜索 Web 并收集相关信息
+    - Editor Agent：将收集到的事实整理为完整报告
 
-### How to get Started?
+- 自动事实收集：在研究过程中记录重要事实，并保留来源归属
+- 结构化报告生成：生成包含标题、大纲和来源引用的清晰报告
+- 交互式 UI：使用 Streamlit 构建，方便输入研究主题并查看结果
+- Tracing 与监控：为整个研究工作流集成追踪能力
 
-1. Clone the GitHub repository
+### 如何开始？
+
+1. 克隆 GitHub 仓库
+
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/starter_ai_agents/openai_research_agent
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
 
 ```bash
-cd awesome-llm-apps/starter_ai_agents/openai_research_agent
 pip install -r requirements.txt
 ```
 
-3. Get your OpenAI API Key
+3. 获取 OpenAI API Key
 
-- - Sign up for an [OpenAI account](https://platform.openai.com/) and obtain your API key.
-- Set your OPENAI_API_KEY environment variable.
+- 注册 [OpenAI](https://platform.openai.com/) 账号并获取 API Key。
+- 设置 `OPENAI_API_KEY` 环境变量。
+
 ```bash
 export OPENAI_API_KEY='your-api-key-here'
 ```
 
-4. Run the team of AI Agents
+4. 运行 AI Agent 团队
+
 ```bash
 streamlit run research_agent.py
 ```
 
-Then open your browser and navigate to the URL shown in the terminal (typically http://localhost:8501).
+随后打开浏览器并访问终端中显示的地址，通常为 `http://localhost:8501`。
 
-### Research Process:
-- Enter a research topic in the sidebar or select one of the provided examples
-- Click "Start Research" to begin the process
-- View the research process in real-time on the "Research Process" tab
-- Once complete, switch to the "Report" tab to view and download the generated report
+### 研究流程
+
+- 在侧边栏输入研究主题，或选择已有示例
+- 点击 `Start Research` 开始研究
+- 在 `Research Process` 标签页中实时查看研究过程
+- 完成后切换到 `Report` 标签页，查看并下载生成的报告
