@@ -1,4 +1,4 @@
-# Dependency Doctor Agent Skill
+# 依赖诊断 Agent Skill
 
 Dependency Doctor（依赖诊断器）用于检查单个依赖清单中表层、直接可见的常见问题。它可以发现未固定的版本、与 Python 标准库同名的依赖、已经过时的 backport 包，以及清单内部明显的版本冲突；但它并不是用来诊断 pip 或 uv 依赖解析失败的工具。
 
