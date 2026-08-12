@@ -1,42 +1,42 @@
-# 🗄️ Tutorial 5.2: Persistent Conversation Agent
+# 🗄️ 教程 5.2：持久化对话 Agent
 
-Welcome to persistent session management! This tutorial teaches you how to create an AI agent that can remember conversations across multiple sessions using `DatabaseSessionService` with SQLite.
+本教程介绍持久化会话管理，学习如何使用 SQLite 与 `DatabaseSessionService` 创建能够跨多个会话记住对话内容的 AI Agent。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **DatabaseSessionService**: Persistent session storage with SQLite
-- **Cross-Session Memory**: Remembering conversations across program restarts
-- **Database Management**: Setting up and managing session databases
-- **Data Persistence**: Long-term storage of conversation history
-- **Session Recovery**: Retrieving previous conversations
+- **DatabaseSessionService**：使用 SQLite 持久化存储会话
+- **跨会话记忆**：程序重启后仍能记住之前的对话
+- **数据库管理**：配置和管理会话数据库
+- **数据持久化**：长期保存对话历史
+- **会话恢复**：检索并继续之前的对话
 
-## 🧠 Core Concept: Persistent Sessions
+## 🧠 核心概念：持久化会话
 
-**DatabaseSessionService** stores session data in a SQLite database file. This means:
-- ✅ **Persistent storage** - Data survives program restarts
-- ✅ **Cross-session memory** - Remember conversations across sessions
-- ✅ **Data integrity** - ACID compliance with SQLite
-- ✅ **Scalable** - Can handle multiple users and sessions
-- ❌ **Setup required** - Need to initialize database
-- ❌ **File-based** - Limited to single machine
+**DatabaseSessionService** 会将会话数据存储到 SQLite 数据库文件中。这意味着：
+- ✅ **持久化存储**：程序重启后数据仍然存在
+- ✅ **跨会话记忆**：可以在不同会话之间保留对话信息
+- ✅ **数据完整性**：利用 SQLite 的 ACID 特性
+- ✅ **支持扩展**：可处理多个用户和多个会话
+- ❌ **需要配置**：必须初始化数据库
+- ❌ **基于本地文件**：默认受限于单机环境
 
-Perfect for:
-- Production applications
-- Multi-user systems
-- Long-term conversation history
-- Data analysis and insights
+适用于：
+- 生产应用原型
+- 多用户系统
+- 长期对话历史
+- 数据分析与洞察
 
-## 🔧 Key Components
+## 🔧 关键组件
 
 ### 1. **DatabaseSessionService**
 ```python
 from google.adk.sessions import DatabaseSessionService
 ```
 
-### 2. **Database Structure**
-```
+### 2. **数据库结构**
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                    SQLITE DATABASE                          │
+│                    SQLITE 数据库                            │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
@@ -51,154 +51,153 @@ from google.adk.sessions import DatabaseSessionService
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 3. **Session Lifecycle with Persistence**
-```
+### 3. **持久化会话生命周期**
+```text
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   CREATE    │───▶│   USE       │───▶│   CLOSE     │
-│  SESSION    │    │  SESSION    │    │  SESSION    │
-│  (DB)       │    │  (DB)       │    │  (DB)       │
+│    创建     │───▶│    使用     │───▶│    关闭     │
+│    会话     │    │    会话     │    │    会话     │
+│   （DB）    │    │   （DB）    │    │   （DB）    │
 └─────────────┘    └─────────────┘    └─────────────┘
        │                   │                   │
        ▼                   ▼                   ▼
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  Database   │    │  Database   │    │  Database   │
-│  Created    │    │  Updated    │    │  Archived   │
+│  数据库创建 │    │  数据库更新 │    │  数据库归档 │
 └─────────────┘    └─────────────┘    └─────────────┘
 ```
 
-## 🚀 Tutorial Overview
+## 🚀 教程概览
 
-In this tutorial, we'll create a **Simple Persistent Agent** that:
-- Remembers conversations across program restarts
-- Uses SQLite database for persistent storage
-- Demonstrates basic cross-session memory
-- Shows the difference from in-memory sessions
+本教程将创建一个**简单的持久化 Agent**，它可以：
+- 在程序重启后继续记住对话
+- 使用 SQLite 数据库进行持久化存储
+- 演示基础的跨会话记忆
+- 展示其与内存会话的区别
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 5_2_persistent_conversation/
-├── README.md              # This file - concept explanation
-├── requirements.txt       # Dependencies
-├── agent.py              # Main agent with database session management
-├── app.py                # Streamlit web interface
-└── sessions.db           # SQLite database (created automatically)
+├── README.md              # 本文件：概念说明
+├── requirements.txt       # 依赖
+├── agent.py               # 使用数据库会话管理的主 Agent
+├── app.py                 # Streamlit Web 界面
+└── sessions.db            # SQLite 数据库（自动创建）
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How to set up DatabaseSessionService with SQLite
-- ✅ How to create persistent sessions
-- ✅ How to retrieve conversation history across sessions
-- ✅ How to manage database connections and transactions
-- ✅ How to build agents that remember long-term
+完成本教程后，你将理解：
+- ✅ 如何使用 SQLite 配置 `DatabaseSessionService`
+- ✅ 如何创建持久化会话
+- ✅ 如何跨会话检索对话历史
+- ✅ 如何管理数据库连接和事务
+- ✅ 如何构建具备长期记忆能力的 Agent
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Install dependencies**:
+1. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Set up your environment**:
+2. **配置环境**：
    ```bash
-   # Create a .env file with your Google AI API key
+   # 创建 .env 文件并填入 Google AI API Key
    echo "GOOGLE_API_KEY=your_api_key_here" > .env
    ```
 
-3. **Run the agent**:
+3. **运行 Agent**：
    ```bash
-   # Start the Streamlit app
+   # 启动 Streamlit 应用
    streamlit run app.py
    ```
 
-4. **Test persistence**:
-   - Have a conversation with the agent
-   - Close the browser/app
-   - Restart the app
-   - Continue the conversation - it will remember!
+4. **测试持久化能力**：
+   - 与 Agent 进行一段对话
+   - 关闭浏览器或应用
+   - 重新启动应用
+   - 继续对话，Agent 仍能记住之前的内容
 
-## 🔍 Code Walkthrough
+## 🔍 代码解析
 
-### Key Database Session Management Code:
+### 数据库会话管理核心代码
 
 ```python
-# 1. Create database session service
+# 1. 创建数据库会话服务
 session_service = DatabaseSessionService(
     db_url="sqlite:///sessions.db"
 )
 
-# 2. Initialize database (creates tables)
+# 2. 初始化数据库（创建表）
 await session_service.initialize()
 
-# 3. Create or retrieve session
+# 3. 创建或获取会话
 session = await session_service.get_session(
     app_name="demo",
     user_id="user123",
     session_id="session_user123"
 )
 
-# 4. Use with Runner for agent execution
+# 4. 配合 Runner 执行 Agent
 async for event in runner.run_async(
     user_id=user_id,
     session_id=session_id,
     new_message=user_content
 ):
-    # Handle response
+    # 处理响应
 ```
 
-## 🎯 Testing Your Agent
+## 🎯 测试 Agent
 
-Try these persistence tests:
+可以通过以下测试验证持久化记忆：
 
-### Test 1: Cross-Session Memory
-```
-Session 1:
-User: "My name is Bob"
-Agent: "Nice to meet you, Bob!"
+### 测试 1：跨会话记忆
+```text
+会话 1：
+用户："My name is Bob"
+Agent："Nice to meet you, Bob!"
 
-Session 2 (after restart):
-User: "What's my name?"
-Agent: "Your name is Bob!"
-```
-
-### Test 2: Interest Memory
-```
-Session 1:
-User: "I love coding"
-Agent: "That's great! Coding is a wonderful skill."
-
-Session 2 (after restart):
-User: "What do I love?"
-Agent: "You love coding!"
+会话 2（应用重启后）：
+用户："What's my name?"
+Agent："Your name is Bob!"
 ```
 
-### Test 3: Database Verification
+### 测试 2：兴趣记忆
+```text
+会话 1：
+用户："I love coding"
+Agent："That's great! Coding is a wonderful skill."
+
+会话 2（应用重启后）：
+用户："What do I love?"
+Agent："You love coding!"
 ```
-1. Have a conversation
-2. Check for sessions.db file in project directory
-3. Restart the app
-4. Continue conversation - it remembers!
+
+### 测试 3：数据库验证
+```text
+1. 与 Agent 进行对话
+2. 检查项目目录中是否生成 sessions.db
+3. 重启应用
+4. 继续对话，确认 Agent 仍保留之前的记忆
 ```
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
-- **[Tutorial 5.3: Cloud Memory](../README.md)** - Learn cloud-based session storage
-- **Advanced Database Patterns** - Multi-user session management
-- **Data Analytics** - Analyzing conversation patterns
+完成本教程后，可以继续学习：
+- **[教程 5.3：云端记忆](../README.md)**：了解基于云服务的会话存储
+- **高级数据库模式**：多用户会话管理
+- **数据分析**：分析对话模式和历史数据
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Database Location**: The SQLite file is created in your project directory
-- **Backup Strategy**: Consider backing up the sessions.db file
-- **Performance**: SQLite is fast for small to medium applications
-- **Scaling**: For large applications, consider PostgreSQL or cloud databases
+- **数据库位置**：SQLite 文件会创建在项目目录中
+- **备份策略**：建议定期备份 `sessions.db`
+- **性能**：SQLite 适合中小型应用，并具有良好性能
+- **扩展性**：大型应用可以考虑 PostgreSQL 或云数据库
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **Database File**: A `sessions.db` file will be created in your project directory
-- **Data Persistence**: Conversations survive program restarts
-- **File Permissions**: Ensure write permissions in the project directory
-- **Backup**: The database file contains all conversation data - back it up! 
+- **数据库文件**：项目目录中会创建 `sessions.db`
+- **数据持久化**：程序重启后对话仍会保留
+- **文件权限**：确保项目目录具备写入权限
+- **备份**：数据库文件包含全部对话数据，应妥善备份
