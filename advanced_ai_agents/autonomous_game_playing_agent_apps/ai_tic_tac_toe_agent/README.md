@@ -1,115 +1,119 @@
-# 🎮 Agent X vs Agent O: Tic-Tac-Toe Game
+# 🎮 Agent X vs Agent O：AI 井字棋对战
 
-An interactive Tic-Tac-Toe game where two AI agents powered by different language models compete against each other built on Agno Agent Framework and Streamlit as UI.
+这是一个交互式井字棋游戏，由两个使用不同语言模型的 AI Agent 相互对战。项目基于 Agno Agent Framework 构建，并使用 Streamlit 作为 UI。
 
-This example shows how to build an interactive Tic Tac Toe game where AI agents compete against each other. The application showcases how to:
-- Coordinate multiple AI agents in a turn-based game
-- Use different language models for different players
-- Create an interactive web interface with Streamlit
-- Handle game state and move validation
-- Display real-time game progress and move history
+该示例展示如何构建 AI Agent 相互竞争的交互式井字棋应用，包括：
+- 在回合制游戏中协调多个 AI Agent
+- 为不同玩家使用不同语言模型
+- 使用 Streamlit 创建交互式 Web 界面
+- 管理游戏状态并验证走法
+- 实时显示游戏进度和走法历史
 
-## Features
-- Multiple AI models support (GPT-4, Claude, Gemini, etc.)
-- Real-time game visualization
-- Move history tracking with board states
-- Interactive player selection
-- Game state management
-- Move validation and coordination
+## 功能特性
 
-## How to Run? 
+- 支持多种 AI 模型（GPT-4、Claude、Gemini 等）
+- 实时棋盘可视化
+- 记录走法历史及对应棋盘状态
+- 可交互选择玩家模型
+- 游戏状态管理
+- 走法验证与 Agent 协调
 
-1. **Setup Environment**
-   ```bash
-   # Clone the repository
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd advanced_ai_agents/autonomous_game_playing_agent_apps/ai_tic_tac_toe_agent
+## 如何运行？
 
-   # Install dependencies
-   pip install -r requirements.txt
-   ```
+1. **配置环境**
 
-### 2. Install dependencies
+```bash
+# 克隆仓库
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd advanced_ai_agents/autonomous_game_playing_agent_apps/ai_tic_tac_toe_agent
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+### 2. 安装依赖
 
 ```shell
 pip install -r requirements.txt
 ```
 
-### 3. Setup API Keys
+### 3. 配置 API Keys
 
-The game supports multiple AI models. Create a `.env` file in this directory and add your API keys:
+游戏支持多种 AI 模型。在当前目录创建 `.env` 文件，并加入所需 API Key：
 
-1. **Create a `.env` file:**
-   ```bash
-   # In the ai_tic_tac_toe_agent directory
-   touch .env
-   ```
+1. **创建 `.env` 文件：**
 
-2. **Add your API keys to the `.env` file:**
-   ```env
-   # Required for OpenAI models (gpt-4o, o3-mini)
-   OPENAI_API_KEY=your_actual_openai_api_key_here
+```bash
+# 在 ai_tic_tac_toe_agent 目录中
+touch .env
+```
 
-   # Optional - for additional models
-   ANTHROPIC_API_KEY=your_actual_anthropic_api_key_here  # For Claude models
-   GOOGLE_API_KEY=your_actual_google_api_key_here        # For Gemini models
-   GROQ_API_KEY=your_actual_groq_api_key_here           # For Groq models
-   ```
+2. **将 API Keys 添加到 `.env` 文件：**
 
-   > **Note:** Replace the placeholder values with your actual API keys. The app will show helpful error messages if required keys are missing.
+```env
+# OpenAI 模型（gpt-4o、o3-mini）需要
+OPENAI_API_KEY=your_actual_openai_api_key_here
 
-### 4. Run the Game
+# 可选 —— 用于其他模型
+ANTHROPIC_API_KEY=your_actual_anthropic_api_key_here  # Claude 模型
+GOOGLE_API_KEY=your_actual_google_api_key_here        # Gemini 模型
+GROQ_API_KEY=your_actual_groq_api_key_here             # Groq 模型
+```
+
+> **注意：** 请将示例值替换为真实 API Key。如果缺少必要的 Key，应用会显示相应错误提示。
+
+### 4. 运行游戏
 
 ```shell
 streamlit run app.py
 ```
 
-- Open [localhost:8501](http://localhost:8501) to view the game interface
+- 打开 [localhost:8501](http://localhost:8501) 查看游戏界面
 
-## How It Works
+## 工作原理
 
-The game consists of three agents:
+游戏由三个 Agent 组成：
 
-1. **Master Agent (Referee)**
-   - Coordinates the game
-   - Validates moves
-   - Maintains game state
-   - Determines game outcome
+1. **Master Agent（裁判）**
+   - 协调整个游戏流程
+   - 验证走法
+   - 维护游戏状态
+   - 判断游戏结果
 
-2. **Two Player Agents**
-   - Make strategic moves
-   - Analyze board state
-   - Follow game rules
-   - Respond to opponent moves
+2. **两个 Player Agents**
+   - 进行策略性走子
+   - 分析棋盘状态
+   - 遵守游戏规则
+   - 根据对手走法作出响应
 
-## Available Models
+## 可用模型
 
-The game supports various AI models:
-- GPT-4o (OpenAI)
-- GPT-o3-mini (OpenAI)
-- Gemini (Google)
-- Llama 3 (Groq)
-- Claude (Anthropic)
+游戏支持多种 AI 模型：
+- GPT-4o（OpenAI）
+- GPT-o3-mini（OpenAI）
+- Gemini（Google）
+- Llama 3（Groq）
+- Claude（Anthropic）
 
-## Game Features
+## 游戏功能
 
-1. **Interactive Board**
-   - Real-time updates
-   - Visual move tracking
-   - Clear game status display
+1. **交互式棋盘**
+   - 实时更新
+   - 可视化走法记录
+   - 清晰显示游戏状态
 
-2. **Move History**
-   - Detailed move tracking
-   - Board state visualization
-   - Player action timeline
+2. **走法历史**
+   - 详细记录每一步
+   - 展示对应棋盘状态
+   - 玩家操作时间线
 
-3. **Game Controls**
-   - Start/Pause game
-   - Reset board
-   - Select AI models
-   - View game history
+3. **游戏控制**
+   - 开始/暂停游戏
+   - 重置棋盘
+   - 选择 AI 模型
+   - 查看游戏历史
 
-4. **Performance Analysis**
-   - Move timing
-   - Strategy tracking
-   - Game statistics
+4. **性能分析**
+   - 走子耗时
+   - 策略追踪
+   - 游戏统计
