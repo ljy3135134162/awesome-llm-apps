@@ -1,78 +1,93 @@
-# 🥸 AI Meme Generator Agent - Browser Use
+# 🥸 AI Meme 生成 Agent - Browser Use
 
-The AI Meme Generator Agent is a powerful browser automation tool that creates memes using AI agents. This app combines multi-LLM capabilities with automated browser interactions to generate memes based on text prompts through direct website manipulation.
+AI Meme Generator Agent 是一个基于浏览器自动化的 Meme 生成工具，通过 AI Agent 直接操作网页来创建 Meme。该应用结合多 LLM 能力与自动化浏览器交互，根据文本提示词直接操作网站生成 Meme。
 
-## Features
+## 功能特性
 
-- **Multi-LLM Support**
-  - Claude 3.5 Sonnet (Anthropic)
-  - GPT-4o (OpenAI)
-  - Deepseek v3 (Deepseek)
-  - Automatic model switching with API key validation
+- **多 LLM 支持**
+  - Claude 3.5 Sonnet（Anthropic）
+  - GPT-4o（OpenAI）
+  - DeepSeek V3（DeepSeek）
+  - 根据 API Key 校验结果自动切换模型
 
-- **Browser Automation**:
-  - Direct interaction with imgflip.com meme templates
-  - Automated search for relevant meme formats
-  - Dynamic text insertion for top/bottom captions
-  - Image link extraction from generated memes
+- **浏览器自动化**
+  - 直接操作 imgflip.com 的 Meme 模板
+  - 自动搜索合适的 Meme 格式
+  - 自动填写顶部和底部文字
+  - 从生成结果中提取图片链接
 
-- **Smart Generation Workflow**:
-  - Action verb extraction from prompts
-  - Metaphorical template matching
-  - Multi-step quality validation
-  - Automatic retry mechanism for failed generations
+- **智能生成流程**
+  - 从提示词中提取动作语义
+  - 根据语义匹配合适的 Meme 模板
+  - 多步骤质量校验
+  - 生成失败时自动重试
 
-- **User-Friendly Interface**:
-  - Model configuration sidebar
-  - API key management
-  - Direct meme preview with clickable links
-  - Responsive error handling
+- **易用界面**
+  - 模型配置侧边栏
+  - API Key 管理
+  - Meme 直接预览并提供可点击链接
+  - 完善的错误处理
 
+## 所需 API Keys
 
-API keys required:
-- **Anthropic** (for Claude)
-- **Deepseek** 
-- **OpenAI** (for GPT-4o)
+- **Anthropic**：用于 Claude
+- **DeepSeek**
+- **OpenAI**：用于 GPT-4o
 
-## How to Run
+## 运行方式
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd starter_ai_agents/ai_meme_generator_agent_browseruse
-   ```
-2. **Install the dependencies**:
-    ```bash
-    pip install -r requirements.txt
-    ```
-    Install `playwright` if needed.
-    ```bash
-    python -m playwright install --with-deps
-    ```
-3. **Run the Streamlit app**:
-    ```bash
-    streamlit run ai_meme_generator_agent.py
+1. **克隆仓库**
 
-    ```
+```bash
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd starter_ai_agents/ai_meme_generator_agent_browseruse
+```
 
-### Running with uv
+2. **安装依赖**
 
-You can also run this project using [uv](https://docs.astral.sh/uv/), a fast Python package manager, instead of `pip`.
+```bash
+pip install -r requirements.txt
+```
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-   cd starter_ai_agents/ai_meme_generator_agent_browseruse
-   ```
-2. **Install the dependencies** (this creates a `.venv` and installs everything from `pyproject.toml`/`uv.lock`):
-    ```bash
-    uv sync
-    ```
-    Install `playwright`'s browser binaries if needed:
-    ```bash
-    uv run playwright install --with-deps
-    ```
-3. **Run the Streamlit app**:
-    ```bash
-    uv run streamlit run ai_meme_generator_agent.py
-    ```
+如有需要，安装 `playwright` 浏览器运行环境：
+
+```bash
+python -m playwright install --with-deps
+```
+
+3. **运行 Streamlit 应用**
+
+```bash
+streamlit run ai_meme_generator_agent.py
+```
+
+### 使用 uv 运行
+
+也可以使用 [uv](https://docs.astral.sh/uv/) 这个高速 Python 包管理器代替 `pip` 运行项目。
+
+1. **克隆仓库**
+
+```bash
+git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+cd starter_ai_agents/ai_meme_generator_agent_browseruse
+```
+
+2. **安装依赖**
+
+该命令会创建 `.venv`，并根据 `pyproject.toml` / `uv.lock` 安装依赖：
+
+```bash
+uv sync
+```
+
+如有需要，安装 `playwright` 浏览器二进制文件：
+
+```bash
+uv run playwright install --with-deps
+```
+
+3. **运行 Streamlit 应用**
+
+```bash
+uv run streamlit run ai_meme_generator_agent.py
+```
