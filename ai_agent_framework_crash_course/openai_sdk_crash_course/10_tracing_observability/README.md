@@ -1,209 +1,208 @@
-# 🔍 Tutorial 8: Tracing & Observability
+# 🔍 教程 10：Tracing 与可观测性
 
-Master monitoring and debugging with built-in tracing! This tutorial teaches you how to use the OpenAI Agents SDK's comprehensive tracing system to visualize, debug, and monitor your agent workflows during development and production.
+本教程介绍 OpenAI Agents SDK 内置的 Tracing 系统，学习如何可视化、调试和监控 Agent 工作流，并将这些能力应用到开发和生产环境中。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Built-in Tracing**: Automatic capture of LLM generations, tool calls, handoffs
-- **Traces & Spans**: Understanding workflow structure and execution flow
-- **Custom Tracing**: Creating custom traces and spans for complex workflows
-- **Production Monitoring**: Debugging and performance optimization
+- **内置 Tracing**：自动捕获 LLM 生成、工具调用和 Handoff
+- **Trace 与 Span**：理解工作流结构与执行过程
+- **自定义 Tracing**：为复杂工作流创建自定义 Trace 和 Span
+- **生产监控**：用于调试、性能分析和优化
 
-## 🧠 Core Concept: What Is Tracing?
+## 🧠 核心概念：什么是 Tracing？
 
-Tracing provides **comprehensive workflow monitoring** that automatically captures every event during agent execution:
+Tracing 提供**完整的工作流可观测性**，可以自动记录 Agent 执行期间的重要事件，包括：
 
-- **LLM Generations**: Model calls, inputs, outputs, and performance
-- **Tool Calls**: Function executions, parameters, and results  
-- **Handoffs**: Agent-to-agent delegations and context transfer
-- **Guardrails**: Input/output validation events
-- **Custom Events**: Your own monitoring points
+- **LLM Generation**：模型调用、输入、输出和执行表现
+- **Tool Call**：函数执行、参数与结果
+- **Handoff**：Agent 之间的任务移交和上下文传递
+- **Guardrail**：输入与输出验证事件
+- **自定义事件**：业务逻辑中的自定义监控点
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
-│                    TRACING ARCHITECTURE                     │
+│                       Tracing 架构                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  AGENT WORKFLOW                                             │
+│  Agent 工作流                                               │
 │       │                                                     │
 │       ▼                                                     │
-│  ┌─────────────┐    AUTOMATIC CAPTURE                       │
+│  ┌─────────────┐    自动捕获                                │
 │  │    TRACE    │◀─────────────────────────────────────────┐ │
-│  │ (Workflow)  │                                          │ │
+│  │  （工作流） │                                          │ │
 │  └─────────────┘                                          │ │
 │       │                                                   │ │
 │       ▼                                                   │ │
 │  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    │ │
 │  │    SPAN     │    │    SPAN     │    │    SPAN     │    │ │
-│  │ (LLM Call)  │    │ (Tool Call) │    │ (Handoff)   │    │ │
+│  │  LLM 调用   │    │  工具调用   │    │   Handoff   │    │ │
 │  └─────────────┘    └─────────────┘    └─────────────┘    │ │
 │       │                    │                    │         │ │
 │       ▼                    ▼                    ▼         │ │
 │  ┌─────────────────────────────────────────────────────┐  │ │
-│  │         OPENAI TRACES DASHBOARD                     │  │ │
-│  │    • Execution Visualization                        │  │ │
-│  │    • Performance Metrics                            │__| │ 
-│  │    • Debug Information                              │    │
-│  └─────────────────────────────────────────────────────┘    │
+│  │             OpenAI Traces Dashboard                │  │ │
+│  │    • 执行流程可视化                                 │  │ │
+│  │    • 性能指标                                       │  │ │
+│  │    • 调试信息                                       │  │ │
+│  └─────────────────────────────────────────────────────┘  │ │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## 🚀 Tutorial Overview
+## 🚀 教程概览
 
-This tutorial demonstrates **three key tracing patterns**:
+本教程演示三种主要 Tracing 模式：
 
-### **1. Default Tracing** (`default_tracing.py`)
-- Built-in automatic tracing (enabled by default)
-- Understanding traces and spans structure
-- Basic workflow monitoring
+### **1. 默认 Tracing**（`default_tracing.py`）
+- SDK 默认启用的自动 Tracing
+- 理解 Trace 和 Span 的结构
+- 基础工作流监控
 
-### **2. Custom Tracing** (`custom_tracing.py`)
-- Creating custom traces for multi-step workflows
-- Adding custom spans for monitoring points
-- Grouping multiple agent runs in single trace
+### **2. 自定义 Tracing**（`custom_tracing.py`）
+- 为多阶段工作流创建自定义 Trace
+- 添加自定义 Span 作为监控点
+- 将多个 Agent Run 归入同一个 Trace
 
-### **3. Advanced Observability** (`advanced_observability.py`)
-- Sensitive data handling and configuration
-- Custom trace processors for external systems
-- Production monitoring patterns
+### **3. 高级可观测性**（`advanced_observability.py`）
+- 敏感数据处理与配置
+- 为外部系统编写自定义 Trace Processor
+- 生产环境监控模式
 
-## 📁 Project Structure
+## 📁 项目结构
 
+```text
+10_tracing_observability/
+├── README.md                    # 本文件：概念说明
+├── requirements.txt             # 依赖
+├── default_tracing.py           # 内置 Tracing 基础
+├── custom_tracing.py            # 自定义 Trace 与 Span
+├── advanced_observability.py    # 生产环境 Tracing 模式
+├── app.py                       # Streamlit Tracing 演示（可选）
+└── env.example                  # 环境变量模板
 ```
-8_tracing_observability/
-├── README.md                    # This file - concept explanation
-├── requirements.txt             # Dependencies  
-├── default_tracing.py           # Built-in tracing basics (35 lines)
-├── custom_tracing.py            # Custom traces and spans (45 lines)
-├── advanced_observability.py    # Production tracing patterns (40 lines)
-├── app.py                      # Streamlit tracing dashboard (optional)
-└── env.example                 # Environment variables template
-```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
-- ✅ How built-in tracing captures agent workflow events
-- ✅ Difference between traces (workflows) and spans (operations)
-- ✅ Creating custom traces for complex multi-step workflows
-- ✅ Monitoring and debugging agent performance in production
-- ✅ Integrating with external observability systems
+完成本教程后，你将理解：
+- ✅ 内置 Tracing 如何自动捕获 Agent 工作流事件
+- ✅ Trace（工作流）和 Span（操作）之间的区别
+- ✅ 如何为复杂多阶段工作流创建自定义 Trace
+- ✅ 如何监控和调试生产环境中的 Agent 性能
+- ✅ 如何与外部可观测性系统集成
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Install OpenAI Agents SDK**:
+1. **安装 OpenAI Agents SDK**：
    ```bash
    pip install openai-agents
    ```
 
-2. **Install dependencies**:
+2. **安装依赖**：
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Set up environment variables**:
+3. **配置环境变量**：
    ```bash
    cp env.example .env
-   # Edit .env and add your OpenAI API key
+   # 编辑 .env 并添加 OpenAI API Key
    ```
 
-3. **Test default tracing**:
+4. **测试默认 Tracing**：
    ```bash
    python default_tracing.py
    ```
 
-4. **Try custom tracing**:
+5. **测试自定义 Tracing**：
    ```bash
    python custom_tracing.py
    ```
 
-5. **Explore advanced patterns**:
+6. **探索高级模式**：
    ```bash
    python advanced_observability.py
    ```
 
-## 🧪 Sample Use Cases
+## 🧪 示例场景
 
-### Default Tracing
-- Monitor basic agent workflows automatically
-- Debug tool call failures and LLM generation issues
-- Track performance metrics for optimization
+### 默认 Tracing
+- 自动监控基础 Agent 工作流
+- 调试工具调用失败和 LLM 输出问题
+- 跟踪性能指标并寻找优化点
 
-### Custom Tracing
-- Group related agent runs in complex workflows
-- Add custom monitoring points in business logic
-- Create hierarchical span structures for debugging
+### 自定义 Tracing
+- 将相关 Agent Run 归并到一个复杂工作流中
+- 在业务逻辑中添加自定义监控点
+- 创建分层 Span 结构用于问题定位
 
-### Advanced Observability
-- Configure sensitive data handling for compliance
-- Export traces to external monitoring systems
-- Set up production alerting and dashboards
+### 高级可观测性
+- 配置敏感数据处理以满足合规要求
+- 将 Trace 导出到外部监控系统
+- 构建生产告警和 Dashboard
 
-## 🔧 Key Tracing Patterns
+## 🔧 常见 Tracing 模式
 
-### 1. **Default Tracing (Automatic)**
+### 1. **默认 Tracing（自动）**
 ```python
 from agents import Agent, Runner
 
 agent = Agent(name="Assistant")
-# Tracing happens automatically - no setup required!
+# 默认会自动记录 Trace，无需额外配置
 result = await Runner.run(agent, "Hello")
-# View traces at: https://platform.openai.com/traces
+# 可在 OpenAI Platform 的 Traces 页面查看
 ```
 
-### 2. **Custom Trace Creation**
+### 2. **自定义 Trace**
 ```python
 from agents import Agent, Runner, trace
 
 with trace("Multi-step Workflow") as my_trace:
     result1 = await Runner.run(agent, "Step 1")
     result2 = await Runner.run(agent, "Step 2")
-    # Both runs are part of the same trace
+    # 两次运行属于同一个 Trace
 ```
 
-### 3. **Custom Spans**
+### 3. **自定义 Span**
 ```python
 from agents import custom_span
 
 with custom_span("Data Processing") as span:
-    # Your custom logic here
     data = process_data()
     span.add_event("Processing complete", {"records": len(data)})
 ```
 
-## 💡 Tracing Design Best Practices
+## 💡 Tracing 设计最佳实践
 
-1. **Meaningful Names**: Use descriptive trace and span names
-2. **Logical Grouping**: Group related operations in single traces  
-3. **Custom Events**: Add key business events as custom spans
-4. **Sensitive Data**: Configure data handling for compliance
-5. **Performance Monitoring**: Track execution time and resource usage
+- **使用有意义的名称**：为 Trace 和 Span 使用清晰、可检索的命名
+- **合理分组**：将属于同一业务流程的操作放入同一个 Trace
+- **记录关键业务节点**：使用自定义 Span 补充 SDK 自动记录之外的信息
+- **注意敏感数据**：生产环境中应明确配置数据采集边界
+- **关注性能指标**：持续跟踪耗时和资源使用趋势
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **Enabled by Default**: Tracing is automatically enabled
-- **Zero Data Retention**: Tracing unavailable for ZDR policy organizations
-- **Free Dashboard**: View traces at OpenAI Traces dashboard
-- **Disable if Needed**: Set `OPENAI_AGENTS_DISABLE_TRACING=1` to disable
+- **默认启用**：OpenAI Agents SDK 默认启用 Tracing
+- **ZDR 组织限制**：采用 Zero Data Retention 策略的组织无法使用 OpenAI 托管的 Tracing
+- **可视化 Dashboard**：可在 OpenAI Platform 中查看 Trace
+- **可关闭**：设置 `OPENAI_AGENTS_DISABLE_TRACING=1` 可以禁用 Tracing
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
-- **[Tutorial 9: Handoffs & Delegation](../8_handoffs_delegation/README.md)** - Agent handoffs and task delegation
-- **[Tutorial 10: Multi-Agent Orchestration](../9_multi_agent_orchestration/README.md)** - Complex multi-agent workflows
-- **[Tutorial 11: Production Patterns](../11_voice/README.md)** - Real-world deployment strategies
+完成本教程后，可以继续：
+- **[教程 11：Voice](../11_voice/README.md)** —— 学习语音 Agent 与实时交互
+- 将 Tracing 与前面的 Handoff、多 Agent 和 Guardrail 工作流组合使用
+- 为生产系统接入现有的日志、指标和可观测性平台
 
-## 🚨 Troubleshooting
+## 🚨 故障排查
 
-- **No Traces Visible**: Check OpenAI API key and internet connectivity
-- **Missing Spans**: Ensure operations are within trace context
-- **Performance Issues**: Configure sensitive data filtering
-- **ZDR Policy**: Tracing unavailable - disable or use custom processors
+- **看不到 Trace**：检查 OpenAI API Key、网络连接以及 Tracing 是否被禁用
+- **Span 缺失**：确认相关操作位于 Trace 上下文内部
+- **性能问题**：检查 Trace 内容和敏感数据采集配置
+- **ZDR 策略**：如果组织启用了 ZDR，需要关闭托管 Tracing 或使用自定义 Processor
 
-## 💡 Pro Tips
+## 💡 实用建议
 
-- **Start Simple**: Use default tracing first, add custom traces as needed
-- **Strategic Naming**: Use consistent naming conventions for traces/spans
-- **Monitor Performance**: Track execution time trends over time
-- **External Integration**: Consider custom processors for your monitoring stack
-- **Development vs Production**: Different tracing strategies for each environment
+- **先使用默认 Tracing**：只有在确有需要时再增加自定义 Trace
+- **统一命名规范**：方便搜索、聚合和排障
+- **持续观察性能趋势**：不要只在发生故障时查看 Trace
+- **外部集成**：大型系统可以通过自定义 Processor 接入现有监控栈
+- **区分开发与生产配置**：两个环境通常需要不同的数据采集策略
