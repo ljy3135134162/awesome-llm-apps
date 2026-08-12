@@ -1,41 +1,41 @@
-# 🔍 Knowledge Graph RAG with Verifiable Citations
+# 🔍 带可验证引用的知识图谱 RAG
 
-A Streamlit application demonstrating how **Knowledge Graph-based Retrieval-Augmented Generation (RAG)** provides multi-hop reasoning with fully verifiable source attribution.
+一个 Streamlit 应用，用于演示**基于知识图谱的检索增强生成（RAG）**如何通过多跳推理提供完整且可验证的来源归因。
 
-## 🎯 What Makes This Different?
+## 🎯 有什么不同？
 
-Traditional vector-based RAG finds similar text chunks, but struggles with:
-- Questions requiring information from multiple documents
-- Complex reasoning chains
-- Providing verifiable sources for each claim
+传统的向量 RAG 擅长查找相似文本块，但在以下场景中表现有限：
+- 需要综合多个文档信息的问题
+- 复杂的推理链
+- 为每个结论提供可验证来源
 
-**Knowledge Graph RAG** solves these by:
-1. **Building a structured graph** of entities and relationships from documents
-2. **Traversing connections** to find related information (multi-hop reasoning)
-3. **Tracking provenance** so every claim links back to its source
+**知识图谱 RAG**通过以下方式解决这些问题：
+1. 从文档中**构建由实体和关系组成的结构化图谱**
+2. **沿连接关系进行遍历**，查找相关信息并实现多跳推理
+3. **跟踪数据来源（provenance）**，使每个结论都能回溯到原始来源
 
-## ✨ Features
+## ✨ 功能
 
-| Feature | Description |
+| 功能 | 说明 |
 |---------|-------------|
-| 🔗 **Multi-hop Reasoning** | Traverse entity relationships to answer complex questions |
-| 📚 **Verifiable Citations** | Every claim includes source document and text |
-| 🧠 **Reasoning Trace** | See exactly how the answer was derived |
-| 🏠 **Fully Local** | Uses Ollama for LLM, Neo4j for graph storage |
+| 🔗 **多跳推理** | 遍历实体关系以回答复杂问题 |
+| 📚 **可验证引用** | 每个结论都附带来源文档和原始文本 |
+| 🧠 **推理轨迹** | 清楚查看答案是如何推导出来的 |
+| 🏠 **完全本地运行** | 使用 Ollama 运行 LLM，使用 Neo4j 存储图谱 |
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### Prerequisites
+### 环境要求
 
-1. **Ollama** - Local LLM inference
+1. **Ollama** —— 本地 LLM 推理
    ```bash
-   # Install from https://ollama.ai
+   # 从 https://ollama.ai 安装
    ollama pull llama3.2
    ```
 
-2. **Neo4j** - Knowledge graph database
+2. **Neo4j** —— 知识图谱数据库
    ```bash
-   # Using Docker
+   # 使用 Docker
    docker run -d \
      --name neo4j \
      -p 7474:7474 -p 7687:7687 \
@@ -43,129 +43,112 @@ Traditional vector-based RAG finds similar text chunks, but struggles with:
      neo4j:latest
    ```
 
-### Installation
+### 安装
 
 ```bash
-# Clone and navigate
 cd knowledge_graph_rag_citations
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Run the app
 streamlit run knowledge_graph_rag.py
 ```
 
-## 📖 How It Works
+## 📖 工作原理
 
-### Step 1: Document → Knowledge Graph
+### 第 1 步：文档 → 知识图谱
 
-```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   Document      │ ──► │  LLM Extraction  │ ──► │ Knowledge Graph │
-│   (Text/PDF)    │     │  (Entities+Rels) │     │    (Neo4j)      │
-└─────────────────┘     └──────────────────┘     └─────────────────┘
+```text
+文档（文本/PDF） → LLM 提取（实体 + 关系） → 知识图谱（Neo4j）
 ```
 
-The LLM extracts:
-- **Entities**: People, organizations, concepts, technologies
-- **Relationships**: How entities connect (e.g., "works_for", "created", "uses")
-- **Provenance**: Source document and chunk for each extraction
+LLM 会提取：
+- **实体**：人物、组织、概念、技术等
+- **关系**：实体之间如何连接，例如 `works_for`、`created`、`uses`
+- **来源信息**：每次提取对应的源文档和文本块
 
-### Step 2: Query → Multi-hop Traversal
+### 第 2 步：查询 → 多跳遍历
 
-```
-┌─────────┐     ┌─────────────┐     ┌─────────────┐     ┌───────────┐
-│  Query  │ ──► │  Find Start │ ──► │  Traverse   │ ──► │  Context  │
-│         │     │   Entities  │     │  Relations  │     │  + Sources│
-└─────────┘     └─────────────┘     └─────────────┘     └───────────┘
+```text
+查询 → 查找起始实体 → 遍历关系 → 获取上下文 + 来源
 ```
 
-### Step 3: Answer → Verified Citations
+### 第 3 步：回答 → 已验证引用
 
-```
-┌─────────────┐     ┌─────────────┐     ┌──────────────────┐
-│   Context   │ ──► │  Generate   │ ──► │  Answer with     │
-│ + Sources   │     │   Answer    │     │  [1][2] Citations│
-└─────────────┘     └─────────────┘     └──────────────────┘
-                                                │
-                                                ▼
-                                        ┌──────────────────┐
-                                        │ Citation Details │
-                                        │ • Source Doc     │
-                                        │ • Source Text    │
-                                        │ • Reasoning Path │
-                                        └──────────────────┘
+```text
+上下文 + 来源 → 生成答案 → 带 [1][2] 引用的回答
+                              ↓
+                         引用详情
+                         • 来源文档
+                         • 原始文本
+                         • 推理路径
 ```
 
-## 🖥️ Usage Example
+## 🖥️ 使用示例
 
-### 1. Add a Document
+### 1. 添加文档
 
-Paste or select a sample document. The system extracts entities and relationships:
+粘贴或选择示例文档。系统会提取实体和关系：
 
-```
-Document: "GraphRAG was developed by Microsoft Research. 
+```text
+Document: "GraphRAG was developed by Microsoft Research.
            Darren Edge led the project..."
 
 Extracted:
   ├── Entity: GraphRAG (TECHNOLOGY)
-  ├── Entity: Microsoft Research (ORGANIZATION)  
+  ├── Entity: Microsoft Research (ORGANIZATION)
   ├── Entity: Darren Edge (PERSON)
   └── Relationship: Darren Edge --[WORKS_FOR]--> Microsoft Research
 ```
 
-### 2. Ask a Question
+### 2. 提出问题
 
-```
+```text
 Question: "Who developed GraphRAG and what organization are they from?"
 ```
 
-### 3. Get Verified Answer
+### 3. 获取带验证引用的回答
 
-```
-Answer: GraphRAG was developed by researchers at Microsoft Research [1], 
+```text
+Answer: GraphRAG was developed by researchers at Microsoft Research [1],
         with Darren Edge leading the project [2].
 
 Citations:
   [1] Source: AI Research Paper
       Text: "GraphRAG is a technique developed by Microsoft Research..."
-      
-  [2] Source: AI Research Paper  
+
+  [2] Source: AI Research Paper
       Text: "...introduced by researchers including Darren Edge..."
 ```
 
-## 🔧 Configuration
+## 🔧 配置
 
-| Setting | Default | Description |
+| 设置 | 默认值 | 说明 |
 |---------|---------|-------------|
-| Neo4j URI | `bolt://localhost:7687` | Neo4j connection string |
-| Neo4j User | `neo4j` | Database username |
-| Neo4j Password | - | Database password |
-| LLM Model | `llama3.2` | Ollama model for extraction/generation |
+| Neo4j URI | `bolt://localhost:7687` | Neo4j 连接字符串 |
+| Neo4j User | `neo4j` | 数据库用户名 |
+| Neo4j Password | - | 数据库密码 |
+| LLM Model | `llama3.2` | 用于抽取和生成的 Ollama 模型 |
 
-## 🏗️ Architecture
+## 🏗️ 架构
 
-```
+```text
 knowledge_graph_rag_citations/
-├── knowledge_graph_rag.py   # Main Streamlit application
-├── requirements.txt         # Python dependencies
-└── README.md               # This file
+├── knowledge_graph_rag.py   # 主 Streamlit 应用
+├── requirements.txt         # Python 依赖
+└── README.md                # 本文件
 ```
 
-### Key Components
+### 核心组件
 
-- **`KnowledgeGraphManager`**: Neo4j interface for graph operations
-- **`extract_entities_with_llm()`**: LLM-based entity/relationship extraction
-- **`generate_answer_with_citations()`**: Multi-hop RAG with provenance tracking
+- **`KnowledgeGraphManager`**：用于图操作的 Neo4j 接口
+- **`extract_entities_with_llm()`**：基于 LLM 的实体和关系提取
+- **`generate_answer_with_citations()`**：带来源追踪的多跳 RAG
 
-## 🎓 Learn More
+## 🎓 延伸阅读
 
-This example is inspired by [VeritasGraph](https://github.com/bibinprathap/VeritasGraph), an enterprise-grade framework for:
-- On-premise knowledge graph RAG
-- Visual reasoning traces (Veritas-Scope)
-- LoRA-tuned LLM integration
+这个示例受到 [VeritasGraph](https://github.com/bibinprathap/VeritasGraph) 启发。VeritasGraph 是一个面向企业场景的框架，支持：
+- 本地部署的知识图谱 RAG
+- 可视化推理轨迹（Veritas-Scope）
+- LoRA 微调 LLM 集成
 
-## 📝 License
+## 📝 许可证
 
 MIT License
