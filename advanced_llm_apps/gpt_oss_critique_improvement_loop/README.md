@@ -1,25 +1,25 @@
-# 🔄 GPT-OSS Advanced Critique & Improvement Loop
+# 🔄 GPT-OSS 高级批判与改进循环
 
-A Streamlit app demonstrating the "Automatic Critique + Improvement Loop" pattern using GPT-OSS via Groq.
+这是一个 Streamlit 应用，用于演示通过 Groq 调用 GPT-OSS 实现“自动批判 + 改进循环”模式。
 
-## 🎯 What It Does
+## 🎯 它能做什么
 
-This demo implements an iterative quality improvement process:
+这个示例实现了一套迭代式质量改进流程：
 
-1. **Generate Initial Answer** - Uses Pro Mode (parallel candidates + synthesis)
-2. **Critique Phase** - AI critic identifies flaws, missing information, unclear explanations
-3. **Revision Phase** - AI revises the answer addressing all critiques
-4. **Repeat** - Continue for 1-3 iterations for maximum quality
+1. **生成初始答案** —— 使用 Pro Mode（并行生成多个候选答案，再进行综合）
+2. **批判阶段** —— AI Critic 找出缺陷、遗漏信息和不清晰的解释
+3. **修订阶段** —— AI 根据所有批判意见重写并改进答案
+4. **重复执行** —— 可持续进行 1–3 轮迭代，以获得更高质量的结果
 
-## 🚀 Key Features
+## 🚀 主要特性
 
-- **Iterative Improvement** - Each round makes the answer better
-- **Transparent Process** - See critiques and revisions at each step
-- **Configurable Iterations** - Choose 1-3 improvement rounds
-- **Paper Trail** - Track why decisions were made
-- **Cost Effective** - Uses GPT-OSS instead of expensive models
+- **迭代式改进** —— 每一轮都会进一步提升答案质量
+- **过程透明** —— 可以查看每一步的批判意见和修订结果
+- **可配置迭代次数** —— 可选择 1–3 轮改进
+- **完整决策轨迹** —— 可以追踪每项修改背后的原因
+- **成本较低** —— 使用 GPT-OSS，而不是成本更高的模型
 
-## 🛠️ Installation & Usage
+## 🛠️ 安装与使用
 
 ```bash
 cd critique_improvement_streamlit_demo
@@ -28,56 +28,62 @@ export GROQ_API_KEY=your_key_here
 streamlit run streamlit_app.py
 ```
 
-## 📊 How It Works
+## 📊 工作原理
 
-### Step 1: Initial Answer Generation
-- Generates 3 parallel candidates with high temperature (0.9)
-- Synthesizes them into one coherent answer with low temperature (0.2)
+### 第 1 步：生成初始答案
 
-### Step 2: Critique Phase
-- AI critic analyzes the answer for:
-  - Missing information
-  - Unclear explanations
-  - Logical flaws
-  - Areas needing improvement
+- 使用较高 Temperature（0.9）并行生成 3 个候选答案
+- 使用较低 Temperature（0.2）将它们综合成一个连贯答案
 
-### Step 3: Revision Phase
-- AI revises the answer addressing every critique point
-- Maintains good parts while fixing issues
+### 第 2 步：批判阶段
 
-### Step 4: Repeat
-- Continues for specified number of iterations
-- Each round typically improves quality significantly
+AI Critic 会分析答案中的以下问题：
 
-## 🎯 Use Cases
+- 信息缺失
+- 解释不清晰
+- 逻辑缺陷
+- 需要进一步改进的部分
 
-- **Technical Documentation** - Ensure completeness and clarity
-- **Educational Content** - Catch gaps in explanations
-- **Business Proposals** - Identify missing elements
-- **Code Reviews** - Find potential issues and improvements
-- **Research Papers** - Ensure thoroughness and accuracy
+### 第 3 步：修订阶段
 
-## 💡 Benefits
+- AI 根据每一条批判意见修订答案
+- 在修复问题的同时保留原答案中表现良好的部分
 
-- **Higher Quality** - Often beats single-shot generation
-- **Error Detection** - Catches issues humans might miss
-- **Completeness** - Ensures all aspects are covered
-- **Transparency** - See the improvement process
-- **Cost Effective** - Better results than expensive models
+### 第 4 步：重复执行
 
-## 🔧 Technical Details
+- 按设定的迭代次数继续执行
+- 通常每一轮都能显著提升答案质量
 
-- **Model**: GPT-OSS 120B via Groq
-- **Token Limit**: 1024 per completion (optimized for Groq limits)
-- **Parallel Processing**: 3 candidates for initial generation
-- **Temperature Control**: High for diversity, low for synthesis/improvement
+## 🎯 使用场景
 
-## 📈 Expected Results
+- **技术文档** —— 提升完整性和清晰度
+- **教育内容** —— 找出解释中的遗漏和断层
+- **商业方案** —— 识别缺失要素
+- **代码审查** —— 找出潜在问题和改进空间
+- **研究论文** —— 提高内容完整性和准确性
 
-Typically see:
-- **20-40% improvement** in answer quality
-- **Better completeness** and accuracy
-- **Clearer explanations** and structure
-- **Fewer logical gaps** or missing information
+## 💡 优势
 
-The improvement is most noticeable on complex topics where initial answers might miss important details or have unclear explanations. 
+- **更高质量** —— 通常优于单次生成
+- **错误检测** —— 能发现人工可能忽略的问题
+- **更完整** —— 尽可能覆盖各个重要方面
+- **过程透明** —— 可以清楚看到答案如何被逐步改进
+- **成本较低** —— 有机会以更低成本获得接近高价模型的结果
+
+## 🔧 技术细节
+
+- **模型**：通过 Groq 使用 GPT-OSS 120B
+- **Token 限制**：每次生成最多 1024 Token（针对 Groq 限制进行优化）
+- **并行处理**：初始阶段并行生成 3 个候选答案
+- **Temperature 控制**：高 Temperature 用于提高多样性，低 Temperature 用于综合和改进
+
+## 📈 预期效果
+
+通常可以观察到：
+
+- 答案质量提升约 **20–40%**
+- 完整性和准确性更高
+- 表达和结构更加清晰
+- 逻辑漏洞或遗漏信息更少
+
+对于复杂主题，这种改进最为明显，因为初始答案更容易遗漏重要内容或存在表达不清的问题。
