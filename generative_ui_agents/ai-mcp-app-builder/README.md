@@ -1,4 +1,4 @@
-# AI MCP App Builder
+# AI MCP 应用构建器
 
 在聊天中描述一个 MCP 应用，即可获得一个实时运行、隔离在沙箱中的应用实例。项目基于 [CopilotKit](https://github.com/CopilotKit/CopilotKit)、[AG-UI](https://github.com/ag-ui-protocol/ag-ui)、[Mastra](https://mastra.ai/) 和 [E2B](https://e2b.dev/) 沙箱构建。
 
