@@ -1,108 +1,108 @@
-# 📋 Tutorial 6: Callbacks
+# 📋 教程 6：回调（Callbacks）
 
-## 🎯 What You'll Learn
-- **Agent Lifecycle Callbacks**: Monitor agent creation, initialization, and cleanup
-- **LLM Interaction Callbacks**: Track model requests, responses, and token usage
-- **Tool Execution Callbacks**: Monitor tool calls, parameters, and results
+## 🎯 你将学到什么
+- **Agent 生命周期回调**：监控 Agent 的创建、初始化和清理
+- **LLM 交互回调**：跟踪模型请求、响应和 Token 使用情况
+- **工具执行回调**：监控工具调用、参数和执行结果
 
-## 💡 Core Concept: Callbacks
+## 💡 核心概念：回调
 
-Callbacks are functions that get executed at specific points during agent execution, allowing you to monitor, log, and control the agent's behavior without modifying the core logic.
+回调是在 Agent 执行到特定阶段时自动触发的函数。借助回调，你可以在不修改核心逻辑的情况下，对 Agent 的行为进行监控、日志记录和控制。
 
-### **Callback Flow Diagram**
-```
+### **回调流程图**
+```text
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Agent Start   │───▶│  LLM Request    │───▶│  Tool Execution │
-│   Callback      │    │   Callback      │    │   Callback      │
+│  Agent 启动     │───▶│   LLM 请求      │───▶│   工具执行      │
+│    回调         │    │    回调         │    │    回调         │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
          ▼                       ▼                       ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  Agent End      │    │  LLM Response   │    │  Tool Result    │
-│  Callback       │    │   Callback      │    │   Callback      │
+│  Agent 结束     │    │   LLM 响应      │    │   工具结果      │
+│    回调         │    │    回调         │    │    回调         │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-### **Why Use Callbacks?**
-- **Monitoring**: Track agent performance and behavior
-- **Logging**: Record interactions for debugging and analysis
-- **Control**: Modify behavior based on specific events
-- **Integration**: Connect agents to external systems
-- **Debugging**: Understand what's happening inside the agent
+### **为什么要使用回调？**
+- **监控**：跟踪 Agent 的性能和行为
+- **日志**：记录交互，便于调试和分析
+- **控制**：根据特定事件动态调整行为
+- **集成**：将 Agent 接入外部系统
+- **调试**：了解 Agent 内部实际发生了什么
 
-## 📖 Tutorial Overview
+## 📖 教程概览
 
-This tutorial covers three essential callback patterns in Google ADK:
+本教程介绍 Google ADK 中三类重要回调模式：
 
-1. **Agent Lifecycle Callbacks**: Monitor agent creation, initialization, and cleanup events
-2. **LLM Interaction Callbacks**: Track model requests, responses, and token usage
-3. **Tool Execution Callbacks**: Monitor tool calls, parameters, and execution results
+1. **Agent 生命周期回调**：监控 Agent 创建、初始化和清理事件
+2. **LLM 交互回调**：跟踪模型请求、响应和 Token 使用情况
+3. **工具执行回调**：监控工具调用、参数和执行结果
 
-Each sub-tutorial provides simple, focused examples that demonstrate specific callback patterns.
+每个子教程都提供一个聚焦于特定回调模式的简洁示例。
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 6_callbacks/
-├── README.md                           # This file - concept explanation
-├── 6_1_agent_lifecycle_callbacks/      # Agent lifecycle monitoring
-│   ├── README.md                       # Lifecycle callback patterns
-│   ├── agent.py                        # Agent with lifecycle callbacks
-│   ├── app.py                          # Streamlit interface
-│   └── requirements.txt                # Dependencies
-├── 6_2_llm_interaction_callbacks/      # LLM request/response tracking
-│   ├── README.md                       # LLM callback patterns
-│   ├── agent.py                        # Agent with LLM callbacks
-│   ├── app.py                          # Streamlit interface
-│   └── requirements.txt                # Dependencies
-└── 6_3_tool_execution_callbacks/       # Tool execution monitoring
-    ├── README.md                       # Tool callback patterns
-    ├── agent.py                        # Agent with tool callbacks
-    ├── app.py                          # Streamlit interface
-    └── requirements.txt                # Dependencies
+├── README.md                           # 本文件：概念说明
+├── 6_1_agent_lifecycle_callbacks/      # Agent 生命周期监控
+│   ├── README.md                       # 生命周期回调模式
+│   ├── agent.py                        # 带生命周期回调的 Agent
+│   ├── app.py                          # Streamlit 界面
+│   └── requirements.txt                # 依赖
+├── 6_2_llm_interaction_callbacks/      # LLM 请求/响应跟踪
+│   ├── README.md                       # LLM 回调模式
+│   ├── agent.py                        # 带 LLM 回调的 Agent
+│   ├── app.py                          # Streamlit 界面
+│   └── requirements.txt                # 依赖
+└── 6_3_tool_execution_callbacks/       # 工具执行监控
+    ├── README.md                       # 工具回调模式
+    ├── agent.py                        # 带工具回调的 Agent
+    ├── app.py                          # Streamlit 界面
+    └── requirements.txt                # 依赖
 ```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this tutorial, you'll understand:
+完成本教程后，你将理解：
 
-- ✅ **Callback Fundamentals**: How callbacks work in Google ADK
-- ✅ **Lifecycle Monitoring**: Track agent creation, initialization, and cleanup
-- ✅ **LLM Tracking**: Monitor model requests, responses, and performance
-- ✅ **Tool Monitoring**: Track tool execution and results
-- ✅ **Practical Applications**: Real-world use cases for callbacks
-- ✅ **Debugging Techniques**: Use callbacks for troubleshooting
+- ✅ **回调基础**：Google ADK 中回调的工作方式
+- ✅ **生命周期监控**：跟踪 Agent 的创建、初始化和清理
+- ✅ **LLM 跟踪**：监控模型请求、响应和性能
+- ✅ **工具监控**：跟踪工具执行和返回结果
+- ✅ **实际应用**：了解回调在真实项目中的用途
+- ✅ **调试技巧**：利用回调排查问题
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-### **Prerequisites**
+### **前置条件**
 - Python 3.11+
-- Google AI Studio API key
-- Basic understanding of Google ADK (Tutorials 1-5)
+- Google AI Studio API Key
+- 已具备 Google ADK 基础知识（教程 1-5）
 
-### **Setup**
-1. **Get API Key**: Visit [Google AI Studio](https://aistudio.google.com/)
-2. **Create .env file**: Add `GOOGLE_API_KEY=your_key_here`
-3. **Install dependencies**: `pip install -r requirements.txt`
+### **配置**
+1. **获取 API Key**：访问 [Google AI Studio](https://aistudio.google.com/)
+2. **创建 `.env` 文件**：添加 `GOOGLE_API_KEY=your_key_here`
+3. **安装依赖**：`pip install -r requirements.txt`
 
-### **Run Tutorials**
+### **运行教程**
 ```bash
-# Agent Lifecycle Callbacks
+# Agent 生命周期回调
 cd 6_1_agent_lifecycle_callbacks
 streamlit run app.py
 
-# LLM Interaction Callbacks  
+# LLM 交互回调
 cd ../6_2_llm_interaction_callbacks
 streamlit run app.py
 
-# Tool Execution Callbacks
+# 工具执行回调
 cd ../6_3_tool_execution_callbacks
 streamlit run app.py
 ```
 
-## ⚙️ Callback Patterns
+## ⚙️ 回调模式
 
-### **1. Agent Lifecycle Callbacks**
+### **1. Agent 生命周期回调**
 ```python
 def on_agent_start(agent_name: str):
     print(f"▶️ Agent {agent_name} started")
@@ -110,7 +110,7 @@ def on_agent_start(agent_name: str):
 def on_agent_end(agent_name: str, result: str):
     print(f"✅ Agent {agent_name} completed: {result}")
 
-# Register callbacks
+# 注册回调
 agent = LlmAgent(
     name="my_agent",
     model="gemini-3-flash-preview",
@@ -119,7 +119,7 @@ agent = LlmAgent(
 )
 ```
 
-### **2. LLM Interaction Callbacks**
+### **2. LLM 交互回调**
 ```python
 def on_llm_request(model: str, prompt: str):
     print(f"📤 LLM Request to {model}: {prompt[:50]}...")
@@ -127,7 +127,7 @@ def on_llm_request(model: str, prompt: str):
 def on_llm_response(model: str, response: str, tokens: int):
     print(f"📥 LLM Response from {model}: {tokens} tokens")
 
-# Register callbacks
+# 注册回调
 agent = LlmAgent(
     name="my_agent",
     model="gemini-3-flash-preview",
@@ -136,7 +136,7 @@ agent = LlmAgent(
 )
 ```
 
-### **3. Tool Execution Callbacks**
+### **3. 工具执行回调**
 ```python
 def on_tool_start(tool_name: str, params: dict):
     print(f"🔧 Tool {tool_name} started with params: {params}")
@@ -144,7 +144,7 @@ def on_tool_start(tool_name: str, params: dict):
 def on_tool_end(tool_name: str, result: str):
     print(f"✅ Tool {tool_name} completed: {result}")
 
-# Register callbacks
+# 注册回调
 agent = LlmAgent(
     name="my_agent",
     model="gemini-3-flash-preview",
@@ -154,36 +154,36 @@ agent = LlmAgent(
 )
 ```
 
-## 📊 Use Cases
+## 📊 应用场景
 
-### **Monitoring & Analytics**
-- Track agent performance metrics
-- Monitor token usage and costs
-- Analyze tool usage patterns
-- Debug agent behavior
+### **监控与分析**
+- 跟踪 Agent 性能指标
+- 监控 Token 使用量和成本
+- 分析工具调用模式
+- 调试 Agent 行为
 
-### **Logging & Debugging**
-- Log all agent interactions
-- Debug tool execution issues
-- Monitor LLM response quality
-- Track error patterns
+### **日志与调试**
+- 记录所有 Agent 交互
+- 排查工具执行问题
+- 监控 LLM 响应质量
+- 跟踪错误模式
 
-### **Integration & Control**
-- Connect to external monitoring systems
-- Implement custom error handling
-- Add authentication and validation
-- Control agent behavior dynamically
+### **集成与控制**
+- 接入外部监控系统
+- 实现自定义错误处理
+- 添加认证与校验
+- 动态控制 Agent 行为
 
-## 🔗 Next Steps
+## 🔗 后续步骤
 
-After completing this tutorial, you'll be ready for:
+完成本教程后，可以继续学习：
 
-- **[Advanced Agent Patterns](../6_callbacks/README.md)** - Complex agent architectures
-- **[Production Deployment](../7_plugins/README.md)** - Deploying agents to production
-- **[Custom Tools](../4_tool_using_agent/README.md)** - Building custom tools and integrations
+- **[高级 Agent 模式](../6_callbacks/README.md)**：复杂 Agent 架构
+- **[生产部署](../7_plugins/README.md)**：将 Agent 部署到生产环境
+- **[自定义工具](../4_tool_using_agent/README.md)**：构建自定义工具与集成
 
-## 📚 Additional Resources
+## 📚 其他资源
 
-- [Google ADK Documentation](https://google.github.io/adk-docs/)
-- [Callback API Reference](https://google.github.io/adk-docs/api-reference/python/)
-- [Best Practices Guide](https://google.github.io/adk-docs/best-practices/) 
+- [Google ADK 文档](https://google.github.io/adk-docs/)
+- [Callback API 参考](https://google.github.io/adk-docs/api-reference/python/)
+- [最佳实践指南](https://google.github.io/adk-docs/best-practices/)
