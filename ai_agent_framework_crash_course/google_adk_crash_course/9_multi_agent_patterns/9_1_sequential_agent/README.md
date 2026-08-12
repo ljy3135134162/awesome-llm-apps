@@ -1,146 +1,146 @@
-# 🎯 Tutorial 9.1: Sequential Agents - Business Implementation Plan Generator
+# 🎯 教程 9.1：顺序 Agent——业务实施计划生成器
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Sequential Agent Composition**: How to orchestrate multiple specialized agents in sequence
-- **AgentTool Integration**: Wrapping agents as tools for enhanced capabilities
-- **Web Search Integration**: Real-time market intelligence through search agents
-- **Business Analysis Pipeline**: From market research to implementation planning
-- **Streamlit Web Interface**: User-friendly application for business planning
+- **顺序 Agent 组合**：如何按顺序编排多个专业化 Agent
+- **AgentTool 集成**：将 Agent 封装为工具以增强能力
+- **Web 搜索集成**：通过搜索 Agent 获取实时市场情报
+- **业务分析流水线**：从市场调研到实施规划
+- **Streamlit Web 界面**：用于业务规划的易用应用界面
 
-## 🧠 Core Concept: Sequential Agent with Search Capabilities
+## 🧠 核心概念：具备搜索能力的顺序 Agent
 
-According to the [ADK workflow agents documentation](https://google.github.io/adk-docs/agents/workflow-agents/), **Sequential Agents** execute sub-agents one after another, in sequence. This tutorial demonstrates a **Business Implementation Plan Generator** that combines web search capabilities with sequential analysis:
+根据 [ADK 工作流 Agent 文档](https://google.github.io/adk-docs/agents/workflow-agents/)，**Sequential Agent** 会按顺序依次执行各个子 Agent。本教程实现一个**业务实施计划生成器**，将 Web 搜索与顺序分析流程结合起来：
 
-```
-Business Topic → SequentialAgent → 4 Sub-agents (Sequential Execution)
+```text
+业务主题 → SequentialAgent → 4 个子 Agent（顺序执行）
                 ↓
-        [Market Research + Web Search] → [SWOT Analysis] → [Strategy] → [Implementation]
+        [市场调研 + Web 搜索] → [SWOT 分析] → [战略制定] → [实施规划]
                 ↓
-        Complete Business Implementation Plan
+        完整业务实施计划
 ```
 
-**Key Innovation**: The Market Research Agent uses a specialized Search Agent (wrapped as AgentTool) to access real-time web search capabilities for current market intelligence.
+**核心亮点**：市场调研 Agent 会调用一个专门的搜索 Agent。该搜索 Agent 被封装为 `AgentTool`，从而可以访问实时 Web 搜索能力，获取当前市场情报。
 
-## 📁 Project Structure
+## 📁 项目结构
 
-```
+```text
 9_1_sequential_agent/
-├── agent.py              # Business implementation plan generator with search capabilities
-├── app.py                # Streamlit web interface for business planning
-├── requirements.txt      # Python dependencies
-└── README.md            # This documentation
+├── agent.py              # 具备搜索能力的业务实施计划生成器
+├── app.py                # 用于业务规划的 Streamlit Web 界面
+├── requirements.txt      # Python 依赖
+└── README.md             # 本文档
 ```
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-### 1. Install Dependencies
+### 1. 安装依赖
 ```bash
 cd 9_1_sequential_agent
 pip install -r requirements.txt
 ```
 
-### 2. Set Up Environment
-Create a `.env` file with your Google API key:
+### 2. 配置环境
+创建 `.env` 文件并填入 Google API Key：
 ```bash
 echo "GOOGLE_API_KEY=your_ai_studio_key_here" > .env
 ```
 
-**Important**: Get your API key from [Google AI Studio](https://aistudio.google.com/)
+**重要**：API Key 可从 [Google AI Studio](https://aistudio.google.com/) 获取。
 
-### 3. Run the Streamlit App
+### 3. 运行 Streamlit 应用
 ```bash
 streamlit run app.py
 ```
 
-This will launch the **Business Implementation Plan Generator Agent** web interface!
+这会启动**业务实施计划生成器 Agent** 的 Web 界面。
 
-## 🧪 How It Works
+## 🧪 工作原理
 
-### **Business Implementation Plan Generation Pipeline**
+### **业务实施计划生成流水线**
 
-The agent processes business opportunities through a sophisticated 4-step sequential workflow:
+Agent 会通过一个四阶段顺序工作流处理业务机会：
 
-1. **🔍 Market Analysis** - Uses web search for current market information and competitive research
-2. **📊 SWOT Analysis** - Strategic assessment of strengths, weaknesses, opportunities, and threats
-3. **🎯 Strategy Development** - Strategic objectives and action plans
-4. **📋 Implementation Planning** - Detailed execution roadmap and resource requirements
+1. **🔍 市场分析**：使用 Web 搜索获取当前市场信息并进行竞品研究
+2. **📊 SWOT 分析**：评估优势、劣势、机会与威胁
+3. **🎯 战略制定**：形成战略目标与行动计划
+4. **📋 实施规划**：生成详细执行路线图和资源需求
 
-**Key Innovation**: The Market Analysis Agent has access to a specialized Search Agent (wrapped as AgentTool) that can perform real-time web searches using the `google_search` tool. This provides current market intelligence that feeds into the sequential analysis pipeline.
+**核心亮点**：市场分析 Agent 可以调用一个专门的搜索 Agent。该搜索 Agent 被封装为 `AgentTool`，并通过 `google_search` 工具执行实时 Web 搜索。因此，顺序分析流水线使用的是当前市场情报，而不仅仅依赖模型训练数据。
 
-The `SequentialAgent` ensures each step builds upon the previous step's output, creating a comprehensive business implementation plan ready for execution.
+`SequentialAgent` 会确保每一步都建立在上一步的输出之上，最终生成一份可执行的完整业务实施计划。
 
-**Result**: A complete business implementation plan with market research, strategic analysis, and execution roadmap.
+**最终结果**：包含市场调研、战略分析和执行路线图的完整业务实施方案。
 
-## 🔧 ADK Concepts Demonstrated
+## 🔧 本教程展示的 ADK 概念
 
-### **1. SequentialAgent Pattern**
-The core workflow orchestrator that executes sub-agents in sequence, ensuring each step builds upon the previous step's output.
+### **1. SequentialAgent 模式**
+作为核心工作流编排器，按顺序执行各个子 Agent，并确保后续步骤基于前一步输出继续处理。
 
-### **2. AgentTool Integration**
-Advanced pattern where one agent (Search Agent) is wrapped as a tool and used by another agent (Market Researcher) to enhance capabilities.
+### **2. AgentTool 集成**
+将一个 Agent（搜索 Agent）封装为工具，再交由另一个 Agent（市场调研 Agent）调用，以扩展其能力。
 
-### **3. Web Search Capabilities**
-Real-time market intelligence through integrated search functionality, providing current data rather than relying on training data.
+### **3. Web 搜索能力**
+通过集成搜索功能获取实时市场情报，使分析可以基于当前数据，而不局限于模型训练数据。
 
-### **4. Sub-agent Specialization**
-Each sub-agent specializes in a specific business analysis phase, creating a modular and maintainable system.
+### **4. 子 Agent 专业化**
+每个子 Agent 专注于业务分析流程中的一个阶段，从而形成模块化、易维护的系统。
 
-### **5. Session Management**
-Maintains conversation state across the entire analysis pipeline, ensuring context flows between agents.
+### **5. Session 管理**
+在整个分析流水线中维护会话状态，保证上下文能够在各个 Agent 之间传递。
 
-### **6. Runner Execution**
-Processes the complete business implementation workflow with proper error handling and response management.
+### **6. Runner 执行**
+通过 Runner 执行完整的业务实施工作流，并负责错误处理与响应管理。
 
-## 🧪 Sample Topics to Try
+## 🧪 可尝试的示例主题
 
-- **Electric vehicle charging stations** in urban areas
-- **AI-powered healthcare diagnostics** and patient care
-- **Sustainable food delivery** services and packaging
-- **Remote work collaboration** tools and platforms
-- **Renewable energy storage** solutions
+- 城市中的**电动汽车充电站**
+- **AI 驱动的医疗诊断**与患者护理
+- **可持续食品配送**服务与包装
+- **远程办公协作**工具和平台
+- **可再生能源储能**解决方案
 
-## 📊 Expected Output
+## 📊 预期输出
 
-The sequential agent will provide:
-1. **Market Research**: Competitive analysis and market trends
-2. **SWOT Analysis**: Strategic assessment with actionable insights
-3. **Strategy Plan**: Clear objectives and implementation steps
-4. **Implementation Roadmap**: Practical execution guidance
+顺序 Agent 会生成：
+1. **市场调研**：竞品分析与市场趋势
+2. **SWOT 分析**：带有可执行洞察的战略评估
+3. **战略计划**：明确的目标与实施步骤
+4. **实施路线图**：可落地的执行指导
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-- ✅ Understand how `SequentialAgent` orchestrates sub-agents
-- ✅ Learn to execute sequential agents with Runner and Session management
-- ✅ See how sub-agents can build upon each other's output
-- ✅ Experience a working, executable sequential workflow
-- ✅ Understand AgentTool integration for enhanced capabilities
+- ✅ 理解 `SequentialAgent` 如何编排多个子 Agent
+- ✅ 学会结合 Runner 与 Session 管理执行顺序 Agent
+- ✅ 理解子 Agent 如何基于前一个 Agent 的输出继续处理
+- ✅ 体验一个可直接运行的顺序工作流
+- ✅ 理解如何通过 AgentTool 集成增强 Agent 能力
 
-## 🚀 Next Steps
+## 🚀 后续步骤
 
-- Try different business topics to see the sequential workflow in action
-- Experiment with reordering the sub-agents
-- Add more specialized agents to the pipeline
-- Explore other ADK workflow patterns (Parallel, Branching)
+- 尝试不同业务主题，观察顺序工作流的表现
+- 调整子 Agent 的执行顺序
+- 向流水线中加入更多专业化 Agent
+- 探索其他 ADK 工作流模式，例如并行和分支模式
 
-## 🔧 Troubleshooting
+## 🔧 故障排查
 
-**Common Issues:**
-- **API Key Error**: Ensure `GOOGLE_API_KEY` is set in `.env`
-- **Import Errors**: Make sure you're in the correct directory
-- **Search Tool Errors**: Verify your API key has access to search capabilities
+**常见问题：**
+- **API Key 错误**：确认 `.env` 中已设置 `GOOGLE_API_KEY`
+- **导入错误**：确认当前所在目录正确
+- **搜索工具错误**：确认 API Key 具备使用搜索能力所需权限
 
-**Pro Tips:**
-- Start with simple topics to understand the flow
-- Use the Streamlit app for easy testing and visualization
-- The sequential pattern is great for predictable, step-by-step processes
-- Web search integration provides real-time market intelligence
+**实用建议：**
+- 先从简单主题开始，以便理解整体流程
+- 使用 Streamlit 应用进行测试和可视化更方便
+- 顺序模式非常适合确定性的分步骤流程
+- Web 搜索集成能够提供实时市场情报
 
-## 📚 Key Takeaways
+## 📚 关键要点
 
-- **SequentialAgent** is perfect for workflows that must happen in order
-- **AgentTool integration** allows agents to enhance each other's capabilities
-- **Web search capabilities** provide current market intelligence
-- **Sub-agents** can be simple `LlmAgent` instances or complex tool-enabled agents
-- **Clean, readable code** makes it easy to understand and modify
-- **Streamlit interface** provides user-friendly access to complex agent workflows
+- **SequentialAgent** 非常适合必须按固定顺序执行的工作流
+- **AgentTool 集成**允许不同 Agent 相互增强能力
+- **Web 搜索能力**可以提供当前市场情报
+- **子 Agent**既可以是简单的 `LlmAgent`，也可以是具备工具能力的复杂 Agent
+- **清晰、可读的代码**有助于理解和修改
+- **Streamlit 界面**为复杂 Agent 工作流提供了易用的交互入口
