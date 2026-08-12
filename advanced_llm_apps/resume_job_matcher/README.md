@@ -1,26 +1,42 @@
-# 📄 Resume & Job Matcher
+# 📄 简历与职位匹配器
 
-## 🚀 Overview
-This app allows you to upload a **Resume** and a **Job Description**, then uses an LLM to:
-- ✅ Provide a **Fit Score** (0–100%)
-- 💪 Highlight strengths in the resume
-- 📝 Suggest improvements tailored to the job
+## 🚀 概述
 
-A great tool for job seekers to optimize resumes for each application.
+这个应用允许你上传一份**简历**和一份**职位描述**，然后使用 LLM：
+
+- ✅ 给出**匹配度评分**（0–100%）
+- 💪 突出简历中的优势
+- 📝 针对目标职位提出改进建议
+
+对于希望针对每次职位申请优化简历的求职者来说，这是一个非常实用的工具。
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ 技术栈
+
 - **Python**
-- **Streamlit** – for UI
-- **Ollama + LLM** (e.g., `llama3`) – for analysis
-- **PyMuPDF** – for PDF parsing
+- **Streamlit** —— 用于构建用户界面
+- **Ollama + LLM**（例如 `llama3`）—— 用于分析
+- **PyMuPDF** —— 用于解析 PDF
 
 ---
 
-## ⚡ Setup Instructions 
-1. Install dependencies:
+## ⚡ 配置说明
+
+1. 安装依赖：
+
    ```bash
    pip install -r requirements.txt
-2. Install Ollama and run a model (e.g. llama3): `ollama run llama3`
-3. Start the app: `streamlit run app.py`
+   ```
+
+2. 安装 Ollama 并运行一个模型（例如 llama3）：
+
+   ```bash
+   ollama run llama3
+   ```
+
+3. 启动应用：
+
+   ```bash
+   streamlit run app.py
+   ```
