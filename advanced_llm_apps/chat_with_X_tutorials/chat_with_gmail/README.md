@@ -1,46 +1,45 @@
-## 📨 Chat with Gmail Inbox 
+## 📨 与 Gmail 收件箱对话
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-rag-app-to-chat-with-your-gmail-inbox) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-rag-app-to-chat-with-your-gmail-inbox)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-LLM app with RAG to chat with Gmail in just 30 lines of Python Code. The app uses Retrieval Augmented Generation (RAG) to provide accurate answers to questions based on the content of your Gmail Inbox.
+这是一个仅用约 30 行 Python 代码实现的 Gmail RAG 对话应用。应用使用检索增强生成（RAG），根据 Gmail 收件箱中的邮件内容，为用户问题提供准确回答。
 
-### Features
+### 功能
 
-- Connect to your Gmail Inbox
-- Ask questions about the content of your emails
-- Get accurate answers using RAG and the selected LLM
+- 连接 Gmail 收件箱
+- 针对邮件内容提出问题
+- 使用 RAG 和所选 LLM 获取基于邮件内容的准确回答
 
-### Installation
+### 安装
 
-1. Clone the repository
+1. 克隆仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_llm_apps/chat_with_X_tutorials/chat_with_gmail
 ```
-2. Install the required dependencies
+
+2. 安装所需依赖
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up your Google Cloud project and enable the Gmail API:
+3. 配置 Google Cloud 项目并启用 Gmail API：
 
-- Go to the [Google Cloud Console](https://console.cloud.google.com/) and create a new project.
-- Navigate to "APIs & Services > OAuth consent screen" and configure the OAuth consent screen.
-- Publish the OAuth consent screen by providing the necessary app information.
-- Enable the Gmail API and create OAuth client ID credentials.
-- Download the credentials in JSON format and save them as `credentials.json` in your working directory.
+- 前往 [Google Cloud Console](https://console.cloud.google.com/) 并创建新项目。
+- 进入 `APIs & Services > OAuth consent screen`，配置 OAuth 同意屏幕。
+- 填写所需应用信息并发布 OAuth 同意屏幕。
+- 启用 Gmail API，并创建 OAuth Client ID 凭据。
+- 下载 JSON 格式的凭据文件，并在工作目录中保存为 `credentials.json`。
 
-4. Get your OpenAI API Key
+4. 获取 OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+- 注册 [OpenAI 账户](https://platform.openai.com/)（也可以使用你选择的其他 LLM 提供商），并获取 API Key。
 
-4. Run the Streamlit App
+5. 运行 Streamlit 应用
 
 ```bash
 streamlit run chat_gmail.py
 ```
-
-
