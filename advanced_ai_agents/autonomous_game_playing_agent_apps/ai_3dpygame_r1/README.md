@@ -1,54 +1,58 @@
-# 🎮 AI 3D PyGame Visualizer with DeepSeek R1
+# 🎮 基于 DeepSeek R1 的 AI 3D PyGame 可视化工具
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-ai-3d-pygame-visualizer-with-deepseek-r1) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-an-ai-3d-pygame-visualizer-with-deepseek-r1)，从零开始构建本项目，并了解详细代码讲解、原理说明和最佳实践。**
 
-This Project demonstrates R1's code capabilities with a PyGame code generator and visualizer with browser use. The system uses DeepSeek for reasoning, OpenAI for code extraction, and browser automation agents to visualize the code on Trinket.io.
+本项目通过 PyGame 代码生成器和基于浏览器的可视化流程展示 DeepSeek R1 的代码能力。系统使用 DeepSeek 负责推理，OpenAI 负责提取代码，并使用浏览器自动化 Agent 在 Trinket.io 上运行和展示生成的代码。
 
-### Features
+### 功能特性
 
-- Generates PyGame code from natural language descriptions
-- Uses DeepSeek Reasoner for code logic and explanation
-- Extracts clean code using OpenAI GPT-4o
-- Automates code visualization on Trinket.io using browser agents
-- Provides a streamlined Streamlit interface
-- Multi-agent system for handling different tasks (navigation, coding, execution, viewing)
+- 根据自然语言描述生成 PyGame 代码
+- 使用 DeepSeek Reasoner 完成代码逻辑推理和解释
+- 使用 OpenAI GPT-4o 提取干净、可执行的代码
+- 通过浏览器 Agent 自动在 Trinket.io 上运行和展示代码
+- 提供简洁的 Streamlit 操作界面
+- 使用多 Agent 系统分别处理导航、编码、执行和结果查看等任务
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
+
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/advanced_ai_agents/autonomous_game_playing_agent_apps/ai_3dpygame_r1
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
+
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Get your API Keys
-- Sign up for [DeepSeek](https://platform.deepseek.com/) and obtain your API key
-- Sign up for [OpenAI](https://platform.openai.com/) and obtain your API key
+3. 获取 API Keys
 
-4. Run the AI PyGame Visualizer
+- 注册 [DeepSeek](https://platform.deepseek.com/) 并获取 API Key
+- 注册 [OpenAI](https://platform.openai.com/) 并获取 API Key
+
+4. 运行 AI PyGame Visualizer
+
 ```bash
 streamlit run ai_3dpygame_r1.py
 ```
 
-5. Browser use automatically opens your web browser and navigate to the URL provided in the console output to interact with the PyGame generator.
+5. Browser Use 会自动打开浏览器。按照控制台输出的 URL 访问页面，即可与 PyGame 生成器交互。
 
-### How it works?
+### 工作原理
 
-1. **Query Processing:** User enters a natural language description of the desired PyGame visualization.
-2. **Code Generation:** 
-   - DeepSeek Reasoner analyzes the query and provides detailed reasoning with code
-   - OpenAI agent extracts clean, executable code from the reasoning
-3. **Visualization:**
-   - Browser agents automate the process of running code on Trinket.io
-   - Multiple specialized agents handle different tasks:
-     - Navigation to Trinket.io
-     - Code input
-     - Execution
-     - Visualization viewing
-4. **User Interface:** Streamlit provides an intuitive interface for entering queries, viewing code, and managing the visualization process.
+1. **请求处理：** 用户输入希望生成的 PyGame 可视化效果的自然语言描述。
+2. **代码生成：**
+   - DeepSeek Reasoner 分析请求，并生成详细推理和代码
+   - OpenAI Agent 从推理结果中提取干净、可执行的代码
+3. **可视化：**
+   - 浏览器 Agent 自动在 Trinket.io 上运行代码
+   - 多个专用 Agent 分别负责：
+     - 导航到 Trinket.io
+     - 输入代码
+     - 执行代码
+     - 查看可视化结果
+4. **用户界面：** Streamlit 提供直观界面，用于输入请求、查看代码以及管理可视化流程。
