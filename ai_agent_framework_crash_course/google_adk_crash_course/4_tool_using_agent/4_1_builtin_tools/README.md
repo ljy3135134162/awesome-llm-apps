@@ -1,135 +1,136 @@
-# 🔍 Built-in Tools
+# 🔍 内置工具
 
-Google ADK provides powerful **pre-built tools** that are optimized for performance and reliability. These tools integrate seamlessly with Gemini models and provide essential capabilities like web search and code execution.
+Google ADK 提供了一组针对性能与可靠性优化的**预构建工具**。这些工具可以与 Gemini 模型无缝集成，为 Agent 提供 Web 搜索、代码执行等基础能力。
 
-## 🎯 What You'll Learn
+## 🎯 你将学到什么
 
-- **Search Tool**: Web search capabilities for real-time information
-- **Code Execution Tool**: Safe Python code execution environment
-- **Tool Limitations**: Understanding when to use built-in vs custom tools
-- **Best Practices**: Optimizing built-in tool usage
+- **搜索工具**：获取实时信息的 Web 搜索能力
+- **代码执行工具**：安全的 Python 代码执行环境
+- **工具限制**：理解何时应使用内置工具、何时应使用自定义工具
+- **最佳实践**：优化内置工具的使用方式
 
-## 🧠 Core Concept: Built-in Tools
+## 🧠 核心概念：内置工具
 
-Built-in tools are **Google ADK's native capabilities** that provide:
-- **High Performance**: Optimized for speed and reliability
-- **Safety**: Built-in security and sandboxing
-- **Gemini Integration**: Deep integration with Google's models
-- **Maintenance-free**: No custom code to maintain
+内置工具是 **Google ADK 原生提供的能力**，具有以下特点：
+- **高性能**：针对速度与可靠性进行了优化
+- **安全性**：内置安全机制和沙箱隔离
+- **Gemini 集成**：与 Google 模型深度集成
+- **免维护**：无需维护额外的自定义代码
 
-### Important Limitations
-- ⚠️ **Gemini Models Only**: Built-in tools work only with Gemini models
-- ⚠️ **Single Tool Type**: Cannot mix built-in and custom tools in same agent
-- ⚠️ **Limited Customization**: Fixed functionality, cannot modify behavior
+### 重要限制
+- ⚠️ **仅支持 Gemini 模型**：内置工具只能与 Gemini 模型配合使用
+- ⚠️ **工具类型不能混用**：同一个 Agent 中不能同时混用内置工具和自定义工具
+- ⚠️ **定制能力有限**：功能固定，无法直接修改工具自身行为
 
-## 🔧 Available Built-in Tools
+## 🔧 可用的内置工具
 
-### 1. **Search Tool**
-- **Purpose**: Web search for real-time information
-- **Use Cases**: News, facts, current events, research
-- **Benefits**: Fast, accurate, up-to-date results
+### 1. **搜索工具**
+- **用途**：通过 Web 搜索获取实时信息
+- **适用场景**：新闻、事实查询、当前事件、研究
+- **优势**：速度快、准确度高、信息及时
 
-### 2. **Code Execution Tool**
-- **Purpose**: Execute Python code safely
-- **Use Cases**: Calculations, data processing, algorithms
-- **Benefits**: Secure sandbox environment
+### 2. **代码执行工具**
+- **用途**：安全执行 Python 代码
+- **适用场景**：计算、数据处理、算法执行
+- **优势**：提供安全沙箱环境
 
-### 3. **RAG Tools** (Advanced)
-- **Purpose**: Retrieval-augmented generation
-- **Use Cases**: Document search, knowledge bases
-- **Benefits**: Efficient information retrieval
+### 3. **RAG 工具**（高级）
+- **用途**：检索增强生成
+- **适用场景**：文档搜索、知识库
+- **优势**：高效的信息检索
 
-## 🚀 Tutorial Examples
+## 🚀 教程示例
 
-This sub-example includes two practical implementations:
+本小节包含两个实际示例：
 
-### 📍 **Search Agent**
-**Location**: `./search_agent/`
-- Implements web search capabilities
-- Handles real-time information queries
-- Demonstrates search result processing
+### 📍 **搜索 Agent**
+**位置**：`./search_agent/`
+- 实现 Web 搜索能力
+- 处理实时信息查询
+- 演示搜索结果处理方式
 
-### 📍 **Code Execution Agent**
-**Location**: `./code_exec_agent/`
-- Executes Python code safely
-- Performs mathematical calculations
-- Processes data dynamically
+### 📍 **代码执行 Agent**
+**位置**：`./code_exec_agent/`
+- 安全执行 Python 代码
+- 完成数学计算
+- 动态处理数据
 
-## 📁 Project Structure
+## 📁 项目结构
 
+```text
+4_1_builtin_tools/
+├── README.md                    # 当前文件：内置工具指南
+├── search_agent/               # Web 搜索实现
+│   ├── __init__.py            # Python 包初始化
+│   └── agent.py               # 使用 Search Tool 的搜索 Agent
+├── code_exec_agent/           # 代码执行实现
+│   ├── __init__.py            # Python 包初始化
+│   └── agent.py               # 代码执行 Agent
+├── requirements.txt           # 内置工具相关依赖
+└── .env.example               # API Key 配置示例
 ```
-1_builtin_tools/
-├── README.md                    # This file - built-in tools guide
-├── search_agent/               # Web search implementation
-│   ├── __init__.py            # Makes it a Python package
-│   ├── agent.py               # Search agent with Search Tool
-├── code_exec_agent/           # Code execution implementation
-│   ├── __init__.py            # Makes it a Python package
-│   ├── agent.py               # Code execution agent
-└── requirements.txt           # Dependencies for built-in tools
-└── .env.example              # Example API key configuration
-```
 
-## 🎯 Learning Objectives
+## 🎯 学习目标
 
-By the end of this sub-example, you'll understand:
-- ✅ How to use Google ADK's Search Tool effectively
-- ✅ How to implement safe code execution with built-in tools
-- ✅ When to choose built-in tools over custom solutions
-- ✅ Limitations and best practices for built-in tools
+完成本小节后，你将理解：
+- ✅ 如何有效使用 Google ADK 的 Search Tool
+- ✅ 如何通过内置工具实现安全代码执行
+- ✅ 何时应优先使用内置工具而不是自定义方案
+- ✅ 内置工具的限制与最佳实践
 
-## 🚀 Getting Started
+## 🚀 快速开始
 
-1. **Set up your environment**:
+1. **配置环境**：
    ```bash
    cd 4_1_builtin_tools
-   
-   # Copy the environment template
+
+   # 复制环境变量模板
    cp env.example .env
-   
-   # Edit .env and add your Google AI API key
-   # Get your API key from: https://aistudio.google.com/
+
+   # 编辑 .env 并添加 Google AI API Key
+   # API Key 获取地址：https://aistudio.google.com/
    ```
 
-2. **Install dependencies**:
+2. **安装依赖**：
    ```bash
-   # Install required packages
+   # 安装所需包
    pip install -r requirements.txt
    ```
-3. **Run the agents**:
+
+3. **运行 Agent**：
    ```bash
-   # Start the ADK web interface
+   # 启动 ADK Web 界面
    adk web
-   
-   # In the web interface, select either:
-   # - search_agent: For trying web search capabilities
-   # - code_exec_agent: For testing code execution features
+
+   # 在 Web 界面中选择：
+   # - search_agent：测试 Web 搜索能力
+   # - code_exec_agent：测试代码执行能力
    ```
 
-## 💡 Pro Tips
+## 💡 使用建议
 
-- **Use for Real-time Data**: Perfect for current information needs
-- **Leverage Gemini Integration**: Built-in tools are optimized for Gemini
-- **Simple is Better**: Don't overcomplicate with custom tools if built-in works
-- **Test Thoroughly**: Understand tool behavior before production use
+- **适合实时数据**：当任务依赖当前信息时优先考虑搜索工具
+- **充分利用 Gemini 集成**：内置工具针对 Gemini 进行了优化
+- **能用内置就不要过度复杂化**：如果内置工具能够满足需求，无需额外开发自定义工具
+- **充分测试**：投入生产前先明确工具实际行为和边界
 
-## 🔧 Common Use Cases
+## 🔧 常见使用场景
 
-### Search Tool Applications
-- **News Updates**: Get latest news on topics
-- **Fact Checking**: Verify information accuracy
-- **Research**: Gather information on subjects
-- **Market Data**: Current prices, trends
+### 搜索工具
+- **新闻更新**：获取某个主题的最新新闻
+- **事实核查**：验证信息准确性
+- **研究**：搜集特定主题资料
+- **市场数据**：获取当前价格与趋势
 
-### Code Execution Applications
-- **Mathematical Calculations**: Complex computations
-- **Data Analysis**: Process and analyze data
-- **Algorithm Implementation**: Test code logic
-- **Visualization**: Generate charts and graphs
+### 代码执行工具
+- **数学计算**：执行复杂运算
+- **数据分析**：处理和分析数据
+- **算法验证**：测试代码逻辑
+- **可视化**：生成图表和图形
 
-## 🚨 Important Notes
+## 🚨 重要说明
 
-- **Model Dependency**: Only works with Gemini models
-- **No Mixing**: Cannot combine with custom tools
-- **Production Ready**: Built-in tools are enterprise-ready
-- **Rate Limits**: Be aware of usage limits
+- **模型依赖**：仅适用于 Gemini 模型
+- **不能混用**：无法与自定义工具组合在同一个 Agent 中
+- **可用于生产**：内置工具按生产级能力设计
+- **注意速率限制**：使用时应关注对应的调用限额
