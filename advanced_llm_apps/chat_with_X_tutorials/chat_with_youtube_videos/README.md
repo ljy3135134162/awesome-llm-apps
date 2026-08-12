@@ -1,34 +1,37 @@
-## 📽️ Chat with YouTube Videos 
+## 📽️ 与 YouTube 视频对话
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-an-llm-app-with-rag-to-chat-with-youtube-videos) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整的分步教程](https://www.theunwindai.com/p/build-an-llm-app-with-rag-to-chat-with-youtube-videos)，通过详细的代码讲解、说明和最佳实践，从零开始构建这个应用。**
 
-LLM app with RAG to chat with YouTube Videos with OpenAI's gpt-4o, mem0/embedchain as memory and the youtube-transcript-api. The app uses Retrieval Augmented Generation (RAG) to provide accurate answers to questions based on the content of the uploaded video.
+这是一个基于 RAG 的 YouTube 视频对话应用，使用 OpenAI 的 `gpt-4o`、mem0/embedchain 作为记忆组件，并结合 `youtube-transcript-api`。应用通过检索增强生成（RAG），根据视频内容为用户问题提供准确回答。
 
-### Features
+### 功能
 
-- Input a YouTube video URL
-- Ask questions about the content of the video
-- Get accurate answers using RAG and the selected LLM
+- 输入 YouTube 视频 URL
+- 针对视频内容提出问题
+- 使用 RAG 和所选择的 LLM 获取准确回答
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/chat_with_X_tutorials/chat_with_youtube_videos
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Run the Streamlit App
+- 注册 [OpenAI 账户](https://platform.openai.com/)（也可以使用你选择的其他 LLM 提供商），并获取 API Key。
+
+4. 运行 Streamlit 应用
+
 ```bash
 streamlit run chat_youtube.py
 ```
