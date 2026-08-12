@@ -1,4 +1,4 @@
-# 🏺 Commit Archaeologist 提交考古 Agent Skill
+# 🏺 Commit 考古 Agent Skill
 
 `git blame` 只能告诉你最后是谁修改了某一行，而 Commit Archaeologist 会进一步还原：**为什么这行代码会存在。**
 
