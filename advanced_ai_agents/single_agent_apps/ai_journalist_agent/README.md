@@ -1,42 +1,45 @@
-## 🗞️ AI Journalist Agent 
+## 🗞️ AI 记者 Agent
 
-This Streamlit app is an AI-powered journalist agent that generates high-quality articles using OpenAI GPT-4o. It automates the process of researching, writing, and editing articles, allowing you to create compelling content on any topic with ease.
+这是一个基于 Streamlit 的 AI 记者应用，使用 OpenAI GPT-4o 自动完成文章研究、写作和编辑流程，帮助用户快速围绕任意主题生成结构完整、信息充分的高质量文章。
 
-### Features
-- Searches the web for relevant information on a given topic
-- Writes well-structured, informative, and engaging articles
-- Edits and refines the generated content to meet the high standards of the New York Times
+### 功能特性
+- 根据给定主题搜索 Web 上的相关信息
+- 生成结构清晰、信息充分且具有可读性的文章
+- 对生成内容进行编辑和润色，使其达到更高的新闻写作质量标准
 
-### How to get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库
 
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd advanced_ai_agents/single_agent_apps/ai_journalist_agent
 ```
-2. Install the required dependencies:
+
+2. 安装所需依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
-3. Get your OpenAI API Key
 
-- Sign up for an [OpenAI account](https://platform.openai.com/) (or the LLM provider of your choice) and obtain your API key.
+3. 获取 OpenAI API Key
 
-4. Get your SerpAPI Key
+- 注册 [OpenAI](https://platform.openai.com/) 账号（或选择其他 LLM Provider）并获取 API Key。
 
-- Sign up for an [SerpAPI account](https://serpapi.com/) and obtain your API key.
+4. 获取 SerpAPI Key
 
-5. Run the Streamlit App
+- 注册 [SerpAPI](https://serpapi.com/) 账号并获取 API Key。
+
+5. 运行 Streamlit 应用
+
 ```bash
 streamlit run journalist_agent.py
 ```
 
-### How it Works?
+### 工作原理
 
-The AI Journalist Agent utilizes three main components:
-- Searcher: Responsible for generating search terms based on the given topic and searching the web for relevant URLs using the SerpAPI.
-- Writer: Retrieves the text from the provided URLs using the NewspaperToolkit and writes a high-quality article based on the extracted information.
-- Editor: Coordinates the workflow between the Searcher and Writer, and performs final editing and refinement of the generated article.
+AI Journalist Agent 主要由三个组件组成：
 
+- **Searcher**：根据用户给定的主题生成搜索关键词，并使用 SerpAPI 搜索相关网页 URL。
+- **Writer**：通过 NewspaperToolkit 获取这些 URL 中的正文内容，并基于提取到的信息撰写文章。
+- **Editor**：负责协调 Searcher 与 Writer 的工作流，并对最终生成的文章进行编辑和润色。
