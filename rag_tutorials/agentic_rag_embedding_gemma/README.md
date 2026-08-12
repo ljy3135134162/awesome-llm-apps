@@ -1,62 +1,62 @@
-## 🔥 Agentic RAG with EmbeddingGemma
+## 🔥 基于 EmbeddingGemma 的 Agentic RAG
 
-### 🎓 FREE Step-by-Step Tutorial 
-**👉 [Click here to follow our complete step-by-step tutorial](https://www.theunwindai.com/p/build-a-local-agentic-rag-app-with-google-embeddinggemma) and learn how to build this from scratch with detailed code walkthroughs, explanations, and best practices.**
+### 🎓 免费分步教程
+**👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-a-local-agentic-rag-app-with-google-embeddinggemma)，通过详细的代码讲解、说明和最佳实践，从零开始构建这个应用。**
 
-This Streamlit app demonstrates an agentic Retrieval-Augmented Generation (RAG) Agent using Google's EmbeddingGemma for embeddings and Llama 3.2 as the language model, all running locally via Ollama.
+这个 Streamlit 应用演示了一个 Agentic 检索增强生成（RAG）Agent：使用 Google 的 EmbeddingGemma 生成嵌入，使用 Llama 3.2 作为语言模型，并通过 Ollama 完全在本地运行。
 
-### Features
+### 功能
 
-- **Local AI Models**: Uses EmbeddingGemma for vector embeddings and Llama 3.2 for text generation
-- **PDF Knowledge Base**: Dynamically add PDF URLs to build a knowledge base
-- **Vector Search**: Efficient similarity search using LanceDB
-- **Interactive UI**: Beautiful Streamlit interface for adding sources and querying
-- **Streaming Responses**: Real-time response generation with tool call visibility
+- **本地 AI 模型**：使用 EmbeddingGemma 生成向量嵌入，使用 Llama 3.2 生成文本
+- **PDF 知识库**：动态添加 PDF URL 来构建知识库
+- **向量搜索**：使用 LanceDB 高效执行相似度搜索
+- **交互式 UI**：提供 Streamlit 界面，用于添加数据源和进行查询
+- **流式响应**：实时生成回答，并显示工具调用过程
 
-### How to Get Started?
+### 如何开始？
 
-1. Clone the GitHub repository
+1. 克隆 GitHub 仓库：
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd awesome-llm-apps/rag_tutorials/agentic_rag_embedding_gemma
 ```
 
-2. Install the required dependencies:
+2. 安装所需依赖：
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Ensure Ollama is installed and running with the required models:
-   - Pull the models: `ollama pull embeddinggemma:latest` and `ollama pull llama3.2:latest`
-   - Start Ollama server if not running
+3. 确保已经安装并运行 Ollama，同时准备好所需模型：
+   - 拉取模型：`ollama pull embeddinggemma:latest` 和 `ollama pull llama3.2:latest`
+   - 如果 Ollama 服务尚未运行，请启动它
 
-4. Run the Streamlit app:
+4. 运行 Streamlit 应用：
 ```bash
 streamlit run agentic_rag_embeddinggemma.py
 ```
-   (Note: The app file is in the root directory)
+   （注意：应用文件位于项目根目录。）
 
-5. Open your web browser to the URL provided (usually http://localhost:8501) to interact with the RAG agent.
+5. 在浏览器中打开命令行提供的地址（通常为 `http://localhost:8501`），即可与 RAG Agent 交互。
 
-### How It Works?
+### 工作原理
 
-1. **Knowledge Base Setup**: Add PDF URLs in the sidebar to load and index documents.
-2. **Embedding Generation**: EmbeddingGemma creates vector embeddings for semantic search.
-3. **Query Processing**: User queries are embedded and searched against the knowledge base.
-4. **Response Generation**: Llama 3.2 generates answers based on retrieved context.
-5. **Tool Integration**: The agent uses search tools to fetch relevant information.
+1. **知识库设置**：在侧边栏添加 PDF URL，加载文档并建立索引。
+2. **生成嵌入**：EmbeddingGemma 为语义搜索生成向量嵌入。
+3. **查询处理**：将用户查询转换为嵌入，并在知识库中执行搜索。
+4. **生成回答**：Llama 3.2 根据检索到的上下文生成答案。
+5. **工具集成**：Agent 使用搜索工具获取相关信息。
 
-### Requirements
+### 环境要求
 
 - Python 3.8+
-- Ollama installed and running
-- Required models: `embeddinggemma:latest`, `llama3.2:latest`
+- 已安装并运行 Ollama
+- 所需模型：`embeddinggemma:latest`、`llama3.2:latest`
 
-### Technologies Used
+### 使用的技术
 
-- **Agno**: Framework for building AI agents
-- **Streamlit**: Web app framework
-- **LanceDB**: Vector database
-- **Ollama**: Local LLM server
-- **EmbeddingGemma**: Google's embedding model
-- **Llama 3.2**: Meta's language model
+- **Agno**：用于构建 AI Agent 的框架
+- **Streamlit**：Web 应用框架
+- **LanceDB**：向量数据库
+- **Ollama**：本地 LLM 服务
+- **EmbeddingGemma**：Google 的嵌入模型
+- **Llama 3.2**：Meta 的语言模型
