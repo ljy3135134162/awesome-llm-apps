@@ -1,4 +1,4 @@
-# 🌐 Browser MCP Agent
+# 🌐 浏览器 MCP Agent
 
 https://github.com/user-attachments/assets/a01e09fa-131b-479a-8df3-2d1a61fd80f3
 
