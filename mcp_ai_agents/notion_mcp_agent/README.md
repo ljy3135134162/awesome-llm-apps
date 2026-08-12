@@ -1,4 +1,4 @@
-# 📑 Notion MCP Agent
+# 📑 Notion MCP 智能体
 
 ### 🎓 免费分步教程
 **👉 [点击这里查看完整分步教程](https://www.theunwindai.com/p/build-a-terminal-based-notion-agent-with-mcp)，从零开始学习如何构建该项目，并获得详细代码讲解、说明和最佳实践。**
