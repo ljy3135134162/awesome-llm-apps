@@ -1,90 +1,90 @@
-# 🤔 Agentic RAG with Gemini Flash Thinking
+# 🤔 使用 Gemini Flash Thinking 构建 Agentic RAG
 
-A RAG Agentic system built with the new Gemini 2.0 Flash Thinking model and gemini-exp-1206, Qdrant for vector storage, and Agno (phidata prev) for agent orchestration. This application features intelligent query rewriting, document processing, and web search fallback capabilities to provide comprehensive AI-powered responses.
+这是一个基于全新 Gemini 2.0 Flash Thinking 模型和 gemini-exp-1206 构建的 Agentic RAG 系统，使用 Qdrant 进行向量存储，并使用 Agno（原 phidata）进行 Agent 编排。该应用具备智能查询重写、文档处理以及 Web 搜索回退能力，可提供全面的 AI 驱动回答。
 
-## Features
+## 功能
 
-- **Document Processing**
-  - PDF document upload and processing
-  - Web page content extraction
-  - Automatic text chunking and embedding
-  - Vector storage in Qdrant cloud
+- **文档处理**
+  - PDF 文档上传和处理
+  - Web 页面内容提取
+  - 自动文本分块和 Embedding
+  - 将向量存储到 Qdrant Cloud
 
-- **Intelligent Querying**
-  - Query rewriting for better retrieval
-  - RAG-based document retrieval
-  - Similarity search with threshold filtering
-  - Automatic fallback to web search
-  - Source attribution for answers
+- **智能查询**
+  - 重写查询以改善检索效果
+  - 基于 RAG 的文档检索
+  - 带阈值过滤的相似度搜索
+  - 自动回退至 Web 搜索
+  - 为回答提供来源归因
 
-- **Advanced Capabilities**
-  - Exa AI web search integration
-  - Custom domain filtering for web search
-  - Context-aware response generation
-  - Chat history management
-  - Query reformulation agent
+- **高级能力**
+  - 集成 Exa AI Web 搜索
+  - 支持为 Web 搜索自定义域名过滤
+  - 上下文感知的响应生成
+  - 聊天历史管理
+  - 查询重构 Agent
 
-- **Model Specific Features**
-  - Gemini Thinking 2.0 Flash for chat and reasoning
-  - Gemini Embedding model for vector embeddings
-  - Agno Agent framework for orchestration
-  - Streamlit-based interactive interface
+- **模型相关功能**
+  - 使用 Gemini Thinking 2.0 Flash 进行聊天和推理
+  - 使用 Gemini Embedding 模型生成向量嵌入
+  - 使用 Agno Agent 框架进行编排
+  - 基于 Streamlit 的交互式界面
 
-## Prerequisites
+## 环境要求
 
 ### 1. Google API Key
-1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
-2. Sign up or log in to your account
-3. Create a new API key
+1. 前往 [Google AI Studio](https://aistudio.google.com/apikey)
+2. 注册或登录账户
+3. 创建新的 API Key
 
-### 2. Qdrant Cloud Setup
-1. Visit [Qdrant Cloud](https://cloud.qdrant.io/)
-2. Create an account or sign in
-3. Create a new cluster
-4. Get your credentials:
-   - Qdrant API Key: Found in API Keys section
-   - Qdrant URL: Your cluster URL (format: `https://xxx-xxx.cloud.qdrant.io`)
+### 2. Qdrant Cloud 配置
+1. 访问 [Qdrant Cloud](https://cloud.qdrant.io/)
+2. 创建账户或登录
+3. 创建一个新集群
+4. 获取凭据：
+   - Qdrant API Key：可在 API Keys 部分找到
+   - Qdrant URL：你的集群 URL（格式：`https://xxx-xxx.cloud.qdrant.io`）
 
-### 3. Exa AI API Key (Optional)
-1. Visit [Exa AI](https://exa.ai)
-2. Sign up for an account
-3. Generate an API key for web search capabilities
+### 3. Exa AI API Key（可选）
+1. 访问 [Exa AI](https://exa.ai)
+2. 注册账户
+3. 生成用于 Web 搜索功能的 API Key
 
-## How to Run
+## 如何运行
 
-1. Clone the repository:
+1. 克隆仓库：
 ```bash
 git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
 cd rag_tutorials/gemini_agentic_rag
 ```
 
-2. Install dependencies:
+2. 安装依赖：
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the application:
+3. 运行应用：
 ```bash
 streamlit run agentic_rag_gemini.py
 ```
 
-## Usage
+## 使用方法
 
-1. Configure API keys in the sidebar:
-   - Enter your Google API key
-   - Add Qdrant credentials
-   - (Optional) Add Exa AI key for web search
+1. 在侧边栏配置 API Key：
+   - 输入 Google API Key
+   - 添加 Qdrant 凭据
+   - （可选）添加 Exa AI Key 以启用 Web 搜索
 
-2. Upload documents:
-   - Use the file uploader for PDFs
-   - Enter URLs for web content
+2. 上传文档：
+   - 使用文件上传器上传 PDF
+   - 输入 URL 以添加 Web 内容
 
-3. Ask questions:
-   - Type your query in the chat interface
-   - View rewritten queries and sources
-   - See web search results when relevant
+3. 提出问题：
+   - 在聊天界面输入查询
+   - 查看重写后的查询和来源
+   - 在相关情况下查看 Web 搜索结果
 
-4. Manage your session:
-   - Clear chat history as needed
-   - Configure web search domains
-   - Monitor processed documents
+4. 管理会话：
+   - 根据需要清除聊天历史
+   - 配置 Web 搜索域名
+   - 查看已处理的文档
