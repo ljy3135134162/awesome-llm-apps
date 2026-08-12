@@ -1,193 +1,148 @@
-# 🦉 Beifong: Your Junk-Free, Personalized Information and Podcasts
+# 🦉 Beifong：无垃圾信息的个性化资讯与播客系统
 
 ![image](https://github.com/user-attachments/assets/b2f24f12-6f80-46fa-aa31-ee42e17765b1)
 
-Beifong manages your trusted articles and social media platform sources. It generates podcasts from the content you trust and curate. It handles the complete pipeline, from data collection and analysis to the production of scripts and visuals.
+Beifong 用于管理你信任的文章来源和社交媒体信息源，并基于你主动筛选和认可的内容生成播客。它覆盖从数据采集、内容分析，到播客脚本、音频与视觉素材生成的完整流程。
 
-▶️ [Watch demo video HD](https://www.canva.com/design/DAGoUfv8ICM/Oj-vJ19AvZYDa2SwJrCWKw/watch?utm_content=D[…]hare&utm_medium=link2&utm_source=uniquelinks&utlId=h2508379667)
+▶️ [观看高清演示视频](https://www.canva.com/design/DAGoUfv8ICM/Oj-vJ19AvZYDa2SwJrCWKw/watch?utm_content=D[…]hare&utm_medium=link2&utm_source=uniquelinks&utlId=h2508379667)
 
-▶️ [Watch the demo on YouTube](https://youtu.be/dB8FZY3x9EY)
+▶️ [在 YouTube 上观看演示](https://youtu.be/dB8FZY3x9EY)
 
-🔗 [Blog](https://arun477.github.io/posts/beifong_podcast_generator/)
+🔗 [博客](https://arun477.github.io/posts/beifong_podcast_generator/)
 
-## Table of Contents
+## 目录
 
-- [Getting Started](#getting-started)
-  - [System Requirements](#system-requirements)
-  - [Initial Setup and Installation](#initial-setup-and-installation)
-  - [Environment Configuration](#environment-configuration)
-  - [Starting the Application](#starting-the-application)
-- [How to Use Beifong](#how-to-use-beifong)
-  - [Three Usage Methods](#three-usage-methods)
-- [Content Processing System](#content-processing-system)
-  - [Built-in Content Processors](#built-in-content-processors)
-  - [Creating Custom Content Processors](#creating-custom-content-processors)
-- [AI Agent and Tools](#ai-agent-and-tools)
-  - [Agent Architecture Overview](#agent-architecture-overview)
-  - [Adding Custom Tools](#adding-custom-tools)
-  - [Configuring Agent Behavior](#configuring-agent-behavior)
-- [Web Search and Browser Automation](#web-search-and-browser-automation)
-  - [Search Commands](#search-commands)
-  - [Social Media Login Sessions](#social-media-login-sessions)
-  - [Advanced Persistent Session Configuration](#advanced-persistent-session-configuration)
-- [Social Media Monitoring](#social-media-monitoring)
-  - [Supported Platforms](#supported-platforms)
-  - [Setting Up Scheduled Feed Collection](#setting-up-scheduled-feed-collection)
-  - [Viewing AI Insights](#viewing-ai-insights)
-  - [Configuring Custom Feeds](#configuring-custom-feeds)
-  - [Adding New Social Media Accounts](#adding-new-social-media-accounts)
-  - [Scheduling Best Practices](#scheduling-best-practices)
-- [Audio and Voice Generation](#audio-and-voice-generation)
-  - [Supported TTS Engines](#supported-tts-engines)
-  - [Adding New Voice Engines](#adding-new-voice-engines)
-- [Integrations](#integrations)
-  - [Slack Integration](#slack-integration)
-  - [Setting Up Slack App](#setting-up-slack-app)
-  - [Required Slack Permissions](#required-slack-permissions)
-  - [Environment Configuration](#environment-configuration-1)
-  - [Running Slack Integration](#running-slack-integration)
-- [Data Storage and File Management](#data-storage-and-file-management)
-  - [Database Storage](#database-storage)
-  - [Media Asset Storage](#media-asset-storage)
-  - [Managing Storage Growth](#managing-storage-growth)
-- [Deployment and Access Options](#deployment-and-access-options)
-  - [Local Network Access](#local-network-access)
-  - [Remote Access Solutions](#remote-access-solutions)
-  - [Security](#security)
-- [Cloud Options](#cloud-options)
-  - [Beifong Cloud Features](#beifong-cloud-features)
-- [Troubleshooting](#troubleshooting)
-  - [Kokoro Library Installation Issues](#kokoro-library-installation-issues)
-  - [Browseruse Installation Issues](#browseruse-installation-issues)
-  - [FAISS Library Installation Issues](#faiss-library-installation-issues)
-  - [Browser-Based Data Collection Issues](#browser-based-data-collection-issues)
-- [Updates](#updates)
+- [快速开始](#快速开始)
+- [如何使用 Beifong](#如何使用-beifong)
+- [内容处理系统](#内容处理系统)
+- [AI Agent 与工具](#ai-agent-与工具)
+- [网页搜索与浏览器自动化](#网页搜索与浏览器自动化)
+- [社交媒体监控](#社交媒体监控)
+- [音频与语音生成](#音频与语音生成)
+- [集成](#集成)
+- [数据存储与文件管理](#数据存储与文件管理)
+- [部署与访问方式](#部署与访问方式)
+- [云端版本](#云端版本)
+- [故障排查](#故障排查)
+- [更新](#更新)
 
-## Getting Started
+## 快速开始
 
-### System Requirements
+### 系统要求
 
-Before installing Beifong, ensure you have:
+安装 Beifong 前，请确保具备：
 
 - Python 3.11+
 - Redis Server
-- OpenAI API key
-- (Optional) ElevenLabs API key
+- OpenAI API Key
+- ElevenLabs API Key（可选）
 
-### Initial Setup and Installation
+### 初始安装
 
 ```bash
-# Clone the repository
+# 克隆仓库
 git clone https://github.com/arun477/beifong.git
 cd beifong
 
-# Create virtual environment
+# 创建虚拟环境
 cd beifong
 python -m venv venv
 source venv/bin/activate
 
-# Install dependencies
+# 安装依赖
 pip install -r requirements.txt
 
-# Install browser
+# 安装浏览器组件
 python -m playwright install
 
-# (Optional but recommended) Download demo content
-# Navigate to the beifong directory if not already there
-cd beifong  # Skip if already in the beifong folder
-# This populates the system with sample data, curated source feeds, and assets
+# 可选但推荐：下载演示数据
+cd beifong
 python bootstrap_demo.py
 ```
 
-### Environment Configuration
+`bootstrap_demo.py` 会向系统中填充示例数据、精选信息源以及相关素材。
 
-Create a `.env` file in the `/beifong` directory with your API keys:
+### 环境配置
 
-```
+在 `/beifong` 目录创建 `.env` 文件：
+
+```env
 OPENAI_API_KEY=your_openai_api_key
-ELEVENSLAB_API_KEY=your_elevenlabs_api_key  # Optional
+ELEVENSLAB_API_KEY=your_elevenlabs_api_key  # 可选
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_DB=0
 ```
 
-### Starting the Application
+### 启动应用
 
-Launch all required services in separate terminals (but make sure you start python main.py first before starting others, because the first time run will do db initialization):
+请在不同终端中分别启动服务。首次运行时应先启动 `python main.py`，因为系统需要执行数据库初始化。
 
-⚠️ Make sure to activate the virtual environment in all terminals before starting each script.
+⚠️ 每个终端启动脚本前都应先激活虚拟环境。
 
 ```bash
 source venv/bin/activate
 ```
 
 ```bash
-# Terminal 1: Start the main backend (first time run may take 2 to 3 minutes due to the setup process)
+# 终端 1：启动主后端
 cd beifong
 python main.py
 
-# Terminal 2: Start the scheduler
+# 终端 2：启动调度器
 cd beifong
 python -m scheduler
 
-# Terminal 3: Start the chat workers
+# 终端 3：启动聊天 Worker
 cd beifong
 python -m celery_worker
 
-# Verify Redis is running
+# 检查 Redis
 redis-cli ping
 ```
 
-#### Optional: Frontend Development Mode
+#### 可选：前端开发模式
 
 ```bash
-# Navigate to web directory
 cd web
-
-# Install dependencies
 npm install
-
-# Start development server
 npm start
 ```
 
-## How to Use Beifong
+## 如何使用 Beifong
 
-### Three Usage Methods
+### 三种使用方式
 
-Beifong offers flexibility in how you interact with the system:
+Beifong 支持以下交互模式：
 
-1. **Interactive Web UI** - Web interface for content management and podcast generation
-2. **API Integration** - Programmatic access for custom applications and workflows
-3. **Automated Scheduling** - Set up recurring tasks for hands off content processing
+1. **交互式 Web UI**：用于内容管理和播客生成。
+2. **API 集成**：供自定义应用和自动化工作流调用。
+3. **自动调度**：创建周期性任务，自动完成内容采集和处理。
 
-## Content Processing System
+## 内容处理系统
 
-### Built-in Content Processors
+### 内置内容处理器
 
-Beifong includes several specialized processors for different content sources:
+Beifong 针对不同数据来源提供了多种专用处理器：
 
-- **RSS Feed Processor** - Monitors RSS feeds for new articles and content
-- **URL Content Processor** - Extracts and processes content from web pages
-- **AI Content Analyzer** - Categorizes, summarizes, and analyzes content quality
-- **Vector Embedding Processor** - Creates searchable vector representations of content
-- **FAISS Search Indexer** - Builds search indices for content discovery
-- **Podcast Script Generator** - Creates complete podcast episodes from curated content
-- **X.com Social Processor** - Crawls and processes your X.com social media feed
-- **Facebook Social Processor** - Crawls and processes your Facebook social media feed
+- **RSS Feed Processor**：监控 RSS 源中的新文章和内容。
+- **URL Content Processor**：提取并处理网页内容。
+- **AI Content Analyzer**：分类、总结并分析内容质量。
+- **Vector Embedding Processor**：将内容转换为可搜索的向量表示。
+- **FAISS Search Indexer**：构建内容检索索引。
+- **Podcast Script Generator**：根据精选内容生成完整播客脚本。
+- **X.com Social Processor**：抓取并处理 X.com 信息流。
+- **Facebook Social Processor**：抓取并处理 Facebook 信息流。
 
-### Creating Custom Content Processors
+### 创建自定义内容处理器
 
-Extend Beifong's capabilities by adding your own content processors:
-
-#### Step 1: Create Your Processor Module
+#### 第 1 步：创建处理器模块
 
 ```python
 # processors/my_custom_processor.py
 def process_custom_task(parameter1=None, parameter2=None):
-    # Your processing logic here
+    # 在这里实现处理逻辑
     stats = {"processed": 0, "success": 0, "errors": 0}
-    # Processing implementation
     return stats
 
 if __name__ == "__main__":
@@ -195,9 +150,9 @@ if __name__ == "__main__":
     print(f"Processed: {stats['processed']}, Success: {stats['success']}")
 ```
 
-#### Step 2: Register Your Processor
+#### 第 2 步：注册处理器
 
-Add your processor to the system in `models/tasks_schemas.py`:
+在 `models/tasks_schemas.py` 中加入处理器：
 
 ```python
 class TaskType(str, Enum):
@@ -214,24 +169,22 @@ TASK_TYPES = {
 }
 ```
 
-#### Step 3: Deploy Your Processor
+#### 第 3 步：部署处理器
 
-Create a new task using the API or UI with your custom processor type.
+通过 API 或 Web UI 创建一个使用该自定义处理器类型的新任务即可。
 
-## AI Agent and Tools
+## AI Agent 与工具
 
-### Agent Architecture Overview
+### Agent 架构概览
 
-Beifong's AI system is built on the [agno](https://github.com/agno-agi/agno) framework and includes:
+Beifong 的 AI 系统基于 [agno](https://github.com/agno-agi/agno) 构建，包括：
 
-- **Search Tools** - Semantic search, keyword search, and browser-based web research
-- **Content Generation Tools** - Automated script writing, banner creation, and audio production
-- **Persistent Session State** - Maintains conversation context across interactions
-- **Tool Orchestration** - Manages multi step workflows automatically
+- **搜索工具**：语义搜索、关键词搜索以及基于浏览器的网页研究。
+- **内容生成工具**：自动生成脚本、Banner 和音频。
+- **持久化 Session 状态**：在多轮交互中保持上下文。
+- **工具编排**：自动管理多步骤工作流。
 
-### Adding Custom Tools
-
-Extend the agent's capabilities with custom tools:
+### 添加自定义工具
 
 ```python
 # tools/my_custom_tool.py
@@ -240,405 +193,349 @@ from agno.agent import Agent
 def my_custom_tool(agent: Agent, param1: str, param2: str) -> str:
     """Tool description here"""
     agent.session_state["my_key"] = "my_value"
-    # Tool implementation
     result = f"Processed {param1} and {param2}"
     return result
 ```
 
-Register your tool in `services/celery_tasks.py`:
+然后在 `services/celery_tasks.py` 中注册：
 
 ```python
-# Add import
 from tools.my_custom_tool import my_custom_tool
-# Add to tools list
+
 tools = [my_custom_tool]
 ```
 
-### Configuring Agent Behavior
+### 配置 Agent 行为
 
-Modify the agent's instructions and behavior in `db/agent_config_v2.py`:
+Agent 的主要指令和行为可在 `db/agent_config_v2.py` 中调整。修改时应保留核心流程阶段，避免破坏现有工作流。
 
-```python
-# Update the instructions to modify the agent's behavior
-# Be careful to preserve the core flow stages while adding your customizations
+## 网页搜索与浏览器自动化
+
+Beifong 的搜索 Agent 通过 [browseruse](https://browser-use.com/) 获得完整浏览器自动化能力，可以完成网页研究、页面交互和自动数据采集。
+
+### 搜索指令示例
+
+你可以向 Agent 提交类似任务：
+
+- “进入我的 X.com，收集最有价值且正面的信息流。”
+- “浏览 Reddit，查找本周关于 AI 发展的讨论。”
+- “在 LinkedIn 中查找近期的数据科学趋势帖子。”
+- “访问新闻网站，收集可再生能源相关文章。”
+
+Agent 会自动导航网站、操作页面元素并提取所需信息。
+
+### 社交媒体登录 Session
+
+对于 X.com、Facebook、LinkedIn 等需要登录的网站，需要预先建立已登录 Session：
+
+1. 进入 Beifong Web 界面的 **Social** 标签页。
+2. 在 Setup 区域点击 `Setup Session`。
+3. 系统会打开浏览器窗口：
+   - 正常登录社交媒体账号；
+   - 完成必要验证；
+   - 登录完成后关闭浏览器。
+4. Beifong 后续会复用该认证 Session 执行自动搜索。
+
+### 高级持久化 Session 配置
+
+默认浏览器 Session 保存在：
+
+```text
+browsers/playwright_persistent_profile_web
 ```
 
-## Web Search and Browser Automation
+如果需要指定持久化路径，可修改 `tools/web_search`，调用 `db/config.py` 中的 `get_browser_session_path()`。
 
-Beifong's search agent has full browser automation capabilities through the [browseruse](https://browser-use.com/) library, enabling web research and automated data collection from any website.
+注意事项：
 
-### Search Commands
+- 避免多个进程同时使用同一个浏览器 Session。
+- Social Monitor Processor 通常会使用 `get_browser_session_path()` 返回的路径。
+- 如果手动使用持久化 Session，建议关闭 Voyager 区域中的冲突型社交媒体监控任务。
+- 后续版本计划将不同账户的 Session 分离。
 
-You can give the agent specific search instructions like:
-- *"Go to my X.com and collect top positive and informative feeds"*
-- *"Browse Reddit for discussions about AI developments this week"*
-- *"Search LinkedIn for recent posts about data science trends"*
-- *"Visit news sites and gather articles about renewable energy"*
+若登录状态失效，可重新执行 Social 标签页中的 Session 设置流程。遇到认证异常时，也可以清理浏览器数据，并确保同一 Session 同时只由一个进程访问。
 
-The agent will navigate websites, interact with page elements, and extract the requested information automatically.
+## 社交媒体监控
 
-### Social Media Login Sessions
+### 当前支持的平台
 
-For websites requiring authentication (X.com, Facebook, LinkedIn, etc.), you need to establish logged in sessions:
+- **X.com（Twitter）**：采集并分析你的社交媒体 Feed。
+- **Facebook.com**：监控 Facebook Timeline 和相关内容。
 
-**Setting Up Social Media Sessions:**
+### 设置定时 Feed 采集
 
-1. **Navigate to Social Tab** in the Beifong web interface
-2. **Click "Setup Session"** under the Setup section
-3. **Login Process** - A browser window will open where you:
-   - Log into your social media accounts normally
-   - Complete any verification steps
-   - Close the browser when finished
-4. **Session Persistence** - Beifong will use these authenticated sessions for future automated searches
+1. 进入 Web UI 的 **Voyager** 标签页。
+2. 创建社交媒体监控定时任务。
+3. 设置采集频率。
+4. 选择 X.com 或 Facebook.com Processor。
 
-### Advanced Persistent Session Configuration
+### 查看 AI 洞察
 
-For persistent logged in sessions and advanced browser management:
+采集完成后，在 **Social** 标签页可以查看每条内容的 AI 分析，包括：
 
-**Persistent Session Path Configuration:**
-- Default browser sessions are stored in `browsers/playwright_persistent_profile_web` folder
-- For persistent session paths, modify `tools/web_search` to use `get_browser_session_path()` from `db/config.py`
+- 情感分析
+- 主题分类
+- 互动表现分析
+- 相关性评分
 
-**Important Persistent Session Management Notes:**
-- **Avoid Concurrent Usage** - Ensure no other processes use the same browser session simultaneously
-- **Social Monitor Processors** typically use the path from `get_browser_session_path()` function
-- **Disable Conflicting Processes** - Switch off social monitoring in the Voyager section if using persistent session paths
-- **Future Separation** - Session management will be separated into individual sessions in upcoming updates
+### 配置自定义 Feed
 
-**Persistent Session Troubleshooting:**
-- If login sessions expire, repeat the Social Tab setup process
-- Clear browser data if experiencing authentication issues
-- Ensure only one process accesses browser sessions at a time
+可在 `/tools/social/` 目录修改社交媒体处理器中的 URL，例如：
 
-## Social Media Monitoring
+- 监控指定 X.com 用户；
+- 监控指定 Facebook Page；
+- 跟踪特定 Hashtag 或主题。
 
-### Supported Platforms
+### 添加新的社交媒体平台
 
-Beifong currently supports automated monitoring for:
+目前内置支持：
 
-- **X.com (Twitter)** - Collects and analyzes your social media feeds
-- **Facebook.com** - Monitors your Facebook timeline and interactions
-
-### Setting Up Scheduled Feed Collection
-
-To automatically collect your social media feeds:
-
-1. **Navigate to the Voyager Tab** in the Beifong web interface
-2. **Create a Scheduled Task** for social media monitoring
-3. **Configure Collection Frequency** - Set how often you want feeds collected
-4. **Select Platform** - Choose between X.com or Facebook.com processors
-
-### Viewing AI Insights
-
-Once your social media feeds are collected:
-
-1. **Navigate to the Social Tab** in the web interface
-2. **View Comprehensive Analysis** - Each post is analyzed through AI providing:
-   - Content sentiment analysis
-   - Topic categorization
-   - Engagement insights
-   - Relevance scoring
-3. **Browse Full Insights** - Detailed analytics for all collected social media content
-
-### Configuring Custom Feeds
-
-You can easily customize which feeds to monitor:
-
-**Modifying Feed Sources:**
-- Navigate to `/tools/social/` directory
-- Update the URLs in the social media processors
-- **Monitor Specific Profiles** - Configure to track particular X.com profiles or Facebook pages
-- **Custom Feed Types** - Adapt URLs for different types of content feeds
-
-**URL Configuration Examples:**
-- Track specific X.com user: Modify URLs to target particular profiles
-- Monitor Facebook pages: Configure URLs for specific Facebook feeds
-- Custom hashtag monitoring: Set URLs to track specific hashtags or topics
-
-### Adding New Social Media Accounts
-
-Beifong supports easy expansion to additional platforms:
-
-**Currently Supported:**
-- X.com (Twitter)
+- X.com
 - Facebook.com
 
-**Easy Integration Options:**
-- **LinkedIn**
-- **Reddit** 
-- **Other Platforms** - Most social media platforms can be integrated using the same framework, but you must write a custom scraper or use an API for it.
+同样的框架还可以扩展到：
 
-**Future Updates:**
-- Next version will include more built-in connectors for popular social media platforms
-- Support for multiple account management per platform
+- LinkedIn
+- Reddit
+- 其他平台
 
-### Scheduling Best Practices
+其他平台通常需要自行编写 Scraper 或接入对应 API。后续版本计划增加更多预置 Connector，并支持每个平台管理多个账户。
 
-**Important Scheduling Considerations:**
+### 调度最佳实践
 
-⚠️ **Avoid Concurrent Execution** - When scheduling multiple social media feed collection tasks, ensure they don't run simultaneously. All social media processors share the same persistent browser session.
+⚠️ 多个社交媒体抓取任务不要同时执行，因为当前它们会共享同一个持久化浏览器 Session。
 
-**Recommended Scheduling Approach:**
-- **Stagger Collection Times** - Schedule X.com and Facebook.com collection at different times
-- **Allow Processing Gaps** - Leave sufficient time between different social media tasks
-- **Monitor Execution Times** - Track how long each collection takes to avoid overlaps
+建议：
 
-**Example Safe Scheduling:**
-- X.com feed collection: Every 2 hours at :00 minutes
-- Facebook.com feed collection: Every 2 hours at :30 minutes
+- 错开 X.com 与 Facebook.com 的运行时间；
+- 在不同任务间预留足够处理间隔；
+- 观察每个任务的执行时长，避免任务重叠。
 
-**Future Improvements:**
-- Next version will provide separate persistent browser sessions for each social media account
-- This will eliminate the need for careful scheduling and allow concurrent collection from multiple platforms
+例如：
 
-## Audio and Voice Generation
+- X.com：每 2 小时的整点运行；
+- Facebook.com：每 2 小时的第 30 分钟运行。
 
-### Supported TTS Engines
+未来版本计划为不同社交媒体账户创建独立 Session，以支持并行采集。
 
-Beifong supports multiple text to speech options:
+## 音频与语音生成
 
-**Commercial Options:**
-- **OpenAI TTS** 
-- **ElevenLabs** 
+### 支持的 TTS 引擎
 
-**Open Source Options:**
-- **Kokoro**
+**商业服务：**
 
-### Adding New Voice Engines
+- OpenAI TTS
+- ElevenLabs
 
-The TTS system supports integration of additional engines:
+**开源方案：**
 
-**Potential Next Open Source Integration Options:**
-- **[Dia TTS](https://yummy-fir-7a4.notion.site/dia)** 
-- **[CSM](https://github.com/SesameAILabs/csm)** 
-- **[Orpheus-TTS](https://github.com/canopyai/Orpheus-TTS)** 
+- Kokoro
 
-Add custom TTS engines through the tts_selector engine interface in the **utils** directory.
+### 添加新的语音引擎
 
-## Integrations
+可以通过 `utils` 目录中的 `tts_selector` Engine 接口扩展新的 TTS 后端。
 
-Beifong can be integrated with other platforms.
+可考虑的开源方案包括：
 
-### Slack Integration
+- [Dia TTS](https://yummy-fir-7a4.notion.site/dia)
+- [CSM](https://github.com/SesameAILabs/csm)
+- [Orpheus-TTS](https://github.com/canopyai/Orpheus-TTS)
 
-Beifong's Slack integration enables you to interact with the AI agent directly from your Slack workspace. Each conversation with Beifong creates a dedicated Slack thread for the session.
+## 集成
 
-**Key Feature:**
-- Direct messaging with BeifongAI in Slack channels
+### Slack 集成
 
-### Setting Up Slack App
+Beifong 可以直接接入 Slack。用户可以在 Slack Workspace 中与 AI Agent 对话，每次会话会创建独立 Thread，以持续维护上下文。
 
-To integrate Beifong with your Slack workspace, you need to create a Slack app in Socket Mode:
+主要能力：
 
-#### Step 1: Create Slack App
+- 在 Slack Channel 中直接与 BeifongAI 交互。
 
-1. Visit [Slack API Apps](https://api.slack.com/apps) and click "Create New App"
-2. Choose "From scratch" and provide:
-   - **App Name**: BeifongAI (or your preferred name)
-   - **Workspace**: Select your target Slack workspace
-3. **Enable Socket Mode**:
-   - Navigate to "Socket Mode" in the left sidebar
-   - Toggle "Enable Socket Mode" to ON
-   - Generate an App-Level Token with `connections:write` scope
-   - Save the **App-Level Token** (this is your `SLACK_APP_TOKEN`)
+### 配置 Slack App
 
-#### Step 2: Configure Bot User
+Beifong 使用 Slack Socket Mode。
 
-1. Navigate to "OAuth & Permissions" in the left sidebar
-2. Scroll to "Bot Token Scopes" and add the required permissions (see next section)
-3. Click "Install to Workspace" and authorize the app
-4. Copy the **Bot User OAuth Token** (this is your `SLACK_BOT_TOKEN`)
+#### 第 1 步：创建 Slack App
 
-#### Step 3: Enable Event Subscriptions
+1. 访问 [Slack API Apps](https://api.slack.com/apps)，点击 `Create New App`。
+2. 选择 `From scratch`，填写：
+   - App Name：`BeifongAI` 或其他名称；
+   - Workspace：目标 Slack Workspace。
+3. 打开左侧 `Socket Mode`，启用 Socket Mode。
+4. 创建具有 `connections:write` Scope 的 App-Level Token。
+5. 保存该 Token，作为 `SLACK_APP_TOKEN`。
 
-1. Navigate to "Event Subscriptions" in the left sidebar
-2. Toggle "Enable Events" to ON
-3. Add the required bot events (see permissions section below)
+#### 第 2 步：配置 Bot User
 
-### Required Slack Permissions
+1. 进入 `OAuth & Permissions`。
+2. 在 `Bot Token Scopes` 中添加后文所需权限。
+3. 点击 `Install to Workspace` 并授权。
+4. 复制 `Bot User OAuth Token`，作为 `SLACK_BOT_TOKEN`。
 
-Your Slack app requires specific permissions to function properly with Beifong:
+#### 第 3 步：启用 Event Subscriptions
 
-#### OAuth & Permissions - Bot Token Scopes
+1. 进入 `Event Subscriptions`。
+2. 打开 `Enable Events`。
+3. 添加后文列出的 Bot Events。
 
-Add the following scopes under "OAuth & Permissions" → "Bot Token Scopes":
+### Slack 所需权限
 
-- **`app_mentions:read`** - View messages that directly mention @BeifongAI in conversations that the app is in
-- **`assistant:write`** - Allow BeifongAI to act as an App Agent
-- **`channels:history`** - View messages and other content in public channels that BeifongAI has been added to
-- **`channels:read`** - View basic information about public channels in a workspace
-- **`chat:write`** - Send messages as @BeifongAI
-- **`files:read`** - View files shared in channels and conversations that BeifongAI has been added to
-- **`files:write`** - Upload, edit, and delete files as @BeifongAI
-- **`im:read`** - View basic information about direct messages that BeifongAI has been added to
-- **`im:write`** - Start direct messages with people
+#### Bot Token Scopes
 
-#### Event Subscriptions - Bot Events
+- `app_mentions:read`：读取对 @BeifongAI 的 Mention。
+- `assistant:write`：允许 BeifongAI 作为 App Agent 工作。
+- `channels:history`：读取已加入公共频道中的消息。
+- `channels:read`：读取 Workspace 公共频道基本信息。
+- `chat:write`：以 @BeifongAI 身份发送消息。
+- `files:read`：读取可访问频道中的文件。
+- `files:write`：上传、编辑和删除文件。
+- `im:read`：读取直接消息基本信息。
+- `im:write`：主动发起直接消息。
 
-Under "Event Subscriptions" → "Subscribe to bot events", add:
+#### Bot Events
 
-- **`app_mention`** - Subscribe to only the message events that mention your app or bot
-  - *Required Scope: `app_mentions:read`*
-- **`message.channels`** - A message was posted to a channel
-  - *Required Scope: `channels:history`*
+- `app_mention`：监听对应用/Bot 的 Mention。
+  - 所需 Scope：`app_mentions:read`
+- `message.channels`：监听频道消息。
+  - 所需 Scope：`channels:history`
 
-### Environment Configuration
+### Slack 环境变量
 
-Add your Slack tokens to the `.env` file in the `/beifong` directory:
+在 `/beifong/.env` 中加入：
 
 ```env
-# Existing environment variables...
 OPENAI_API_KEY=your_openai_api_key
-ELEVENSLAB_API_KEY=your_elevenlabs_api_key  # Optional
+ELEVENSLAB_API_KEY=your_elevenlabs_api_key  # 可选
 
-# Slack Integration
 SLACK_BOT_TOKEN=xoxb-your-bot-user-oauth-token
 SLACK_APP_TOKEN=xapp-your-app-level-token
 
-# Redis configuration
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_DB=0
 ```
 
-### Running Slack Integration
+### 运行 Slack 集成
 
-Once you've configured your Slack app and environment variables:
+首先确保 Slack App 已安装到 Workspace，并将 BeifongAI 添加到需要使用的 Channel。也可以直接向 BeifongAI 发送私信。
 
-#### Step 1: Install App in Workspace
-
-1. Ensure your Slack app is installed in your workspace
-2. Add BeifongAI to the channels where you want to use it
-3. You can also send direct messages to BeifongAI
-
-#### Step 2: Start Slack Integration
+然后运行：
 
 ```bash
-# Navigate to beifong directory
 cd beifong
-
-# Ensure your environment is activated
 source venv/bin/activate
-
-# Run the Slack integration script
 python -m integrations.slack.chat
 ```
 
-#### Step 3: Interact with BeifongAI
+### 在 Slack 中使用
 
-**In Slack Channels:**
-- Mention @BeifongAI to start a conversation
-- Each mention creates a new thread for context continuity
-- Example: `@BeifongAI Can you help me analyze the latest news about AI developments?`
+- 在频道中 Mention `@BeifongAI` 即可开始对话。
+- 每次 Mention 会建立新的 Thread，用于维持上下文。
+- 示例：`@BeifongAI 帮我分析一下最近关于 AI 发展的新闻。`
 
-**Reference Documentation:**
-- [Slack Socket Mode API](https://api.slack.com/apis/socket-mode)
+参考：[Slack Socket Mode API](https://api.slack.com/apis/socket-mode)
 
-## Data Storage and File Management
+## 数据存储与文件管理
 
-### Database Storage
+### 数据库存储
 
-All application databases are organized in the **databases** directory for easy management and backup.
+应用数据库统一保存在 `databases` 目录，便于管理和备份。
 
-### Media Asset Storage
+### 媒体素材存储
 
-Generated podcasts, audio files, and visual assets are stored in the **podcasts** directory.
+生成的播客、音频文件和视觉素材保存在 `podcasts` 目录。
 
-### Managing Storage Growth
+### 管理存储增长
 
-If asset storage grows, consider these storage optimization strategies:
+如果媒体资源不断增加，可考虑：
 
-**Cloud Storage Integration:**
-- Use s3fs to mount an S3 bucket as a local folder for media assets
-- Configure custom storage paths in `.env` to use larger drives
+**云存储：**
 
-**Automated Cleanup:**
-- Set up periodic archiving of older podcast episodes
-- Implement automated cleanup for temporary recordings and unused assets
-- Configure retention policies for different types of content
+- 使用 `s3fs` 将 S3 Bucket 挂载为本地目录。
+- 通过 `.env` 自定义存储路径，将媒体文件放到更大磁盘。
 
-**Storage Monitoring:**
-- Monitor disk usage as your content library grows
-- Set up alerts for storage capacity thresholds
+**自动清理：**
 
-**Note:** More efficient storage management and cloud connectors will be added in the next version.
+- 定期归档旧播客节目。
+- 自动删除临时录音和未使用素材。
+- 针对不同类型内容配置 Retention Policy。
 
-## Deployment and Access Options
+**容量监控：**
 
-### Local Network Access
+- 持续监控磁盘使用率。
+- 针对容量阈值设置告警。
+
+后续版本计划提供更完善的存储管理能力和云存储 Connector。
+
+## 部署与访问方式
+
+### 局域网访问
 
 ```bash
-# Start the backend with network access
 cd beifong
 python main.py --host 0.0.0.0 --port 7000
 ```
 
-This makes the application accessible via your machine's IP address on your local network.
+这样同一局域网中的其他设备即可通过该机器 IP 地址访问 Beifong。
 
-### Remote Access Solutions
+### 远程访问
 
-For accessing Beifong from outside your local network (workaround):
+#### SSH 端口转发
 
-#### SSH Port Forwarding
 ```bash
-# Forward local port to remote machine
 ssh -L 7000:localhost:7000 username@your-server-ip
 ```
 
-#### Ngrok Tunneling
+#### Ngrok Tunnel
+
 ```bash
-# Create temporary public tunnel
 ngrok http 7000
 ```
-Provides a temporary public URL that forwards to your local instance.
 
-### Security
+Ngrok 会创建一个临时公网 URL，并将流量转发至本地 Beifong 实例。
 
-Beifong doesn't include an authentication layer yet. Authentication will be added in the next version.
+### 安全性
 
-## Cloud Options
+当前 Beifong 尚未内置身份认证层，计划在后续版本加入 Authentication。
 
-### Beifong Cloud Features
-Coming Soon!
+## 云端版本
 
-✅ Cloud version of Beifong
+### Beifong Cloud 规划
 
-✅ More social media connectors
+即将推出：
 
-✅ More API options. Claude, Gemini, OpenAI, Ollama
+- Beifong Cloud 云端版本
+- 更多社交媒体 Connector
+- 更多模型/API 选项，包括 Claude、Gemini、OpenAI、Ollama
+- 更多播客风格与自定义能力
+- 更多语音选项
+- 更完善的数据采集与存储管理
+- 身份认证层
 
-✅ Podcast customization with more styles
+## 故障排查
 
-✅ More voice options
+### Kokoro 安装失败
 
-✅ Better data collection and storage management
+如果 Kokoro 导致依赖安装失败，可以暂时跳过。它仅在使用 Kokoro 作为 TTS 引擎时需要。
 
-✅ Authentication layer
+参考：https://github.com/hexgrad/kokoro
 
-## Troubleshooting
+### Browseruse 安装问题
 
-### Kokoro Library Installation Issues
+如果 browseruse 安装或运行异常，请确认 Playwright 已正确安装。浏览器自动化能力依赖 Playwright。
 
-If your installation fails due to the Kokoro library, you can skip installing this library and only install it when needed as a TTS engine. Kokoro is optional and only required if you want to use it for text-to-speech generation.
+参考：https://github.com/browser-use/browser-use
 
-For more information about Kokoro, check the reference: https://github.com/hexgrad/kokoro
+### FAISS 安装失败
 
-### Browseruse Installation Issues
+如果 FAISS 安装失败，可以在不需要语义搜索功能的情况下直接跳过。FAISS 仅用于语义搜索相关功能。
 
-If your installation fails due to browseruse, make sure the Playwright version is properly installed. Browser automation features depend on Playwright being correctly set up.
+参考：https://github.com/facebookresearch/faiss
 
-For more reference and troubleshooting: https://github.com/browser-use/browser-use
+### 基于浏览器的数据采集异常
 
-### FAISS Library Installation Issues
+部分数据采集功能依赖浏览器自动化。在 Server 环境中，如果浏览器环境未正确配置，这些功能可能无法正常运行。Beifong 主体仍可运行，但依赖浏览器的功能可能受到影响。
 
-If the FAISS library installation fails, you can safely ignore this error and skip installing FAISS. This library is only required if you want to use the semantic search feature. If you don't need semantic search functionality, you can safely ignore the FAISS installation failure.
+## 更新
 
-For reference: https://github.com/facebookresearch/faiss
-
-### Browser-Based Data Collection Issues
-
-Some of the data collection features rely on browser automation, which sometimes won't work properly in server environments. While Beifong will still function, some browser dependent features may not work in server environments without proper browser setup.
-
-## Updates
-
-🚀 **[Repo](https://github.com/arun477/beifong)**
+🚀 **[Beifong 项目仓库](https://github.com/arun477/beifong)**
