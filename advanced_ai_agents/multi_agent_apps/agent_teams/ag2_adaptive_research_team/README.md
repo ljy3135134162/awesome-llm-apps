@@ -1,52 +1,52 @@
-# AG2 Adaptive Research Team
+# AG2 自适应研究团队
 
-A Streamlit app that blends agent teamwork with agent-enabled routing and fallback, built entirely on AG2.
+这是一个基于 Streamlit 的应用，结合了多 Agent 协作、Agent 路由决策以及失败回退机制，整体完全基于 AG2 构建。
 
-## What This Shows
+## 本示例展示的内容
 
-- **Agent teamwork**: explicit roles and sequential handoffs
-- **Agent-enabled routing**: a clear decision step with local-doc vs web fallback
-- **AG2-first implementation**: no Microsoft AutoGen dependency; installs via `ag2[openai]`
+- **多 Agent 协作**：明确的角色划分与顺序式任务交接
+- **Agent 路由能力**：通过清晰的决策步骤，在本地文档与 Web 搜索之间进行选择与回退
+- **AG2 优先实现**：不依赖 Microsoft AutoGen，通过 `ag2[openai]` 安装
 
-## Features
+## 功能特性
 
-- Local document upload (PDF, TXT, MD)
-- Routing decision based on document coverage
-- Optional web fallback via SearxNG
-- Verifier step to check evidence sufficiency
-- Final synthesis with citations
+- 支持上传本地文档（PDF、TXT、MD）
+- 根据本地文档对问题的覆盖程度进行路由判断
+- 可选的 Web 回退搜索，使用 SearxNG
+- 通过 Verifier Agent 检查证据是否充分
+- 最终生成带引用来源的综合答案
 
-## How To Run
+## 如何运行
 
-1. Install dependencies:
+1. 安装依赖：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Run the app:
+2. 启动应用：
 
 ```bash
 streamlit run app.py
 ```
 
-3. Provide your OpenAI API key in the sidebar and ask a question.
+3. 在侧边栏填写 OpenAI API Key，然后输入问题即可。
 
-## How It Works
+## 工作原理
 
-1. **Triage Agent** decides whether the question should be answered from local docs or the web.
-2. **Local/Web Research Agent** collects evidence.
-3. **Verifier Agent** checks evidence strength.
-4. **Synthesizer Agent** produces the final answer with citations.
+1. **Triage Agent** 判断问题应优先基于本地文档回答，还是需要使用 Web 搜索。
+2. **Local/Web Research Agent** 收集相关证据。
+3. **Verifier Agent** 检查证据的充分性和可靠性。
+4. **Synthesizer Agent** 整合信息，并生成带引用来源的最终回答。
 
-## Optional Add-ons (AG2 0.11)
+## 可选扩展（AG2 0.11）
 
-- **AG-UI protocol integration** for richer UI rendering
-- **OpenTelemetry tracing** for debugging multi-agent workflows
+- **AG-UI 协议集成**：提供更丰富的 UI 渲染能力
+- **OpenTelemetry 链路追踪**：用于调试多 Agent 工作流
 
-These are optional and not required to run this example.
+这些功能均为可选项，不影响本示例的基础运行。
 
-## Notes
+## 说明
 
-- Default model used is `gpt-5-nano`. You can change it in the sidebar before running a query.
-- Web fallback uses the SearxNG public instance at `https://searxng.site/search`. This instance may be rate-limited.
+- 默认模型为 `gpt-5-nano`。你可以在执行查询前通过侧边栏切换其他模型。
+- Web 回退搜索默认使用 SearxNG 公共实例 `https://searxng.site/search`，该实例可能存在访问频率限制。
