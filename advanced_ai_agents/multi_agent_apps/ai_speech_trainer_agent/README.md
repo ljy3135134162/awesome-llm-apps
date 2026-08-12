@@ -1,121 +1,121 @@
-# AI Speech Trainer Agent
+# AI 演讲训练 Agent
 
-## Overview
-AI Speech Trainer is an AI-powered multi-agent, multimodal public speaking coach that listens to how you speak, watches how you express, and evaluates what you say - helping you become a confident public speaker.
+## 概述
+AI Speech Trainer 是一个由 AI 驱动的多 Agent、多模态公众演讲教练。它会聆听你的说话方式、观察你的表达方式，并评估你所说的内容，帮助你逐步成为更自信的公众演讲者。
 
-Whether you're preparing for a TED talk, interview, or school presentation, AI Speech Trainer provides you with personalized feedback, helping you improve your public speaking skills - highlighting your strengths and weaknesses and giving you valuable suggestions to speak better, clearer, and more confidently.
+无论你是在准备 TED 演讲、面试还是学校展示，AI Speech Trainer 都可以提供个性化反馈，指出你的优势和不足，并给出有价值的改进建议，帮助你表达得更好、更清晰、更有自信。
 
-This project has been built as part of the **Global Agent Hackathon (May 2025)**. It leverages the power of multi-agent collaboration, real-time feedback, and multimodal analysis to help anyone become a confident and effective speaker.
+本项目是 **Global Agent Hackathon（2025 年 5 月）** 的参赛作品之一。它利用多 Agent 协作、实时反馈以及多模态分析能力，帮助用户提升演讲表现与沟通效果。
 
-## Features
-### Core Features
-- **Facial Expression Analysis**: Emotion recognition and eye contact estimation
-- **Audio Analysis**: Pace, pitch, clarity, and filler words
-- **Content Evaluation**: GPT-based feedback on structure, tone, and clarity
-- **Personalized Feedback**: Average score, overall assessment, strengths, weaknesses, and suggestions for improvement
+## 功能特性
+### 核心功能
+- **面部表情分析**：识别情绪并估算眼神交流情况
+- **音频分析**：分析语速、音高、清晰度以及填充词
+- **内容评估**：基于 GPT 对结构、语气和清晰度提供反馈
+- **个性化反馈**：提供平均得分、总体评价、优势、不足以及改进建议
 
-### Agents
-- **Facial Agent**: Analyzes expression, engagement, and eye contact
-- **Vocal Agent**: Detects speech issues (speed, filler words, pitch)
-- **Content Agent**: Uses LLMs to assess and improve content clarity
-- **Feedback Agent**: Uses the responses from other agents to evaluate the speaker based on a scoring rubric
-- **Coordinator Agent**: A team of agents - Orchestrates all analysis and feedback generation
+### Agent 组成
+- **Facial Agent**：分析面部表情、参与感和眼神交流
+- **Vocal Agent**：检测语音问题，例如语速、填充词和音高
+- **Content Agent**：使用 LLM 评估并改进内容清晰度
+- **Feedback Agent**：根据其他 Agent 的输出，并结合评分标准对演讲者进行评估
+- **Coordinator Agent**：负责协调所有 Agent，并汇总分析与反馈结果
 
-## How It Works
-### **User Flow**: 
-1. User opens the Streamlit app and uploads a video of themselves practicing a speech or presentation.
+## 工作原理
+### **用户流程**
+1. 用户打开 Streamlit 应用，并上传一段自己练习演讲或展示的视频。
 
-2. Multiple agents get into action:
+2. 多个 Agent 开始协同工作：
 
-- Facial Agent analyzes expressions and eye contact.
-- Vocal Agent transcribes the speech and detects voice attributes.
-- Content Agent evaluates grammar, structure, and coherence.
-- Feedback agent provides feedback on the overall effectiveness of the speech.
-- A Coordinator Agent aggregates all agent insights.
+- Facial Agent 分析面部表情和眼神交流。
+- Vocal Agent 转录语音并分析声音特征。
+- Content Agent 评估语法、结构和连贯性。
+- Feedback Agent 对演讲的整体有效性进行评价。
+- Coordinator Agent 汇总所有 Agent 的分析结果。
 
-AI Speech Trainer presents a detailed feedback report including scores based on a rubric and summary of the feedback.
+最终，AI Speech Trainer 会生成一份详细反馈报告，其中包含基于评分标准的分数和总结性反馈。
 
-### **Core Functionality**:
-- Facial emotion recognition using OpenCV, DeepFace, and Mediapipe landmarks.
-- Voice transcription and analysis.
-- Content analysis using GPT-based feedback.
-- Aggregated evaluation score and feedback summary.
+### **核心能力**
+- 使用 OpenCV、DeepFace 和 Mediapipe Landmark 进行面部情绪识别。
+- 语音转录和语音分析。
+- 使用基于 GPT 的反馈进行内容分析。
+- 汇总评分和反馈总结。
 
-### **Multimodal Elements**:
-- **Audio**: Speech input & voice quality analysis.
-- **Video**: Facial expression tracking and feedback.
-- **Text**: GPT-based feedback on structure, clarity, and tone.
+### **多模态能力**
+- **音频**：演讲语音输入与声音质量分析。
+- **视频**：面部表情跟踪和反馈。
+- **文本**：基于 GPT 对结构、清晰度和语气进行反馈。
 
-## Tech Stack
-### AI/ML Tools
-- **Agno**: For building multi-agent collaboration and coordination.
-- **Facial Expression Tool**: Facial emotion analysis - New customized tool.
-- **Voice Analysis Tool**: Voice transcription and analysis - New customized tool.
-- **Together API (Llama-3.3-70B-Instruct-Turbo-Free)**: LLM - Content analysis and feedback generation.
+## 技术栈
+### AI/ML 工具
+- **Agno**：用于构建多 Agent 协作和协调机制。
+- **Facial Expression Tool**：自定义面部情绪分析工具。
+- **Voice Analysis Tool**：自定义语音转录和分析工具。
+- **Together API（Llama-3.3-70B-Instruct-Turbo-Free）**：用于内容分析和反馈生成的 LLM。
 
-### Application Framework
-- **Streamlit**: Frontend for user interface.
-- **FastAPI**: For backend API endpoints.
+### 应用框架
+- **Streamlit**：用于构建前端用户界面。
+- **FastAPI**：用于构建后端 API。
 
-### Languages & Packages
-- **Python**: Core language for backend logic and agent implementation.
-- **OpenCV + DeepFace + Mediapipe**: For facial expression analysis
-- **Moviepy + Faster-Whisper + Librosa**: For voice analysis
+### 编程语言与依赖
+- **Python**：后端逻辑和 Agent 实现的核心语言。
+- **OpenCV + DeepFace + Mediapipe**：用于面部表情分析。
+- **MoviePy + Faster-Whisper + Librosa**：用于语音分析。
 
-## UI Approach
-Built with Streamlit, the UI includes:
+## UI 设计
+界面基于 Streamlit 构建，包括：
 
-- Home page with Video Upload section, buttons, and a space for displaying the Transcript.
-- Feedback page to display evaluation scores, detailed feedback, strengths, weaknesses, suggestions for improvement, and a performance chart.
+- 首页：包含视频上传区域、操作按钮以及 Transcript 显示区域。
+- 反馈页：展示评估分数、详细反馈、优势、不足、改进建议以及性能图表。
 
-## Visuals
-### High Level Architecture
+## 界面与架构图
+### 高层架构
 <img src="visuals/ai_speech_trainer.drawio.png">
 
-### Home Page
+### 首页
 <img src="visuals/home.png">
 
-### Feedback Page
+### 反馈页
 <img src="visuals/feedback.png">
 
-## Setup Instructions
-### 1. Clone the repo
+## 安装与运行
+### 1. 克隆仓库
 ```sh
 git clone https://github.com/aminajavaid30/ai_speech_trainer.git
 cd ai_speech_trainer
 ```
 
-### 2. Install dependencies
+### 2. 安装依赖
 ```sh
 pip install -r requirements.txt
 ```
 
-### 3. **Add your API keys** - Create a .env file with:
+### 3. **添加 API Key** —— 创建 `.env` 文件并写入：
 ```sh
 TOGETHER_API_KEY=...
 ```
 
-### 4. Initialize the backend
-Navigate to the **backend** folder and run the following command:
+### 4. 启动后端
+进入 **backend** 目录并运行：
 ```sh
 uvicorn main:app --reload
 ```
 
-### 5. Run the app
-Navigate to the **frontend** folder and run the following command:
+### 5. 启动应用
+进入 **frontend** 目录并运行：
 ```sh
 streamlit run Home.py
 ```
 
-## Team Information
-- **Team Lead**: https://github.com/aminajavaid30 - Agentic System Designer and Developer
-- **Team Members**: https://github.com/aminajavaid30 - Individual Project
-- **Background/Experience**: Data Scientist with a background in Software Engineering and Web Development. Experienced in building AI products and agentic workflows.
+## 团队信息
+- **Team Lead**：https://github.com/aminajavaid30 —— Agentic System Designer and Developer
+- **Team Members**：https://github.com/aminajavaid30 —— 个人项目
+- **背景/经验**：数据科学家，具有软件工程和 Web 开发背景，并具备 AI 产品和 Agentic Workflow 开发经验。
 
-## Demo Video Link
+## 演示视频
 https://youtu.be/Sb0JPUpJTGQ
 
-## Folder Structure
+## 目录结构
 ```sh
 /backend
   /agents
@@ -141,20 +141,20 @@ README.md
 requirements.txt
 ```
 
-## Additional Notes
-- This project has been designed to utilize the capabilities of **Agno** as an AI agent development platform. It depicts the potential of Agno as a team of collaborative agents working together seamlessly in order to address a real-world challenge - analyzing speech presentations by users and providing them with comprehensive evaluation and feedback to improve their public speaking skills. Each individual agent has a clear cut goal to follow and together they coordinate as a team to solve a complex multimodal problem.
+## 补充说明
+- 本项目旨在充分利用 **Agno** 作为 AI Agent 开发平台的能力。它展示了多个协作 Agent 如何作为一个团队无缝配合，以解决现实问题——分析用户的演讲展示，并提供综合评估与反馈，从而提升其公众演讲能力。每个 Agent 都拥有明确的目标，并通过团队协作解决复杂的多模态任务。
 
-- This project has a huge potential for further enhancements. It could be a starting point for a more comprehensive and useful agentic systsem. Some of the proposed additional functionalities could be:
-  1. Incorporating real-time video recording and conversational capabilities through different role scenarios.
-  2. Playing back the user speech through an AI avatar to help users learn and understand best speaking practices.
-  3. Keeping a record of user sessions.
-  4. Including a performance dashboard to track user performance over time.
+- 本项目还有较大的扩展空间，可以作为更完整、更实用的 Agentic System 的起点。后续可以加入：
+  1. 实时视频录制功能，并通过不同角色场景加入对话式训练能力。
+  2. 使用 AI Avatar 重现用户演讲，帮助用户学习和理解更好的表达方式。
+  3. 保存用户历史会话记录。
+  4. 添加表现仪表盘，用于长期跟踪用户的训练效果。
 
-   Each of these additional functionalities could be added by implementing specific goal-oriented agents in the system.
+   这些能力都可以通过增加具有明确目标的专用 Agent 来实现。
 
-## Limitations
-- **Together API** with **meta-llama/Llama-3.3-70B-Instruct-Turbo-Free** as LLM has a small token limit, therefore, it works with small video clips (15-30 seconds).
-- Use other LLM options for longer video clips. Don't forget to add their API keys in the *.env* file. 
+## 局限性
+- 使用 **Together API** 的 **meta-llama/Llama-3.3-70B-Instruct-Turbo-Free** 模型时，Token 上限较小，因此更适合处理较短的视频片段（约 15-30 秒）。
+- 如果需要处理更长的视频，可以改用其他 LLM，并记得在 `.env` 文件中加入相应的 API Key。
 
-## Acknowledgements
-Built for the **#GlobalAgentHackathonMay2025** using Agno, Streamlit, Together API, and FastAPI.
+## 致谢
+本项目使用 Agno、Streamlit、Together API 和 FastAPI 构建，并参加 **#GlobalAgentHackathonMay2025**。
