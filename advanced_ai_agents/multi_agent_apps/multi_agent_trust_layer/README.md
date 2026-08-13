@@ -76,14 +76,14 @@ delegation = trust_layer.create_delegation(
         "time_limit_minutes": 30,
         "allowed_domains": ["arxiv.org", "github.com"]
     },
-    task_description="Research recent papers on AI safety"
+    task_description="研究近期的 AI 安全论文"
 )
 
 # 研究智能体只能执行委派范围内允许的操作
 result = researcher.execute_with_delegation(
     delegation=delegation,
     action="web_search",
-    params={"query": "AI safety papers 2024"}
+    params={"query": "2024 年 AI 安全论文"}
 )
 ```
 
@@ -131,7 +131,7 @@ result = researcher.execute_with_delegation(
    时间限制：30 分钟
 
 🤖 智能体 researcher-002 正在执行：web_search
-   查询："AI safety papers 2024"
+   查询："2024 年 AI 安全论文"
 ✅ 操作已允许（位于委派范围内）
    信任分数：850 → 860 (+10)
 
